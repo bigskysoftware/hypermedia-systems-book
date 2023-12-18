@@ -21,23 +21,23 @@
     #set text(font: secondary-font)
     #let h1 = query(heading.where(level: 1).or(heading.where(level: 2)), loc).any(h => counter(page).at(h.location()) == counter(page).at(loc))
     #if not h1 {
-      let reference-title(title, numbering: "1.") = [
+      let reference-title(title, numbering-style) = [
         #if title.numbering != none [
-          #numbering(numbering, counter(heading).at(title.location()).last())
+          #numbering(numbering-style, counter(heading).at(title.location()).last())
         ]
         #title.body
       ]
       if calc.even(counter(page).at(loc).at(0)) [
         // verso
-        #counter(page).display()
-        #let titles = query(heading.where(level: 1).before(loc), loc)
-        #if titles.len() > 0 [#sym.dot.c #reference-title(titles.last(), numbering: "I.")]
-      ] else [
-        // recto
         #set align(end)
         #let titles = query(heading.where(level: 1).or(heading.where(level: 2)).before(loc), loc)
-        #if titles.len() > 0 [#reference-title(titles.last()) #sym.dot.c]
+        #if titles.len() > 0 [#reference-title(titles.last(), "1.") #sym.dot.c]
         #counter(page).display()
+      ] else [
+        // recto
+        #counter(page).display()
+        #let titles = query(heading.where(level: 1).before(loc), loc)
+        #if titles.len() > 0 [#sym.dot.c #reference-title(titles.last(), "I.")]
       ]
     }
   ],
@@ -120,6 +120,11 @@
       #if it.numbering != none { chapter-counter.step() }
       #it
     ]
+
+    #show heading.where(level: 2): chapter-heading
+
+    #show heading.where(level: 1): part-heading
+    
     #show heading.where(level: 1): it => [
       #it
       // Override heading counter so chapter numbers don't reset with each part.
@@ -138,10 +143,6 @@
         numbering("1.1.", ..bits.pos().slice(1))
       },
     )
-
-    #show heading.where(level: 2): chapter-heading
-
-    #show heading.where(level: 1): part-heading
 
     #content
   ]
