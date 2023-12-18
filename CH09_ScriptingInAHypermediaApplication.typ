@@ -1138,7 +1138,7 @@ Like htmx and AlpineJS, \_hyperscript can be installed via a CDN or from npm
 <script src="//unpkg.com/hyperscript.org"></script>
 ``` ]
 
-\_hyperscript uses the `\_` (underscore) attribute for putting scripting on DOM
+\_hyperscript uses the `_` (underscore) attribute for putting scripting on DOM
 elements. You may also use the `script` or `data-script`
 attributes, depending on your HTML validation needs.
 
