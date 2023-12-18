@@ -21,9 +21,9 @@
     #set text(font: secondary-font)
     #let h1 = query(heading.where(level: 1).or(heading.where(level: 2)), loc).any(h => counter(page).at(h.location()) == counter(page).at(loc))
     #if not h1 {
-      let reference-title(title) = [
+      let reference-title(title, numbering: "1.") = [
         #if title.numbering != none [
-          #numbering(title.numbering, counter(heading).at(title.location()).last())
+          #numbering(numbering, counter(heading).at(title.location()).last())
         ]
         #title.body
       ]
@@ -31,7 +31,7 @@
         // verso
         #counter(page).display()
         #let titles = query(heading.where(level: 1).before(loc), loc)
-        #if titles.len() > 0 [#sym.dot.c #reference-title(titles.last())]
+        #if titles.len() > 0 [#sym.dot.c #reference-title(titles.last(), numbering: "I.")]
       ] else [
         // recto
         #set align(end)
@@ -129,7 +129,8 @@
     ]
 
     #set heading(
-      supplement: it => ([Part], [Chapter]).at(it.level - 1, default: [Section]), numbering: (..bits) => if bits.pos().len() < 2 {
+      supplement: it => ([Part], [Chapter]).at(it.level - 1, default: [Section]),
+      numbering: (..bits) => if bits.pos().len() < 2 {
         // Show part number only on parts.
         numbering("I.", ..bits)
       } else {
