@@ -7,17 +7,17 @@
 
 #let make-index() = {
   let content-to-string(content) = {
-    let ct = ""
     if content.has("text") {
-      ct = content.text
+      content.text
     } else {
+      let ct = ""
       for cc in content.children {
         if cc.has("text") {
           ct += cc.text
         }
       }
+      ct
     }
-    return ct
   }
 
   locate(
