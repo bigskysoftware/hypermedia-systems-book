@@ -41,4 +41,3 @@
 = Conclusion
 
 #include "CH14_Conclusion.typ"
-]
