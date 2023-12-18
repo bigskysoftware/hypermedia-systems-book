@@ -1,189 +1,44 @@
-#set document(
-  title: [Hypermedia Systems], author: ("Carson Gross", "Adam Stepinski", "Deniz Akşimşek"),
-)
 
 #import "definitions.typ": *
+#import "style.typ": *
 
-// Styles
-
-#set text(font: bodyFont, size: 12pt, lang: "en")
-#show raw: set text(font: monoFont)
-#show heading: set text(font: displayFont)
-
-#set par(justify: true, first-line-indent: 1em, leading: leading)
-#show par: set block(spacing: leading)
-
-#set terms(hanging-indent: 1em)
-#show terms: it => { set par(first-line-indent: 0pt); it }
-
-#set quote(block: true)
-#show quote: set text(style: "italic")
-// #show quote.attribution: set text(style: "normal")
-
-#set image(fit: "contain", width: 50%)
-
-#show figure.where(kind: raw): set align(start)
-#show figure.where(kind: raw): set figure.caption(position: top)
-#show figure.where(kind: raw): set par(justify: false)
-#show figure.where(kind: raw): it => {
-  show raw: it => block(width: 100%, align(start, it))
-  block(
-    spacing: 1em + leading, inset: (left: 1em, right: 1em), align(start, box(it)),
-  )
-}
-#show figure.caption: set text(font: secondaryFont)
-#show figure.caption: set align(start)
-
-// Code callouts
-#show raw.where(block: true): it => {
-  show regex("'(\\d+)'$"): it => box(
-    circle(
-      radius: .5em, inset: 0pt, fill: black, stroke: none, align(
-        center, text(fill: white, font: secondaryFont, it.text.find(regex("\\d+")).at(0)),
-      ),
-    ),
-  )
-  it
-}
-
-// Title page
-#page(
-  header: none,
-)[
-  #align(
-    start + horizon,
-  )[
-    #set par(leading: 5pt, justify: false)
-    #skew(
-      -10deg, upper(
-        text(
-          style: "oblique", size: 3em, heading(level: 1, outlined: false)[Hypermedia Systems],
-        ),
-      ),
-    )
-    #box(height: 1em)
-    #set text(font: secondaryFont)
-    #grid(
-      gutter: 1em, columns: 3 * (auto,), [Carson Gross], [Adam Stepinski], [Deniz Akşimşek],
-    )
-  ]
-]
-
-// Frontmatter
-
-#set page(
-  width: 8.25in, height: 11in, margin: (inside: 1.5in, outside: 1in, y: 1in), header: locate(
-    loc => [
-      #set text(font: secondaryFont)
-      #let h1 = query(heading.where(level: 1).or(heading.where(level: 2)), loc).any(h =>
-      counter(page).at(h.location()) == counter(page).at(loc))
-      #if not h1 {
-        let reference-title(title) = [
-          #if title.numbering != none [#numbering(title.numbering, counter(heading).at(title.location()).last())]
-          #title.body
-        ]
-        if calc.even(counter(page).at(loc).at(0)) [
-          #counter(page).display()
-          #let titles = query(heading.where(level: 1).before(loc), loc)
-          #if titles.len() > 0 [#sym.dot.c #reference-title(titles.last())]
-        ] else [
-          #set align(end)
-          #let titles = query(heading.where(level: 1).or(heading.where(level: 2)).before(loc), loc)
-          #if titles.len() > 0 [#reference-title(titles.last()) #sym.dot.c]
-          #counter(page).display()
-        ]
-      }
-    ],
-  ),
+#show: hypermedia-systems-book(
+  [Hypermedia Systems], authors: ("Carson Gross", "Adam Stepinski", "Deniz Akşimşek"),
+  frontmatter: [
+    #page(include "copy-ack.typ", header: none, numbering: none)
+    #page([
+      #include "dedication.typ"
+      #counter(page).update(0)
+    ], header: none, numbering: none)
+    #show heading.where(level: 1): chapter-heading
+    #include "Foreword.typ"
+  ],
 )
-#counter(page).update(1)
 
-// Frontmatter
-#[
-  #page(include "copy-ack.typ", header: none)
-  #page([
-    #include "dedication.typ"
-    #counter(page).update(0)
-  ], header: none)
-  #show heading.where(level: 1): chapter-heading
-  #include "Foreword.typ"
-  #pagebreak(to: "odd")
-  = Contents
-  #set par(first-line-indent: 0pt)
-  #outline(indent: 1em, depth: 4, title: none)
+= Hypermedia Concepts
+
+#include "0-Introduction.typ"
+#include "CH01_HypermediaAReintroduction.typ"
+#include "CH02_ComponentsOfAHypermediaSystem.typ"
+#include "CH03_BuildingASimpleWebApplication.typ"
+
+= Hypermedia-Driven Web Applications With Htmx
+
+#include "CH04_ExtendingHTMLAsHypermedia.typ"
+#include "CH05_htmxPatterns.typ"
+#include "CH06_MorehtmxPatterns.typ"
+#include "CH07_ADynamicArchiveUIWithhtmx.typ"
+#include "CH08_TricksOfThehtmxMasters.typ"
+#include "CH09_ScriptingInAHypermediaApplication.typ"
+#include "CH10_JSONDataAPIs.typ"
+
+= Bringing Hypermedia To Mobile
+
+#include "CH11_HyperviewAMobileHypermedia.typ"
+#include "CH12_BuildingAContactsAppWithHyperview.typ"
+#include "CH13_ExtendingTheHyperviewClient.typ"
+
+= Conclusion
+
+#include "CH14_Conclusion.typ"
 ]
-
-// Body
-#[
-  #let chapter-counter = counter("chapter")
-  #show heading.where(level: 2): it => [
-    #if it.numbering != none [
-      #chapter-counter.step()
-      // Override heading counter so chapter numbers don't reset with each part.
-      // TODO: this doesn't work on the first heading in each part
-      #locate(loc => counter(heading).update((..args) =>
-        (args.pos().at(0), chapter-counter.at(loc).last())))
-    ]
-    #chapter-heading(it)
-  ]
-
-  #set heading(
-    supplement: it => ([Part], [Chapter]).at(it.level - 1, default: [Section]), numbering: (..bits) => if bits.pos().len() < 2 {
-      // Show part number only on parts.
-      numbering("I.", ..bits)
-    } else {
-      // Discard part number otherwise.
-      numbering("1.1.", ..bits.pos().slice(1))
-    },
-  )
-  #show heading.where(level: 1): it => [
-    #pagebreak(to: "even")
-    #align(horizon)[
-      #set par(leading: 5pt, justify: false)
-      #set text(size: 32pt, font: displayFont)
-      #text(
-        fill: luma(140),
-      )[Part #numbering("I", counter(heading).at(it.location()).last())]
-      #linebreak()
-      #it.body
-    ]
-    #pagebreak()
-  ]
-
-  = Hypermedia Concepts
-
-  #include "0-Introduction.typ"
-  #include "CH01_HypermediaAReintroduction.typ"
-  #include "CH02_ComponentsOfAHypermediaSystem.typ"
-  #include "CH03_BuildingASimpleWebApplication.typ"
-
-  = Hypermedia-Driven Web Applications With Htmx
-
-  #include "CH04_ExtendingHTMLAsHypermedia.typ"
-  #include "CH05_htmxPatterns.typ"
-  #include "CH06_MorehtmxPatterns.typ"
-  #include "CH07_ADynamicArchiveUIWithhtmx.typ"
-  #include "CH08_TricksOfThehtmxMasters.typ"
-  #include "CH09_ScriptingInAHypermediaApplication.typ"
-  #include "CH10_JSONDataAPIs.typ"
-
-  = Bringing Hypermedia To Mobile
-
-  #include "CH11_HyperviewAMobileHypermedia.typ"
-  #include "CH12_BuildingAContactsAppWithHyperview.typ"
-  #include "CH13_ExtendingTheHyperviewClient.typ"
-
-  = Conclusion
-
-  #include "CH14_Conclusion.typ"
-]
-
-// Index
-
-= Index
-
-#columns(2, gutter: 2em, [
-  #set par(first-line-indent: 0pt)
-  #show heading: none
-  #make-index()
-])

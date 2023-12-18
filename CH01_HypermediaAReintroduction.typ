@@ -62,7 +62,7 @@ example, hyperlinks embedded in the media. The prefix "hyper-" derives from the
 Greek prefix "ὑπερ-" which means "beyond" or "over", indicating that hypermedia _goes beyond_ normal,
 passively consumed media like magazines and newspapers.
 
-Hyperlinks are a canonical example of what is called a _#index[hypermedia control]_:
+Hyperlinks are a canonical example of what is called a _#indexed[hypermedia control]_:
 
 / Hypermedia Control: #[
     A #indexed[hypermedia control] is an element in a hypermedia that describes (or
@@ -243,9 +243,10 @@ resource.
 Here is what a user interaction with an anchor tag/hyperlink looks like in
 visual form:
 
-#figure([#image("images/diagram/http-get-in-action.svg")], caption: [
-  An HTTP GET In Action
-])
+#asciiart(
+  "images/diagram/http-get-in-action.txt",
+  caption: [An HTTP GET In Action]
+)
 
 #index[GET request]
 When the link is clicked the browser (or, as we sometimes refer to it, the _hypermedia client_)
@@ -318,9 +319,9 @@ core mechanism for updating system state purely within hypermedia.
 
 Here is a diagram of the interaction:
 
-#figure([#image("images/diagram/http-post-in-action.svg")], caption: [
-  An HTTP POST In Action
-])
+#asciiart(
+  "images/diagram/http-post-in-action.txt",
+  caption: [An HTTP POST In Action])
 
 ===== Web 1.0 applications <_web_1_0_applications>
 As someone interested in web development, the above diagrams and discussion are

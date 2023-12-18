@@ -559,9 +559,9 @@ similar process:
   into React Native components using
   `Hyperview.renderChildren()`.- Set the components as children or props of `Swipeable`.
 
-#figure([#image("images/diagram/hyperview-components.svg")], caption: [
-  Rendering delegation between the client and the custom components
-])
+#asciiart(
+  "images/diagram/hyperview-components.txt",
+  caption: [Rendering delegation between the client and the custom components])
 
 This code may be hard to follow if you’ve never worked with React or React
 Native. That’s OK. The important takeaway is: we can write code to translate

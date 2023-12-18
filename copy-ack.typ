@@ -16,14 +16,17 @@ Read online: https://hypermedia.systems/
 
 Thanks to:
 - Berkeley Graphics for their permission to use _Berkeley Mono_ and the design of
-  the book cover.- All contributors to the book:
-  https://github.com/bigskysoftware/hypermedia-systems/graphs/contributors,-
-  Manning Publications for their support in the initial stages of writing this
-  book.- India Hackle for her valuable feedback and editing.
+  the book cover,
+- All contributors to the book:
+  https://github.com/bigskysoftware/hypermedia-systems/graphs/contributors,
+- Manning Publications for their support in the initial stages of writing this
+  book,
+- India Hackle for her valuable feedback and editing.
 
-Typefaces: ChicagoFLF (by Robin Casady, for headings), Linux Libertine (by the
-Libertine Open Fonts Project, for body text) and Linux Biolinum (by the same,
-for secondary text), Berkeley Mono (by Berkeley Graphics, for code and ascii
-art).
+Typefaces:
+- ChicagoFLF (by Robin Casady, for headings),
+- Linux Libertine (by the Libertine Open Fonts Project, for body text),
+- Linux Biolinum (by the same, for secondary text),
+- Berkeley Mono (by Berkeley Graphics, for code and ascii art).
 
 Written and typeset with Typst.

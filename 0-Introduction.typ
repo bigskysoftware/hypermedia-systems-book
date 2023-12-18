@@ -129,16 +129,17 @@ The book is broken into three parts:
 - An introduction (or re-introduction) to hypermedia, with a particular focus on
   HTML and HTTP. We will finish this review of core hypermedia concepts by
   creating a simple "Web 1.0"-style application, Contact.app, for managing
-  contacts.- Next we will look at how we can use https://htmx.org[htmx], a
+  contacts.
+- Next we will look at how we can use #link("https://htmx.org")[htmx], a
   hypermedia-oriented JavaScript library created by the authors of this book, to
   improve Contact.app. By using htmx, we will be able to achieve a level of
   interactivity in our application that many developers would expect to require a
   large, sophisticated front end library, such as React. Thanks to htmx, we will
-  be able to do this using hypermedia as our system architecture.- Finally, we
-  will look at a completely different hypermedia system, Hyperview. Hyperview is a _mobile_ hypermedia
-  system, related to, but distinct from the web and created by one of the authors
-  of this book -- Adam Stepinski. It supports _mobile specific_ features by
-  providing not only a mobile specific hypermedia, but also a mobile hypermedia
+  be able to do this using hypermedia as our system architecture.
+- Finally, we will look at a completely different hypermedia system, Hyperview.
+  Hyperview is a _mobile_ hypermedia system, related to, but distinct from the web
+  and created by one of the authors of this book -- Adam Stepinski. It supports _mobile specific_ features
+  by providing not only a mobile specific hypermedia, but also a mobile hypermedia
   client. These novel components, combined with any HTTP server, make it possible
   to build mobile Hypermedia-Driven Applications.
 

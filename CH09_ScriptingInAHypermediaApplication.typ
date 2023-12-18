@@ -355,8 +355,8 @@ So, you can see that the notion of Separation of Concerns doesn’t always work 
 well as promised: our concerns end up intertwined or coupled pretty deeply, even
 when we separate them into different files.
 
-#figure([#image("images/diagram/separation-of-concerns.svg")], caption: [
-])
+#asciiart(
+  "images/diagram/separation-of-concerns.txt", caption: [What concerns?])
 
 To show that it isn’t just naming between concerns that can get you into
 trouble, consider another small change to our HTML that demonstrates the

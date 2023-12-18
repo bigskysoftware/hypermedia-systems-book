@@ -115,19 +115,22 @@ Let’s contrast the needs of JSON APIs with Hypermedia APIs:
 #align(
   center,
 )[#table(
-    columns: 2, align: (col, row) => (auto, auto,).at(col), inset: 6pt, [JSON API Needs], [Hypermedia API], [It must remain stable over time: you cannot change the API willy-nilly or you
+    columns: 2, align: (col, row) => (auto, auto,).at(col), inset: 6pt, [JSON API Needs],
+    [Hypermedia API], [It must remain stable over time: you cannot change the API willy-nilly or you
       risk breaking clients that use the API and expect certain end points to behave
       in certain ways.], [There is no need to remain stable over time: all URLs are discovered via HTML
       responses, so you can be much more aggressive in changing the shape of a
       hypermedia API.], [It must be versioned: related to the first point, when you do make a major
       change, you need to version the API so that clients that are using the old API
-      continue to work.], [Versioning is not an issue, another strength of the hypermedia approach. ], [It should be rate limited: since data APIs are often used by other clients, not
+      continue to work.],
+    [Versioning is not an issue, another strength of the hypermedia approach. ], [It should be rate limited: since data APIs are often used by other clients, not
       just your own internal web application, requests should be rate limited, often
       by user, in order to avoid a single client overloading the system.], [Rate limiting probably isn’t as important beyond the prevention of Distributed
       Denial of Service (DDoS) attacks.], [It should be a general API: since the API is for _all_ clients, not just for
       your web application, you should avoid specialized end points that are driven by
       your own application needs. Instead, the API should be general and expressive
-      enough to satisfy as many potential client needs as possible.], [The API can be _very specific_ to your application needs: since it is designed
+      enough to satisfy as many potential client needs as possible.],
+    [The API can be _very specific_ to your application needs: since it is designed
       only for your particular web application, and since the API is discovered
       through hypermedia, you can add and remove highly tuned end points for specific
       features or optimization needs in your application.], [Authentication for these sorts of API is typically token based, which we will

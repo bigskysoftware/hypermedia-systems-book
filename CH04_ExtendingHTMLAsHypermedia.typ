@@ -598,14 +598,14 @@ to our button:
 
 #figure(
   caption: [A (bad?) button that triggers on mouse entry], ```html
-    <div id="main">
+          <div id="main">
 
-      <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="mouseenter"> '1'
-        Get The Contacts
-      </button>
+            <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="mouseenter"> '1'
+              Get The Contacts
+            </button>
 
-    </div>
-    ```,
+          </div>
+          ```,
 )
 1. Issue a request on the... `mouseenter` event.
 
@@ -631,14 +631,14 @@ addition to the click event:
 
 #figure(
   caption: [A start, trigger on keyup], ```html
-    <div id="main">
+          <div id="main">
 
-      <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup">
-        Get The Contacts
-      </button>
+            <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup">
+              Get The Contacts
+            </button>
 
-    </div>
-    ```,
+          </div>
+          ```,
 )
 1. A trigger with two events.
 
@@ -659,14 +659,14 @@ to test that Control key and the "L" key are pressed together:
 #index[event filter, example]
 #figure(
   caption: [Getting better with filter on keyup], ```html
-    <div id="main">
+          <div id="main">
 
-      <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l']"> '1'
-        Get The Contacts
-      </button>
+            <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l']"> '1'
+              Get The Contacts
+            </button>
 
-    </div>
-    ```,
+          </div>
+          ```,
 )
 1. `keyup` now has a filter, so the control key and L must be pressed.
 
@@ -707,14 +707,14 @@ Here is what our updated `hx-trigger` attribute looks like:
 
 #figure(
   caption: [Even better, listen for keyup on the body], ```html
-    <div id="main">
+          <div id="main">
 
-      <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body"> '1'
-        Get The Contacts
-      </button>
+            <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body"> '1'
+              Get The Contacts
+            </button>
 
-    </div>
-    ```,
+          </div>
+          ```,
 )
 1. Listen to the 'keyup' event on the `body` tag.
 
@@ -790,18 +790,18 @@ contacts:
 
 #figure(
   caption: [An htmx-powered search button], ```html
-    <div id="main">
+          <div id="main">
 
-      <form> '1'
-          <label for="search">Search Contacts:</label>
-          <input id="search" name="q" type="search" placeholder="Search Contacts"> '2'
-          <button hx-post="/contacts" hx-target="#main"> '3'
-            Search The Contacts
-          </button>
-      </form>
+            <form> '1'
+                <label for="search">Search Contacts:</label>
+                <input id="search" name="q" type="search" placeholder="Search Contacts"> '2'
+                <button hx-post="/contacts" hx-target="#main"> '3'
+                  Search The Contacts
+                </button>
+            </form>
 
-    </div>
-    ```,
+          </div>
+          ```,
 )
 
 1. With an enclosing form tag, all input values will be submitted.

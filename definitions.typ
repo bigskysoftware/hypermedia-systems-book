@@ -13,15 +13,27 @@
   #v(3in)
   #set par(leading: 0pt, justify: false)
   #set text(size: 22pt, font: displayFont)
-  #if it.numbering != none [
-    #text(fill: luma(140))[
-      #it.supplement
-      #counter(heading).display()
+  #block[
+    #if it.numbering != none [
+      #text(fill: luma(140))[
+        #it.supplement
+        #counter(heading).display()
+      ]
+      #linebreak()
     ]
-    #linebreak()
+    #it.body
   ]
-  #it.body
 ]
+
+#let asciiart(..args, source) = figure(
+  {
+    set text(size: .8em)
+    set par(leading: .5em)
+    block(breakable: false, align(start, raw(read(source))))
+  },
+  kind: image,
+  ..args,
+)
 
 #let sidebar(title, body) = block(
   spacing: 1em, rect(
