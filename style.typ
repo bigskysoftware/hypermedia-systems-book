@@ -115,13 +115,7 @@
   #[
     #let chapter-counter = counter("chapter")
     #show heading.where(level: 2): it => [
-      #if it.numbering != none [
-        #chapter-counter.step()
-        // Override heading counter so chapter numbers don't reset with each part.
-        // TODO: this doesn't work on the first heading in each part
-        #locate(loc => counter(heading).update((..args) =>
-        (args.pos().at(0), chapter-counter.at(loc).last())))
-      ]
+      #if it.numbering != none { chapter-counter.step() }
       #chapter-heading(it)
     ]
 
@@ -146,6 +140,11 @@
         #it.body
       ]
       #pagebreak()
+
+      // Override heading counter so chapter numbers don't reset with each part.
+      // TODO: this doesn't work on the first heading in each part
+      #locate(loc => counter(heading).update((..args) =>
+        (args.pos().at(0), chapter-counter.at(loc).last())))
     ]
 
     #content
