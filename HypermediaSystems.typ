@@ -10,7 +10,6 @@
       #include "dedication.typ"
       #counter(page).update(0)
     ], header: none, numbering: none)
-    #show heading.where(level: 1): chapter-heading
     #include "Foreword.typ"
   ],
 )
