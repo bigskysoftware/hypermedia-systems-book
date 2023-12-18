@@ -8,6 +8,20 @@
 
 #let indexed(..args, content) = [#index(..args, content) #content]
 
+#let part-heading(it) = [
+  #pagebreak(to: "even")
+  #align(horizon)[
+    #set par(leading: 5pt, justify: false)
+    #set text(size: 32pt, font: displayFont)
+    #text(
+      fill: luma(140),
+    )[Part #numbering("I", counter(heading).at(it.location()).last())]
+    #linebreak()
+    #it.body
+  ]
+  #pagebreak()
+]
+
 #let chapter-heading(it) = [
   #pagebreak(to: "even")
   #v(3in)

@@ -46,6 +46,7 @@
 #let hypermedia-systems-book(title, authors: (), frontmatter: []) = content => [
   #set text(font: bodyFont, size: 12pt, lang: "en")
   #show raw: set text(font: monoFont)
+  
   #show heading: set text(font: displayFont)
 
   #set par(justify: true, first-line-indent: 1em, leading: leading)
@@ -113,10 +114,18 @@
   // #region BODY
 
   #[
+    // Chapter count
     #let chapter-counter = counter("chapter")
     #show heading.where(level: 2): it => [
       #if it.numbering != none { chapter-counter.step() }
-      #chapter-heading(it)
+      #it
+    ]
+    #show heading.where(level: 1): it => [
+      #it
+      // Override heading counter so chapter numbers don't reset with each part.
+      // TODO: this doesn't work on the first heading in each part
+      #locate(loc => counter(heading).update((..args) =>
+        (args.pos().at(0), chapter-counter.at(loc).last())))
     ]
 
     #set heading(
@@ -128,24 +137,10 @@
         numbering("1.1.", ..bits.pos().slice(1))
       },
     )
-    #show heading.where(level: 1): it => [
-      #pagebreak(to: "even")
-      #align(horizon)[
-        #set par(leading: 5pt, justify: false)
-        #set text(size: 32pt, font: displayFont)
-        #text(
-          fill: luma(140),
-        )[Part #numbering("I", counter(heading).at(it.location()).last())]
-        #linebreak()
-        #it.body
-      ]
-      #pagebreak()
 
-      // Override heading counter so chapter numbers don't reset with each part.
-      // TODO: this doesn't work on the first heading in each part
-      #locate(loc => counter(heading).update((..args) =>
-        (args.pos().at(0), chapter-counter.at(loc).last())))
-    ]
+    #show heading.where(level: 2): chapter-heading
+
+    #show heading.where(level: 1): part-heading
 
     #content
   ]
@@ -154,13 +149,18 @@
 
   // #region BACKMATTER
 
-  = Index
+  #[
+    #show heading.where(level: 1): chapter-heading
 
-  #columns(2, gutter: 2em, [
-    #set par(first-line-indent: 0pt)
-    #show heading: none
-    #make-index()
-  ])
+    = Index
+
+    #columns(2, gutter: 2em, {
+      set text(font: secondaryFont, size: .9em)
+      set par(first-line-indent: 0pt)
+      show heading: none
+      make-index()
+    })
+  ]
 
   // #endregion BACKMATTER
 ]
