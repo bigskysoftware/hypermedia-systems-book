@@ -310,16 +310,16 @@ Let’s look at the first few lines of code in the `index.html` template:
 
 #figure(
   caption: [Start of index.html], ```html
-          {% extends 'layout.html' %} '1'
+            {% extends 'layout.html' %} '1'
 
-          {% block content %} '2'
+            {% block content %} '2'
 
-              <form action="/contacts" method="get" class="tool-bar"> '3'
-                      <label for="search">Search Term</label>
-                      <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> '4'
-                      <input type="submit" value="Search"/>
-              </form>
-          ```,
+                <form action="/contacts" method="get" class="tool-bar"> '3'
+                        <label for="search">Search Term</label>
+                        <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> '4'
+                        <input type="submit" value="Search"/>
+                </form>
+            ```,
 )
 
 1. Set the layout template for this template.
@@ -365,26 +365,26 @@ Here is what the template code for the contact table looks like:
 
 #figure(
   caption: [The contacts table], ```html
-              <table>
-                  <thead>
-                  <tr>
-                      <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th> '1'
-                  </tr>
-                  </thead>
-                  <tbody>
-                  {% for contact in contacts %} '2'
-                      <tr>
-                          <td>{{ contact.first }}</td>
-                          <td>{{ contact.last }}</td>
-                          <td>{{ contact.phone }}</td>
-                          <td>{{ contact.email }}</td> '3'
-                          <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
-                              <a href="/contacts/{{ contact.id }}">View</a></td> '4'
-                      </tr>
-                  {% endfor %}
-                  </tbody>
-              </table>
-          ```,
+                <table>
+                    <thead>
+                    <tr>
+                        <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th> '1'
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contact in contacts %} '2'
+                        <tr>
+                            <td>{{ contact.first }}</td>
+                            <td>{{ contact.last }}</td>
+                            <td>{{ contact.phone }}</td>
+                            <td>{{ contact.email }}</td> '3'
+                            <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
+                                <a href="/contacts/{{ contact.id }}">View</a></td> '4'
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            ```,
 )
 - Output some headers for our table.
 - Iterate over the contacts that were passed in to the template.
@@ -518,22 +518,22 @@ Next we have inputs for the other fields for contacts:
 
 #figure(
   caption: [Inputs and labels for the "new contact" form], ```html
-                  <p>
-                      <label for="first_name">First Name</label>
-                      <input name="first_name" id="first_name" type="text" placeholder="First Name" value="{{ contact.first or '' }}">
-                      <span class="error">{{ contact.errors['first'] }}</span>
-                  </p>
-                  <p>
-                      <label for="last_name">Last Name</label>
-                      <input name="last_name" id="last_name" type="text" placeholder="Last Name" value="{{ contact.last or '' }}">
-                      <span class="error">{{ contact.errors['last'] }}</span>
-                  </p>
-                  <p>
-                      <label for="phone">Phone</label>
-                      <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone or '' }}">
-                      <span class="error">{{ contact.errors['phone'] }}</span>
-                  </p>
-          ```,
+                    <p>
+                        <label for="first_name">First Name</label>
+                        <input name="first_name" id="first_name" type="text" placeholder="First Name" value="{{ contact.first or '' }}">
+                        <span class="error">{{ contact.errors['first'] }}</span>
+                    </p>
+                    <p>
+                        <label for="last_name">Last Name</label>
+                        <input name="last_name" id="last_name" type="text" placeholder="Last Name" value="{{ contact.last or '' }}">
+                        <span class="error">{{ contact.errors['last'] }}</span>
+                    </p>
+                    <p>
+                        <label for="phone">Phone</label>
+                        <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone or '' }}">
+                        <span class="error">{{ contact.errors['phone'] }}</span>
+                    </p>
+            ```,
 )
 
 Finally, we have a button that will submit the form, the end of the form tag,
@@ -576,16 +576,16 @@ Here is our new request handler:
 
 #figure(
   caption: [The "new contact" controller code], ```python
-          @app.route("/contacts/new", methods=['POST'])
-          def contacts_new():
-              c = Contact(None, request.form['first_name'], request.form['last_name'], request.form['phone'],
-                          request.form['email']) '1'
-              if c.save(): '2'
-                  flash("Created New Contact!")
-                  return redirect("/contacts") '3'
-              else:
-                  return render_template("new.html", contact=c) '4'
-          ```,
+            @app.route("/contacts/new", methods=['POST'])
+            def contacts_new():
+                c = Contact(None, request.form['first_name'], request.form['last_name'], request.form['phone'],
+                            request.form['email']) '1'
+                if c.save(): '2'
+                    flash("Created New Contact!")
+                    return redirect("/contacts") '3'
+                else:
+                    return render_template("new.html", contact=c) '4'
+            ```,
 )
 
 1. We construct a new contact object with the values from the form.
@@ -772,15 +772,15 @@ Here is the first bit of the form:
 
 #figure(
   caption: [The "edit contact" form start], ```html
-              <form action="/contacts/{{ contact.id }}/edit" method="post"> '1'
-                  <fieldset>
-                      <legend>Contact Values</legend>
-                        <p>
-                            <label for="email">Email</label>
-                            <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}"> '2'
-                            <span class="error">{{ contact.errors['email'] }}</span>
-                        </p>
-          ```,
+                <form action="/contacts/{{ contact.id }}/edit" method="post"> '1'
+                    <fieldset>
+                        <legend>Contact Values</legend>
+                          <p>
+                              <label for="email">Email</label>
+                              <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}"> '2'
+                              <span class="error">{{ contact.errors['email'] }}</span>
+                          </p>
+            ```,
 )
 
 1. Issue a `POST` to the `/contacts/{{ contact.id }}/edit` path.
@@ -797,27 +797,27 @@ and our button to submit the form.
 
 #figure(
   caption: [The "edit contact" form body], ```html
-                        <p>
-                            <label for="first_name">First Name</label>
-                            <input name="first_name" id="first_name" type="text" placeholder="First Name"
-                                  value="{{ contact.first }}">
-                            <span class="error">{{ contact.errors['first'] }}</span>
-                        </p>
-                        <p>
-                            <label for="last_name">Last Name</label>
-                            <input name="last_name" id="last_name" type="text" placeholder="Last Name"
-                                  value="{{ contact.last }}">
-                            <span class="error">{{ contact.errors['last'] }}</span>
-                        </p>
-                        <p>
-                            <label for="phone">Phone</label>
-                            <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone }}">
-                            <span class="error">{{ contact.errors['phone'] }}</span>
-                        </p>
-                      <button>Save</button>
-                  </fieldset>
-              </form>
-          ```,
+                          <p>
+                              <label for="first_name">First Name</label>
+                              <input name="first_name" id="first_name" type="text" placeholder="First Name"
+                                    value="{{ contact.first }}">
+                              <span class="error">{{ contact.errors['first'] }}</span>
+                          </p>
+                          <p>
+                              <label for="last_name">Last Name</label>
+                              <input name="last_name" id="last_name" type="text" placeholder="Last Name"
+                                    value="{{ contact.last }}">
+                              <span class="error">{{ contact.errors['last'] }}</span>
+                          </p>
+                          <p>
+                              <label for="phone">Phone</label>
+                              <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone }}">
+                              <span class="error">{{ contact.errors['phone'] }}</span>
+                          </p>
+                        <button>Save</button>
+                    </fieldset>
+                </form>
+            ```,
 )
 
 In the final part of our template we have a small difference between the
@@ -880,16 +880,16 @@ Here is the new handler code:
 #index[POST request]
 #figure(
   ```python
-        @app.route("/contacts/<contact_id>/edit", methods=["POST"]) '1'
-        def contacts_edit_post(contact_id=0):
-            c = Contact.find(contact_id) '2'
-            c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) '3'
-            if c.save(): '4'
-                flash("Updated Contact!")
-                return redirect("/contacts/" + str(contact_id)) '5'
-            else:
-                return render_template("edit.html", contact=c) '6'
-        ```,
+          @app.route("/contacts/<contact_id>/edit", methods=["POST"]) '1'
+          def contacts_edit_post(contact_id=0):
+              c = Contact.find(contact_id) '2'
+              c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) '3'
+              if c.save(): '4'
+                  flash("Updated Contact!")
+                  return redirect("/contacts/" + str(contact_id)) '5'
+              else:
+                  return render_template("edit.html", contact=c) '6'
+          ```,
 )
 
 1. Handle a `POST` to `/contacts/<contact_id>/edit`.

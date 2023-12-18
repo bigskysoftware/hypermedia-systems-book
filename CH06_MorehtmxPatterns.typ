@@ -807,10 +807,10 @@ in our span:
 
 #figure(
   caption: [Adding an indicator to our lazily loaded content], ```html
-        <span hx-get="/contacts/count" hx-trigger="load">
-          <img id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg"/> '1'
-        </span>
-        ```,
+          <span hx-get="/contacts/count" hx-trigger="load">
+            <img id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg"/> '1'
+          </span>
+          ```,
 )
 1. Yep, that’s it.
 

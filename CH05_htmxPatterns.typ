@@ -200,13 +200,13 @@ value with `hx-boost="false"` on the anchor tag that you don’t want to boost:
 
 #figure(
   caption: [Disabling boosting], ```html
-          <div hx-boost="true"> <!--1-->
-              <a href="/contacts">Contacts</a>
-              <a href="/settings">Settings</a>
-              <a href="/help">Help</a>
-              <a href="/help/documentation.pdf" hx-boost="false">Download Docs</a> <!--2-->
-          </div>
-          ```,
+            <div hx-boost="true"> <!--1-->
+                <a href="/contacts">Contacts</a>
+                <a href="/settings">Settings</a>
+                <a href="/help">Help</a>
+                <a href="/help/documentation.pdf" hx-boost="false">Download Docs</a> <!--2-->
+            </div>
+            ```,
 )
 1. The `hx-boost` is still on the parent div.
 2. The boosting behavior is overridden for this link.
@@ -337,8 +337,8 @@ attribute to the "Delete Contact" button:
 
 #figure(
   caption: [An htmx-powered button for deleting a contact], ```html
-            <button hx-delete="/contacts/{{ contact.id }}">Delete Contact</button>
-          ```,
+              <button hx-delete="/contacts/{{ contact.id }}">Delete Contact</button>
+            ```,
 )
 
 Now, when a user clicks this button, htmx will issue an HTTP `DELETE`
@@ -379,13 +379,13 @@ new HTTP Request.
 
 #figure(
   caption: [The original server-side code for deleting a contact], ```python
-          @app.route("/contacts/<contact_id>/delete", methods=["POST"])
-          def contacts_delete(contact_id=0):
-              contact = Contact.find(contact_id)
-              contact.delete()
-              flash("Deleted Contact!")
-              return redirect("/contacts")
-          ```,
+            @app.route("/contacts/<contact_id>/delete", methods=["POST"])
+            def contacts_delete(contact_id=0):
+                contact = Contact.find(contact_id)
+                contact.delete()
+                flash("Deleted Contact!")
+                return redirect("/contacts")
+            ```,
 )
 
 We’ll need to make two changes to our handler: update the route, and update the
@@ -630,12 +630,12 @@ Let’s take a look at the HTML for the email input:
 
 #figure(
   caption: [Validation error messages], ```html
-          <p>
-              <label for="email">Email</label>
-              <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}">
-              <span class="error">{{ contact.errors['email'] }}</span> '1'
-          </p>
-          ```,
+            <p>
+                <label for="email">Email</label>
+                <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}">
+                <span class="error">{{ contact.errors['email'] }}</span> '1'
+            </p>
+            ```,
 )
 1. Display any errors associated with the email field
 

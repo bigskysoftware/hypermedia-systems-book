@@ -189,7 +189,8 @@ address bar of a general-purpose web browser. A single HTML client renders apps
 from any HTML server.
 
 #asciiart(
-  "images/diagram/one-client-many-servers.txt", caption: [One HTML client, multiple HTML servers])
+  "images/diagram/one-client-many-servers.txt", caption: [One HTML client, multiple HTML servers],
+)
 
 It is theoretically possible to build an equivalent general-purpose
 "Hyperview browser." This HXML client would render apps from any HXML server,
@@ -201,8 +202,8 @@ mobile platforms. That means that the HXML client (app binary) renders its UI
 from a single pre-configured HXML server:
 
 #asciiart(
-  "images/diagram/one-server-one-hxml-client.txt",
-  caption: [One HXML client, one HXML server])
+  "images/diagram/one-server-one-hxml-client.txt", caption: [One HXML client, one HXML server],
+)
 
 Luckily, developers do not need to write a HXML client from scratch; the
 open-source client library does 99% of the work. And as we will see in the next

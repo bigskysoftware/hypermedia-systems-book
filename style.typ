@@ -62,10 +62,7 @@
   #set image(fit: "contain", width: 50%)
 
   #show figure: it => {
-    show figure.caption: align.with(
-      if it.kind == raw { start }
-      else { center }
-    )
+    show figure.caption: align.with(if it.kind == raw { start } else { center })
     it
   }
   #show figure.where(kind: raw): set figure.caption(position: top)
@@ -77,7 +74,7 @@
     )
   }
   #show figure.caption: set text(font: secondaryFont)
-  
+
   // Code callouts
   // TODO: does not work consistently across languagea
   #show raw.where(block: true): it => {

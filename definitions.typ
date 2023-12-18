@@ -25,15 +25,11 @@
   ]
 ]
 
-#let asciiart(..args, source) = figure(
-  {
-    set text(size: .8em)
-    set par(leading: .5em)
-    block(breakable: false, align(start, raw(read(source))))
-  },
-  kind: image,
-  ..args,
-)
+#let asciiart(..args, source) = figure({
+  set text(size: .8em)
+  set par(leading: .5em)
+  block(breakable: false, align(start, raw(read(source))))
+}, kind: image, ..args)
 
 #let sidebar(title, body) = block(
   spacing: 1em, rect(
