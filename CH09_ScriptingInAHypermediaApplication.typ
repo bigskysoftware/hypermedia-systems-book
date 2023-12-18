@@ -1,10 +1,10 @@
 #import "definitions.typ": *
-#import "snippets.typ": fieldingRestThesis
+#import "snippets.typ": fielding-rest-thesis
 
 == Client Side Scripting
 
 #quote(
-  attribution: fieldingRestThesis,
+  attribution: fielding-rest-thesis,
 )[
   REST allows client functionality to be extended by downloading and executing
   code in the form of applets or scripts. This simplifies clients by reducing the

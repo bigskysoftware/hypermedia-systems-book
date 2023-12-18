@@ -1,5 +1,5 @@
 #import "definitions.typ": *
-#import "snippets.typ": fieldingRestThesis
+#import "snippets.typ": fielding-rest-thesis
 
 == Components Of A Hypermedia System
 
@@ -614,7 +614,7 @@ for the Uniform Interface constraint.
 In this section, Fielding says:
 
 #quote(
-  attribution: fieldingRestThesis,
+  attribution: fielding-rest-thesis,
 )[
   The central feature that distinguishes the REST architectural style from other
   network-based styles is its emphasis on a uniform interface between components…​
@@ -708,7 +708,7 @@ smaller than the HTML representation. Fielding notes exactly this trade-off when
 using a RESTful architecture:
 
 #quote(
-  attribution: fieldingRestThesis,
+  attribution: fielding-rest-thesis,
 )[
   The trade-off, though, is that a uniform interface degrades efficiency, since
   information is transferred in a standardized form rather than one which is
@@ -953,7 +953,7 @@ Demand constraint is somewhat awkwardly described as
 In this section, Fielding says:
 
 #quote(
-  attribution: fieldingRestThesis,
+  attribution: fielding-rest-thesis,
 )[
   REST allows client functionality to be extended by downloading and executing
   code in the form of applets or scripts. This simplifies clients by reducing the

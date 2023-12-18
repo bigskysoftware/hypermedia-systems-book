@@ -12,13 +12,13 @@
     ),
   )
   #box(height: 1em)
-  #set text(font: secondaryFont)
+  #set text(font: secondary-font)
   #grid(gutter: 1em, columns: authors.len() * (auto,), ..authors)
 ]
 
 #let page-header() = locate(
   loc => [
-    #set text(font: secondaryFont)
+    #set text(font: secondary-font)
     #let h1 = query(heading.where(level: 1).or(heading.where(level: 2)), loc).any(h => counter(page).at(h.location()) == counter(page).at(loc))
     #if not h1 {
       let reference-title(title) = [
@@ -44,10 +44,10 @@
 )
 
 #let hypermedia-systems-book(title, authors: (), frontmatter: []) = content => [
-  #set text(font: bodyFont, size: 12pt, lang: "en")
-  #show raw: set text(font: monoFont)
+  #set text(font: body-font, size: 12pt, lang: "en")
+  #show raw: set text(font: mono-font)
   
-  #show heading: set text(font: displayFont)
+  #show heading: set text(font: display-font)
 
   #set par(justify: true, first-line-indent: 1em, leading: leading)
   #show par: set block(spacing: leading)
@@ -74,7 +74,7 @@
       spacing: 1em + leading, inset: (left: 1em, right: 1em), align(start, box(it)),
     )
   }
-  #show figure.caption: set text(font: secondaryFont)
+  #show figure.caption: set text(font: secondary-font)
 
   // Code callouts
   // TODO: does not work consistently across languagea
@@ -83,7 +83,7 @@
       circle(
         radius: .5em, inset: 0pt, fill: black, stroke: none,
         align(
-          center, text(fill: white, font: secondaryFont, it.text.find(regex("\\d+")).at(0)),
+          center, text(fill: white, font: secondary-font, it.text.find(regex("\\d+")).at(0)),
         ),
       ),
     )
@@ -155,7 +155,7 @@
     = Index
 
     #columns(2, gutter: 2em, {
-      set text(font: secondaryFont, size: .9em)
+      set text(font: secondary-font, size: .9em)
       set par(first-line-indent: 0pt)
       show heading: none
       make-index()
