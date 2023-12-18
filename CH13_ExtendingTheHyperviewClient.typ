@@ -25,7 +25,7 @@ client.
 
 === Adding Phone Calls and Email
 
-#index[Hyperview, phone calls]
+#index[Hyperview][phone calls]
 Let’s start with the most obvious feature missing from our Contacts app: phone
 calls. Mobile devices can make phone calls. The contacts in our app have phone
 numbers. Shouldn’t our app support calling those phone numbers? And while we’re
@@ -206,7 +206,7 @@ by updating the `show.xml` template in our Flask app:
 + Set the attribute expected by the "open-phone" action.
 + Same idea, with a different action ("open-email").
 
-#index[Hyperview, email]
+#index[Hyperview][email]
 We’ll skip over the implementation of the second custom action,
 "open-email." As you can guess, this action will open a system-level email
 composer to let the user send an email to their contact. The implementation of "open-email"
@@ -225,7 +225,7 @@ the actions from our HXML templates.
 
 === Adding Messages
 
-#index[Hyperview, messages]
+#index[Hyperview][messages]
 The phone and email actions added in the previous section are examples of "system
 actions." System actions trigger some UI or capability provided by the device’s
 OS. But custom actions are not limited to interacting with OS-level APIs.

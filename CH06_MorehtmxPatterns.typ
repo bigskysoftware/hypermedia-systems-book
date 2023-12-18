@@ -55,7 +55,7 @@ but we don’t yet get that nice search-as-you-type behavior we want.
 
 ==== Adding Active Search <_adding_active_search>
 
-#index[htmx patterns, active search]
+#index[htmx patterns][active search]
 To add active search behavior, we will attach a few htmx attributes to the
 search input. We will leave the current form as it is, with an
 `action` and `method`, so that the normal search behavior works even if a user
@@ -479,7 +479,7 @@ the previous URL that you came from. If you submit two searches and want to go
 back to the first one, you can simply hit back and the browser will "return" to
 that search.
 
-#index[htmx patterns, back button support]
+#index[htmx patterns][back button support]
 As it stands right now, during our Active Search, we are not updating the
 browser’s navigation bar. So, users aren’t getting links that can be copied and
 pasted, and you aren’t getting history entries either, which means no back
@@ -534,7 +534,7 @@ typically some sort of animated image, such as a gif or svg file, that spins or
 otherwise communicates visually that
 "something is happening."
 
-#index[htmx patterns, request indicator]
+#index[htmx patterns][request indicator]
 #index[hx-indicator]
 Let’s add a spinner after our search input:
 
@@ -592,7 +592,7 @@ work for clients that don’t have JavaScript enabled.
 
 === Lazy Loading <_lazy_loading>
 
-#index[htmx patterns, lazy loading]
+#index[htmx patterns][lazy loading]
 With Active Search behind us, let’s move on to a very different sort of
 enhancement: lazy loading. Lazy loading is when the loading of a particular bit
 of content is deferred until later, when needed. This is commonly used as a
@@ -778,7 +778,7 @@ application performance.
 
 ==== Adding An Indicator <_adding_an_indicator>
 
-#index[htmx patterns, request indicator]
+#index[htmx patterns][request indicator]
 A shortcoming of the current implementation is that currently there is no
 indication that the count request is in flight, it just appears at some point
 when the request finishes.
@@ -825,7 +825,7 @@ just copy-and-paste, maybe a tweak or two, and you are done.
 
 ==== But That’s Not Lazy! <_but_thats_not_lazy>
 
-#index[htmx patterns, lazy loading]
+#index[htmx patterns][lazy loading]
 You might say "OK, but that’s not really lazy. We are still loading the count
 immediately when the page is loaded, we are just doing it in a second request.
 You aren’t really waiting until the value is actually needed."
@@ -856,7 +856,7 @@ hypermedia approach.
 
 === Inline Delete <_inline_delete>
 
-#index[htmx patterns, inline delete]
+#index[htmx patterns][inline delete]
 For our next hypermedia trick, we are going to implement the "Inline Delete"
 pattern. With this feature, a contact can be deleted directly from the table of
 all contacts, rather than requiring the user to navigate all the way to the edit
@@ -898,7 +898,7 @@ returning from the edit view for the contact to the list view of all contacts.
 In the case of this link, however, we are already on the list of contacts, so
 there is no need to update the URL, and we can omit the `hx-push-url` attribute.
 
-#index[hx-delete, example]
+#index[hx-delete][example]
 Here is the code for our inline "Delete" link:
 
 #figure(caption: [The existing row actions])[ ```html
@@ -1043,7 +1043,7 @@ us a dramatically different behavior. Hypermedia is powerful in this manner.
 
 ==== The Htmx Swapping Model <_the_htmx_swapping_model>
 
-#index[htmx, swap model]
+#index[htmx][swap model]
 This is pretty cool, but there is another improvement we can make if we take
 some time to understand the htmx content swapping model: it would be nice if,
 rather than just instantly deleting the row, we faded it out before we removed
@@ -1122,7 +1122,7 @@ sense in most cases: you don’t want to have much of a delay before you put the
 new content into the DOM. But, in this case, we want to give the CSS animation
 time to complete before we do the swap, we want to give it a second, in fact.
 
-#index[hx-swap, delay]
+#index[hx-swap][delay]
 Fortunately htmx has an option for the `hx-swap` annotation that allows you to
 set the swap delay: following the swap type you can add `swap:`
 followed by a timing value to tell htmx to wait a specific amount of time before
@@ -1154,7 +1154,7 @@ feature.)
 
 === Bulk Delete <_bulk_delete>
 
-#index[htmx patterns, bulk delete]
+#index[htmx patterns][bulk delete]
 The final feature we are going to implement in this chapter is a "Bulk Delete."
 The current mechanism for deleting users is nice, but it would be annoying if a
 user wanted to delete five or ten contacts at a time, wouldn’t it? For the bulk
@@ -1373,7 +1373,7 @@ with a keyboard, test on different browsers and hardware, and run linters (while
 coding and/or in CI). Testing is critical to ensure machine readability, or
 human readability, or page weight.
 
-#index[HTML, \<details\>]
+#index[HTML][\<details\>]
 Also consider: Does the information need to be presented as tabs? Sometimes the
 answer is yes, but if not, a sequence of details and disclosures fulfills a very
 similar purpose.

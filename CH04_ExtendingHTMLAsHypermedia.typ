@@ -140,8 +140,8 @@ This is our first opportunity to generalize HTML as a hypermedia.
 Next, let’s consider the event that triggers the request to the server on our
 link: a click event.
 
-#index[events, click]
-#index[events, submit]
+#index[events][click]
+#index[events][submit]
 Well, what’s so special about clicking (in the case of anchors) or submitting
 (in the case of forms) things? Those are just two of many, many events that are
 fired by the DOM, after all. Events like mouse down, or key up, or blur are all
@@ -194,7 +194,7 @@ methods, `PUT`, `PATCH` and `DELETE`.
 ==== Why Only Replace The Entire Screen? <_why_only_replace_the_entire_screen>
 
 #index[transclusion]
-#index[DOM, partial updates]
+#index[DOM][partial updates]
 As a final observation, consider the last aspect of a hyperlink: it replaces the _entire_ screen
 when a user clicks on it.
 
@@ -230,7 +230,7 @@ web. The fundamentals of HTML, HTTP, the browser, and so on, won’t be changed
 dramatically. Rather, these generalizations of _existing functionality_ already
 found within HTML would simply let us accomplish _more_ using HTML.
 
-#index[htmx, about]
+#index[htmx][about]
 Htmx is a JavaScript library that extends HTML in exactly this manner, and it
 will be the focus of the next few chapters of this book. Again, htmx is not the
 only JavaScript library that takes this hypermedia-oriented approach (other
@@ -245,7 +245,7 @@ dependency-free and stand-alone JavaScript library that can be added to a web
 application by simply including it via a `script` tag in your
 `head` element.
 
-#index[htmx, installing]
+#index[htmx][installing]
 Because of this simple installation model, you can take advantage of tools like
 public CDNs to install the library.
 
@@ -287,7 +287,7 @@ Once htmx has been installed, you can begin using it immediately.
 And here we get to the interesting part of htmx: htmx does not require you, the
 user of htmx, to actually write any JavaScript.
 
-#index[htmx, attributes]
+#index[htmx][attributes]
 Instead, you will use _attributes_ placed directly on elements in your HTML to
 drive more dynamic behavior. Htmx extends HTML as a hypermedia, and it is
 designed to make that extension feel as natural and consistent as possible with
@@ -298,11 +298,11 @@ an HTTP request should be issued to.
 
 === Triggering HTTP Requests <_triggering_http_requests>
 
-#index[hx-get, about]
-#index[hx-post, about]
-#index[hx-put, about]
-#index[hx-patch, about]
-#index[hx-delete, about]
+#index[hx-get][about]
+#index[hx-post][about]
+#index[hx-put][about]
+#index[hx-patch][about]
+#index[hx-delete][about]
 Let’s look at the first feature of htmx: the ability for any element in a web
 page to issue HTTP requests. This is the core functionality provided by htmx,
 and it consists of five attributes that can be used to issue the five different
@@ -321,7 +321,7 @@ The values of these attributes are similar to the values of both `href`
 on anchors and `action` on forms: you specify the URL you wish to issue the
 given HTTP request type to. Typically, this is done via a server-relative path.
 
-#index[hx-get, example]
+#index[hx-get][example]
 For example, if we wanted a button to issue a `GET` request to
 `/contacts` then we would write the following HTML:
 
@@ -340,7 +340,7 @@ Very easy to understand and very consistent with the rest of HTML.
 
 ==== It’s All Just HTML <_its_all_just_html>
 
-#index[htmx, HTML based]
+#index[htmx][HTML based]
 With the request issued by the button above, we get to perhaps the most
 important thing to understand about htmx: it expects the response to this AJAX
 request _to be HTML_. Htmx is an extension of HTML. A native hypermedia control
@@ -362,8 +362,8 @@ There is an important difference between the HTTP responses to "normal" anchor
 or form driven HTTP requests and to htmx-powered requests: in the case of htmx
 triggered requests, responses can be _partial_ bits of HTML.
 
-#index[htmx, transclusion]
-#index[htmx, partial updates]
+#index[htmx][transclusion]
+#index[htmx][partial updates]
 In htmx-powered interactions, as you will see, we are often not replacing the
 entire document. Rather we are using "transclusion" to include content _within_ an
 existing document. Because of this, it is often not necessary or desirable to
@@ -418,7 +418,7 @@ _not_ a good thing in the case of our button: we will end up with a list of
 contacts awkwardly embedded within the button element. That will look pretty
 silly and is obviously not what we want.
 
-#index[hx-target, about]
+#index[hx-target][about]
 Fortunately htmx provides another attribute, `hx-target` which can be used to
 specify exactly _where_ in the DOM the new content should be placed. The value
 of the `hx-target` attribute is a Cascading Style Sheet (CSS) _selector_ that
@@ -427,7 +427,7 @@ allows you to specify the element to put the new hypermedia content into.
 Let’s add a `div` tag that encloses the button with the id `main`. We will then
 target this `div` with the response:
 
-#index[hx-target, example]
+#index[hx-target][example]
 #figure(caption: [A simple htmx-powered button], ```html
   <div id="main"> '1'
 
@@ -474,16 +474,16 @@ entire div with the response. To handle this, htmx provides another attribute, `
 that allows you to specify exactly _how_ the content should be swapped into the
 DOM.
 
-#index[htmx, swap model]
-#index[hx-swap, about]
-#index[hx-swap, innerHTML]
-#index[hx-swap, outerHTML]
-#index[hx-swap, beforebegin]
-#index[hx-swap, afterbegin]
-#index[hx-swap, beforeend]
-#index[hx-swap, afterend]
-#index[hx-swap, delete]
-#index[hx-swap, none]
+#index[htmx][swap model]
+#index[hx-swap][about]
+#index[hx-swap][innerHTML]
+#index[hx-swap][outerHTML]
+#index[hx-swap][beforebegin]
+#index[hx-swap][afterbegin]
+#index[hx-swap][beforeend]
+#index[hx-swap][afterend]
+#index[hx-swap][delete]
+#index[hx-swap][none]
 The `hx-swap` attribute supports the following values:
 - `innerHTML` - The default, replace the inner html of the target element.
 - `outerHTML` - Replace the entire target element with the response.
@@ -575,7 +575,7 @@ And, yes, by default when an `hx-get` or another request-driving annotation from
 htmx is placed on a button, the request will be issued when the button is
 clicked.
 
-#index[hx-trigger, about]
+#index[hx-trigger][about]
 However, htmx generalizes this notion of an event triggering a request by using,
 you guessed it, another attribute: `hx-trigger`. The
 `hx-trigger` attribute allows you to specify one or more events that will cause
@@ -618,14 +618,14 @@ support for a keyboard shortcut for loading the contacts, `Ctrl-L`
 that the `hx-trigger` attribute supports: event filters and additional
 arguments.
 
-#index[hx-trigger, event filters]
+#index[hx-trigger][event filters]
 Event filters are a mechanism for determining if a given event should trigger a
 request or not. They are applied to an event by adding square brackets after it: `someEvent[someFilter]`.
 The filter itself is a JavaScript expression that will be evaluated when the
 given event occurs. If the result is truthy, in the JavaScript sense, it will
 trigger the request. If not, the request will not be triggered.
 
-#index[event, keyup]
+#index[event][keyup]
 In the case of keyboard shortcuts, we want to catch the `keyup` event in
 addition to the click event:
 
@@ -642,7 +642,7 @@ addition to the click event:
 )
 1. A trigger with two events.
 
-#index[hx-trigger, multiple events]
+#index[hx-trigger][multiple events]
 Note that we have a comma separated list of events that can trigger this
 element, allowing us to respond to more than one potential triggering event. We
 still want to respond to the `click` event and load the contacts, in addition to
@@ -656,7 +656,7 @@ onto the button to make it active and then begin typing.
 Let’s fix these two issues. To fix the first one, we will use a trigger filter
 to test that Control key and the "L" key are pressed together:
 
-#index[event filter, example]
+#index[event filter][example]
 #figure(
   caption: [Getting better with filter on keyup], ```html
             <div id="main">
@@ -689,7 +689,7 @@ triggered first on the focused element, and then on its parent (enclosing)
 element, and so on, until it reaches the top level
 `document` object that is the root of all other elements.
 
-#index[hx-trigger, "from:"]
+#index[hx-trigger][from:]
 #index[keyboard shortcut]
 To support a global keyboard shortcut that works regardless of what element has
 focus, we will take advantage of event bubbling and a feature that the `hx-trigger` attribute
@@ -699,7 +699,7 @@ doing this is the
 specify a specific element to listen for the given event on using a CSS
 selector.
 
-#index[events, listener]
+#index[events][listener]
 In this case, we want to listen to the `body` element, which is the parent
 element of all visible elements on the page.
 
@@ -724,7 +724,7 @@ whenever someone hits `Ctrl-L` within the body of the page.
 
 And now we have a nice keyboard shortcut for our Hypermedia-Driven Application.
 
-#index[hx-trigger, about]
+#index[hx-trigger][about]
 The `hx-trigger` attribute supports many more modifiers, and it is more
 elaborate than other htmx attributes. This is because events, in general, are
 complicated and require a lot of details to get just right. The default trigger
@@ -747,7 +747,7 @@ squarely within the same conceptual model as normal HTML and that, by extending
 HTML as a hypermedia, open up a whole new world of user interaction
 possibilities within it.
 
-#index[HTML, opportunities]
+#index[HTML][opportunities]
 Here is a table summarizing those opportunities and which htmx attributes
 address them:
 
@@ -811,7 +811,7 @@ contacts:
 Here we have added a form tag surrounding the button along with a search input
 that can be used to enter a term to search contacts.
 
-#index[htmx, form values]
+#index[htmx][form values]
 Now, when a user clicks on the button, the value of the input with the id `search` will
 be included in the request. This is by virtue of the fact that there is a form
 tag enclosing both the button and the input: when an htmx-driven request is
@@ -832,7 +832,7 @@ a `GET` by using the `hx-include` attribute, discussed next.
 
 ==== Including Inputs <_including_inputs>
 
-#index[form tag, in tables]
+#index[form tag][in tables]
 While enclosing all the inputs you want included in a request is the most common
 approach for inputs in htmx requests, it isn’t always possible or desirable:
 form tags can have layout consequences and simply cannot be placed in some spots
@@ -840,8 +840,8 @@ in HTML documents. A good example of the latter situation is in table row (`tr`)
 elements: the `form` tag is not a valid child or parent of table rows, so you
 can’t place a form within or around a row of data in a table.
 
-#index[hx-include, about]
-#index[hx-include, example]
+#index[hx-include][about]
+#index[hx-include][example]
 To address this issue, htmx provides a mechanism for including input values in
 requests: the `hx-include` attribute. The `hx-include`
 attribute allows you to select input values that you wish to include in a
@@ -873,32 +873,32 @@ It is also useful when you do, in fact, want to submit values with a
 
 ===== Relative CSS selectors <_relative_css_selectors>
 
-#index[relative CSS selectors, about]
+#index[relative CSS selectors][about]
 The `hx-include` attribute and, in fact, most attributes that take a CSS
 selector, also support _relative_ CSS selectors. These allow you to specify a
 CSS selector _relative_ to the element it is declared on. Here are some
 examples:
 
-`closest`:: #index[relative CSS selectors, closest] Find the closest parent
+`closest`:: #index[relative CSS selectors][closest] Find the closest parent
 element matching the given selector, e.g., `closest form`.
 
-`next`:: #index[relative CSS selectors, next] Find the next element (scanning
+`next`:: #index[relative CSS selectors][next] Find the next element (scanning
 forward) matching the given selector, e.g., `next input`.
 
-`previous`:: #index[relative CSS selectors, previous] Find the previous element
+`previous`:: #index[relative CSS selectors][previous] Find the previous element
 (scanning backwards) matching the given selector, e.g., `previous input`.
 
-`find`:: #index[relative CSS selectors, find] Find the next element within this
+`find`:: #index[relative CSS selectors][find] Find the next element within this
 element matching the given selector, e.g., `find input`.
 
-`this`:: #index[relative CSS selectors, this] The current element.
+`this`:: #index[relative CSS selectors][this] The current element.
 
 Using relative CSS selectors often allows you to avoid generating ids for
 elements, since you can take advantage of their local structural layout instead.
 
 ==== Inline Values <_inline_values>
 
-#index[hx-vals, about]
+#index[hx-vals][about]
 A final way to include values in htmx-driven requests is to use the
 `hx-vals` attribute, which allows you to include "static" values in the request.
 This can be useful if you have additional information that you want to include
@@ -906,8 +906,8 @@ in requests, but you don’t want to have this information embedded in, for
 example, hidden inputs (which would be the standard mechanism for including
 additional, hidden information in HTML.)
 
-#index[hx-vals, example]
-#index[hx-vals, JSON]
+#index[hx-vals][example]
+#index[hx-vals][JSON]
 #index[query strings]
 Here is an example of `hx-vals`:
 
@@ -925,7 +925,7 @@ single quotes around its value. This is because JSON strictly requires double
 quotes and, therefore, to avoid escaping we needed to use the single-quote form
 for the attribute value.
 
-#index[hx-vals, js: prefix]
+#index[hx-vals][js: prefix]
 You can also prefix `hx-vals` with a `js:` and pass values evaluated at the time
 of the request, which can be useful for including things like a dynamically
 maintained variable, or value from a third party JavaScript library.
@@ -1007,7 +1007,7 @@ browser’s navigation bar and a history entry will be created for it.
 Furthermore, if the user clicks the back button, the original content for the
 page will be restored, along with the original URL.
 
-#index[htmx, browser history]
+#index[htmx][browser history]
 Now, the name `hx-push-url` for this attribute might sound a little obscure, but
 it is based on the JavaScript API, `history.pushState()`. This notion of "pushing"
 derives from the fact that history entries are modeled as a stack, and so you

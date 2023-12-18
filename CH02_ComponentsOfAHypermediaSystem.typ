@@ -162,11 +162,11 @@ reflect the new URL.
 ===== HTTP methods <_http_methods>
 
 #index[HTTP methods]
-#index[HTTP methods, GET]
-#index[HTTP methods, POST]
-#index[HTTP methods, PUT]
-#index[HTTP methods, PATCH]
-#index[HTTP methods, DELETE]
+#index[HTTP methods][GET]
+#index[HTTP methods][POST]
+#index[HTTP methods][PUT]
+#index[HTTP methods][PATCH]
+#index[HTTP methods][DELETE]
 The anchor tag above issued an HTTP `GET`, where `GET` is the
 _method_ of the request. The particular method being used in an HTTP request is
 perhaps the most important piece of information about it, after the actual
@@ -267,7 +267,7 @@ The most familiar response code for web developers is probably `404`, which
 stands for "Not Found." This is the response code that is returned by web
 servers when a resource that does not exist is requested from them.
 
-#index[HTTP response, codes]
+#index[HTTP response][codes]
 HTTP breaks response codes up into various categories:
 
 / `100`-`199`: Informational responses that provide information about how the server is
@@ -329,13 +329,13 @@ designed to be used.
 
 ===== Caching HTTP responses <_caching_http_responses>
 
-#index[HTTP response, caching]
+#index[HTTP response][caching]
 A constraint of REST (and, therefore, a feature of HTTP) is the notion of
 caching responses: a server can indicate to a client (as well as intermediary
 HTTP servers) that a given response can be cached for future requests to the
 same URL.
 
-#index[HTTP response header, Cache-Control]
+#index[HTTP response header][Cache-Control]
 The cache behavior of an HTTP response from a server can be indicated with the `Cache-Control` response
 header. This header can have a number of different values indicating the
 cacheability of a given response. If, for example, the header contains the value `max-age=60`,
@@ -343,15 +343,15 @@ this indicates that a client may cache this response for 60 seconds, and need
 not issue another HTTP request for that resource until that time limit has
 expired.
 
-#index[HTTP response header, Vary]
+#index[HTTP response header][Vary]
 Another important caching-related response header is `Vary`. This response
 header can be used to indicate exactly what headers in an HTTP Request form the
 unique identifier for a cached result. This becomes important to allow the
 browser to correctly cache content in situations where a particular header
 affects the form of the server response.
 
-#index[HTTP response header, custom]
-#index[HX-Request, about]
+#index[HTTP response header][custom]
+#index[HX-Request][about]
 A common pattern in htmx-powered applications, for example, is to use a custom
 header set by htmx, `HX-Request`, to differentiate between
 "normal" web requests and requests submitted by htmx. To properly cache the
@@ -510,7 +510,7 @@ idea.
 ==== The "Constraints" of REST <_the_constraints_of_rest>
 
 #index[Fielding, Roy]
-#index[REST, constraints]
+#index[REST][constraints]
 In his dissertation, Fielding defines various "constraints" to describe how a
 RESTful system must behave. This approach can feel a little round-about and
 difficult to follow for many people, but it is an appropriate approach for an
@@ -723,7 +723,7 @@ representation, in contrast, does not have this link.
 
 What are the ramifications of this fact for a _client_ of the JSON API?
 
-#index[JSON API, vs. HTML]
+#index[JSON API][vs. HTML]
 What this means is that the JSON API client must know _in advance_
 exactly what other URLs (and request methods) are available for working with the
 contact information. If the JSON client is able to update this contact in some
@@ -1006,7 +1006,7 @@ browsers, search engines and scrapers that can’t know better. To avoid this:
 - Don’t try to be specific when you can’t or don’t need to. Sometimes,
   `<div>` is fine.
 
-#index[HTML, spec]
+#index[HTML][spec]
 The most authoritative resource for learning about HTML is the HTML
 specification. The current specification lives on
 #link("https://html.spec.whatwg.org/multipage").#footnote[The single-page version is too slow to load and render on most computers.

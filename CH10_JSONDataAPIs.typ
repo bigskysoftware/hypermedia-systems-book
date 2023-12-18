@@ -7,7 +7,7 @@ Applications. In doing so we are following and taking advantage of the native
 network architecture of the web, and building a RESTful system, in the original
 sense of that term.
 
-#index[JSON, Data API]
+#index[JSON][Data API]
 However, today, we should acknowledge that many web applications are often _not_ built
 using this approach. Instead, they use a Single Page Application front end
 library such as React to build their application, and they interact with the
@@ -251,8 +251,8 @@ afford a large team of API developers. :)
 
 ==== Our First JSON Endpoint: Listing All Contacts
 
-#index[Data API, endpoint]
-#index[JSON, endpoint]
+#index[Data API][endpoint]
+#index[JSON][endpoint]
 Let’s add our first Data API endpoint. It will handle an HTTP `GET`
 request to `/api/v1/contacts`, and return a JSON list of all contacts in the
 system. In some ways it will look quite a bit like our initial code for the
@@ -480,7 +480,7 @@ is then sent with every request that the user makes to the web application,
 allowing the application to know which user is making a given request.
 
 #sidebar[HTTP Cookies][
-  #index[HTTP, cookies]
+  #index[HTTP][cookies]
   HTTP Cookies are kind of a strange feature of HTTP. In some ways they violate
   the goal of remaining stateless, a major component of the RESTful architecture:
   a server will often use a session cookie as an index into state kept on the

@@ -8,7 +8,7 @@ slew of other features. We have reached a level of interactivity that most web
 developers would assume requires some sort of Single-Page Application JavaScript
 framework, but we’ve done it using htmx-powered hypermedia instead.
 
-#index[htmx patterns, download archive]
+#index[htmx patterns][download archive]
 Let’s look at how we can add a final significant feature to Contact.app:
 downloading an archive of all the contacts.
 
@@ -624,8 +624,8 @@ it replaces content in the DOM.
 
 ==== The "Settling" Step in Htmx <_the_settling_step_in_htmx>
 
-#index[htmx, swap model]
-#index[htmx, settling]
+#index[htmx][swap model]
+#index[htmx][settling]
 When we discussed the htmx swap model in Chapter 4, we focused on the classes
 that htmx adds and removes, but we skipped over the process of
 "settling." In htmx, settling involves several steps: when htmx is about to

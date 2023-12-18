@@ -26,7 +26,7 @@ of hypermedia-friendly client-side scripting.
 
 === Htmx Attributes
 
-#index[htmx, attributes]
+#index[htmx][attributes]
 Thus far we have used about fifteen different attributes from htmx in our
 application. The most important ones have been:
 
@@ -67,7 +67,7 @@ In addition to these, `hx-swap` offers further control with the following
 modifiers:
 
 / `settle`: #[
-  #index[hx-swap, settle] Like `swap`, this allows you to apply a specific delay
+  #index[hx-swap][settle] Like `swap`, this allows you to apply a specific delay
   between when the content has been swapped into the DOM and when its attributes
   are
   "settled", that is, updated from their old values (if any) to their new values.
@@ -75,19 +75,19 @@ modifiers:
   ]
 
 / `show`: #[
-    #index[hx-swap, show] Allows you to specify an element that should be shown ---
+    #index[hx-swap][show] Allows you to specify an element that should be shown ---
     that is, scrolled into the viewport of the browser if necessary --- when a
     request is completed.
   ]
 
 / `scroll`: #[
-    #index[hx-swap, scroll] Allows you to specify a scrollable element (that is, an
+    #index[hx-swap][scroll] Allows you to specify a scrollable element (that is, an
     element with scrollbars), that should be scrolled to the top or bottom when a
     request is completed.
   ]
 
 / `focus-scroll`: #[
-    #index[hx-swap, focus-scroll] Allows you to specify that htmx should scroll to
+    #index[hx-swap][focus-scroll] Allows you to specify that htmx should scroll to
     the focused element when a request completes. The default for this modifier is "false."
   ]
 
@@ -108,8 +108,8 @@ More details and examples can be found online in the `hx-swap`
 
 ==== hx-trigger
 
-#index[hx-trigger, about]
-#index[hx-trigger, element defaults]
+#index[hx-trigger][about]
+#index[hx-trigger][element defaults]
 Like `hx-swap`, `hx-trigger` can often be omitted when you are using htmx,
 because the default behavior is typically what you want. Recall the default
 triggering events are determined by an element’s type:
@@ -133,13 +133,13 @@ This example took advantage of two modifiers available for the
 `hx-trigger` attribute:
 
 / `delay`: #[
-    #index[hx-trigger, delay] Allows you to specify a delay to wait before a request
+    #index[hx-trigger][delay] Allows you to specify a delay to wait before a request
     is issued. If the event occurs again, the first event is discarded and the timer
     resets. This allows you to "debounce" requests.
   ]
 
 / `changed`: #[
-  #index[hx-trigger, changed] Allows you to specify that a request should only be
+  #index[hx-trigger][changed] Allows you to specify that a request should only be
   issued when the
   `value` property of the given element has changed.
   ]
@@ -151,24 +151,24 @@ they offer. We will discuss events in more detail below.
 Here are the other modifiers available on `hx-trigger`:
 
 / `once`: #[
-    #index[hx-trigger, once] The given event will only trigger a request once.
+    #index[hx-trigger][once] The given event will only trigger a request once.
   ]
 
 / `throttle`: #[
-  #index[hx-trigger, throttle] Allows you to throttle events, only issuing them
+  #index[hx-trigger][throttle] Allows you to throttle events, only issuing them
   once every certain interval. This is different than `delay` in that the first
   event will trigger immediately, but any following events will not trigger until
   the throttle time period has elapsed.
   ]
 
 / `from`: #[
-    #index[hx-trigger, from] A CSS selector that allows you to pick another element
+    #index[hx-trigger][from] A CSS selector that allows you to pick another element
     to listen for events on. We will see an example of this used later in the
     chapter.
   ]
 
 / `target`: #[
-  #index[hx-trigger, target] A CSS selector that allows you to filter events to
+  #index[hx-trigger][target] A CSS selector that allows you to filter events to
   only those that occur directly on a given element. In the DOM, events "bubble"
   to their parent elements, so a `click` event on a button will also trigger a `click`
   event on a parent `div`, all the way up to the `body` element. Sometimes you
@@ -177,12 +177,12 @@ Here are the other modifiers available on `hx-trigger`:
   ]
 
 / `consume`: #[
-  #index[hx-trigger, consume] If this option is set to `true`, the triggering
+  #index[hx-trigger][consume] If this option is set to `true`, the triggering
   event will be cancelled and not propagate to parent elements.
   ]
 
 / `queue`: #[
-  #index[hx-trigger, queue] This option allows you to specify how events are
+  #index[hx-trigger][queue] This option allows you to specify how events are
   queued in htmx. By default, when htmx receives a triggering event, it will issue
   a request and start an event queue. If the request is still in flight when
   another event is received, it will queue the event and, when the request
@@ -194,7 +194,7 @@ Here are the other modifiers available on `hx-trigger`:
 
 ===== Trigger filters
 
-#index[hx-trigger, event filters]
+#index[hx-trigger][event filters]
 The `hx-trigger` attribute also allows you to specify a _filter_
 for events by using square brackets enclosing a JavaScript expression after the
 event name.
@@ -236,13 +236,13 @@ htmx.
 
 ===== Synthetic events
 
-#index[hx-trigger, synthetic events]
+#index[hx-trigger][synthetic events]
 In addition to these modifiers, `hx-trigger` offers a few "synthetic" events,
 that is events that are not part of the regular DOM API. We have already seen `load` and `revealed` in
 our lazy loading and infinite scroll examples, but htmx also gives you an `intersect` event
 that triggers when an element intersects its parent element.
 
-#index[hx-trigger, intersect]
+#index[hx-trigger][intersect]
 This synthetic event uses the modern Intersection Observer API, which you can
 read more about at
 #link(
@@ -316,7 +316,7 @@ that div to coordinate requests between the two buttons.
 
 Here is our updated code:
 
-#index[hx-sync, example]
+#index[hx-sync][example]
 #figure(caption: [Syncing two buttons])[ ```html
 <div hx-target="body" '1'
      hx-sync="this"> '2'
@@ -377,21 +377,21 @@ to your application, either via htmx itself, or by way of scripting.
 Here are some of the most commonly used events triggered by htmx:
 
 / `htmx:load`: #[
-    #index[htmx events, htmx:load] Triggered when new content is loaded into the DOM
+    #index[htmx events][htmx:load] Triggered when new content is loaded into the DOM
     by htmx.
   ]
 
 / `htmx:configRequest`: #[
-    #index[htmx events, htmx:configRequest] Triggered before a request is issued,
+    #index[htmx events][htmx:configRequest] Triggered before a request is issued,
     allowing you to programmatically configure the request or cancel it entirely.
   ]
 
 / `htmx:afterRequest`: #[
-    #index[htmx events, htmx:afterRequest] Triggered after a request has responded.
+    #index[htmx events][htmx:afterRequest] Triggered after a request has responded.
   ]
 
 / `htmx:abort`: #[
-    #index[htmx events, htmx:abort] A custom event that can be sent to an
+    #index[htmx events][htmx:abort] A custom event that can be sent to an
     htmx-powered element to abort an open request.
   ]
 
@@ -443,17 +443,17 @@ useful properties that you can update to change the "shape" of the request,
 including:
 
 / `detail.parameters`: #[
-    #index[htmx:configRequest, detail.parameters] Allows you to add or remove
+    #index[htmx:configRequest][detail.parameters] Allows you to add or remove
     request parameters
   ]
 
 / `detail.target`: #[
-    #index[htmx:configRequest, detail.target] Allows you to update the target of the
+    #index[htmx:configRequest][detail.target] Allows you to update the target of the
     request
   ]
 
 / `detail.verb`: #[
-  #index[htmx:configRequest, detail.verb] Allows you to update HTTP "verb" of the
+  #index[htmx:configRequest][detail.verb] Allows you to update HTTP "verb" of the
   request (e.g. `GET`)
   ]
 
@@ -544,7 +544,7 @@ took advantage of the
 `HX-Trigger` request header, which includes the id of the element that triggered
 a given request.
 
-#index[response header, HX-Trigger]
+#index[response header][HX-Trigger]
 In addition to this _request header_, htmx also supports a
 _response header_ also named `HX-Trigger`. This response header allows you to _trigger an event_ on
 the element that submitted an AJAX request. This turns out to be a powerful way
@@ -617,20 +617,20 @@ are some of the more important headers you can use to change htmx behavior with
 HTTP responses:
 
 / `HX-Location`: #[
-    #index[response header, HX-Location] Causes a client-side redirection to a new
+    #index[response header][HX-Location] Causes a client-side redirection to a new
     location
   ]
 
 / `HX-Push-Url`: #[
-    #index[response header, HX-Push-Url] Pushes a new URL into the location bar
+    #index[response header][HX-Push-Url] Pushes a new URL into the location bar
   ]
 
 / `HX-Refresh`: #[
-    #index[response header, HX-Refresh] Refreshes the current page
+    #index[response header][HX-Refresh] Refreshes the current page
   ]
 
 / `HX-Retarget`: #[
-    #index[response header, HX-Retarget] Allows you to specify a new target to swap
+    #index[response header][HX-Retarget] Allows you to specify a new target to swap
     the response content into on the client side
   ]
 
@@ -700,7 +700,7 @@ first.
 ==== Out of Band Swaps
 
 #index[hx-swap-oob]
-#index[htmx, out of band swaps]
+#index[htmx][out of band swaps]
 A second option, a bit more complex, is to take advantage of "Out Of Band"
 content support in htmx. When htmx receives a response, it will inspect it for
 top-level content that includes the `hx-swap-oob`
@@ -763,7 +763,7 @@ powerful mechanism for content updates.
 
 ==== Events
 
-#index[htmx patterns, server-triggered events]
+#index[htmx patterns][server-triggered events]
 Finally, the most complex mechanism for updating content is the one we saw back
 in the events section: using server-triggered events to update elements. This
 approach can be very clean, but also requires a deeper conceptual knowledge of
@@ -778,7 +778,7 @@ of it.
 
 ==== Being Pragmatic
 
-#index[hypermedia, limitations]
+#index[hypermedia][limitations]
 All of these approaches to the "Updating Other Content" problem will work, and
 will often work well. However, there may come a point where it would just be
 simpler to use a different approach for your UI, like the reactive one. As much
@@ -803,8 +803,8 @@ hypermedia is a tool you can reach for frequently.
 
 === Debugging
 
-#index[events, debugging]
-#index[htmx, debugging]
+#index[events][debugging]
+#index[htmx][debugging]
 We are not ashamed to admit: we are big fans of events. They are the underlying
 technology of almost any interesting user interface, and are particularly useful
 in the DOM once they have been unlocked for general use in HTML. They let you
@@ -911,7 +911,7 @@ troubleshoot event-related issues when developing with htmx.
 
 === Security Considerations
 
-#index[htmx, security]
+#index[htmx][security]
 #index[security]
 In general, htmx and hypermedia tends to be more secure than JavaScript heavy
 approaches to building web applications. This is because, by moving much of the
@@ -949,7 +949,7 @@ which allows you to evaluate arbitrary JavaScript code from a string. This has
 proven to be a security issue and many teams have decided that it is not worth
 the risk to keep it enabled in their web applications.
 
-#index[event filters, security]
+#index[event filters][security]
 Htmx does not make heavy use of `eval()` and, thus, a CSP with this restriction
 in place will be fine. The one feature that does rely on
 `eval()` is event filters, discussed above. If you decide to disable
@@ -958,7 +958,7 @@ filtering syntax.
 
 === Configuring
 
-#index[htmx, configuration]
+#index[htmx][configuration]
 There are a large number of configuration options available for htmx. Some
 examples of things you can configure are:
 - The default swap style

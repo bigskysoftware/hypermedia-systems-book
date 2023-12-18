@@ -105,13 +105,13 @@ pretty quickly.
 
 === Introducing Flask: Our First Route <_introducing_flask_our_first_route>
 
-#index[Flask, about]
+#index[Flask][about]
 Flask is a simple but flexible web framework for Python. We’ll ease into it by
 touching on its core elements.
 
-#index[Flask, routes]
-#index[Flask, handlers]
-#index[Flask, decorators]
+#index[Flask][routes]
+#index[Flask][handlers]
+#index[Flask][decorators]
 A Flask application consists of a series of _routes_ tied to functions that
 execute when an HTTP request to a given path is made. It uses a Python feature
 called "decorators" to declare the route that will be handled, which is then
@@ -169,7 +169,7 @@ going to do something a little fancy: we are going to redirect to another path,
 the `/contacts` path. Redirects are a feature of HTTP that allow you to redirect
 a client to another location with an HTTP response.
 
-#index[Flask, redirect]
+#index[Flask][redirect]
 We are going to display a list of contacts as our root page, and, arguably,
 redirecting to the `/contacts` path to display this information is a bit more
 consistent with the notion of resources with REST. This is a judgement call on
@@ -193,7 +193,7 @@ Flask application will forward you on to the `/contacts` path.
 
 === Contact.app Functionality <_contact_app_functionality>
 
-#index[Contact.app, specs]
+#index[Contact.app][specs]
 Now that we have some understanding of how to define routes, let’s get down to
 specifying and then implementing our web application.
 
@@ -276,7 +276,7 @@ The `Contact` Python class we’re using is the "domain model" or just
 "model" class for our application, providing the "business logic" around the
 management of Contacts.
 
-#index[Contact.app, model]
+#index[Contact.app][model]
 It could be working with a database (it isn’t) or a simple flat file (it is),
 but we’re going skip over the internal details of the model. Think of it as a "normal"
 domain model class, with methods on it that act in a
@@ -296,7 +296,7 @@ have the following elements:
   the same regardless of the page you are on.
 
 #index[Templates]
-#index[Jinja2, about]
+#index[Jinja2][about]
 We are using the Jinja2 templating language, which has the following features:
 - We can use double-curly braces, `{{ }}`, to embed expression values in the
   template.
@@ -356,7 +356,7 @@ the top of the screen.
 Finally, we have a submit-type input. This will render as a button and, when it
 is clicked, it will trigger the form to issue an HTTP request.
 
-#index[Contact.app, table]
+#index[Contact.app][table]
 This search interface forms the top of our contact page. Following it is a table
 of contacts, either all contacts or the contacts that match the search, if a
 search was done.

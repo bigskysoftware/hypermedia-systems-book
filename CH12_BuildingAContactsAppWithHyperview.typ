@@ -94,7 +94,7 @@ features in our mobile app:
   contact- Deleting a contact- Adding a new contact
 
 #sidebar[Zero Client-Configuration in Hypermedia Applications][
-  #index[Hyperview, entry-point URL]
+  #index[Hyperview][entry-point URL]
   For many mobile apps that use the Hyperview client, configuring this entry point
   URL is the only on-device code you need to write to deliver a full-featured app.
   Think of the entry point URL as the address you type into a web browser to open
@@ -318,7 +318,7 @@ app, we can see the contacts screen!
 
 ==== Searching Contacts
 
-#index[Hyperview, search]
+#index[Hyperview][search]
 So far, we have a mobile app that displays a screen with a list of contacts. But
 our UI doesn’t support any interactions. Typing a query in the search field
 doesn’t filter the list of contacts. Let’s add a behavior to the search field to
@@ -392,7 +392,7 @@ HTTP request to our backend looks like
 
 ==== Infinite scroll
 
-#index[Hyperview, infinite scroll]
+#index[Hyperview][infinite scroll]
 If the user has hundreds or thousands of contacts, loading them all at once may
 result in poor app performance. That’s why most mobile apps with long lists
 implement an interaction known as "infinite scroll." The app loads a fixed
@@ -477,7 +477,7 @@ item, and our pagination is over.
 
 ==== Pull-to-refresh
 
-#index[Hyperview, pull-to-refresh]
+#index[Hyperview][pull-to-refresh]
 Pull-to-refresh is a common interaction in mobile apps, especially on screens
 featuring dynamic content. It works like this: At the top of a scrolling view,
 the user pulls the scrolling content downwards with a swipe-down gesture. This
@@ -924,7 +924,7 @@ built into the behavior system, and allow lightweight communication between
 different parts of the UI.
 
 #sidebar[Event Behaviors][
-#index[Hyperview, events]
+#index[Hyperview][events]
 Events are a client-side feature of Hyperview. In
 #link("/client-side-scripting/#_hyperscript")[Client-Side Scripting], we
 discussed events while working with HTML, \_hyperscript and the DOM. DOM
@@ -1232,7 +1232,7 @@ screen will reload itself to show the Contact Details.
 
 === Deploying the App
 
-#index[Hyperview, deployment]
+#index[Hyperview][deployment]
 With the completion of the contact creation UI, we have a fully implemented
 mobile app. It supports searching a list of contacts, viewing the details of a
 contact, editing and deleting a contact, and adding a new contact. But so far,

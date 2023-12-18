@@ -67,7 +67,7 @@ your backend needs to support all of them.
 
 === Hypermedia for Mobile Apps
 
-#index[hypermedia, for mobile]
+#index[hypermedia][for mobile]
 We’ve seen that the hypermedia architecture can address the shortcomings of SPAs
 on the web. But can hypermedia work for mobile apps as well? The answer is yes!
 
@@ -175,7 +175,7 @@ need for scripting. We will learn more about behaviors later in this chapter.
 
 ===== The client
 
-#index[hypermedia, client]
+#index[hypermedia][client]
 Hyperview provides an open-source HXML client library written in React Native.
 With a little bit of configuration and a few steps on the command line, this
 library compiles into native app binaries for iOS or Android. Users install the
@@ -286,7 +286,7 @@ we’ll re-build our contacts app in Hyperview.
 
 ==== Hello World!
 
-#index[HXML, Hello World!]
+#index[HXML][Hello World!]
 HXML was designed to feel natural to web developers coming from HTML. Let’s take
 a closer look at the "Hello World" app defined in HXML:
 
@@ -319,7 +319,7 @@ empty, represented with an empty tag (`<styles />`). However, you’ll notice th
 the names of the HXML element are different from those in HTML. Let’s take a
 closer look at each of those elements to understand what they do.
 
-#index[HXML, \<doc\>]
+#index[HXML][\<doc\>]
 `<doc>` is the root of the HXML app. Think of it as equivalent to the
 `<html>` element in HTML. Note that the `<doc>` element contains an attribute `xmlns="https://hyperview.org/hyperview"`.
 This defines the default namespace for the doc. Namespaces are a feature of XML
@@ -331,13 +331,13 @@ to know that elements in a HXML doc without an explicit namespace are considered
 to be part of the
 `https://hyperview.org/hyperview` namespace.
 
-#index[HXML, \<screen\>]
+#index[HXML][\<screen\>]
 `<screen>` represents the UI that gets rendered on a single screen of a mobile
 app. It’s possible for one `<doc>` to contain multiple `<screen>`
 elements, but we won’t get into that now. Typically, a `<screen>`
 element will contain elements that define the content and styling of the screen.
 
-#index[HXML, \<styles\>]
+#index[HXML][\<styles\>]
 `<styles>` defines the styles of the UI on the screen. We won’t get too much
 into styling in Hyperview in this chapter. Suffice it to say, unlike HTML,
 Hyperview does not use a separate language (CSS) to define styles. Instead,
@@ -345,24 +345,24 @@ styling rules such as colors, spacing, layout, and fonts are defined in HXML.
 These rules are then explicitly referenced by UI elements, much like using
 classes in CSS.
 
-#index[HXML, \<body\>]
+#index[HXML][\<body\>]
 `<body>` defines the actual UI of the screen. The body includes all text,
 images, buttons, forms, etc that will be shown to the user. This is equivalent
 to the `<body>` element in HTML.
 
-#index[HXML, \<header\>]
+#index[HXML][\<header\>]
 `<header>` defines the header of the screen. Typically in mobile apps, the
 header includes some navigation (like a back button), and the title of the
 screen. It’s useful to define the header separately from the rest of the body.
 Some mobile OSes will use a different transition for the header than the rest of
 the screen content.
 
-#index[HXML, \<view\>]
+#index[HXML][\<view\>]
 `<view>` is the basic building block for layouts and structure within the
 screen’s body. Think of it like a `<div>` in HTML. Note that unlike in HTML, a `<div>` cannot
 directly contain text.
 
-#index[HXML, \<text\>]
+#index[HXML][\<text\>]
 `<text>` elements are the only way to render text in the UI. In this example, "Hello
 World" is contained within a `<text>` element.
 
@@ -373,8 +373,8 @@ isn’t very exciting. Let’s cover some other built-in display elements.
 
 ===== Lists
 
-#index[HXML, \<list\>]
-#index[HXML, \<item\>]
+#index[HXML][\<list\>]
+#index[HXML][\<item\>]
 A very common pattern in mobile apps is to scroll through a list of items. The
 physical properties of a phone screen (long & vertical) and the intuitive
 gesture of swiping a thumb up & down makes this a good choice for many screens.
@@ -418,9 +418,9 @@ recycle the item UI objects to conserve memory. By using explicit `<list>` and `
 in HXML, the Hyperview client knows to use these optimized list APIs to make
 your app more performant.
 
-#index[HXML, \<section\>]
-#index[HXML, \<section-list\>]
-#index[HXML, \<section-title\>]
+#index[HXML][\<section\>]
+#index[HXML][\<section-list\>]
+#index[HXML][\<section-title\>]
 It’s also worth mentioning that HXML supports section lists. Section lists are
 useful for building list-based UIs, where the items in the list can be grouped
 for the user’s convenience. For example, a UI showing a restaurant menu could
@@ -466,8 +466,8 @@ act the same as in the regular list, but can only appear within a `<section>`.
 
 ===== Images
 
-#index[HXML, \<image\>]
-#index[Hyperview, images]
+#index[HXML][\<image\>]
+#index[Hyperview][images]
 Showing images in Hyperview is pretty similar to HTML, but there are a few
 differences.
 
@@ -502,7 +502,7 @@ layout, HXML requires the dimensions to be known before the image loads.
 
 ==== Inputs
 
-#index[Hyperview, inputs]
+#index[Hyperview][inputs]
 There’s a lot to cover about inputs in Hyperview. Since this is meant to be an
 introduction and not an exhaustive resource, I’ll highlight just a few types of
 inputs. Let’s start with an example of the simplest type of input, a text field.
@@ -520,7 +520,7 @@ inputs. Let’s start with an example of the simplest type of input, a text fiel
 3. The current value set in the field
 4. A placeholder to display when the value is empty
 
-#index[HXML, \<text-field\>]
+#index[HXML][\<text-field\>]
 This element should feel familiar to anyone who’s created a text field in HTML.
 One difference is that most inputs in HTML use the `<input>`
 element with a `type` attribute, eg `<input type="text">`. In Hyperview, each
@@ -556,7 +556,7 @@ HXML, we implement this UI using an element called
 3. The UI of the selection. In this example, we use text, but we can use any UI
   elements.
 
-#index[HXML, \<select-single\>]
+#index[HXML][\<select-single\>]
 The `<select-single>` element is the parent of the input for selecting one
 choice out of many. This element contains the `name` attribute used when
 serializing the selected choice. `<option>` elements within
@@ -572,17 +572,17 @@ to highlight the selected option.
 Describing all features of inputs in HXML would take an entire chapter. Instead,
 I’ll summarize a few other input elements and their features.
 
-#index[HXML, \<select-multiple\>]
-#index[HXML, \<switch\>]
-#index[HXML, \<date-field\>]- `<select-multiple>` works like `<select-single>`,
+#index[HXML][\<select-multiple\>]
+#index[HXML][\<switch\>]
+#index[HXML][\<date-field\>]- `<select-multiple>` works like `<select-single>`,
 but it supports toggling multiple options on & off. This replaces checkbox
 inputs in HTML. - The `<switch>` element renders an on/off switch that is common
 in mobile UIs - The `<date-field>` element supports entering in specific dates,
 and comes with a wide range of customizations for formatting, settings ranges,
 etc.
 
-#index[HXML, \<form\>]
-#index[HXML, custom elements]
+#index[HXML][\<form\>]
+#index[HXML][custom elements]
 Two more things to mention about inputs. First is the `<form>` element. The `<form>` element
 is used to group together inputs for serialization. When a user takes an action
 that triggers a backend request, the Hyperview client will serialize all inputs
@@ -596,7 +596,7 @@ interactions with simple XML syntax that integrates well with the rest of HXML.
 
 ==== Styling
 
-#index[HXML, styling]
+#index[HXML][styling]
 So far, we haven’t mentioned how to apply styling to all of the HXML elements.
 We’ve seen from the Hello World app that each `<screen>` can contain a `<styles>` element.
 Let’s re-visit the Hello World app and fill out the `<styles>` element.
@@ -651,7 +651,7 @@ in the rest of the examples in this chapter unless necessary.
 
 ==== Custom elements
 
-#index[HXML, custom elements]
+#index[HXML][custom elements]
 The core UI elements that ship with Hyperview are quite basic. Most mobile apps
 require richer elements to deliver a great user experience. Luckily, HXML can
 easily accommodate custom elements in its syntax. This is because HXML is really
@@ -699,7 +699,7 @@ being used by a customization to render charts & graphs. If our app renders both
 maps and charts, the HXML markup would be ambiguous. What should the client
 render when it sees `<area>` or `<marker>`?
 
-#index[Hyperview, XML namespaces]
+#index[Hyperview][XML namespaces]
 This is where XML namespaces come in. XML namespaces eliminate ambiguity and
 collisions between elements and attributes used to represent different things.
 Remember that the `<doc>` element declares that
@@ -786,7 +786,7 @@ By decoupling elements, triggers, and actions, htmx allows us to build rich
 Hypermedia-driven applications in a way that feels very compatible with HTML
 syntax and server-side web development.
 
-#index[HXML, behaviors]
+#index[HXML][behaviors]
 HXML takes the idea of defining interactions via triggers & actions and builds
 them into the spec. We call these interactions "behaviors." We use a special `<behavior>` element
 to define them. Here’s an example of a simple behavior that pushes a new mobile
@@ -860,7 +860,7 @@ triggers.
 
 ===== Actions
 
-#index[HXML, behavior actions]
+#index[HXML][behavior actions]
 Behavior actions in Hyperview fall into four general categories:
 - Navigation actions, which load new screens and move between them
 - Update actions, which modify the HXML of the current screen
@@ -869,7 +869,7 @@ Behavior actions in Hyperview fall into four general categories:
 
 ====== Navigation actions
 
-#index[HXML, navigation actions]
+#index[HXML][navigation actions]
 We’ve already seen the simplest type of action, `push`. We classify
 `push` as a "navigation action", since it’s related to navigating screens in the
 mobile app. Pushing a screen onto the navigation stack is just one of several
@@ -959,7 +959,7 @@ makes sense for their app.
 
 ====== Update actions
 
-#index[HXML, update actions]
+#index[HXML][update actions]
 Behavior actions are not just limited to navigating between screens. They can
 also be used to change the content on the current screen. We call these "update
 actions". Much like navigation actions, update actions make a request to the
@@ -1160,7 +1160,7 @@ them in detail, but I’ll mention them briefly here:
 
 ====== System actions
 
-#index[Hyperview, system actions]
+#index[Hyperview][system actions]
 Some standard Hyperview actions don’t interact with the HXML at all. Instead,
 they expose functionality provided by the mobile OS. For example, both Android
 and iOS support a system-level "Share" UI. This UI allows sharing URLs and
@@ -1237,7 +1237,7 @@ that in a real app! With great power comes great responsibility.
 
 ====== Custom actions
 
-#index[Hyperview, custom actions]
+#index[Hyperview][custom actions]
 You can build a lot of mobile UIs with Hyperview’s standard navigation, update,
 and system actions. But the standard set may not cover all interactions you will
 need for your mobile app. Luckily, the action system is extensible. In the same
@@ -1250,7 +1250,7 @@ create a custom behavior action to enhance our mobile contacts app.
 
 ===== Triggers
 
-#index[Hyperview, triggers]
+#index[Hyperview][triggers]
 We’ve already seen the simplest type of trigger, a `press` on an element.
 Hyperview supports many other common triggers used in mobile apps.
 
@@ -1354,7 +1354,7 @@ they need to pick a different username.
 
 ===== Using multiple behaviors
 
-#index[HXML, multiple behaviors]
+#index[HXML][multiple behaviors]
 Most of the examples shown above attach a single `<behavior>` to an element. But
 there’s no such limitation in Hyperview; elements can define multiple behaviors.
 We already saw an example where a single element had different actions triggered

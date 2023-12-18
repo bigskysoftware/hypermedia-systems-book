@@ -133,7 +133,7 @@ was decades before the technologies Englebart demonstrated became mainstream.
 ==== Modern Implementation <_modern_implementation>
 
 #index[Berners-Lee, Tim]
-#index[World Wide Web, creation]
+#index[World Wide Web][creation]
 In 1990, Tim Berners-Lee, working at CERN, published the first website. He had
 been working on the idea of hypertext for a decade and had finally, out of
 desperation at the fact it was so hard for researchers to share their research,
@@ -182,14 +182,14 @@ the record with respect to REST, HATEOAS and hypermedia.
   hyperlink was the web. And it was good.
 ]
 
-#index[HTML, history]
+#index[HTML][history]
 The system that Berners-Lee, Fielding and many others had created revolved
 around a hypermedia: HTML. HTML started as a read-only hypermedia, used to
 publish (at first) academic documents. These documents were linked together via
 anchor tags which created
 _hyperlinks_ between them, allowing users to quickly navigate between documents.
 
-When #indexed[HTML, 2.0] was released, it introduced the notion of the `form` tag,
+When #index[HTML][2.0] HTML 2.0 was released, it introduced the notion of the `form` tag,
 joining the anchor tag (i.e., hyperlink) as a second hypermedia control. The
 introduction of the form tag made building _applications_ on the web viable by
 providing a mechanism for _updating_ resources, rather than just reading them.
@@ -528,7 +528,7 @@ popular approach like hypermedia?
 ==== JavaScript Fatigue <_javascript_fatigue>
 We are glad you asked!
 
-#index[hypermedia, advantages]
+#index[hypermedia][advantages]
 It turns out that the hypermedia architecture, even in its original Web 1.0
 form, has a number of advantages when compared with the Single Page Application
 + JSON Data API approach. Three of the biggest are:
@@ -537,7 +537,7 @@ form, has a number of advantages when compared with the Single Page Application
   leverages tried and true features of web browsers, such as caching.
 
 #index[JavaScript Fatigue]
-#index[JSON, API churn]
+#index[JSON][API churn]
 The first two advantages, in particular, address major pain points in modern web
 development:
 - Single Page Application infrastructure has become extremely complex, often
@@ -770,7 +770,7 @@ differences between the two approaches will become more and more apparent.
 
 === When Should You Use Hypermedia? <_when_should_you_use_hypermedia>
 
-#index[hypermedia, when to use]
+#index[hypermedia][when to use]
 Hypermedia is often, though _not always_, a great choice for a web application.
 
 Perhaps you are building a website or application that simply doesn’t
@@ -814,7 +814,7 @@ But more on that later.
 
 === When Shouldn’t You Use Hypermedia? <_when_shouldnt_you_use_hypermedia>
 
-#index[hypermedia, limitations]
+#index[hypermedia][limitations]
 So, what about that _not always_? When isn’t hypermedia going to work well for
 an application?
 

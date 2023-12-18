@@ -15,7 +15,7 @@ hypermedia, using the core hypermedia concepts of the early web.
 
 === Installing Htmx <_installing_htmx>
 
-#index[htmx, installing]
+#index[htmx][installing]
 The first thing we need to do is install htmx in our web application. We are
 going to do this by downloading the source and saving it locally in our
 application, so we aren’t dependent on any external systems. This is known as "vendoring"
@@ -54,7 +54,7 @@ functionality available across our entire application.
 === AJAX-ifying Our Application <_ajax_ifying_our_application>
 
 #index[hx-boost]
-#index[htmx patterns, boosting]
+#index[htmx patterns][boosting]
 To get our feet wet with htmx, the first feature we are going to take advantage
 of is known as "boosting." This is a bit of a "magic" feature in that we don’t
 need to do much beyond adding a single attribute,
@@ -160,7 +160,7 @@ links with the `hx-boost="true"` attribute right next to one another.
 <a href="/help" hx-boost="true">Help</a>
 ``` ]
 
-#index[htmx, attribute inheritance]
+#index[htmx][attribute inheritance]
 Htmx offers a feature to help reduce this redundancy: attribute inheritance.
 With most attributes in htmx, if you place it on a parent, the attribute will
 also apply to children elements. This is how Cascading Style Sheets work, and
@@ -211,7 +211,7 @@ value with `hx-boost="false"` on the anchor tag that you don’t want to boost:
 1. The `hx-boost` is still on the parent div.
 2. The boosting behavior is overridden for this link.
 
-#index[hx-boost, disabling]
+#index[hx-boost][disabling]
 Here we have a new link to a documentation PDF that we wish to function like a
 regular link. We have added `hx-boost="false"` to the link and this declaration
 will override the `hx-boost="true"` on the parent
@@ -344,7 +344,7 @@ attribute to the "Delete Contact" button:
 Now, when a user clicks this button, htmx will issue an HTTP `DELETE`
 request via AJAX to the URL for the contact in question.
 
-#index[htmx-patterns, delete]
+#index[htmx patterns][delete]
 A couple of things to notice:
 - We no longer need a `form` tag to wrap the button, because the button itself
   carries the hypermedia action that it performs directly on itself.
@@ -405,7 +405,7 @@ Pretty simple, and much cleaner.
 
 ===== A response code gotcha <_a_response_code_gotcha>
 
-#index[Flask, redirect]
+#index[Flask][redirect]
 Unfortunately, there is a problem with our updated handler: by default, in Flask
 the `redirect()` method responds with a `302 Found` HTTP Response Code.
 
@@ -454,7 +454,7 @@ This is a natural HTTP-based approach to deleting a resource.
 
 ==== Targeting The Right Element <_targeting_the_right_element>
 
-#index[hx-target, example]
+#index[hx-target][example]
 We aren’t quite finished with our updated delete button. Recall that, by
 default, htmx "targets" the element that triggers a request, and will place the
 HTML returned by the server inside that element. Right now, the "Delete Contact"
@@ -488,7 +488,7 @@ Is everything working smoothly now?
 
 Well, almost.
 
-#index[htmx, location bar]
+#index[htmx][location bar]
 If you click on the button you will notice that, despite the redirect, the URL
 in the location bar is not correct. It still points to
 `/contacts/{{ contact.id }}`. That’s because we haven’t told htmx to update the
@@ -532,7 +532,7 @@ the web as a hypermedia system without any URL hacks.
 ==== One More Thing…​ <_one_more_thing>
 
 #index[hx-confirm]
-#index[htmx patterns, confirmation dialog]
+#index[htmx patterns][confirmation dialog]
 There is one additional "bonus" feature we can add to our "Delete Contact"
 button: a confirmation dialog. Deleting a contact is a destructive operation and
 as it stands right now, if the user inadvertently clicked the "Delete Contact"
@@ -677,7 +677,7 @@ However, as the application currently stands, there are two annoyances.
 
 ==== Updating Our Input Type <_updating_our_input_type>
 
-#index[HTML, inputs]
+#index[HTML][inputs]
 For the first issue, we have a pure HTML mechanism for improving our
 application: HTML 5 supports inputs of type `email`. All we need to do is switch
 our input from type `text` to type `email`, and the browser will enforce that
@@ -720,7 +720,7 @@ and addresses the first problem we noted.
 
 ==== Inline Validation <_inline_validation>
 
-#index[htmx patterns, inline validation]
+#index[htmx patterns][inline validation]
 While we have improved our validation experience a bit, the user must still
 submit the form to get any feedback on duplicate emails. We can next use htmx to
 improve this user experience.
@@ -869,10 +869,10 @@ Well, no.
 It turns out that you can implement this functionality in htmx, using pure HTML
 attributes.
 
-#index[hx-trigger, change]
-#index[hx-trigger, keyup]
-#index[event, change]
-#index[event, keyup]
+#index[hx-trigger][change]
+#index[hx-trigger][keyup]
+#index[event][change]
+#index[event][keyup]
 In fact, all we need to do is to change our trigger. Currently, we are using the
 default trigger for inputs, which is the `change` event. To validate as the user
 types, we would want to capture the `keyup` event as well:
@@ -939,7 +939,7 @@ that have no effect on the value of the input, such as arrow keys. It would be
 better if there were a way to only issue a request if the input value has
 changed.
 
-#index[event modifier, changed]
+#index[event modifier][changed]
 And it turns out that htmx has support for that exact pattern, by using the `changed` modifier
 for events. (Not to be confused with the `change`
 event triggered by the DOM on input elements.)
@@ -975,7 +975,7 @@ A great demonstration of the power of the hypermedia architecture!
 
 === Another Application Improvement: Paging <_another_application_improvement_paging>
 
-#index[htmx patterns, paging]
+#index[htmx patterns][paging]
 Let’s move on from the contact editing page for a bit and improve the root page
 of the application, found at the `/contacts` path and rendering the `index.html` template.
 
@@ -1066,7 +1066,7 @@ And, believe it or not, it is already using AJAX, thanks to our use of
 
 ==== Click To Load <_click_to_load>
 
-#index[htmx patterns, click to load]
+#index[htmx patterns][click to load]
 This paging mechanism is fine for a basic web application, and it is used
 extensively on the internet. But it has some drawbacks associated with it: every
 time you click the "Next" or "Previous" buttons you get a whole new page of
@@ -1094,7 +1094,7 @@ Let’s see how we can implement this UX pattern in htmx.
 It’s actually surprisingly simple: we can just take the existing "Next" link and
 repurpose it a bit using nothing but a few htmx attributes!
 
-#index[hx-select, example]
+#index[hx-select][example]
 We want to have a button that, when clicked, appends the rows from the next page
 of contacts to the current, exiting table, rather than re-rendering the whole
 table. This can be achieved by adding a new row to our table that has just such
@@ -1160,7 +1160,7 @@ htmx.
 
 ==== Infinite Scroll <_infinite_scroll>
 
-#index[htmx patterns, infinite scroll]
+#index[htmx patterns][infinite scroll]
 Another common pattern for dealing with large sets of things is known as the "Infinite
 Scroll" pattern. In this pattern, as the last item of a list or table of
 elements is scrolled into view, more elements are loaded and appended to the
@@ -1181,7 +1181,7 @@ As luck would have it, htmx offers a synthetic (non-standard) DOM event,
 `revealed` that can be used in tandem with the `hx-trigger` attribute, to
 trigger a request when, well, when an element is revealed.
 
-#index[hx-select, example]
+#index[hx-select][example]
 So let’s convert our button to a span and take advantage of this event:
 
 #figure(

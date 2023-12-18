@@ -70,7 +70,7 @@ Applications.
 
 === Scripting for Hypermedia
 
-#index[scripting, hypermedia friendly]
+#index[scripting][hypermedia friendly]
 Borrowing from Roy Fielding’s notion of "constraints" defining REST, we offer
 two constraints of hypermedia-friendly scripting. You are scripting in an
 HDA-compatible manner if the following two constraints are adhered to:
@@ -434,7 +434,7 @@ Concerns design principle.
 
 ===== What to do with our counter?
 
-#index[Javascript, on\*]
+#index[Javascript][on\*]
 So, should we go back to the `onclick` attribute way of doing things? That
 approach certainly wins in Locality of Behavior, and has the additional benefit
 that it is baked into HTML.
@@ -845,7 +845,7 @@ scripting much further than `on*` attributes.
 Alpine bills itself as a modern replacement for jQuery, the widely used, older
 JavaScript library. As you will see, it definitely lives up to this promise.
 
-#index[Alpine.js, installing]
+#index[Alpine.js][installing]
 Installing Alpine is very easy: it is a single file and is dependency-free, so
 you can simply include it via a CDN:
 
@@ -856,7 +856,7 @@ you can simply include it via a CDN:
 You can also install it via a package manager such as NPM, or vendor it from
 your own server.
 
-#index[Alpine.js, x-data]
+#index[Alpine.js][x-data]
 Alpine provides a set of HTML attributes, all of which begin with the
 `x-` prefix, the main one of which is `x-data`. The content of `x-data`
 is a JavaScript expression which evaluates to an object. The properties of this
@@ -874,7 +874,7 @@ on the div for our counter:
 <div class="counter" x-data="{ count: 0 }">
 ``` ]
 
-#index[Alpine.js, x-text]
+#index[Alpine.js][x-text]
 This defines our state, that is, the data we are going to be using to drive
 dynamic updates to the DOM. With the state declared like this, we can now use it _within_ the
 div element it is declared on. Let’s add an `output` element with an `x-text` attribute.
@@ -918,7 +918,7 @@ code, and Alpine delivers.
 
 ==== "x-on:click" vs. "onclick"
 
-#index[Alpine.js, x-on:click]
+#index[Alpine.js][x-on:click]
 As we said, the Alpine `x-on:click` attribute (or its shorthand, the
 `@click` attribute) is similar to the built-in `onclick` attribute. However, it
 has additional features that make it significantly more useful:
@@ -978,7 +978,7 @@ Here is what our form tag will look like:
 ```]
 1. This form wraps around the contacts table.
 
-#index[Alpine.js, x-if]
+#index[Alpine.js][x-if]
 Next, at the top of the contacts table, we are going to add a `template`
 tag. A template tag is _not_ rendered by a browser, by default, so you might be
 surprised that we are using it. However, by adding an Alpine `x-if` attribute,
@@ -1004,7 +1004,7 @@ selected contacts, quite easily:
 1. Show this HTML if there are 1 or more selected contacts.
 2. We will implement these buttons in just a moment.
 
-#index[Alpine.js, x-model]
+#index[Alpine.js][x-model]
 The next step is to ensure that toggling a checkbox for a given contact adds (or
 removes) a given contact’s id from the `selected` property. To do this, we will
 need to use a new Alpine attribute, `x-model`. The
@@ -1074,7 +1074,7 @@ Note that we are using the short-circuiting behavior of the `&&`
 operator in JavaScript to avoid the call to `htmx.ajax()` if the
 `confirm()` call returns false.
 
-#index[htmx, htmx.ajax()]
+#index[htmx][htmx.ajax()]
 The `htmx.ajax()` function is just a way to access the normal, HTML-driven
 hypermedia exchange that htmx’s HTML attributes give you directly from
 JavaScript.
@@ -1216,9 +1216,9 @@ Here is the original HTML for the search input:
 <input id="search" name="q" type="search" placeholder="Search Contacts">
 ```]
 
-#index[\_hyperscript, event listener]
-#index[\_hyperscript, event filter]
-#index[\_hyperscript, filter expression]
+#index[\_hyperscript][event listener]
+#index[\_hyperscript][event filter]
+#index[\_hyperscript][filter expression]
 We will add an event listener using the `on keydown` syntax, which will fire
 whenever a keydown occurs. Further, we can use an _event filter_ syntax in
 \_hyperscript using square brackets after the event. In the square brackets we
@@ -1234,7 +1234,7 @@ So far our \_hyperscript looks like this:
   on keydown[altKey and code is 'KeyS'] ...
 ``` ]
 
-#index[\_hyperscript, from]
+#index[\_hyperscript][from]
 Now, by default, \_hyperscript will listen for a given event _on the element where it is declared_.
 So, with the script we have, we would only get `keydown` events if the search
 box is already focused. That’s not what we want! We want to have this key work _globally_,
@@ -1276,7 +1276,7 @@ scripting language, we had the freedom to address some problems that we saw
 generating ugly and verbose code in JavaScript:
 
 / Async transparency: #[
-  #index[\_hyperscript, async transparency] In \_hyperscript, asynchronous
+  #index[\_hyperscript][async transparency] In \_hyperscript, asynchronous
   functions (i.e., functions that return
   `Promise` instances) can be invoked _as if they were synchronous_. Changing a
   function from sync to async does not break any \_hyperscript code that calls it.
@@ -1288,7 +1288,7 @@ generating ugly and verbose code in JavaScript:
   ]
 
 / Array property access: #[
-  #index[\_hyperscript, array property access] In \_hyperscript, accessing a
+  #index[\_hyperscript][array property access] In \_hyperscript, accessing a
   property on an array (other than `length`
   or a number) will return an array of the values of property on each member of
   that array, making array property access act like a flat-map operation. jQuery
@@ -1296,13 +1296,13 @@ generating ugly and verbose code in JavaScript:
   ]
 
 / Native CSS Syntax: #[
-    #index[\_hyperscript, native CSS syntax] In \_hyperscript, you can use things
+    #index[\_hyperscript][native CSS syntax] In \_hyperscript, you can use things
     like CSS class and ID literals, or CSS query literals, directly in the language,
     rather than needing to call out to a wordy DOM API, as you do in JavaScript.
   ]
 
 / Deep Event Support: #[
-    #index[\_hyperscript, event support] Working with events in \_hyperscript is far
+    #index[\_hyperscript][event support] Working with events in \_hyperscript is far
     more pleasant than working with them in JavaScript, with native support for
     responding to and sending events, as well as for common event-handling patterns
     such as
@@ -1530,7 +1530,7 @@ Here is what our code looks like:
 2. We pass the button in to the function, so an event can be triggered on it.
 3. We pass through the SweetAlert2 configuration information.
 
-#index[htmx patterns, wrapping to emit events]
+#index[htmx patterns][wrapping to emit events]
 As you can see, this event-based code is much cleaner and certainly more
 "HTML-ish." The key to this cleaner implementation is that our new
 `sweetConfirm()` function fires an event that htmx is able to listen for.
