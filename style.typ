@@ -46,7 +46,7 @@
 #let hypermedia-systems-book(title, authors: (), frontmatter: []) = content => [
   #set text(font: body-font, size: 12pt, lang: "en")
   #show raw: set text(font: mono-font)
-  
+
   #show heading: set text(font: display-font)
 
   #set par(justify: true, first-line-indent: 1em, leading: leading)
@@ -126,12 +126,11 @@
       // Override heading counter so chapter numbers don't reset with each part.
       // TODO: this doesn't work on the first heading in each part
       #locate(loc => counter(heading).update((..args) =>
-        (args.pos().at(0), chapter-counter.at(loc).last())))
+      (args.pos().at(0), chapter-counter.at(loc).last())))
     ]
 
     #set heading(
-      supplement: it => ([Part], [Chapter]).at(it.level - 1, default: [Section]),
-      numbering: (..bits) => if bits.pos().len() < 2 {
+      supplement: it => ([Part], [Chapter]).at(it.level - 1, default: [Section]), numbering: (..bits) => if bits.pos().len() < 2 {
         // Show part number only on parts.
         numbering("I.", ..bits)
       } else {

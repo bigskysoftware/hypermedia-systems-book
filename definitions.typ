@@ -11,9 +11,7 @@
   #align(horizon)[
     #set par(leading: 5pt, justify: false)
     #set text(size: 32pt, font: display-font)
-    #text(
-      fill: luma(140),
-    )[
+    #text(fill: luma(140))[
       #it.supplement
       #counter(heading).display()
     ]
