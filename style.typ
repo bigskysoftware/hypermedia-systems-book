@@ -118,15 +118,11 @@
     #let chapter-counter = counter("chapter")
     #show heading.where(level: 2): it => [
       #if it.numbering != none { chapter-counter.step() }
-      #it
+      #chapter-heading(it)
     ]
 
-    #show heading.where(level: 2): chapter-heading
-
-    #show heading.where(level: 1): part-heading
-    
     #show heading.where(level: 1): it => [
-      #it
+      #part-heading(it)
       // Override heading counter so chapter numbers don't reset with each part.
       // TODO: this doesn't work on the first heading in each part
       #locate(loc => counter(heading).update((..args) =>
