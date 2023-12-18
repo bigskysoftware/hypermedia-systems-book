@@ -4,9 +4,7 @@
 #let display-font = "ChicagoFLF"
 #let mono-font = "Berkeley Mono"
 
-#import "@preview/in-dexter:0.0.6": *
-
-#let indexed(..args, content) = [#index(..args, content) #content]
+#import "indexing.typ": *
 
 #let part-heading(it) = [
   #pagebreak(to: "even")
