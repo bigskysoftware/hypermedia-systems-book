@@ -13,7 +13,10 @@
     #set text(size: 32pt, font: display-font)
     #text(
       fill: luma(140),
-    )[Part #numbering("I", counter(heading).at(it.location()).last())]
+    )[
+      #it.supplement
+      #counter(heading).display()
+    ]
     #linebreak()
     #it.body
   ]
