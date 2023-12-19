@@ -97,7 +97,7 @@ write the following HTML:
 
 #figure(caption: [Scrolling to the top of the page])[ ```html
 <button hx-get="/contacts" hx-target="#content-div"
-        hx-swap="innerHTML show:body:top"> '1'
+        hx-swap="innerHTML show:body:top"> <1>
   Get Contacts
 </button>
 ``` ]
@@ -125,7 +125,7 @@ A classic example is the active search example we implemented in Contact.app:
 )[ ```html
     <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"
            hx-get="/contacts"
-           hx-trigger="search, keyup delay:200ms changed"/> '1'
+           hx-trigger="search, keyup delay:200ms changed"/> <1>
 ``` ]
 1. An elaborate trigger specification.
 
@@ -216,7 +216,7 @@ To do this using an event filter in htmx, you would write the following HTML:
       ...
   }
 </script>
-<button hx-get="/contacts" hx-trigger="click[contactRetrievalEnabled()]"> '1'
+<button hx-get="/contacts" hx-trigger="click[contactRetrievalEnabled()]"> <1>
   Get Contacts
 </button>
 ``` ]
@@ -318,8 +318,8 @@ Here is our updated code:
 
 #index[hx-sync][example]
 #figure(caption: [Syncing two buttons])[ ```html
-<div hx-target="body" '1'
-     hx-sync="this"> '2'
+<div hx-target="body" <1>
+     hx-sync="this"> <2>
     <button hx-get="/contacts">
       Get Contacts
     </button>
@@ -410,7 +410,7 @@ The token is being set via some JavaScript (don’t worry about the details yet)
 when the user first logs in:
 
 #figure(caption: [Getting The Token in JavaScript])[ ```js
-    let response = await fetch("/token"); '1'
+    let response = await fetch("/token"); <1>
     localStorage['special-token'] = await response.text();
 ``` ]
 1. Get the value of the token then set it into localStorage
@@ -428,7 +428,7 @@ tag in the `<head>` of our HTML document:
   caption: [Adding the `X-SPECIAL-TOKEN` header],
 )[ ```js
 document.body.addEventListener("htmx:configRequest", function(configEvent){
-    configEvent.detail.headers['X-SPECIAL-TOKEN'] = localStorage['special-token']; '1'
+    configEvent.detail.headers['X-SPECIAL-TOKEN'] = localStorage['special-token']; <1>
 })
 ``` ]
 1. Retrieve the value from local storage and set it into a header.
@@ -465,7 +465,7 @@ look like this:
   caption: [Adding the `token` parameter],
 )[ ```js
 document.body.addEventListener("htmx:configRequest", function(configEvent){
-    configEvent.detail.parameters['token'] = localStorage['special-token']; '1'
+    configEvent.detail.parameters['token'] = localStorage['special-token']; <1>
 })
 ``` ]
 1. Retrieve the value from local storage and set it into a parameter.
@@ -498,10 +498,10 @@ Here is what the code might look like:
 #figure(
   caption: [A button with an abort],
 )[ ```html
-<button id="contacts-btn" hx-get="/contacts" hx-target="body"> '1'
+<button id="contacts-btn" hx-get="/contacts" hx-target="body"> <1>
   Get Contacts
 </button>
-<button onclick="document.getElementById('contacts-btn').dispatchEvent(new Event('htmx:abort'))"> '2'
+<button onclick="document.getElementById('contacts-btn').dispatchEvent(new Event('htmx:abort'))"> <2>
   Cancel
 </button>
 ``` ]
@@ -567,9 +567,9 @@ with the value `contacts-updated`:
 #figure(caption: [Conditionally Triggering a `contacts-updated` event])[ ```py
 @app.route('/sync', methods=["POST"])
 def sync_with_server():
-    contacts_updated = RemoteServer.sync() '1'
+    contacts_updated = RemoteServer.sync() <1>
     resp = make_response(render_template('sync.html'))
-    if contacts_updated '2'
+    if contacts_updated <2>
       resp.headers['HX-Trigger'] = 'contacts-updated'
     return resp
 ``` ]
@@ -587,13 +587,13 @@ Here is what the client-side code might look like:
 #figure(
   caption: [The Contacts Table],
 )[ ```html
-   <button hx-post="/integrations/1"> '1'
+   <button hx-post="/integrations/1"> <1>
      Pull Contacts From Integration
    </button>
 
       ...
 
-    <table hx-get="/contacts/table" hx-trigger="contacts-updated from:body"> '2'
+    <table hx-get="/contacts/table" hx-trigger="contacts-updated from:body"> <2>
       ...
     </table>
 ``` ]
@@ -660,8 +660,8 @@ JavaScript method, `showNotFoundError()`. Let’s add some code to use the `htmx
 to make this happen:
 
 #figure(caption: [Showing a 404 dialog])[ ```js
-document.body.addEventListener('htmx:beforeSwap', function(evt) { '1'
-    if(evt.detail.xhr.status === 404){ '2'
+document.body.addEventListener('htmx:beforeSwap', function(evt) { <1>
+    if(evt.detail.xhr.status === 404){ <2>
         showNotFoundError();
     }
 });
@@ -718,13 +718,13 @@ This time, we’ll use the `hx-swap-oob` attribute in the response to the
 "piggyback" on the response.
 
 #figure(caption: [The updated contacts table])[ ```html
-   <button hx-post="/integrations/1"> '1'
+   <button hx-post="/integrations/1"> <1>
      Pull Contacts From Integration
    </button>
 
       ...
 
-    <table id="contacts-table"> '2'
+    <table id="contacts-table"> <2>
       ...
     </table>
 ``` ]
@@ -743,9 +743,9 @@ HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 ...
 
-Pull Contacts From Integration '1'
+Pull Contacts From Integration <1>
 
-<table id="contacts-table" hx-swap-oob="true"> '2'
+<table id="contacts-table" hx-swap-oob="true"> <2>
   ...
 </table>
 ``` ]

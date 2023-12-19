@@ -356,9 +356,9 @@ API, a popular API for issuing an "Asynchronous JavaScript and XML," or AJAX #in
 available in all modern web browsers:
 
 #figure(caption: [JavaScript], ```html
-  <button onclick="fetch('/api/v1/contacts/1') '1'
-                  .then(response => response.json()) '2'
-                  .then(data => updateUI(data)) '3' ">
+  <button onclick="fetch('/api/v1/contacts/1') <1>
+                  .then(response => response.json()) <2>
+                  .then(data => updateUI(data)) "> <3>
       Fetch Contact
   </button>
   ```)
@@ -383,9 +383,9 @@ rather than XML.
 An HTTP response to this request might look something like this:
 
 #figure(caption: [JSON], ```json
-  { '1'
-    "id": 42, '2'
-    "email" : "json-example@example.org" '3'
+  { <1>
+    "id": 42, <2>
+    "email" : "json-example@example.org" <3>
   }
   ```)
 
@@ -716,7 +716,7 @@ Let’s look at an htmx-powered implementation of the simple JavaScript-powered
 button above:
 
 #figure(caption: [An htmx implementation], ```html
-  <button hx-get="/contacts/1" hx-target="#contact-ui"> '1'
+  <button hx-get="/contacts/1" hx-target="#contact-ui"> <1>
       Fetch Contact
   </button>
   ```)

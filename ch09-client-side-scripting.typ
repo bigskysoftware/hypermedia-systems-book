@@ -248,11 +248,11 @@ contained within it.
 
 #figure(caption: [Counter in vanilla JavaScript, inline version])[ ```html
 <section class="counter">
-  <output id="my-output">0</output>  '1'
+  <output id="my-output">0</output>  <1>
   <button
-    onclick=" '2'
-      document.querySelector('#my-output') '3'
-        .textContent++ '4'
+    onclick=" <2>
+      document.querySelector('#my-output') <3>
+        .textContent++ <4>
     "
   >Increment</button>
 </section>
@@ -299,11 +299,11 @@ click event and increment the counter.
 #figure(
   caption: [Counter JavaScript],
 )[ ```js
-const counterOutput = document.querySelector("#my-output") '1'
-const incrementBtn  = document.querySelector(".counter .increment-btn") '2'
+const counterOutput = document.querySelector("#my-output") <1>
+const incrementBtn  = document.querySelector(".counter .increment-btn") <2>
 
-incrementBtn.addEventListener("click", e => { '3'
-  counterOutput.innerHTML++ '4'
+incrementBtn.addEventListener("click", e => { <3>
+  counterOutput.innerHTML++ <4>
 })
 ``` ]
 1. Find the output element.
@@ -502,8 +502,8 @@ Here is what our code looks like now:
 #figure(
   caption: [Counter in vanilla JavaScript, with RSJS],
 )[ ```html
-<section class="counter" data-counter> '1'
-  <output id="my-output" data-counter-output>0</output> '2'
+<section class="counter" data-counter> <1>
+  <output id="my-output" data-counter-output>0</output> <2>
   <button class="increment-btn" data-counter-increment>Increment</button>
 </section>
 ``` ]
@@ -511,14 +511,14 @@ Here is what our code looks like now:
 2. Mark relevant descendant elements.
 
 #figure[```js
-// counter.js '1'
-document.querySelectorAll("[data-counter]") '1'
+// counter.js <1>
+document.querySelectorAll("[data-counter]") <1>
   .forEach(el => {
     const
     output = el.querySelector("[data-counter-output]"),
-    increment = el.querySelector("[data-counter-increment]"); '3'
+    increment = el.querySelector("[data-counter-increment]"); <3>
 
-    increment.addEventListener("click", e => output.textContent++); '4'
+    increment.addEventListener("click", e => output.textContent++); <4>
   });
 ```]
 1. File should have the same name as the data attribute, so that we can locate it
@@ -565,12 +565,12 @@ table.
 Here is what our updated, RSJS-structured HTML looks like:
 
 #figure[```html
-<div data-overflow-menu> '1'
+<div data-overflow-menu> <1>
     <button type="button" aria-haspopup="menu"
         aria-controls="contact-menu-{{ contact.id }}"
-        >Options</button> '2'
-    <div role="menu" hidden id="contact-menu-{{ contact.id }}"> '3'
-        <a role="menuitem" href="/contacts/{{ contact.id }}/edit">Edit</a> '4'
+        >Options</button> <2>
+    <div role="menu" hidden id="contact-menu-{{ contact.id }}"> <3>
+        <a role="menuitem" href="/contacts/{{ contact.id }}/edit">Edit</a> <4>
         <a role="menuitem" href="/contacts/{{ contact.id }}">View</a>
         <!-- ... -->
     </div>
@@ -651,15 +651,15 @@ htmx; we load the overflow menu when htmx loads new content.
 
 #figure[```js
 function overflowMenu(subtree = document) {
-  document.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { '1'
+  document.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
     const
-    button = menuRoot.querySelector("[aria-haspopup]"), '2'
-    menu = menuRoot.querySelector("[role=menu]"), '3'
+    button = menuRoot.querySelector("[aria-haspopup]"), <2>
+    menu = menuRoot.querySelector("[role=menu]"), <3>
     items = [...menu.querySelectorAll("[role=menuitem]")];
   });
 }
 
-addEventListener("htmx:load", e => overflowMenu(e.target)); '4'
+addEventListener("htmx:load", e => overflowMenu(e.target)); <4>
 ```]
 1. With RSJS, you’ll be writing `document.querySelectorAll(…​).forEach` a lot.
 2. To keep the HTML clean, we use ARIA attributes rather than custom data
@@ -686,7 +686,7 @@ well by simply re-running the JS.
 #figure[```js
   items = [...menu.querySelectorAll("[role=menuitem]")];
 
-  const isOpen = () => !menu.hidden; '1'
+  const isOpen = () => !menu.hidden; <1>
 
 });
 ```]
@@ -709,20 +709,20 @@ Now let’s implement toggling the menu in JavaScript:
 #figure[```js
   items.forEach(item => item.setAttribute("tabindex", "-1"));
 
-  function toggleMenu(open = !isOpen()) { '1'
+  function toggleMenu(open = !isOpen()) { <1>
     if (open) {
       menu.hidden = false;
       button.setAttribute("aria-expanded", "true");
-      items[0].focus(); '2'
+      items[0].focus(); <2>
     } else {
       menu.hidden = true;
       button.setAttribute("aria-expanded", "false");
     }
   }
 
-  toggleMenu(isOpen()); '3'
-  button.addEventListener("click", () => toggleMenu()); '4'
-  menuRoot.addEventListener("blur", e => toggleMenu(false)); '5'
+  toggleMenu(isOpen()); <3>
+  button.addEventListener("click", () => toggleMenu()); <4>
+  menuRoot.addEventListener("blur", e => toggleMenu(false)); <5>
 
 })
 ```]
@@ -762,8 +762,8 @@ page" driving the collection, it should work well enough for our system.
   menuRoot.addEventListener("blur", e => toggleMenu(false));
 
   window.addEventListener("click", function clickAway(event) {
-    if (!menuRoot.isConnected) window.removeEventListener("click", clickAway); '1'
-    if (!menuRoot.contains(event.target)) toggleMenu(false); '2'
+    if (!menuRoot.isConnected) window.removeEventListener("click", clickAway); <1>
+    if (!menuRoot.contains(event.target)) toggleMenu(false); <2>
   });
 });
 ```]
@@ -778,7 +778,7 @@ particularly intricate, so let’s knock them all out in one go:
     if (!menuRoot.contains(event.target)) toggleMenu(false);
   });
 
-  const currentIndex = () => { '1'
+  const currentIndex = () => { <1>
     const idx = items.indexOf(document.activeElement);
     if (idx === -1) return 0;
     return idx;
@@ -786,23 +786,23 @@ particularly intricate, so let’s knock them all out in one go:
 
   menu.addEventListener("keydown", e => {
     if (e.key === "ArrowUp") {
-      items[currentIndex() - 1]?.focus(); '2'
+      items[currentIndex() - 1]?.focus(); <2>
 
     } else if (e.key === "ArrowDown") {
-      items[currentIndex() + 1]?.focus(); '3'
+      items[currentIndex() + 1]?.focus(); <3>
 
     } else if (e.key === "Space") {
-      items[currentIndex()].click(); '4'
+      items[currentIndex()].click(); <4>
 
     } else if (e.key === "Home") {
-      items[0].focus(); '5'
+      items[0].focus(); <5>
 
     } else if (e.key === "End") {
-      items[items.length - 1].focus(); '6'
+      items[items.length - 1].focus(); <6>
 
     } else if (e.key === "Escape") {
-      toggleMenu(false); '7'
-      button.focus(); '8'
+      toggleMenu(false); <7>
+      button.focus(); <8>
     }
   });
 });
@@ -888,7 +888,7 @@ to changes to the backing data.
 
 #figure(caption: [Counter with Alpine, lines 1-2])[ ```html
 <div x-data="{ count: 0 }">
-  <output x-text="count"></output> '1'
+  <output x-text="count"></output> <1>
 ``` ]
 1. The `x-text` attribute.
 
@@ -908,7 +908,7 @@ when a click occurs, so here is what the Alpine code will look like:
 <div x-data="{ count: 0 }">
   <output x-text="count"></output>
 
-  <button x-on:click="count++">Increment</button> '1'
+  <button x-on:click="count++">Increment</button> <1>
 </div>
 ```]
 1. With `x-on`, we specify the event in the attribute _name_.
@@ -974,7 +974,7 @@ the checkboxes that are selected.
 Here is what our form tag will look like:
 
 #figure[```html
-<form x-data="{ selected: [] }"> '1'
+<form x-data="{ selected: [] }"> <1>
 ```]
 1. This form wraps around the contacts table.
 
@@ -990,14 +990,14 @@ Therefore, we can check the _length_ of that array to see if there are any
 selected contacts, quite easily:
 
 #figure[```html
-<template x-if="selected.length > 0"> '1'
+<template x-if="selected.length > 0"> <1>
   <div class="box info tool-bar">
     <slot x-text="selected.length"></slot>
     contacts selected
 
-    <button type="button" class="bad bg color border">Delete</button> '2'
+    <button type="button" class="bad bg color border">Delete</button> <2>
     <hr aria-orientation="vertical">
-    <button type="button">Cancel</button> '2'
+    <button type="button">Cancel</button> <2>
   </div>
 </template>
 ```]
@@ -1016,7 +1016,7 @@ In this case, we want to bind the value of the checkbox inputs to the
 
 #figure[```html
 <td>
-<input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}" x-model="selected"> '1'
+<input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}" x-model="selected"> <1>
 </td>
 ```]
 1. The `x-model` attribute binds the `value` of this input to the
@@ -1050,7 +1050,7 @@ all the selected contacts (and then hide the toolbar)!
 For the _Cancel_ button, our job is simple:
 
 #figure[```html
-<button type="button" @click="selected = []">Cancel</button> '1'
+<button type="button" @click="selected = []">Cancel</button> <1>
 ```]
 1. Reset the `selected` array.
 
@@ -1063,8 +1063,8 @@ JavaScript API to issue a `DELETE` request.
 
 #figure[```html
 <button type="button" class="bad bg color border"
-  @click="confirm(`Delete ${selected.length} contacts?`) && '1'
-    htmx.ajax('DELETE', '/contacts', { source: $root, target: document.body })" '2'
+  @click="confirm(`Delete ${selected.length} contacts?`) && <1>
+    htmx.ajax('DELETE', '/contacts', { source: $root, target: document.body })" <2>
 >Delete</button>
 ```]
 1. Confirm the user wishes to delete the selected number of contacts.
@@ -1153,7 +1153,7 @@ As you’ll see, that last sentence is close to the actual \_hyperscript code:
 #figure[```html
 <div class="counter">
   <output>0</output>
-  <button _="on click increment the textContent of the previous <output/>">Increment</button> '1'
+  <button _="on click increment the textContent of the previous <output/>">Increment</button> <1>
 </div>
 ```]
 1. The \_hyperscript code added inline to the button.
@@ -1260,7 +1260,7 @@ Here is the entire script, embedded in HTML:
 #figure(caption: [Our final script])[ ```html
 <input id="search" name="q" type="search" placeholder="Search Contacts"
   _="on keydown[altKey and code is 'KeyS'] from the window
-       me.focus()"> '1'
+       me.focus()"> <1>
 ``` ]
 1. "me" refers to the element that the script is written on.
 
@@ -1446,11 +1446,11 @@ Given all that, our updated code will look like this:
   caption: [A callback-based confirmation dialog],
 )[ ```html
 <button type="button" class="bad bg color border"
-  @click="Swal.fire({ '1'
-                  title: 'Delete these contacts?', '2'
+  @click="Swal.fire({ <1>
+                  title: 'Delete these contacts?', <2>
                   showCancelButton: true,
                   confirmButtonText: 'Delete'
-                }).then((result) => { '3'
+                }).then((result) => { <3>
                   if (result.isConfirmed) {
                     htmx.ajax('DELETE', '/contacts', { source: $root, target: document.body })
                   }
@@ -1488,10 +1488,10 @@ Here is what our JavaScript function looks like:
 
 #figure(caption: [An event-based confirmation dialog])[ ```javascript
 function sweetConfirm(elt, config) {
-      Swal.fire(config) '1'
+      Swal.fire(config) <1>
           .then((result) => {
                   if (result.isConfirmed) {
-                      elt.dispatchEvent(new Event('confirmed')); '2'
+                      elt.dispatchEvent(new Event('confirmed')); <2>
                   }
           });
 }
@@ -1520,9 +1520,9 @@ Here is what our code looks like:
   caption: [An Event-based Confirmation Dialog],
 )[ ```html
 <button type="button" class="bad bg color border"
-        hx-delete="/contacts" hx-target="body" hx-trigger="confirmed" '1'
-        @click="sweetConfirm($el, '2'
-                { title: 'Delete these contacts?', '3'
+        hx-delete="/contacts" hx-target="body" hx-trigger="confirmed" <1>
+        @click="sweetConfirm($el, <2>
+                { title: 'Delete these contacts?', <3>
                   showCancelButton: true,
                   confirmButtonText: 'Delete'})">
 ``` ]

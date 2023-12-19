@@ -37,7 +37,7 @@ Let’s recall what the search field in our application currently looks like:
 )[ ```html
 <form action="/contacts" method="get" class="tool-bar">
     <label for="search">Search Term</label>
-    <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> '1'
+    <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> <1>
     <input type="submit" value="Search"/>
 </form>
 ``` ]
@@ -80,9 +80,9 @@ using htmx.
 )[ ```html
 <form action="/contacts" method="get" class="tool-bar">
     <label for="search">Search Term</label>
-    <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}" '1'
-           hx-get="/contacts" '2'
-           hx-trigger="search, keyup delay:200ms changed"/> '3'
+    <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}" <1>
+           hx-get="/contacts" <2>
+           hx-trigger="search, keyup delay:200ms changed"/> <3>
     <input type="submit" value="Search"/>
 </form>
 ``` ]
@@ -131,7 +131,7 @@ the results body, the `tbody` element in the table of contacts:
     <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"
            hx-get="/contacts"
            hx-trigger="search, keyup delay:200ms changed"
-           hx-target="tbody"/> '1'
+           hx-target="tbody"/> <1>
     <input type="submit" value="Search"/>
 </form>
 <table>
@@ -172,7 +172,7 @@ So we could add this to our input:
        hx-get="/contacts"
        hx-trigger="change, keyup delay:200ms changed"
        hx-target="tbody"
-       hx-select="tbody tr"/> '1'
+       hx-select="tbody tr"/> <1>
 ``` ]
 1. Adding an `hx-select` that picks out the table rows in the `tbody` of the
   response.
@@ -208,10 +208,10 @@ Here’s a look again at the current server-side code for our search logic:
 def contacts():
     search = request.args.get("q")
     if search is not None:
-        contacts_set = Contact.search(search) '1'
+        contacts_set = Contact.search(search) <1>
     else:
         contacts_set = Contact.all()
-    return render_template("index.html", contacts=contacts_set) '2'
+    return render_template("index.html", contacts=contacts_set) <2>
 ``` ]
 1. This is where the search logic happens.
 2. We simply re-render the `index.html` template every time, no matter what.
@@ -307,8 +307,8 @@ def contacts():
     search = request.args.get("q")
     if search is not None:
         contacts_set = Contact.search(search)
-        if request.headers.get('HX-Trigger') == 'search': '1'
-          # TODO: render only the rows here '2'
+        if request.headers.get('HX-Trigger') == 'search': <1>
+          # TODO: render only the rows here <2>
     else:
         contacts_set = Contact.all()
     return render_template("index.html", contacts=contacts_set)
@@ -396,7 +396,7 @@ the jinja `include` directive at the position we want the content from `rows.htm
         </tr>
         </thead>
         <tbody>
-        {% include 'rows.html' %} '1'
+        {% include 'rows.html' %} <1>
         </tbody>
     </table>
 ``` ]
@@ -423,7 +423,7 @@ def contacts():
     if search is not None:
         contacts_set = Contact.search(search)
         if request.headers.get('HX-Trigger') == 'search':
-          return render_template("rows.html", contacts=contacts_set) '1'
+          return render_template("rows.html", contacts=contacts_set) <1>
     else:
         contacts_set = Contact.all()
     return render_template("index.html", contacts=contacts_set)
@@ -503,7 +503,7 @@ set the `hx-push-url` attribute to `true`.
        hx-get="/contacts"
        hx-trigger="change, keyup delay:200ms changed"
        hx-target="tbody"
-       hx-push-url="true"/> '1'
+       hx-push-url="true"/> <1>
 ``` ]
 1. By adding the `hx-push-url` attribute with the value `true`, htmx will update
   the URL when it makes a request.
@@ -546,8 +546,8 @@ Let’s add a spinner after our search input:
        hx-trigger="change, keyup delay:200ms changed"
        hx-target="tbody"
        hx-push-url="true"
-       hx-indicator="#spinner"/> '1'
-<img id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg" alt="Request In Flight..."/> '2'
+       hx-indicator="#spinner"/> <1>
+<img id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg" alt="Request In Flight..."/> <2>
 ``` ]
 1. The `hx-indicator` attribute points to the indicator image after the input.
 2. The indicator is a spinning circle svg file, and has the
@@ -614,11 +614,11 @@ template to render some new HTML.
 def contacts():
     search = request.args.get("q")
     page = int(request.args.get("page", 1))
-    count = Contact.count() '1'
+    count = Contact.count() <1>
     if search is not None:
         contacts_set = Contact.search(search)
         if request.headers.get('HX-Trigger') == 'search':
-            return render_template("rows.html", contacts=contacts_set, page=page, count=count) '2'
+            return render_template("rows.html", contacts=contacts_set, page=page, count=count) <2>
     else:
         contacts_set = Contact.all(page)
     return render_template("index.html", contacts=contacts_set, page=page, count=count)
@@ -640,7 +640,7 @@ of users. Here is what our HTML looks like:
   caption: [Adding a contact count element to the application],
 )[ ```html
 <p>
-    <a href="/contacts/new">Add Contact</a> <span>({{ count }} total Contacts)</span> '1'
+    <a href="/contacts/new">Add Contact</a> <span>({{ count }} total Contacts)</span> <1>
 </p>
 ``` ]
 1. A simple span with some text showing the total number of contacts.
@@ -694,19 +694,19 @@ Here is what the new code will look like:
 @app.route("/contacts")
 def contacts():
     search = request.args.get("q")
-    page = int(request.args.get("page", 1)) '1'
+    page = int(request.args.get("page", 1)) <1>
     if search is not None:
         contacts_set = Contact.search(search)
         if request.headers.get('HX-Trigger') == 'search':
             return render_template("rows.html", contacts=contacts_set, page=page)
     else:
         contacts_set = Contact.all(page)
-    return render_template("index.html", contacts=contacts_set, page=page) '2'
+    return render_template("index.html", contacts=contacts_set, page=page) <2>
 
 @app.route("/contacts/count")
 def contacts_count():
-    count = Contact.count() '3'
-    return "(" + str(count) + " total Contacts)" '4'
+    count = Contact.count() <3>
+    return "(" + str(count) + " total Contacts)" <4>
 ``` ]
 1. We no longer call `Contacts.count()` in this handler.
 2. `Count` is no longer passed out to the template to render in the
@@ -743,7 +743,7 @@ Here is our updated template code:
   caption: [Adding a contact count element to the application],
 )[ ```html
 <p>
-    <a href="/contacts/new">Add Contact</a> <span hx-get="/contacts/count" hx-trigger="load"></span> '1'
+    <a href="/contacts/new">Add Contact</a> <span hx-get="/contacts/count" hx-trigger="load"></span> <1>
 </p>
 ``` ]
 1. Issue a `GET` to `/contacts/count` when the `load` event occurs.
@@ -808,7 +808,7 @@ in our span:
 #figure(
   caption: [Adding an indicator to our lazily loaded content], ```html
             <span hx-get="/contacts/count" hx-trigger="load">
-              <img id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg"/> '1'
+              <img id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg"/> <1>
             </span>
             ```,
 )
@@ -843,7 +843,7 @@ patterns to come up with solutions to new problems in htmx.
 #figure(
   caption: [Making it truly lazy],
 )[ ```html
-<span hx-get="/contacts/count" hx-trigger="revealed"> '1'
+<span hx-get="/contacts/count" hx-trigger="revealed"> <1>
   <img id="spinner" class="htmx-indicator" src="/static/img/spinning-circles.svg"/>
 </span>
 ``` ]
@@ -907,7 +907,7 @@ Here is the code for our inline "Delete" link:
     <a href="/contacts/{{ contact.id }}">View</a>
     <a href="#" hx-delete="/contacts/{{ contact.id }}"
         hx-confirm="Are you sure you want to delete this contact?"
-        hx-target="body">Delete</a> '1'
+        hx-target="body">Delete</a> <1>
 </td>
 ``` ]
 1. Almost a straight copy of the "Delete Contact" button.
@@ -963,7 +963,7 @@ did in our "Click To Load" and "Infinite Scroll" features:
     <a href="#" hx-delete="/contacts/{{ contact.id }}"
         hx-swap="outerHTML"
         hx-confirm="Are you sure you want to delete this contact?"
-        hx-target="closest tr">Delete</a> '1'
+        hx-target="closest tr">Delete</a> <1>
 </td>
 ``` ]
 1. Updated to target the closest enclosing `tr` (table row) of the link.
@@ -981,7 +981,7 @@ if the delete button was the cause of the request. This is a simple change to
 the existing HTML:
 
 #figure(caption: [Adding an `id` to the "delete contact" button])[ ```html
-    <button id="delete-btn" '1'
+    <button id="delete-btn" <1>
             hx-delete="/contacts/{{ contact.id }}"
             hx-push-url="true"
             hx-confirm="Are you sure you want to delete this contact?"
@@ -1026,11 +1026,11 @@ Let’s refactor our server-side code to do this:
 def contacts_delete(contact_id=0):
     contact = Contact.find(contact_id)
     contact.delete()
-    if request.headers.get('HX-Trigger') == 'delete-btn': '1'
+    if request.headers.get('HX-Trigger') == 'delete-btn': <1>
         flash("Deleted Contact!")
         return redirect("/contacts", 303)
     else:
-        return "" '2'
+        return "" <2>
 ``` ]
 1. If the delete button on the edit page submitted this request, then continue to
   do the previous logic.
@@ -1096,9 +1096,9 @@ CSS transition that fades the opacity of the row to 0. Here is what that CSS
 looks like:
 
 #figure(caption: [Adding a fade out transition])[ ```css
-tr.htmx-swapping { '1'
-  opacity: 0; '2'
-  transition: opacity 1s ease-out; '3'
+tr.htmx-swapping { <1>
+  opacity: 0; <2>
+  transition: opacity 1s ease-out; <3>
 }
 ``` ]
 1. We want this style to apply to `tr` elements with the `htmx-swapping`
@@ -1134,7 +1134,7 @@ done for the delete action:
       <a href="/contacts/{{ contact.id }}/edit">Edit</a>
       <a href="/contacts/{{ contact.id }}">View</a>
       <a href="#" hx-delete="/contacts/{{ contact.id }}"
-          hx-swap="outerHTML swap:1s" '1'
+          hx-swap="outerHTML swap:1s" <1>
           hx-confirm="Are you sure you want to delete this contact?"
           hx-target="closest tr">Delete</a>
   </td>
@@ -1174,7 +1174,7 @@ Here is what the updated code for `rows.html` looks like:
 )[ ```html
 {% for contact in contacts %}
 <tr>
-  <td><input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}"></td> '1'
+  <td><input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}"></td> <1>
   <td>{{ contact.first }}</td>
   ... omitted
 </tr>
@@ -1213,9 +1213,9 @@ page, since we are going to re-render the whole table.
 Here is what the button code looks like:
 
 #figure(caption: [The "delete selected contacts" button])[ ```html
-<button hx-delete="/contacts" '1'
-        hx-confirm="Are you sure you want to delete these contacts?" '2'
-        hx-target="body"> '3'
+<button hx-delete="/contacts" <1>
+        hx-confirm="Are you sure you want to delete these contacts?" <2>
+        hx-target="body"> <3>
     Delete Selected Contacts
 </button>
 ``` ]
@@ -1251,7 +1251,7 @@ it as well:
 #figure(
   caption: [The "delete selected contacts" button],
 )[ ```html
-    <form> '1'
+    <form> <1>
         <table>
           ... omitted
         </table>
@@ -1260,7 +1260,7 @@ it as well:
                 hx-target="body">
             Delete Selected Contacts
         </button>
-    </form> '2'
+    </form> <2>
 ``` ]
 1. The form tag encloses the entire table.
 2. The form tag also encloses the button.
@@ -1282,13 +1282,13 @@ looks like:
 #figure(
   caption: [The "delete selected contacts" button],
 )[ ```python
-@app.route("/contacts/", methods=["DELETE"]) '1'
+@app.route("/contacts/", methods=["DELETE"]) <1>
 def contacts_delete_all():
-    contact_ids = list(map(int, request.form.getlist("selected_contact_ids"))) '2'
-    for contact_id in contact_ids: '3'
+    contact_ids = list(map(int, request.form.getlist("selected_contact_ids"))) <2>
+    for contact_id in contact_ids: <3>
         contact = Contact.find(contact_id)
-        contact.delete() '4'
-    flash("Deleted Contacts!") '5'
+        contact.delete() <4>
+    flash("Deleted Contacts!") <5>
     contacts_set = Contact.all()
     return render_template("index.html", contacts=contacts_set)
 ``` ]

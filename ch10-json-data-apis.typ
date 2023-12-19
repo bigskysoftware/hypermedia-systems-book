@@ -265,11 +265,11 @@ object into a JSON response. This makes it very easy to build simple JSON APIs
 in flask!
 
 #figure(caption: [A JSON data API to return all contacts])[ ```python
-@app.route("/api/v1/contacts", methods=["GET"]) '1'
+@app.route("/api/v1/contacts", methods=["GET"]) <1>
 def json_contacts():
     contacts_set = Contact.all()
-    contacts_dicts = [c.__dict__ for c in contacts_set] '2'
-    return {"contacts": contacts_dicts} '3'
+    contacts_dicts = [c.__dict__ for c in contacts_set] <2>
+    return {"contacts": contacts_dicts} <3>
 ``` ]
 1. JSON API gets its own path, starting with `/api`.
 2. Convert the contacts array into an array of simple dictionary (map) objects.
@@ -345,14 +345,14 @@ successful --- show error messages. Here is the code:
 #figure(
   caption: [Adding contacts with our JSON API],
 )[ ```python
-@app.route("/api/v1/contacts", methods=["POST"]) '1'
+@app.route("/api/v1/contacts", methods=["POST"]) <1>
 def json_contacts_new():
     c = Contact(None, request.form.get('first_name'), request.form.get('last_name'), request.form.get('phone'),
-                request.form.get('email')) '2'
-    if c.save(): '3'
+                request.form.get('email')) <2>
+    if c.save(): <3>
         return c.__dict__
     else:
-        return {"errors": c.errors}, 400 '4'
+        return {"errors": c.errors}, 400 <4>
 ``` ]
 1. This handler is on the same path as the first one for our JSON API, but handles `POST` requests.
 2. We create a new Contact based on values submitted with the request.
@@ -384,10 +384,10 @@ to `/api/v1/contacts/42`.
 This code is quite simple:
 
 #figure(caption: [Getting the details of a contact in JSON])[ ```python
-@app.route("/api/v1/contacts/<contact_id>", methods=["GET"]) '1'
+@app.route("/api/v1/contacts/<contact_id>", methods=["GET"]) <1>
 def json_contacts_view(contact_id=0):
-    contact = Contact.find(contact_id) '2'
-    return contact.__dict__ '3'
+    contact = Contact.find(contact_id) <2>
+    return contact.__dict__ <3>
 ``` ]
 1. Add a new `GET` route at the path we want to use for viewing contact details
 2. Look the contact up via the id passed in through the path
@@ -413,11 +413,11 @@ handler and the detail view handler.
 #figure(
   caption: [Updating a contact with our JSON API],
 )[ ```python
-@app.route("/api/v1/contacts/<contact_id>", methods=["PUT"]) '1'
+@app.route("/api/v1/contacts/<contact_id>", methods=["PUT"]) <1>
 def json_contacts_edit(contact_id):
-    c = Contact.find(contact_id) '2'
-    c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) '3'
-    if c.save(): '4'
+    c = Contact.find(contact_id) <2>
+    c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) <3>
+    if c.save(): <4>
         return c.__dict__
     else:
         return {"errors": c.errors}, 400
@@ -435,11 +435,11 @@ the update handler we are going to look up the contact by id, and then, well,
 delete it. At that point we can return a simple JSON object indicating success.
 
 #figure(caption: [Deleting a contact with our JSON API])[ ```python
-@app.route("/api/v1/contacts/<contact_id>", methods=["DELETE"]) '1'
+@app.route("/api/v1/contacts/<contact_id>", methods=["DELETE"]) <1>
 def json_contacts_delete(contact_id=0):
     contact = Contact.find(contact_id)
-    contact.delete() '2'
-    return jsonify({"success": True}) '3'
+    contact.delete() <2>
+    return jsonify({"success": True}) <3>
 ``` ]
 1. We handle `DELETE` requests to the URL for a given contact.
 2. Look the contact up and invoke the `delete()` method on it.

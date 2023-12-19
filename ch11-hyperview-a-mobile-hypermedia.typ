@@ -291,15 +291,15 @@ HXML was designed to feel natural to web developers coming from HTML. Let’s ta
 a closer look at the "Hello World" app defined in HXML:
 
 #figure(caption: [Hello World, revisited])[ ```xml
-<doc xmlns="https://hyperview.org/hyperview"> '1'
-  <screen> '2'
+<doc xmlns="https://hyperview.org/hyperview"> <1>
+  <screen> <2>
     <styles />
-    <body> '3'
-      <header> '4'
+    <body> <3>
+      <header> <4>
         <text>My first app</text>
       </header>
-      <view> '5'
-        <text>Hello World!</text> '6'
+      <view> <5>
+        <text>Hello World!</text> <6>
       </view>
     </body>
   </screen>
@@ -382,9 +382,9 @@ gesture of swiping a thumb up & down makes this a good choice for many screens.
 HXML has dedicated elements for representing lists and items.
 
 #figure(caption: [List element])[ ```xml
-<list> '1'
-  <item key="item1"> '2'
-    <text>My first item</text> '3'
+<list> <1>
+  <item key="item1"> <2>
+    <text>My first item</text> <3>
   </item>
   <item key="item2">
     <text>My second item</text>
@@ -427,12 +427,12 @@ for the user’s convenience. For example, a UI showing a restaurant menu could
 group the offerings by dish type:
 
 #figure(caption: [Section list element])[ ```xml
-<section-list> '1'
-  <section> '2'
-    <section-title> '3'
+<section-list> <1>
+  <section> <2>
+    <section-title> <3>
       <text>Appetizers</text>
     </section-title>
-    <item key="1"> '4'
+    <item key="1"> <4>
       <text>French Fries</text>
     </item>
     <item key="2">
@@ -440,7 +440,7 @@ group the offerings by dish type:
     </item>
   </section>
 
-  <section> '5'
+  <section> <5>
     <section-title>
       <text>Entrees</text>
     </section-title>
@@ -509,10 +509,10 @@ inputs. Let’s start with an example of the simplest type of input, a text fiel
 
 #figure(caption: [Text field element])[ ```xml
 <text-field
-  name="first_name" '1'
-  style="input" '2'
-  value="Adam" '3'
-  placeholder="First name" '4'
+  name="first_name" <1>
+  style="input" <2>
+  value="Adam" <3>
+  placeholder="First name" <4>
 />
 ``` ]
 1. The name used when serializing data from this input
@@ -541,9 +541,9 @@ HXML, we implement this UI using an element called
 `<select-single>`:
 
 #figure(caption: [Select-single element])[ ```xml
-<select-single name="choice"> '1'
-  <option value="option1"> '2'
-    <text>Option 1</text> '3'
+<select-single name="choice"> <1>
+  <option value="option1"> <2>
+    <text>Option 1</text> <3>
   </option>
   <option value="option2">
     <text>Option 2</text>
@@ -606,20 +606,20 @@ Let’s re-visit the Hello World app and fill out the `<styles>` element.
 )[ ```xml
 <doc xmlns="https://hyperview.org/hyperview">
   <screen>
-    <styles> '1'
-      <style class="body" flex="1" flexDirection="column" /> '2'
+    <styles> <1>
+      <style class="body" flex="1" flexDirection="column" /> <2>
       <style class="header" borderBottomWidth="1" borderBottomColor="#ccc" />
       <style class="main" margin="24" />
       <style class="h1" fontSize="32" />
       <style class="info" color="blue" />
     </styles>
 
-    <body style="body"> '3'
+    <body style="body"> <3>
       <header style="header">
         <text style="info">My first app</text>
       </header>
       <view style="main">
-        <text style="h1 info">Hello World!</text> '4'
+        <text style="h1 info">Hello World!</text> <4>
       </view>
     </body>
   </screen>
@@ -682,8 +682,8 @@ like this:
     <body>
       <view>
         <text>Hello World!</text>
-        <area latitude="37.8270" longitude="122.4230" latitude-delta="0.1" longitude-delta="0.1"> '1'
-          <marker latitude="37.8118" longitude="-122.4177" /> '2'
+        <area latitude="37.8270" longitude="122.4230" latitude-delta="0.1" longitude-delta="0.1"> <1>
+          <marker latitude="37.8118" longitude="-122.4177" /> <2>
         </area>
       </view>
     </body>
@@ -725,14 +725,14 @@ Now that we have a namespace and prefix, we need to use it for our elements:
 #figure(
   caption: [Namespacing the custom elements],
 )[ ```xml
-<doc xmlns="https://hyperview.org/hyperview" xmlns:map="https://mycompany.com/hyperview-map"> '1'
+<doc xmlns="https://hyperview.org/hyperview" xmlns:map="https://mycompany.com/hyperview-map"> <1>
   <screen>
     <body>
       <view>
         <text>Hello World!</text>
-        <map:area latitude="37.8270" longitude="122.4230" latitude-delta="0.1" longitude=delta="0.1"> '2'
-          <map:marker latitude="37.8118" longitude="-122.4177" /> '3'
-        </map:area> '4'
+        <map:area latitude="37.8270" longitude="122.4230" latitude-delta="0.1" longitude=delta="0.1"> <2>
+          <map:marker latitude="37.8118" longitude="-122.4177" /> <3>
+        </map:area> <4>
       </view>
     </body>
   </screen>
@@ -794,10 +794,10 @@ screen onto the navigation stack:
 
 #figure(caption: [Basic behavior])[ ```xml
 <text>
-  <behavior '1'
-    trigger="press" '2'
-    action="push" '3'
-    href="/next-screen" '4'
+  <behavior <1>
+    trigger="press" <2>
+    action="push" <3>
+    href="/next-screen" <4>
   />
   Press me!
 </text>
@@ -835,7 +835,7 @@ simpler syntax for the common case. Luckily,
 
 #figure(caption: [Basic behavior with defaults])[ ```xml
 <text>
-  <behavior href="/next-screen" /> '1'
+  <behavior href="/next-screen" /> <1>
   Press me!
 </text>
 ``` ]
@@ -909,22 +909,22 @@ one screen:
   <body>
     <header>
       <text>
-        <behavior action="back" /> '1'
+        <behavior action="back" /> <1>
         Back
       </text>
 
       <text>
-        <behavior action="new" href="/widgets/new" /> '2'
+        <behavior action="new" href="/widgets/new" /> <2>
         New Widget
       </text>
     </header>
     <text>
-      <behavior action="reload" /> '3'
+      <behavior action="reload" /> <3>
       Check for new widgets
     </text>
     <list>
       <item key="widget1">
-        <behavior action="push" href="/widgets/1" /> '4'
+        <behavior action="push" href="/widgets/1" /> <4>
       </item>
     </list>
   </body>
@@ -990,7 +990,7 @@ let’s assume our backend accepts `GET` requests to
 <screen>
   <body>
     <text>
-      <behavior action="replace" href="/fragment" target="area1" /> '1'
+      <behavior action="replace" href="/fragment" target="area1" /> <1>
       Replace
     </text>
     <view id="area1">
@@ -998,7 +998,7 @@ let’s assume our backend accepts `GET` requests to
     </view>
 
     <text>
-      <behavior action="replace-inner" href="/fragment" target="area2" /> '2'
+      <behavior action="replace-inner" href="/fragment" target="area2" /> <2>
       Replace-inner
     </text>
     <view id="area2">
@@ -1006,7 +1006,7 @@ let’s assume our backend accepts `GET` requests to
     </view>
 
     <text>
-      <behavior action="append" href="/fragment" target="area3" /> '3'
+      <behavior action="append" href="/fragment" target="area3" /> <3>
       Append
     </text>
     <view id="area3">
@@ -1014,7 +1014,7 @@ let’s assume our backend accepts `GET` requests to
     </view>
 
     <text>
-      <behavior action="prepend" href="/fragment" target="area4" /> '4'
+      <behavior action="prepend" href="/fragment" target="area4" /> <4>
       Prepend
     </text>
     <view id="area4">
@@ -1058,13 +1058,13 @@ four buttons:
 <screen>
   <body>
     <text>
-      <behavior action="replace" href="/fragment" target="area1" /> '1'
+      <behavior action="replace" href="/fragment" target="area1" /> <1>
       Replace
     </text>
     <text>My fragment</text>
 
     <text>
-      <behavior action="replace-inner" href="/fragment" target="area2" /> '2'
+      <behavior action="replace-inner" href="/fragment" target="area2" /> <2>
       Replace-inner
     </text>
     <view id="area2">
@@ -1072,7 +1072,7 @@ four buttons:
     </view>
 
     <text>
-      <behavior action="append" href="/fragment" target="area3" /> '3'
+      <behavior action="append" href="/fragment" target="area3" /> <3>
       Append
     </text>
     <view id="area3">
@@ -1081,7 +1081,7 @@ four buttons:
     </view>
 
     <text>
-      <behavior action="prepend" href="/fragment" target="area4" /> '4'
+      <behavior action="prepend" href="/fragment" target="area4" /> <4>
       Prepend
     </text>
     <view id="area4">
@@ -1119,21 +1119,21 @@ an element on the current screen.
 <screen>
   <body>
     <text>
-      <behavior action="hide" target="area" /> '1'
+      <behavior action="hide" target="area" /> <1>
       Hide
     </text>
 
     <text>
-      <behavior action="show" target="area" /> '2'
+      <behavior action="show" target="area" /> <2>
       Show
     </text>
 
     <text>
-      <behavior action="toggle" target="area" /> '3'
+      <behavior action="toggle" target="area" /> <3>
       Toggle
     </text>
 
-    <view id="area"> '4'
+    <view id="area"> <4>
       <text>My fragment</text>
     </view>
   </body>
@@ -1169,11 +1169,11 @@ this interaction. It involves a custom namespace, and share-specific attributes.
 
 #figure(caption: [System share action])[ ```xml
 <behavior
-  xmlns:share="https://instawork.com/hyperview-share" '1'
+  xmlns:share="https://instawork.com/hyperview-share" <1>
   trigger="press"
-  action="share" '2'
-  share:url="https://www.instawork.com" '3'
-  share:message="Check out this website!" '4'
+  action="share" <2>
+  share:url="https://www.instawork.com" <3>
+  share:message="Check out this website!" <4>
 />
 ``` ]
 1. Defines the namespace for the share action.
@@ -1203,16 +1203,16 @@ child elements to represent the behavior of each button.
   caption: [System alert action],
 )[ ```xml
 <behavior
-  xmlns:alert="https://hyperview.org/hyperview-alert" '1'
+  xmlns:alert="https://hyperview.org/hyperview-alert" <1>
   trigger="press"
-  action="alert" '2'
-  alert:title="Continue to next screen?" '3'
-  alert:message="Are you sure you want to navigate to the next screen?" '4'
+  action="alert" <2>
+  alert:title="Continue to next screen?" <3>
+  alert:message="Are you sure you want to navigate to the next screen?" <4>
 >
-  <alert:option alert:label="Continue"> '5'
-    <behavior action="push" href="/next" /> '6'
+  <alert:option alert:label="Continue"> <5>
+    <behavior action="push" href="/next" /> <6>
   </alert:option>
-  <alert:option alert:label="Cancel" /> '7'
+  <alert:option alert:label="Cancel" /> <7>
 </behavior>
 ``` ]
 1. Defines the namespace for the alert action.
@@ -1266,8 +1266,8 @@ elements on the same UI element.
   caption: [Long-press trigger example],
 )[ ```xml
 <text>
-  <behavior trigger="press" action="push" href="/next-screen" /> '1'
-  <behavior trigger="longPress" action="push" href="/secret-screen" /> '2'
+  <behavior trigger="press" action="push" href="/next-screen" /> <1>
+  <behavior trigger="longPress" action="push" href="/secret-screen" /> <2>
   Press (or long-press) me!
 </text>
 ``` ]
@@ -1293,9 +1293,9 @@ action.
 <body>
   <view>
     <text>My app</text>
-    <view id="container"> '1'
-      <behavior trigger="load" action="replace" href="/content" target="container"> '2'
-      <text>Loading...</text> '3'
+    <view id="container"> <1>
+      <behavior trigger="load" action="replace" href="/content" target="container"> <2>
+      <text>Loading...</text> <3>
     </view>
   </view>
 </body>
@@ -1328,7 +1328,7 @@ show the latest data on the screen.
 #figure(caption: [Pull-to-refresh trigger example])[ ```xml
 <body>
   <view scroll="true">
-    <behavior trigger="refresh" action="reload" /> '1'
+    <behavior trigger="refresh" action="reload" /> <1>
     <text>No items yet</text>
   </view>
 </body>
@@ -1373,8 +1373,8 @@ different elements.
     <text id="area1">Area 1</text>
 
     <text>
-      <behavior trigger="press" action="hide" target="area1" /> '1'
-      <behavior trigger="press" action="hide" target="area2" /> '2'
+      <behavior trigger="press" action="hide" target="area1" /> <1>
+      <behavior trigger="press" action="hide" target="area2" /> <2>
       Hide
     </text>
 

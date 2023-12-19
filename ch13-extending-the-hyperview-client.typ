@@ -35,8 +35,8 @@ On the web, calling phone numbers is supported with the `tel:` URI scheme, and
 e-mails are supported with the `mailto:` URI scheme:
 
 #figure(caption: [`tel` and `mailto` schemes in HTML])[ ```html
-<a href="tel:555-555-5555">Call</a> '1'
-<a href="mailto:joe@example.com">Email</a> '2'
+<a href="tel:555-555-5555">Call</a> <1>
+<a href="mailto:joe@example.com">Email</a> <2>
 ``` ]
 + When clicked, prompt the user to call the given phone number
 + When clicked, open an e-mail client with the given address populated in the `to:` field.
@@ -52,13 +52,13 @@ two new actions,
 #figure(
   caption: [Phone and Email actions],
 )[ ```xml
-<view xmlns:comms="https://hypermedia.systems/hyperview/communications"> '1'
+<view xmlns:comms="https://hypermedia.systems/hyperview/communications"> <1>
   <text>
-    <behavior action="open-phone" comms:phone-number="555-555-5555" /> '2'
+    <behavior action="open-phone" comms:phone-number="555-555-5555" /> <2>
     Call
   </text>
   <text>
-    <behavior action="open-email" comms:email-address="joe@example.com" /> '3'
+    <behavior action="open-email" comms:email-address="joe@example.com" /> <3>
     Email
   </text>
 </view>
@@ -85,8 +85,8 @@ functionality for calls and emails.
 
 ```bash
 > cd hyperview/demo
-> yarn add react-native-communications '1'
-> yarn start '2'
+> yarn add react-native-communications <1>
+> yarn start <2>
 ```]
 + Add dependency on `react-native-communications`
 + Re-start the mobile app
@@ -97,16 +97,16 @@ associated with the `open-phone` action:
 #figure(
   caption: [demo/src/phone.js],
 )[ ```js
-import { phonecall } from 'react-native-communications'; '1'
+import { phonecall } from 'react-native-communications'; <1>
 
 const namespace = "https://hypermedia.systems/hyperview/communications";
 
 export default {
-  action: "open-phone", '2'
-  callback: (behaviorElement) => { '3'
-    const number = behaviorElement.getAttributeNS(namespace, "phone-number"); '4'
+  action: "open-phone", <2>
+  callback: (behaviorElement) => { <3>
+    const number = behaviorElement.getAttributeNS(namespace, "phone-number"); <4>
     if (number != null) {
-      phonecall(number, false); '5'
+      phonecall(number, false); <5>
     }
   },
 };
@@ -139,17 +139,17 @@ app.
 #figure(caption: [demo/src/HyperviewScreen.js])[ ```js
 import React, { PureComponent } from 'react';
 import Hyperview from 'hyperview';
-import OpenPhone from './phone'; '1'
+import OpenPhone from './phone'; <1>
 
 export default class HyperviewScreen extends PureComponent {
   // ... omitted for brevity
 
-  behaviors = [OpenPhone]; '2'
+  behaviors = [OpenPhone]; <2>
 
   render() {
     return (
       <Hyperview
-        behaviors={this.behaviors} '3'
+        behaviors={this.behaviors} <3>
         entrypointUrl={this.entrypointUrl}
         // more props...
       />
@@ -178,18 +178,18 @@ by updating the `show.xml` template in our Flask app:
   <text style="contact-name">{{ contact.first }} {{ contact.last }}</text>
 
   <view style="contact-section">
-    <behavior '1'
+    <behavior <1>
       xmlns:comms="https://hypermedia.systems/hyperview/communications"
       trigger="press"
-      action="open-phone" '2'
-      comms:phone-number="{{contact.phone}}" '3'
+      action="open-phone" <2>
+      comms:phone-number="{{contact.phone}}" <3>
     />
     <text style="contact-section-label">Phone</text>
     <text style="contact-section-info">{{contact.phone}}</text>
   </view>
 
   <view style="contact-section">
-    <behavior '4'
+    <behavior <4>
       xmlns:comms="https://hypermedia.systems/hyperview/communications"
       trigger="press"
       action="open-email"
@@ -262,8 +262,8 @@ Let’s add this library to our demo app.
 
 ```bash
 > cd hyperview/demo
-> yarn add react-native-root-toast '1'
-> yarn start '2'
+> yarn add react-native-root-toast <1>
+> yarn start <2>
 ```]
 + Add dependency on `react-native-root-toast`
 + Re-start the mobile app
@@ -273,16 +273,16 @@ Now, we can write the code to implement the message UI as a custom action.
 #figure(
   caption: [demo/src/message.js],
 )[ ```js
-import Toast from 'react-native-root-toast'; '1'
+import Toast from 'react-native-root-toast'; <1>
 
 const namespace = "https://hypermedia.systems/hyperview/message";
 
 export default {
-  action: "show-message", '2'
-  callback: (behaviorElement) => { '3'
+  action: "show-message", <2>
+  callback: (behaviorElement) => { <3>
     const text = behaviorElement.getAttributeNS(namespace, "text");
     if (text != null) {
-      Toast.show(text, {position: Toast.positions.TOP, duration: 2000}); '4'
+      Toast.show(text, {position: Toast.positions.TOP, duration: 2000}); <4>
     }
   },
 };
@@ -310,12 +310,12 @@ import React, { PureComponent } from 'react';
 import Hyperview from 'hyperview';
 import OpenEmail from './email';
 import OpenPhone from './phone';
-import ShowMessage from './message'; '1'
+import ShowMessage from './message'; <1>
 
 export default class HyperviewScreen extends PureComponent {
   // ... omitted for brevity
 
-  behaviors = [OpenEmail, OpenPhone, ShowMessage]; '2'
+  behaviors = [OpenEmail, OpenPhone, ShowMessage]; <2>
 
   // ... omitted for brevity
 }
@@ -341,11 +341,11 @@ let’s create a shared template to reuse the HXML.
 
 #figure(caption: [hv/templates/messages.xml])[ ```xml
 {% for message in get_flashed_messages() %}
-  <behavior '1'
+  <behavior <1>
     xmlns:message="https://hypermedia.systems/hyperview/message"
-    trigger="load" '2'
-    action="show-message" '3'
-    message:text="{{ message }}" '4'
+    trigger="load" <2>
+    action="show-message" <3>
+    message:text="{{ message }}" <4>
   />
 {% endfor %}
 ``` ]
@@ -366,7 +366,7 @@ need to include this template in
 )[ ```xml
 <view xmlns="https://hyperview.org/hyperview" style="edit-group">
   {% if saved %}
-    {% include "hv/messages.xml" %} '1'
+    {% include "hv/messages.xml" %} <1>
     <behavior trigger="load" once="true" action="dispatch-event" event-name="contact-updated" />
     <behavior trigger="load" once="true" action="reload" href="/contacts/{{contact.id}}" />
   {% endif %}
@@ -381,7 +381,7 @@ And we can do the same thing in `deleted.xml`:
   caption: [hv/templates/deleted.xml],
 )[ ```xml
 <view xmlns="https://hyperview.org/hyperview">
-  {% include "hv/messages.xml" %} '1'
+  {% include "hv/messages.xml" %} <1>
   <behavior trigger="load" action="dispatch-event" event-name="contact-updated" />
   <behavior trigger="load" action="back" />
 </view>
@@ -426,8 +426,8 @@ an open-source third-party library: `react-native-swipeable`.
 
 ```bash
 > cd hyperview/demo
-> yarn add react-native-swipeable '1'
-> yarn start '2'
+> yarn add react-native-swipeable <1>
+> yarn start <2>
 ```]
 + Add dependency on `react-native-swipeable`.
 + Re-start the mobile app.
@@ -445,16 +445,16 @@ For the swipeable row, we need a way to represent the entire component, the main
 content, and one of many buttons.
 
 ```xml
-<swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> '1'
-  <swipe:main> '2'
+<swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
+  <swipe:main> <2>
     <!-- main content shown here -->
   </swipe:main>
 
-  <swipe:button> '3'
+  <swipe:button> <3>
     <!-- first button that appears when swiping -->
   </swipe:button>
 
-  <swipe:button> '4'
+  <swipe:button> <4>
     <!-- second button that appears when swiping -->
   </swipe:button>
 </swipe:row>
@@ -505,17 +505,17 @@ import Swipeable from 'react-native-swipeable';
 
 const NAMESPACE_URI = 'https://hypermedia.systems/hyperview/swipeable';
 
-export default class SwipeableRow extends PureComponent { '1'
-  static namespaceURI = NAMESPACE_URI; '2'
-  static localName = "row"; '3'
+export default class SwipeableRow extends PureComponent { <1>
+  static namespaceURI = NAMESPACE_URI; <2>
+  static localName = "row"; <3>
 
   getElements = (tagName) => {
     return Array.from(this.props.element.getElementsByTagNameNS(NAMESPACE_URI, tagName));
   };
 
-  getButtons = () => { '4'
+  getButtons = () => { <4>
     return this.getElements("button").map((buttonElement) => {
-      return Hyperview.renderChildren(buttonElement, this.props.stylesheets, this.props.onUpdate, this.props.options); '5'
+      return Hyperview.renderChildren(buttonElement, this.props.stylesheets, this.props.onUpdate, this.props.options); <5>
     });
   };
 
@@ -526,8 +526,8 @@ export default class SwipeableRow extends PureComponent { '1'
     }
 
     return (
-      <Swipeable rightButtons={this.getButtons()}> '6'
-        {Hyperview.renderChildren(main, this.props.stylesheets, this.props.onUpdate, this.props.options)} '7'
+      <Swipeable rightButtons={this.getButtons()}> <6>
+        {Hyperview.renderChildren(main, this.props.stylesheets, this.props.onUpdate, this.props.options)} <7>
       </Swipeable>
     );
   }
@@ -588,19 +588,19 @@ import Hyperview from 'hyperview';
 import OpenEmail from './email';
 import OpenPhone from './phone';
 import ShowMessage from './message';
-import SwipeableRow from './swipeable'; '1'
+import SwipeableRow from './swipeable'; <1>
 
 export default class HyperviewScreen extends PureComponent {
   // ... omitted for brevity
 
   behaviors = [OpenEmail, OpenPhone, ShowMessage];
-  components = [SwipeableRow]; '2'
+  components = [SwipeableRow]; <2>
 
   render() {
     return (
       <Hyperview
         behaviors={this.behaviors}
-        components={this.components} '3'
+        components={this.components} <3>
         entrypointUrl={this.entrypointUrl}
         // more props...
       />
@@ -637,9 +637,9 @@ let’s start by adding `<row>` and `<main>` as parent elements.
   caption: [Adding swipeable row `hv/rows.xml`],
 )[ ```xml
 <item key="{{ contact.id }}">
-  <swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> '1'
-    <swipe:main> '2'
-      <view style="contact-item"> '3'
+  <swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
+    <swipe:main> <2>
+      <view style="contact-item"> <3>
         <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}" />
         <text style="contact-item-label">
           <!-- omitted for brevity -->
@@ -671,13 +671,13 @@ reveal when swiping a row. Let’s add two buttons to the swipeable row.
       <!-- omitted for brevity -->
     </swipe:main>
 
-    <swipe:button> '1'
+    <swipe:button> <1>
       <view style="swipe-button">
         <text style="button-label">Edit</text>
       </view>
     </swipe:button>
 
-    <swipe:button> '2'
+    <swipe:button> <2>
       <view style="swipe-button">
         <text style="button-label-delete">Delete</text>
       </view>
@@ -699,7 +699,7 @@ in edit mode.
 )[ ```xml
 <swipe:button>
   <view style="swipe-button">
-    <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}/edit" /> '1'
+    <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}/edit" /> <1>
     <text style="button-label">Edit</text>
   </view>
 </swipe:button>
@@ -720,7 +720,7 @@ will work for our action button as well:
 )[ ```xml
 <swipe:button>
   <view style="swipe-button">
-    <behavior '1'
+    <behavior <1>
       xmlns:alert="https://hyperview.org/hyperview-alert"
       trigger="press"
       action="alert"
@@ -728,7 +728,7 @@ will work for our action button as well:
       alert:message="Are you sure you want to delete {{ contact.first }}?"
     >
       <alert:option alert:label="Confirm">
-        <behavior '2'
+        <behavior <2>
           trigger="press"
           action="append"
           target="item-{{ contact.id }}"

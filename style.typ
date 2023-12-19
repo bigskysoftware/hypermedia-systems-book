@@ -1,5 +1,6 @@
 
 #import "definitions.typ": *
+#import "code-callouts.typ": code-with-callouts
 
 #let inside-cover(title, authors) = page(
   header: none,
@@ -78,17 +79,7 @@
 
   // Code callouts
   // TODO: does not work consistently across languagea
-  #show raw.where(block: true): it => {
-    show regex("'(\\d+)'$"): it => box(
-      circle(
-        radius: .5em, inset: 0pt, fill: black, stroke: none,
-        align(
-          center, text(fill: white, font: secondary-font, it.text.find(regex("\\d+")).at(0)),
-        ),
-      ),
-    )
-    it
-  }
+  #show raw.where(block: true): code-with-callouts
 
   #set page(
     width: 8.25in, height: 11in, margin: (inside: 1.5in, outside: 1in, y: 1in), header: page-header(),

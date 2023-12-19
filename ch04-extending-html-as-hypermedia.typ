@@ -326,7 +326,7 @@ For example, if we wanted a button to issue a `GET` request to
 `/contacts` then we would write the following HTML:
 
 #figure(caption: [A simple htmx-powered button])[ ```html
-<button hx-get="/contacts"> '1'
+<button hx-get="/contacts"> <1>
   Get The Contacts
 </button>
 ``` ]
@@ -429,9 +429,9 @@ target this `div` with the response:
 
 #index[hx-target][example]
 #figure(caption: [A simple htmx-powered button], ```html
-  <div id="main"> '1'
+  <div id="main"> <1>
 
-    <button hx-get="/contacts" hx-target="#main"> '2'
+    <button hx-get="/contacts" hx-target="#main"> <2>
       Get The Contacts
     </button>
 
@@ -520,7 +520,7 @@ To do so would require only a small change to our button, adding a new
 #figure(caption: [Replacing the entire div])[ ```html
 <div id="main">
 
-  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML"> '1'
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML"> <1>
     Get The Contacts
   </button>
 
@@ -600,7 +600,7 @@ to our button:
   caption: [A (bad?) button that triggers on mouse entry], ```html
               <div id="main">
 
-                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="mouseenter"> '1'
+                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="mouseenter"> <1>
                   Get The Contacts
                 </button>
 
@@ -661,7 +661,7 @@ to test that Control key and the "L" key are pressed together:
   caption: [Getting better with filter on keyup], ```html
               <div id="main">
 
-                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l']"> '1'
+                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l']"> <1>
                   Get The Contacts
                 </button>
 
@@ -709,7 +709,7 @@ Here is what our updated `hx-trigger` attribute looks like:
   caption: [Even better, listen for keyup on the body], ```html
               <div id="main">
 
-                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body"> '1'
+                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body"> <1>
                   Get The Contacts
                 </button>
 
@@ -792,10 +792,10 @@ contacts:
   caption: [An htmx-powered search button], ```html
               <div id="main">
 
-                <form> '1'
+                <form> <1>
                     <label for="search">Search Contacts:</label>
-                    <input id="search" name="q" type="search" placeholder="Search Contacts"> '2'
-                    <button hx-post="/contacts" hx-target="#main"> '3'
+                    <input id="search" name="q" type="search" placeholder="Search Contacts"> <2>
+                    <button hx-post="/contacts" hx-target="#main"> <3>
                       Search The Contacts
                     </button>
                 </form>
@@ -856,7 +856,7 @@ Here is the above example reworked to include the input, dropping the form:
 
   <label for="search">Search Contacts:</label>
   <input id="search" name="q" type="search" placeholder="Search Contacts">
-  <button hx-post="/contacts" hx-target="#main" hx-include="#search"> '1'
+  <button hx-post="/contacts" hx-target="#main" hx-include="#search"> <1>
     Search The Contacts
   </button>
 
@@ -912,7 +912,7 @@ additional, hidden information in HTML.)
 Here is an example of `hx-vals`:
 
 #figure(caption: [An htmx-powered button with `hx-vals`])[ ```html
-<button hx-get="/contacts" hx-vals='{"state":"MT"}'> '1'
+<button hx-get="/contacts" hx-vals='{"state":"MT"}'> <1>
   Get The Contacts In Montana
 </button>
 ``` ]
@@ -936,7 +936,7 @@ JavaScript, and there existed a JavaScript function,
 included dynamically in htmx requests like so:
 
 #figure(caption: [A dynamic value])[ ```html
-<button hx-get="/contacts" hx-vals='js:{"state":getCurrentState()}'> '1'
+<button hx-get="/contacts" hx-vals='js:{"state":getCurrentState()}'> <1>
   Get The Contacts In The Selected State
 </button>
 ``` ]
@@ -996,7 +996,7 @@ If we wanted it to create a history entry when this request happened, we would
 add a new attribute to the button, the `hx-push-url` attribute:
 
 #figure(caption: [Our trusty button, now with history!], ```html
-  <button hx-get="/contacts" hx-target="#main" hx-push-url="true"> '1'
+  <button hx-get="/contacts" hx-target="#main" hx-push-url="true"> <1>
     Get The Contacts
   </button>
   ```)

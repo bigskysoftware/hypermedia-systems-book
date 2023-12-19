@@ -126,9 +126,9 @@ a particular function (i.e., handler). The Flask application, when started, will
 take HTTP requests and look up the matching handler and invoke it.
 
 #figure(caption: [A simple "Hello World" route], ```python
-  @app.route("/") '1'
-  def index(): '2'
-      return "Hello World!" '3'
+  @app.route("/") <1>
+  def index(): <2>
+      return "Hello World!" <3>
   ```)
 
 1. Establishes we are mapping the `/` path as a route.
@@ -182,7 +182,7 @@ of code:
 #figure(caption: [Changing "Hello World" to a redirect], ```python
   @app.route("/")
   def index():
-      return redirect("/contacts") '1'
+      return redirect("/contacts") <1>
   ```)
 1. Update to a call to `redirect()`
 
@@ -233,11 +233,11 @@ Here is what the code looks like for this handler:
 #figure(caption: [A handler for server-side search], ```python
   @app.route("/contacts")
   def contacts():
-      search = request.args.get("q") '1'
+      search = request.args.get("q") <1>
       if search is not None:
-          contacts_set = Contact.search(search) '2'
+          contacts_set = Contact.search(search) <2>
       else:
-          contacts_set = Contact.all() '3'
+          contacts_set = Contact.all() <3>
       return render_template("index.html", contacts=contacts_set)
   ```)
 
@@ -310,13 +310,13 @@ Let’s look at the first few lines of code in the `index.html` template:
 
 #figure(
   caption: [Start of index.html], ```html
-              {% extends 'layout.html' %} '1'
+              {% extends 'layout.html' %} <1>
 
-              {% block content %} '2'
+              {% block content %} <2>
 
-                  <form action="/contacts" method="get" class="tool-bar"> '3'
+                  <form action="/contacts" method="get" class="tool-bar"> <3>
                           <label for="search">Search Term</label>
-                          <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> '4'
+                          <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> <4>
                           <input type="submit" value="Search"/>
                   </form>
               ```,
@@ -368,18 +368,18 @@ Here is what the template code for the contact table looks like:
                   <table>
                       <thead>
                       <tr>
-                          <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th> '1'
+                          <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th> <1>
                       </tr>
                       </thead>
                       <tbody>
-                      {% for contact in contacts %} '2'
+                      {% for contact in contacts %} <2>
                           <tr>
                               <td>{{ contact.first }}</td>
                               <td>{{ contact.last }}</td>
                               <td>{{ contact.phone }}</td>
-                              <td>{{ contact.email }}</td> '3'
+                              <td>{{ contact.email }}</td> <3>
                               <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
-                                  <a href="/contacts/{{ contact.id }}">View</a></td> '4'
+                                  <a href="/contacts/{{ contact.id }}">View</a></td> <4>
                           </tr>
                       {% endfor %}
                       </tbody>
@@ -411,10 +411,10 @@ directive to end the `content` block:
 
 #figure(caption: [The "add contact" link], ```html
       <p>
-          <a href="/contacts/new">Add Contact</a> '1'
+          <a href="/contacts/new">Add Contact</a> <1>
       </p>
 
-  {% endblock %} '2'
+  {% endblock %} <2>
   ```)
 
 1. Link to the page that allows you to create a new contact.
@@ -458,9 +458,9 @@ method we want to handle when we declare this route.
 Here is the code:
 
 #figure(caption: [The "new contact" GET route], ```python
-  @app.route("/contacts/new", methods=['GET']) '1'
+  @app.route("/contacts/new", methods=['GET']) <1>
   def contacts_new_get():
-      return render_template("new.html", contact=Contact()) '2'
+      return render_template("new.html", contact=Contact()) <2>
   ```)
 
 1. Declare a route, explicitly handling `GET` requests to this path.
@@ -487,13 +487,13 @@ Here is what our HTML looks like:
 #figure(
   caption: [The "new contact" form],
 )[ ```html
-<form action="/contacts/new" method="post"> '1'
+<form action="/contacts/new" method="post"> <1>
     <fieldset>
         <legend>Contact Values</legend>
         <p>
-            <label for="email">Email</label> '2'
-            <input name="email" id="email" type="email" placeholder="Email" value="{{ contact.email or '' }}"> '3'
-            <span class="error">{{ contact.errors['email'] }}</span> '4'
+            <label for="email">Email</label> <2>
+            <input name="email" id="email" type="email" placeholder="Email" value="{{ contact.email or '' }}"> <3>
+            <span class="error">{{ contact.errors['email'] }}</span> <4>
         </p>
 ``` ]
 
@@ -579,12 +579,12 @@ Here is our new request handler:
               @app.route("/contacts/new", methods=['POST'])
               def contacts_new():
                   c = Contact(None, request.form['first_name'], request.form['last_name'], request.form['phone'],
-                              request.form['email']) '1'
-                  if c.save(): '2'
+                              request.form['email']) <1>
+                  if c.save(): <2>
                       flash("Created New Contact!")
-                      return redirect("/contacts") '3'
+                      return redirect("/contacts") <3>
                   else:
-                      return render_template("new.html", contact=c) '4'
+                      return render_template("new.html", contact=c) <4>
               ```,
 )
 
@@ -686,10 +686,10 @@ them automatically extracted and passed in to a handler function.
 Here is what the code looks like, just a few lines of simple Python:
 
 #figure(```python
-@app.route("/contacts/<contact_id>") '1'
-def contacts_view(contact_id=0): '2'
-    contact = Contact.find(contact_id) '3'
-    return render_template("show.html", contact=contact) '4'
+@app.route("/contacts/<contact_id>") <1>
+def contacts_view(contact_id=0): <2>
+    contact = Contact.find(contact_id) <3>
+    return render_template("show.html", contact=contact) <4>
 ```)
 
 1. Map the path, with a path variable named `contact_id`.
@@ -772,12 +772,12 @@ Here is the first bit of the form:
 
 #figure(
   caption: [The "edit contact" form start], ```html
-                  <form action="/contacts/{{ contact.id }}/edit" method="post"> '1'
+                  <form action="/contacts/{{ contact.id }}/edit" method="post"> <1>
                       <fieldset>
                           <legend>Contact Values</legend>
                             <p>
                                 <label for="email">Email</label>
-                                <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}"> '2'
+                                <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}"> <2>
                                 <span class="error">{{ contact.errors['email'] }}</span>
                             </p>
               ```,
@@ -880,15 +880,15 @@ Here is the new handler code:
 #index[POST request]
 #figure(
   ```python
-            @app.route("/contacts/<contact_id>/edit", methods=["POST"]) '1'
+            @app.route("/contacts/<contact_id>/edit", methods=["POST"]) <1>
             def contacts_edit_post(contact_id=0):
-                c = Contact.find(contact_id) '2'
-                c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) '3'
-                if c.save(): '4'
+                c = Contact.find(contact_id) <2>
+                c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) <3>
+                if c.save(): <4>
                     flash("Updated Contact!")
-                    return redirect("/contacts/" + str(contact_id)) '5'
+                    return redirect("/contacts/" + str(contact_id)) <5>
                 else:
-                    return render_template("edit.html", contact=c) '6'
+                    return render_template("edit.html", contact=c) <6>
             ```,
 )
 
@@ -918,12 +918,12 @@ path as well.
 Here is what the controller looks like:
 
 #figure(caption: [The "delete contact" controller code], ```python
-  @app.route("/contacts/<contact_id>/delete", methods=["POST"]) '3'
+  @app.route("/contacts/<contact_id>/delete", methods=["POST"]) <3>
   def contacts_delete(contact_id=0):
       contact = Contact.find(contact_id)
-      contact.delete() '2'
+      contact.delete() <2>
       flash("Deleted Contact!")
-      return redirect("/contacts") '3'
+      return redirect("/contacts") <3>
   ```)
 
 1. Handle a `POST` the `/contacts/<contact_id>/delete` path.
