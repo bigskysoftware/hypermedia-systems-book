@@ -45,8 +45,12 @@
 }, kind: image, ..args)
 
 #let sidebar(title, body) = block(
-  spacing: 1em, rect(
-    width: 100%, inset: 1em, stroke: (top: 1pt, bottom: 1pt), fill: luma(237),
+  spacing: 1em, block(
+    width: 100%,
+    inset: 1em,
+    stroke: (top: 1pt, bottom: 1pt),
+    fill: luma(237),
+    breakable: true,
   )[
     #set text(.8em, font: secondary-font)
     #strong(title)
@@ -56,10 +60,14 @@
 )
 
 #let important(title, body) = block(
-  spacing: 1em, rect(
-    width: 100%, inset: 1em, stroke: (
+  spacing: 1em, block(
+    width: 100%,
+    inset: 1em,
+    stroke: (
       top: (thickness: 1pt, paint: blue), bottom: (thickness: 1pt, paint: blue),
-    ), fill: rgb("#def"),
+    ),
+    fill: rgb("#def"),
+    breakable: true,
   )[
     #set text(.8em, font: secondary-font)
     #strong(title)
@@ -69,8 +77,12 @@
 )
 
 #let html-note(label: [HTML Notes], title, body) = block(
-  spacing: 1em, rect(
-    width: 100%, inset: 1em, stroke: (top: 1pt, bottom: 1pt), fill: rgb("#f5f5ff"),
+  spacing: 1em, block(
+    width: 100%,
+    inset: 1em,
+    stroke: (top: 1pt, bottom: 1pt),
+    fill: rgb("#f5f5ff"),
+    breakable: true,
   )[
     #set text(.8em, font: secondary-font)
     #show heading: set text(.8em)
