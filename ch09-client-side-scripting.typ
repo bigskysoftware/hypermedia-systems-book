@@ -1623,14 +1623,14 @@ Just don’t make it a habit.
   #quote(
     attribution: [Leah Clark, \@leah\@tilde.zone],
   )[
-    - SOFTWARE WAS NOT SUPPOSED TO USE NATIVE TOOLKITS
+    - #smallcaps[Software was not supposed to use native toolkits]
 
-    - YEARS OF WINDOWS UI LIBRARIES yet NO REAL-WORLD USE FOUND for going lower level
-      than THE WEB
+    - #smallcaps[Years of windows ui libraries] yet #smallcaps[no real-world use found] for going lower level
+      than #smallcaps[the Web]
 
-    - Wanted a window anyway for a laugh? We had a tool for that: It was called "ELECTRON"
+    - Wanted a window anyway for a laugh? We had a tool for that: It was called "#smallcaps[Electron]"
 
-    - "yes I would love to write 4 DIFFERENT copies of the same UI" - Statements
+    - "yes I would love to write 4 #smallcaps[different] copies of the same UI" - Statements
       dreamed up by the Utterly Deranged
   ]
 ]
