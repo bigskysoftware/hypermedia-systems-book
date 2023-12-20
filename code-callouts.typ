@@ -45,7 +45,7 @@
 
 #let code-with-callouts = (
   it /*: content(raw) */,
-  callout-display: unicode-circle-callout /*: function(str, content) */
+  callout-display: default-callout /*: function(str, content) */
 ) => {
   if it.at("label", default: none) == processed-label {
     it
