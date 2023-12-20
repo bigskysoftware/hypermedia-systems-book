@@ -1246,7 +1246,7 @@ interfaces. If you want to hide an element visually without hiding it from
 assistive technology (e.g. the element contains information that is communicated
 through styling), you can use this utility class:
 
-#figure[```css
+#figure(```css
   .vh {
       clip: rect(0 0 0 0);
       clip-path: inset(50%);
@@ -1255,7 +1255,7 @@ through styling), you can use this utility class:
       overflow: hidden;
       white-space: nowrap;
   }
-  ```]
+  ```)
 
 `vh` is short for "visually hidden." This class uses multiple methods and
 workarounds to make sure no browser removes the element’s function.
