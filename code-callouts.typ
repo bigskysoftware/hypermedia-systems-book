@@ -1,6 +1,6 @@
 #import "definitions.typ": *
 
-#let code-callout(num) = {
+#let code-callout(num /*: str */) /*: content*/ = {
   text(
     font: secondary-font,
     number-type: "old-style",
@@ -11,39 +11,14 @@
   )
 }
 
-#let code-with-callouts = it => if it.at("label", default: none) == <TypstCodeCallout-was-processed> {
-  it
-} else {
-  let props = it.fields()
-  let _ = props.remove("text")
-  let _ = props.remove("lines")
+#let callout-pat = regex("<(\\d+)>(?:\\n|$)")
 
-  let text = it.text.replace(
-    regex("<(\\d+)>(?:\\n|$)"),
-    mat => "TypstCodeCallout" + mat.captures.at(0) + "\n"
-  )
-
-  show regex("TypstCodeCallout(\d+)$"): it => {
-    let digit = it.text.slice("TypstCodeCallout".len())
-    code-callout(digit)
-  }
-
-  [#raw(..props, text)<TypstCodeCallout-was-processed>]
-}
-
-#let code-with-callouts = it => if (
-  it.at("label", default: none) == <TypstCodeCallout-was-processed>
-) {
-  it
-} else {
-  let props = it.fields()
-  let _ = props.remove("text")
-  let _ = props.remove("lines")
-
-  let callout-pat = regex("<(\\d+)>(?:\\n|$)")
-  let callouts = ()
+#let parse-callouts(
+  code-text /*: str */
+) /*: (callouts: array(array(str)), text: str) */ = {
+  let callouts /*: array(array(str)) */ = ()
   let new-text = ""
-  for text-line in it.text.split("\n") {
+  for text-line in code-text.split("\n") {
     let match = text-line.match(callout-pat)
     if match != none {
       callouts.push((match.captures.at(0),))
@@ -54,14 +29,31 @@
     }
     new-text += "\n"
   }
+  (callouts: callouts, text: new-text)
+}
 
-  show raw.line: it => {
-    let callouts-of-line = callouts.at(it.number - 1, default: ())
+#let processed-label = <TypstCodeCallout-was-processed>
+
+#let code-with-callouts = (
+  it /*: content(raw) */,
+  callout-display: code-callout /*: function(str, content) */
+) => {
+  if it.at("label", default: none) == processed-label {
     it
-    for callout in callouts-of-line {
-      code-callout(callout)
-    }
-  }
+  } else {
+    let (callouts, text: new-text) = parse-callouts(it.text)
 
-  [#raw(..props, new-text)<TypstCodeCallout-was-processed>]
+    show raw.line: it => {
+      it
+      let callouts-of-line = callouts.at(it.number - 1, default: ())
+      for callout in callouts-of-line {
+        callout-display(callout)
+      }
+    }
+
+    let fields = it.fields()
+    let _ = fields.remove("text")
+    let _ = fields.remove("lines")
+    [#raw(..fields, new-text)#processed-label]
+  }
 }
