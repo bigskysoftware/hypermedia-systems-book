@@ -250,10 +250,10 @@ server-side logic to support kicking off the archive process. We don’t have a
 progress bar yet, but we’ll get there! Let’s see how this works as it stands,
 and refresh the main page of our application…​
 
-#figure(caption: [Something Went Wrong])[ ```]
+#figure(caption: [Something Went Wrong], ```
 UndefinedError
 jinja2.exceptions.UndefinedError: 'archiver' is undefined
-``` ]
+```)
 
 Ouch!
 

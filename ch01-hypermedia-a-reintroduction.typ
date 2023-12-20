@@ -530,8 +530,8 @@ We are glad you asked!
 
 #index[hypermedia][advantages]
 It turns out that the hypermedia architecture, even in its original Web 1.0
-form, has a number of advantages when compared with the Single Page Application
-+ JSON Data API approach. Three of the biggest are:
+form, has a number of advantages when compared with the Single Page Application + JSON Data API approach. Three of the biggest are:
+
 - It is an extremely _simple_ approach to building web applications.- It is
   extremely tolerant of content and API changes. In fact, it thrives on them!- It
   leverages tried and true features of web browsers, such as caching.
@@ -905,9 +905,9 @@ more work for ourselves --- probably both.
 For example, instead of adding a button using the dedicated `<button>`
 element, a `<div>` element might have a `click` event listener added to it.
 
-#figure[```html
+#figure(```html
   <div class="bg-accent padding-4 rounded-2" onclick="doStuff()">Do stuff</div>
-  ```]
+  ```)
 
 There are two main issues with this button:
 
@@ -918,12 +918,12 @@ There are two main issues with this button:
 Yes, we can fix that by adding `role="button"` and
 `tabindex="0"`:
 
-#figure[```html
+#figure(```html
   <div class="bg-accent padding-4 rounded-2"
     role="button"
     tabindex="0"
     onclick="doStuff()">Do stuff</div>
-  ```]
+  ```)
 
 These are easy fixes, but they’re things you have to _remember_. It’s also not
 obvious from the HTML source that this is a button, making the source harder to

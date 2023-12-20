@@ -238,11 +238,11 @@ as deleting or creating a contact. These messages are generated in the Flask
 backend using the `flash()` function, called from the views. Then the base `layout.html` template
 renders the messages into the final web page.
 
-#figure(caption: [Snippet templates/layout.html])[ ```]
+#figure(caption: [Snippet templates/layout.html], ```
 {% for message in get_flashed_messages() %}
   <div class="flash">{{ message }}</div>
 {% endfor %}
-``` ]
+```)
 
 Our Flask app still includes the calls to `flash()`, but the Hyperview app is
 not accessing the flashed message to display to the user. Let’s add that support

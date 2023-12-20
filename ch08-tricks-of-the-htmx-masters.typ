@@ -738,7 +738,7 @@ marked as `hx-swap-oob="true"`. This content will be removed from the response
 so that it is not inserted into the button. Instead, it is swapped into the DOM
 in place of the existing table since it has a matching id.
 
-#figure(caption: [A response with out-of-band content])[ ```]
+#figure(caption: [A response with out-of-band content])[ ```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 ...

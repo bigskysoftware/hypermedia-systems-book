@@ -2,7 +2,7 @@
 #let body-font = "Linux Libertine"
 #let secondary-font = "Linux Biolinum"
 #let display-font = "ChicagoFLF"
-#let mono-font = "Berkeley Mono"
+#let mono-font = "Monaspace Argon" // "Berkeley Mono"
 
 #import "indexing.typ": *
 

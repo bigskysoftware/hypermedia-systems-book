@@ -3,10 +3,11 @@
 #let code-callout(num) = {
   text(
     font: secondary-font,
+    number-type: "old-style",
     size: 1em,
     weight: "bold",
     fill: luma(120),
-    "(" + num + ")",
+    "[" + num + "]",
   )
 }
 

@@ -1378,14 +1378,14 @@ Also consider: Does the information need to be presented as tabs? Sometimes the
 answer is yes, but if not, a sequence of details and disclosures fulfills a very
 similar purpose.
 
-#figure[```html
+#figure(```html
   <details><summary>Disclosure 1</summary>
     Disclosure 1 contents
   </details>
   <details><summary>Disclosure 2</summary>
     Disclosure 2 contents
   </details>
-  ```]
+  ```)
 
 Compromising UX just to avoid JavaScript is bad development. But sometimes it’s
 possible to achieve an equal (or better!) quality of UX while allowing for a
