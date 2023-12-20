@@ -99,7 +99,7 @@
   #show raw.where(block: true): code-with-callouts
 
   #set page(
-    width: 8.25in, height: 11in, margin: (inside: 1.5in, outside: 1in, y: 1in), header: page-header(),
+    width: 8.25in, height: 11in, margin: (inside: 1.75in, outside: 1in, top: 1in, bottom: 1.25in), header: page-header(),
   )
 
   #set document(title: title, author: authors)
