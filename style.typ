@@ -61,7 +61,7 @@
     numbering: (..args) => {
       set text(font: secondary-font, number-type: "old-style")
       box(width: 1em, {
-        numbering("1", ..args)
+        numbering("1.", ..args)
         h(.5em)
       })
     },
@@ -86,12 +86,16 @@
   }
   #show figure.where(kind: raw): set figure.caption(position: top)
   #show figure.where(kind: raw): set par(justify: false)
+  #show figure.where(kind: raw): set block(breakable: true)
   #show figure.where(kind: raw): it => {
     show raw.where(block: true): it => block(width: 100%, align(start, it))
     block(
-      spacing: 1em + leading, inset: (left: 1em, right: 1em), align(start, box(it)),
+      spacing: 1em + leading,
+      inset: (left: 1em, right: 1em),
+      align(start, it),
     )
   }
+  #show figure.where(kind: raw): set block(breakable: true)
   #show figure.caption: set text(font: secondary-font)
 
   // Code callouts
