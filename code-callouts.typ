@@ -7,7 +7,7 @@
     size: 1em,
     weight: "bold",
     fill: luma(120),
-    "[" + num + "]",
+    "[" + str(number) + "]",
   )
 }
 
