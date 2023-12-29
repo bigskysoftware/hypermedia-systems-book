@@ -4,14 +4,14 @@
 
 #show: hypermedia-systems-book(
   [Hypermedia Systems], authors: ("Carson Gross", "Adam Stepinski", "Deniz Akşimşek"),
-  frontmatter: [
-    #page(include "-1-copy-ack.typ", header: none, numbering: none)
-    #page([
-      #include "-2-dedication.typ"
-      #counter(page).update(0)
-    ], header: none, numbering: none)
-    #include "-3-foreword.typ"
-  ],
+  frontmatter: {
+    page(include "-1-copy-ack.typ", header: none, numbering: none)
+    page({
+      include "-2-dedication.typ"
+      counter(page).update(0)
+    }, header: none, numbering: none)
+    include "-3-foreword.typ"
+  },
 )
 
 = Hypermedia Concepts
