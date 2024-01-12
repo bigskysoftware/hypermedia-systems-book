@@ -45,7 +45,7 @@ _modern_ web applications.
 
 === What Is Hypermedia? <_what_is_hypermedia>
 
-#quote(
+#blockquote(
   attribution: [Ted Nelson, https:\/\/archive.org/details/SelectedPapers1977/page/n7/mode/2up],
 )[
   Hypertexts: new forms of writing, appearing on computer screens, that will
@@ -139,7 +139,7 @@ been working on the idea of hypertext for a decade and had finally, out of
 desperation at the fact it was so hard for researchers to share their research,
 found the right moment and institutional support to create the World Wide Web:
 
-#quote(
+#blockquote(
   attribution: [Tim Berners-Lee,
     https:\/\/britishheritage.org/tim-berners-lee-the-world-wide-web],
 )[
@@ -174,7 +174,7 @@ We will discuss Fielding’s key ideas in depth in Chapter 2, and try to correct
 the record with respect to REST, HATEOAS and hypermedia.
 
 === The World’s Most Successful Hypertext: HTML <_the_worlds_most_successful_hypertext_html>
-#quote(
+#blockquote(
   attribution: [Rescuing REST From the API Winter,
     https:\/\/intercoolerjs.org/2016/01/18/rescuing-rest.html],
 )[
@@ -493,7 +493,7 @@ path.
 
 === Why Use Hypermedia? <_why_use_hypermedia>
 
-#quote(
+#blockquote(
   attribution: [Tom MacWright, https://macwright.com/2020/05/10/spa-fatigue.html],
 )[
   #index[MacWright, Tom]

@@ -986,7 +986,7 @@ value throughout your application.
   lot of people guessing at the meaning of tags --- "looks pretty semantic to me!"
   --- instead of engaging with the spec.
 
-  #quote(
+  #blockquote(
     attribution: [https://t-ravis.com/post/doc/semantic_the_8_letter_s-word/],
   )[
     I think being asked to write _meaningful_ HTML better lights the path to

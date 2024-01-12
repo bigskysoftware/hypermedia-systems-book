@@ -159,7 +159,7 @@ This is the key advantage of splitting your Data API from your Hypermedia API.
   vast majority of JSON APIs are _not_
   RESTful. Not even close.
 
-  #quote(
+  #blockquote(
     attribution: [Roy Fielding,
       https:\/\/roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven],
   )[

@@ -998,7 +998,7 @@ Before you reach for components for reuse, consider your options. Lower-level
 mechanisms often (allow you to) produce better HTML. In some cases, components
 can actually _improve_ the clarity of your HTML.
 
-#quote(
+#blockquote(
   attribution: [Manuel Matuzović, #link(
       "https://www.matuzo.at/blog/2023/single-page-applications-criticism",
     )[Why I’m not the biggest fan of Single Page Applications]],

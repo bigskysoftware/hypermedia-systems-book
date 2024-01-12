@@ -44,6 +44,8 @@
   block(breakable: false, align(start, raw(read(source))))
 }, kind: image, ..args)
 
+#let blockquote = quote.with(block: true)
+
 #let sidebar(title, body) = block(
   spacing: 1em, block(
     width: 100%,

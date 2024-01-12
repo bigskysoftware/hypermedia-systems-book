@@ -213,7 +213,7 @@ often somewhat difficult to read. Here, for example, is the documentation on the
 distinction between a `POST` and a `PUT` from
 #link("https://www.rfc-editor.org/rfc/rfc2616")[RFC-2616].
 
-#quote(
+#blockquote(
   attribution: [RFC-2616, https:\/\/www.rfc-editor.org/rfc/rfc2616\#section-9.6],
 )[
   The target resource in a POST request is intended to handle the enclosed
@@ -458,7 +458,7 @@ understandable: building a good hypermedia client is hard! For JSON API clients
 like this, the power of hypermedia controls embedded within an API response is
 irrelevant and often simply annoying:
 
-#quote(
+#blockquote(
   attribution: [Freddie Karlbom,
     https:\/\/techblog.commercetools.com/graphql-and-rest-level-3-hateoas-70904ff1f9cf],
 )[
@@ -613,7 +613,7 @@ for the Uniform Interface constraint.
 
 In this section, Fielding says:
 
-#quote(
+#blockquote(
   attribution: fielding-rest-thesis,
 )[
   The central feature that distinguishes the REST architectural style from other
@@ -707,7 +707,7 @@ One thing that may initially jump out at you is that the JSON representation is
 smaller than the HTML representation. Fielding notes exactly this trade-off when
 using a RESTful architecture:
 
-#quote(
+#blockquote(
   attribution: fielding-rest-thesis,
 )[
   The trade-off, though, is that a uniform interface degrades efficiency, since
@@ -952,7 +952,7 @@ Demand constraint is somewhat awkwardly described as
 
 In this section, Fielding says:
 
-#quote(
+#blockquote(
   attribution: fielding-rest-thesis,
 )[
   REST allows client functionality to be extended by downloading and executing
@@ -990,7 +990,7 @@ and building a hypermedia-oriented library to boot, to understand the special
 nature of HTML, hypermedia and the web!
 
 #html-note[HTML5 Soup][
-#quote(attribution: [Confucius])[
+#blockquote(attribution: [Confucius])[
   The beginning of wisdom is to call things by their right names.
 ]
 

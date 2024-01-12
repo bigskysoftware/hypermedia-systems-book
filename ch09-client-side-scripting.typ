@@ -3,7 +3,7 @@
 
 == Client Side Scripting
 
-#quote(
+#blockquote(
   attribution: fielding-rest-thesis,
 )[
   REST allows client functionality to be extended by downloading and executing
@@ -157,7 +157,7 @@ looking into any of them more extensively.
 
 === Vanilla #indexed[JavaScript]
 
-#quote(attribution: [Merb (Ruby web framework), motto])[
+#blockquote(attribution: [Merb (Ruby web framework), motto])[
   No code is faster than no code.
 ]
 
@@ -176,7 +176,7 @@ even more elaborate than the original first generation of JavaScript libraries.
 A quote from the website #link("http://vanilla-js.com"), which is well worth
 visiting even though it’s slightly out of date, captures the situation well:
 
-#quote(
+#blockquote(
   attribution: [http:\/\/vanilla-js.com],
 )[
   VanillaJS is the lowest-overhead, most comprehensive framework I’ve ever used.
@@ -407,7 +407,7 @@ Locality of Behavior (LoB) is an alternative software design principle that we
 coined, in opposition to Separation of Concerns. It describes the following
 characteristic of a piece of software:
 
-#quote(
+#blockquote(
   attribution: [https:\/\/htmx.org/essays/locality-of-behaviour/],
 )[
   The behavior of a unit of code should be as obvious as possible by looking only
@@ -613,7 +613,7 @@ If you add a `role` to an element but you _don’t_ uphold the promise, the
 experience for many users will be _worse_ than if the element had no `role` at
 all. Thus, it is written:
 
-#quote(attribution: [W3C, Read Me First | APG,
+#blockquote(attribution: [W3C, Read Me First | APG,
   https:\/\/www.w3.org/WAI/ARIA/apg/practices/read-me-first/])[
   No ARIA is better than Bad ARIA.
 ]
@@ -1545,7 +1545,7 @@ demonstrated here, wrapping the library in a function that triggers events in a
 callback, to make the library more hypermedia and htmx-friendly.
 
 === Pragmatic Scripting <_pragmatic_scripting>
-#quote(
+#blockquote(
   attribution: [W3C, HTML Design Principles § 3.2 Priority of Constituencies],
 )[
   In case of conflict, consider users over authors over implementors over
@@ -1592,7 +1592,7 @@ Just don’t make it a habit.
   only a sophisticated, modern architecture for applications, but it can allow us
   to do away with this artificial app/document split for good.
 
-  #quote(
+  #blockquote(
     attribution: [Roy Fielding, #link(
         "https://www.slideshare.net/royfielding/a-little-rest-and-relaxation",
       )[A little REST and Relaxation]],
@@ -1620,7 +1620,7 @@ Just don’t make it a habit.
   to developers to extend HTML, and we want to do so in a way that doesn’t
   abstract over its simplicity with an imitation of classical "native" toolkits.
 
-  #quote(
+  #blockquote(
     attribution: [Leah Clark, \@leah\@tilde.zone],
   )[
     - #smallcaps[Software was not supposed to use native toolkits]

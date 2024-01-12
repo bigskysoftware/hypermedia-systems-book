@@ -184,7 +184,7 @@ architectural choice against the Single Page Application approach, but _only_ if
 smart people (like you) learn about it, build with it and then tell the world
 about it.
 
-#quote(
+#blockquote(
   attribution: [Kyle Reese, Terminator 2: Judgement Day],
 )[
   Remember the message? “The future is not set. There is no fate but what we make
