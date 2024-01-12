@@ -1,6 +1,6 @@
 
-#import "definitions.typ": *
-#import "code-callouts.typ": code-with-callouts
+#import "./definitions.typ": *
+#import "./code-callouts.typ": code-with-callouts
 
 #let inside-cover(title, authors) = page(
   header: none,
@@ -118,7 +118,7 @@
 
     = Contents
     #set par(first-line-indent: 0pt)
-    #outline(indent: 1em, depth: 4, title: none)
+    #outline(indent: 1em, depth: 4, title: none)<table-of-contents>
   ]
 
   // #endregion FRONTMATTER

@@ -1,4 +1,4 @@
-#import "definitions.typ": *
+#import "./definitions.typ": *
 
 #let default-callout(number /*: int */) /*: content*/ = {
   text(

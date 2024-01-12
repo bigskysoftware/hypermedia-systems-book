@@ -1,4 +1,4 @@
-#import "definitions.typ": *
+#import "lib/definitions.typ": *
 
 == Tricks Of The Htmx Masters
 

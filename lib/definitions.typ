@@ -4,7 +4,7 @@
 #let display-font = "ChicagoFLF"
 #let mono-font = "Berkeley Mono"
 
-#import "indexing.typ": *
+#import "./indexing.typ": *
 
 #let part-heading(it) = [
   #pagebreak(to: "even")

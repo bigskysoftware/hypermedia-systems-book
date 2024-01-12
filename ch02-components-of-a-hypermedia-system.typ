@@ -1,5 +1,5 @@
-#import "definitions.typ": *
-#import "snippets.typ": fielding-rest-thesis
+#import "lib/definitions.typ": *
+#import "lib/snippets.typ": fielding-rest-thesis
 
 == Components Of A Hypermedia System
 

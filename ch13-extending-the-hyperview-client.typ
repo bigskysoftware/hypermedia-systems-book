@@ -1,4 +1,4 @@
-#import "definitions.typ": *
+#import "lib/definitions.typ": *
 
 == Extending The Hyperview Client
 
@@ -395,7 +395,7 @@ rendered our message UI elements directly in the screen, the user would barely
 see them before the screen disappeared or reloaded. By using a custom action,
 the message UI remains visible even while the screens change beneath them.
 
-#figure([#image("images/screenshot_hyperview_toast.png")], caption: [
+#figure([#image("/images/screenshot_hyperview_toast.png")], caption: [
   Message shown during back navigation
 ])
 
@@ -416,7 +416,7 @@ standard Hyperview behaviors when pressed. We will use this custom component in
 our Contacts List screen. Each contact item will be a "swipeable row", and the
 actions will give quick access to edit and delete actions for the contact.
 
-#figure([#image("images/screenshot_hyperview_swipe.png")], caption: [
+#figure([#image("/images/screenshot_hyperview_swipe.png")], caption: [
   Swipeable contact item
 ])
 
@@ -560,7 +560,7 @@ similar process:
   `Hyperview.renderChildren()`.- Set the components as children or props of `Swipeable`.
 
 #asciiart(
-  "images/diagram/hyperview-components.txt", caption: [Rendering delegation between the client and the custom components],
+  "/images/diagram/hyperview-components.txt", caption: [Rendering delegation between the client and the custom components],
 )
 
 This code may be hard to follow if you’ve never worked with React or React
@@ -751,7 +751,7 @@ pressing confirm, the backend response triggers behaviors that show a
 confirmation message and reload the list of contacts. The item for the deleted
 contact disappears from the list.
 
-#figure([#image("images/screenshot_hyperview_swipe_delete.png")], caption: [
+#figure([#image("/images/screenshot_hyperview_swipe_delete.png")], caption: [
   Delete from swipe button
 ])
 

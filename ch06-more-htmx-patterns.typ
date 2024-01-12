@@ -1,4 +1,4 @@
-#import "definitions.typ": *
+#import "lib/definitions.typ": *
 
 == More Htmx Patterns
 
@@ -652,7 +652,7 @@ developing web applications the old way.
 
 Here is what the feature looks like in our application:
 
-#figure([#image("images/screenshot_total_contacts.png")], caption: [
+#figure([#image("/images/screenshot_total_contacts.png")], caption: [
   Total contact count display
 ])
 
@@ -926,7 +926,7 @@ page is re-rendered.
 #sidebar[A Style Sidebar][One side effect of adding this delete link is that we are starting to pile up
   the actions in a contact row:
 
-  #figure([#image("images/screenshot_stacked_actions.png")], caption: [
+  #figure([#image("/images/screenshot_stacked_actions.png")], caption: [
     That’s a lot of actions
   ])
 
@@ -1187,7 +1187,7 @@ We’ll also need to add an empty column in the header for the table to
 accommodate the checkbox column. With that done we now get a series of check
 boxes, one for each row, a pattern no doubt familiar to you from the web:
 
-#figure([#image("images/screenshot_checkboxes.png")], caption: [
+#figure([#image("/images/screenshot_checkboxes.png")], caption: [
   Checkboxes for our contact rows
 ])
 

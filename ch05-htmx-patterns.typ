@@ -1,4 +1,4 @@
-#import "definitions.typ": *
+#import "lib/definitions.typ": *
 
 == Htmx Patterns
 
@@ -658,7 +658,7 @@ they will be displayed in this span, which will be highlighted red.
 The error message shown when a user attempts to save a contact with a duplicate
 email is "Email Must Be Unique":
 
-#figure([#image("images/screenshot_validation_error.png")], caption: [
+#figure([#image("/images/screenshot_validation_error.png")], caption: [
   Email validation error
 ])
 
@@ -1081,7 +1081,7 @@ This is the common "click to load" UX pattern, found in more advanced web
 applications.
 
 #figure(
-  caption: [A Click To Load UI], image("images/screenshot_click_to_load.png"),
+  caption: [A Click To Load UI], image("/images/screenshot_click_to_load.png"),
 )
 
 Here, you have a button that you can click, and it will load the next set of

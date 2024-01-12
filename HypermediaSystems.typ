@@ -1,6 +1,6 @@
 
-#import "definitions.typ": *
-#import "style.typ": *
+#import "lib/definitions.typ": *
+#import "lib/style.typ": *
 
 #show: hypermedia-systems-book(
   [Hypermedia Systems], authors: ("Carson Gross", "Adam Stepinski", "Deniz Akşimşek"),

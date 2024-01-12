@@ -1,4 +1,4 @@
-#import "definitions.typ": *
+#import "lib/definitions.typ": *
 
 == A Dynamic Archive UI
 
@@ -424,7 +424,7 @@ Finally, for completeness, here is the CSS we’ll use for this progress bar:
 
 Which ends up rendering like this:
 
-#figure([#image("images/screenshot_progress_bar.png")], caption: [
+#figure([#image("/images/screenshot_progress_bar.png")], caption: [
   Our CSS-Based Progress Bar
 ])
 

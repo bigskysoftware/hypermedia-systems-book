@@ -1,5 +1,5 @@
-#import "definitions.typ": *
-#import "snippets.typ": fielding-rest-thesis
+#import "lib/definitions.typ": *
+#import "lib/snippets.typ": fielding-rest-thesis
 
 == Client Side Scripting
 
@@ -355,7 +355,7 @@ So, you can see that the notion of Separation of Concerns doesn’t always work 
 well as promised: our concerns end up intertwined or coupled pretty deeply, even
 when we separate them into different files.
 
-#asciiart("images/diagram/separation-of-concerns.txt", caption: [What concerns?])
+#asciiart("/images/diagram/separation-of-concerns.txt", caption: [What concerns?])
 
 To show that it isn’t just naming between concerns that can get you into
 trouble, consider another small change to our HTML that demonstrates the
@@ -1464,7 +1464,7 @@ Given all that, our updated code will look like this:
 And now, when this button is clicked, we get a nice looking dialog in our web
 application:
 
-#figure([#image("images/screenshot_sweet_alert.png")], caption: [
+#figure([#image("/images/screenshot_sweet_alert.png")], caption: [
 ])
 
 Much nicer than the system confirmation dialog. Still, this feels a little
