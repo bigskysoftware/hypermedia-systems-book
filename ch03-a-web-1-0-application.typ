@@ -157,7 +157,7 @@ The handler in this case is dead simple, it just returns a string,
 "Hello Flask!", to the client. This isn’t hypermedia yet, but a browser will
 render it just fine:
 
-#figure([#image("/images/figure_2-1_hello_world.png")], caption: [
+#figure([#image("images/figure_2-1_hello_world.png")], caption: [
   Hello Flask!
 ])
 
@@ -427,7 +427,7 @@ all the contacts requested. So far, so hypermedia.
 Here is what the template looks like, rendered with a bit of contact
 information:
 
-#figure(image("/images/figure_2-2_table_etc.png"), caption: [Contact.app])
+#figure(image("images/figure_2-2_table_etc.png"), caption: [Contact.app])
 
 Now, our application won’t win any design awards at this point, but notice that
 our template, when rendered, provides all the functionality necessary to see all

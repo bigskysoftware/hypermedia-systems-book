@@ -312,7 +312,7 @@ With these changes to the `contacts()` view, we can finally see the fruits of
 our labor. After restarting the backend and refreshing the screen in our mobile
 app, we can see the contacts screen!
 
-#figure([#image("/images/screenshot_hyperview_list.png")], caption: [
+#figure([#image("images/screenshot_hyperview_list.png")], caption: [
   Contacts Screen
 ])
 
@@ -369,7 +369,7 @@ search query) received in the relative href response. The domain here is
 inferred from the domain used to fetch the screen. Note that `href` includes our `rows_only` query
 param; we want the response to only include the rows and not the entire screen.
 
-#figure([#image("/images/screenshot_hyperview_search.png")], caption: [
+#figure([#image("images/screenshot_hyperview_search.png")], caption: [
   Searching for Contacts
 ])
 
@@ -487,7 +487,7 @@ on screen, indicating to the user that the action is still taking place. Once
 the content is refreshed, the content retracts back up to its default position,
 hiding the spinner and letting the user know that the interaction is done.
 
-#figure([#image("/images/screenshot_hyperview_refresh_cropped.png")], caption: [
+#figure([#image("images/screenshot_hyperview_refresh_cropped.png")], caption: [
   Pull-to-refresh
 ])
 
@@ -623,7 +623,7 @@ edge of the device. On Android, users can also navigate to the previous screen
 by pressing the hardware back button. We don’t need to specify anything extra in
 the HXML to get these interactions.
 
-#figure([#image("/images/screenshot_hyperview_detail_cropped.png")], caption: [
+#figure([#image("images/screenshot_hyperview_detail_cropped.png")], caption: [
   Contact Details Screen
 ])
 
@@ -895,7 +895,7 @@ faster than pressing "Save." On save, the app will first make a `POST` request
 to save the data, and then a `GET` request for the details screen. Cancelling
 skips the `POST`, and immediately makes the `GET` request.
 
-#figure([#image("/images/screenshot_hyperview_edit.png")], caption: [
+#figure([#image("images/screenshot_hyperview_edit.png")], caption: [
   Contact Edit Screen
 ])
 
@@ -1173,7 +1173,7 @@ Instead, the user will be presented with the dialog box and asked to confirm or
 cancel. Our core deletion behavior didn’t change, we just chained it from
 another behavior.
 
-#figure([#image("/images/screenshot_hyperview_delete_cropped.png")], caption: [
+#figure([#image("images/screenshot_hyperview_delete_cropped.png")], caption: [
   Delete Contact confirmation
 ])
 
@@ -1226,7 +1226,7 @@ After successfully adding a new contact, the screen will dispatch the `contact-u
 which will refresh the contacts list and show the newly added contact. The
 screen will reload itself to show the Contact Details.
 
-#figure([#image("/images/screenshot_hyperview_add.png")], caption: [
+#figure([#image("images/screenshot_hyperview_add.png")], caption: [
   Add Contact modal
 ])
 

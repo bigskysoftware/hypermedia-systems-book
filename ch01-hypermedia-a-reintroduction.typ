@@ -244,7 +244,7 @@ Here is what a user interaction with an anchor tag/hyperlink looks like in
 visual form:
 
 #asciiart(
-  "/images/diagram/http-get-in-action.txt", caption: [An HTTP GET In Action],
+  read("images/diagram/http-get-in-action.txt"), caption: [An HTTP GET In Action],
 )
 
 #index[GET request]
@@ -319,7 +319,7 @@ core mechanism for updating system state purely within hypermedia.
 Here is a diagram of the interaction:
 
 #asciiart(
-  "/images/diagram/http-post-in-action.txt", caption: [An HTTP POST In Action],
+  read("images/diagram/http-post-in-action.txt"), caption: [An HTTP POST In Action],
 )
 
 ===== Web 1.0 applications <_web_1_0_applications>

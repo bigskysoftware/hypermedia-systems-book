@@ -41,7 +41,7 @@
 #let asciiart(..args, source) = figure({
   set text(size: .8em)
   set par(leading: .5em)
-  block(breakable: false, align(start, raw(read(source))))
+  block(breakable: false, align(start, raw(source)))
 }, kind: image, ..args)
 
 #let blockquote = quote.with(block: true)
