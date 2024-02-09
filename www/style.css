@@ -1,0 +1,152 @@
+:root {
+  --text: Linux Libertine, Georgia, serif;
+  --secondary: Linux Biolinum, Optima, sans-serif;
+  --display: ChicagoFLF, Chicago, Impact, sans-serif;
+  --code: Berkeley Mono, Consolas, monospace;
+
+  font-family: var(--text);
+  font-size: 1.2em;
+  line-height: 1.4em;
+
+  max-width: 70ch;
+  padding: 1em;
+
+  color-scheme: light dark;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--display);
+  font-weight: normal;
+  line-height: 1.2em;
+}
+
+figcaption, ol::marker, ul::marker, header, footer {
+  font-family: var(--secondary);
+}
+
+header, footer {
+  font-size: 0.8em;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+pre, code {
+  font-family: var(--code);
+  font-size: 0.8em;
+  line-height: 1.2em;
+  & & {
+    font-size: 1em;
+  }
+}
+
+ul[role=list] {
+  list-style: none;
+  padding-inline-start: 0;
+
+  & & {
+    padding-inline-start: 1em;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+.book-title {
+  font-size: 5vw;
+  text-transform: uppercase;
+  line-height: 1em;
+  font-style: italic;
+}
+
+.top-blurb {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.bottom-blurb {
+  font-family: var(--secondary);
+  font-size: .8em;
+  line-height: 1.2em;
+  width: max(20ch, 50%);
+  max-width: 100%;
+}
+
+.buy-it {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  gap: .2em;
+  width: 80%;
+
+  > a {
+    flex: 1 0 15ch;
+
+    font-family: var(--secondary);
+    font-weight: bold;
+    font-size: .9em;
+    line-height: 1.4em;
+
+    background: rgb(215, 215, 242);
+    color: rgb(14, 19, 65);
+    text-decoration: none;
+    text-align: center;
+    padding: 0.2em;
+    
+    &:hover, &:focus, &:active {
+      background: rgb(200, 200, 239);
+    }
+
+    small {
+      display: block;
+      font-weight: normal;
+    }
+  }
+}
+
+.table-of-contents {
+  ul {
+    column-width: 30ch;
+    column-gap: 2em;
+    display: flow-root;
+    margin-block: 1.4em;
+  }
+  li + li {
+    margin-block-start: 1.4em;
+  }
+
+  .internal-contents {
+    display: none;
+  }
+  
+  a {
+    text-decoration: none;
+  
+    &:hover, &:focus-visible, &:active {
+      text-decoration: underline;
+    }
+  
+    &:not(.internal-contents a) {
+      font-weight: bold;
+    }
+  }
+}
+
+.navigation {
+  [rel=next] {
+    font-weight: bold;
+  }
+}
+
+
+.kw, .cf, .bu, .ex, .pp, .at, .in, .wa {
+  font-weight: bold;
+}
+.dt, .dv, .bn, .fl, .ch, .st, .co, .ot, .al, .fu, .re, .er, .cn, .sc, .vs, .ss, .im, .do, .an, .cv, .va, .op {
+  color: #777;
+  @media (prefers-color-scheme: dark) {
+    color: #bbb;
+  }
+}

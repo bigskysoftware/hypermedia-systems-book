@@ -60,7 +60,7 @@ application, and it is the entire
 _hypermedia system_ that comes together to make hypermedia such a powerful
 architecture.
 
-=== What is a Hypermedia System?
+=== What is a Hypermedia System? <what-is-a-hypermedia-system>
 
 #index["Fielding, Roy"]
 #index[REST]

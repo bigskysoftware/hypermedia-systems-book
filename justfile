@@ -6,19 +6,16 @@ format:
 
 clean:
   find  . -name '*.pdf' | xargs rm -rf
+  rm -rf _site
 
 build-pdf:
   typst compile HypermediaSystems.typ
 
 build-html:
-  find . -name 'ch*.typ' -or -name '-*.typ' | \
-    xargs -I% just build-chapter-html %
+  www/build_web.ts
 
-[private]
-build-chapter-html chapter:
-  mkdir -p "_site/$(basename {{ chapter }})"
-  pandoc -f typst -t html {{ chapter }} | tool/layout-chapter.sh > "_site/$(basename {{ chapter }})/index.html"
-
-build-toc:
-  mkdir -p _site
-  pandoc -f typst -t html toc.typ | tool/layout-toc.sh > _site/toc.html
+serve:
+  (trap 'kill 0' SIGINT; \
+  python3 -m http.server --directory _site & \
+  watchexec -w . -i '_site/**/*' -r just build-html & \
+  wait 0)

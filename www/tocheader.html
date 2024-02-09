@@ -1,0 +1,17 @@
+<label>
+  <input type="checkbox" id="show-internal-contents"
+    onchange="
+      document.querySelectorAll('.internal-contents')
+        .forEach(el => el.style.display = this.checked ? 'block' : 'none')
+      document.querySelectorAll('ul')
+        .forEach(el => el.style.columnCount = this.checked ? 1 : 'auto')
+      
+      ">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('show-internal-contents')
+        .dispatchEvent(new Event('change'))
+    })
+  </script>
+  Show full table of contents
+</label>
