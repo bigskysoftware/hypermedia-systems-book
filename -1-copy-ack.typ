@@ -2,7 +2,7 @@
 #set par(first-line-indent: 0pt)
 #show par: it => block(spacing: 1.6em, it)
 
-*Hypermedia Systems*#linebreak()
+*Hypermedia Systems*\
 #sym.copyright 2023 Carson Gross, Adam Stepinski, Deniz Akşimşek
 
 Editor: Wm Talcott

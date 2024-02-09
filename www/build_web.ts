@@ -4,7 +4,7 @@ import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introd
 
 const compile = async (path: string) => {
   const pandoc = new Deno.Command("pandoc", {
-    args: ["-f", "typst", "-t", "html", path],
+    args: ["-f", "typst", "-t", "html", "--", path],
   });
   const compiled = new TextDecoder().decode((await pandoc.output()).stdout);
   const headingsUpleveled = compiled.replace(/<(\/?)h(\d)/g, (_, slash, level) => `<${slash}h${+level - 1}`);
@@ -14,11 +14,9 @@ const compile = async (path: string) => {
     .replace(/\.typ$/, "/")
     .replace(/ch\d\d-|-\d-/, "/");
   return {
-    content: h1Removed,
+    compiledContent: h1Removed,
     title,
     url,
-    // avoid markdown processing
-    compile: (content) => content,
     // add ids to headings
     process() {
       const ids = new Map<string, number>();
