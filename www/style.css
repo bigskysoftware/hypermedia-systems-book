@@ -13,6 +13,11 @@
   margin: auto;
 
   color-scheme: light dark;
+
+  @media (prefers-color-scheme: dark) {
+    background: black;
+    color: #ddd;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,6 +47,10 @@ pre, code {
   }
 }
 
+ul, ol {
+  padding-inline-start: 1.5em;
+}
+
 ol li::marker {
   font-family: var(--secondary);
   font-variant-numeric: oldstyle-nums;
@@ -63,10 +72,15 @@ dt {
 
 blockquote {
   font-style: italic;
+  margin-inline: 1em;
 }
 
 a {
   color: inherit;
+}
+
+label {
+  font-family: var(--secondary);
 }
 
 .book-header {
@@ -136,12 +150,22 @@ a {
 
     background: rgb(215, 215, 242);
     color: rgb(14, 19, 65);
+
     text-decoration: none;
     text-align: center;
     padding: 0.2em;
+
+    @media (prefers-color-scheme: dark) {
+      background: rgb(37, 42, 53);
+      color: rgb(215, 215, 242);
+    }
     
     &:hover, &:focus, &:active {
       background: rgb(200, 200, 239);
+
+      @media (prefers-color-scheme: dark) {
+        background: rgb(26, 47, 80);
+      }
     }
 
     small {
@@ -191,6 +215,9 @@ a {
 
 .division-toc {
   font-family: var(--secondary);
+  summary {
+    font-weight: bold;
+  }
   ul {
     font-size: .8em;
     ul { font-size: 1em; }
@@ -219,13 +246,23 @@ a {
     font-size: .9em;
     line-height: 1.4em;
 
-    background: rgb(215, 215, 242);
-    color: rgb(14, 19, 65);
     text-decoration: none;
     padding: .2em .4em;
     
+    background: rgb(215, 215, 242);
+    color: rgb(14, 19, 65);
+
+    @media (prefers-color-scheme: dark) {
+      background: rgb(37, 42, 53);
+      color: rgb(215, 215, 242);
+    }
+    
     &:hover, &:focus, &:active {
       background: rgb(200, 200, 239);
+
+      @media (prefers-color-scheme: dark) {
+        background: rgb(26, 47, 80);
+      }
     }
   }
 
@@ -235,11 +272,32 @@ a {
   }
 }
 
-#html-note {
+#sidebar, #important, #html-note {
   font-size: .8em;
   padding: 0 1em;
   display: flow-root;
+  font-family: var(--secondary);
 
+  background: rgb(245, 245, 245);
+  border-block: 1px solid rgb(78, 78, 78);
+
+  @media (prefers-color-scheme: dark) {
+    background: rgb(30, 30, 30);
+    border-color: rgb(159, 159, 159);
+  }
+}
+
+#important {
+  background: rgb(207, 232, 253);
+  border-block: 1px solid rgb(23, 61, 111);
+
+  @media (prefers-color-scheme: dark) {
+    background: rgb(28, 32, 83);
+    border-color: rgb(74, 89, 230);
+  }
+}
+
+#html-note {
   background: rgb(230, 230, 246);
   border-block: 1px solid rgb(34, 64, 104);
 
@@ -260,6 +318,19 @@ a {
   text-align: right;
   font-size: .8em;
   font-family: var(--secondary);
+}
+
+.footnotes {
+  font-size: .8em;
+  font-family: var(--secondary);
+  margin-block: 3em 1em;
+  hr {
+    display: none;
+  }
+  .footnote-back {
+    font-size: .8em;
+    text-decoration: none;
+  }
 }
 
 .kw, .cf, .bu, .ex, .pp, .at, .in, .wa {

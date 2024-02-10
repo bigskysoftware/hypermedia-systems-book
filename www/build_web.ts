@@ -28,6 +28,11 @@ const compile = async (path: string) => {
         ids.set(id, count + 1);
         heading.setAttribute("id", id);
       })
+      this.dom.querySelectorAll("img").forEach((img) => {
+        if (img.hasAttribute("src") && !img.getAttribute("src")?.startsWith("http")) {
+          img.setAttribute("src", `/${img.getAttribute("src")}`);
+        }
+      })
       this.dom.querySelectorAll("blockquote p:last-child").forEach((line) => {
         if (line.textContent?.startsWith("℄")) {
           line.classList.add("quote-attribution");

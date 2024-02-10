@@ -12,7 +12,9 @@ build-pdf:
   typst compile HypermediaSystems.typ
 
 build-html:
+  rm -rf _site
   www/build_web.ts
+  cp -r images _site/images
 
 serve:
   (trap 'kill 0' SIGINT; \

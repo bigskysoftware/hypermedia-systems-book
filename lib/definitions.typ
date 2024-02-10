@@ -46,7 +46,7 @@
 
 #let blockquote = quote.with(block: true)
 
-#let sidebar(title, body) = block(
+#let sidebar(title, body) = [#block(
   spacing: 1em, block(
     width: 100%,
     inset: 1em,
@@ -59,9 +59,9 @@
 
     #block(spacing: 1em, body)
   ],
-)
+)<sidebar>]
 
-#let important(title, body) = block(
+#let important(title, body) = [#block(
   spacing: 1em, block(
     width: 100%,
     inset: 1em,
@@ -76,7 +76,7 @@
 
     #block(spacing: 1em, body)
   ],
-)
+)<important>]
 
 #let html-note(label: [HTML Notes], title, body) = [#block(
   spacing: 1em,
