@@ -41,7 +41,7 @@
 #let asciiart(..args, source) = figure({
   set text(size: .8em)
   set par(leading: .5em)
-  block(breakable: false, align(start, raw(source)))
+  block(breakable: false, align(start, raw(source, block: true)))
 }, kind: image, ..args)
 
 #let blockquote = quote.with(block: true)
@@ -78,8 +78,9 @@
   ],
 )
 
-#let html-note(label: [HTML Notes], title, body) = block(
-  spacing: 1em, block(
+#let html-note(label: [HTML Notes], title, body) = [#block(
+  spacing: 1em,
+  block(
     width: 100%,
     inset: 1em,
     stroke: (top: 1pt, bottom: 1pt),
@@ -92,7 +93,7 @@
     === #label: #title
     #body
   ],
-)
+)<html-note>]
 
 #let skew(angle, vscale: 1, body) = {
   let (a, b, c, d) = (1, vscale * calc.tan(angle), 0, vscale)

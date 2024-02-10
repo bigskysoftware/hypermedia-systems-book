@@ -41,6 +41,11 @@ pre, code {
   }
 }
 
+ol li::marker {
+  font-family: var(--secondary);
+  font-variant-numeric: oldstyle-nums;
+}
+
 ul[role=list] {
   list-style: none;
   padding-inline-start: 0;
@@ -48,6 +53,15 @@ ul[role=list] {
   & & {
     padding-inline-start: 1em;
   }
+}
+
+dt {
+  font-weight: bold;
+  font-style: normal;
+}
+
+blockquote {
+  font-style: italic;
 }
 
 a {
@@ -134,12 +148,88 @@ a {
   }
 }
 
+.part-children {
+  font-family: var(--secondary);
+  .part-child {
+    margin-block: 1em;
+  }
+  a:not(:hover, :focus-visible, :active) {
+    text-decoration: none;
+  }
+}
+
+.division-toc {
+  font-family: var(--secondary);
+  ul {
+    font-size: .8em;
+    ul { font-size: 1em; }
+    li {
+      margin-block: .5em;
+    }
+  }
+}
+
 .navigation {
+  margin-block: 1em;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  gap: .2em;
+
+  p {
+    display: contents;
+  }
+
+  a {
+    flex: 1 0 15ch;
+
+    font-family: var(--secondary);
+    font-size: .9em;
+    line-height: 1.4em;
+
+    background: rgb(215, 215, 242);
+    color: rgb(14, 19, 65);
+    text-decoration: none;
+    padding: .2em .4em;
+    
+    &:hover, &:focus, &:active {
+      background: rgb(200, 200, 239);
+    }
+  }
+
   [rel=next] {
+    font-weight: bold;
+    text-align: end;
+  }
+}
+
+#html-note {
+  font-size: .8em;
+  padding: 0 1em;
+  display: flow-root;
+
+  background: rgb(230, 230, 246);
+  border-block: 1px solid rgb(34, 64, 104);
+
+  @media (prefers-color-scheme: dark) {
+    background: rgb(20, 22, 43);
+    border-color: rgb(74, 89, 230);
+  }
+
+  h2 {
+    font-size: 1em;
+    font-family: var(--secondary);
     font-weight: bold;
   }
 }
 
+.quote-attribution {
+  margin-inline: 1em;
+  text-align: right;
+  font-size: .8em;
+  font-family: var(--secondary);
+}
 
 .kw, .cf, .bu, .ex, .pp, .at, .in, .wa {
   font-weight: bold;

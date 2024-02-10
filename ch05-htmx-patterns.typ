@@ -37,12 +37,13 @@ now load it in to our application. We do this by adding the following `script` t
 to the `head` tag in our `layout.html` file, which will make htmx available and
 active on every page in our application:
 
-#figure(caption: [Installing htmx])[ ```html
-  <head>
-    <script src="/js/htmx.js"></script>
-    ...
-  </head>
-``` ]
+#figure(caption: [Installing htmx],
+```html
+<head>
+  <script src="/js/htmx.js"></script>
+  ...
+</head>
+```)
 
 Recall that the `layout.html` file is a _layout_ file included in most templates
 that wraps the content of those templates in common HTML, including a `head` element
@@ -80,9 +81,10 @@ Instead, htmx will issue an AJAX request to
 `/settings`, take the result and replace the `body` element with the new
 content.
 
-#figure(caption: [A boosted link])[ ```html
+#figure(caption: [A boosted link],
+```html
 <a href="/settings" hx-boost="true">Settings</a> <1>
-``` ]
+```)
 1. The `hx-boost` attribute makes this link AJAX-powered.
 
 You might reasonably ask: what’s the advantage here? We are issuing an AJAX
@@ -122,12 +124,13 @@ Here is an example of a form that posts messages to the `/messages`
 endpoint using an HTTP `POST` request. By adding `hx-boost` to it, those
 requests will be done in AJAX, rather than the normal browser behavior.
 
-#figure(caption: [A boosted form])[ ```html
+#figure(caption: [A boosted form],
+```html
 <form action="/messages" method="post" hx-boost="true"> <1>
   <input type="text" name="message" placeholder="Enter A Message...">
   <button>Post Your Message</button>
 </form>
-``` ]
+```)
 1. As with the link, `hx-boost` makes this form AJAX-powered.
 
 #index[Flash Of Unstyled Content (FOUC)]
@@ -154,11 +157,11 @@ behave in the manner that we have described above.
 This feels a little redundant, doesn’t it? It seems silly to annotate all three
 links with the `hx-boost="true"` attribute right next to one another.
 
-#figure(caption: [A set of boosted links])[ ```html
+#figure(caption: [A set of boosted links], ```html
 <a href="/contacts" hx-boost="true">Contacts</a>
 <a href="/settings" hx-boost="true">Settings</a>
 <a href="/help" hx-boost="true">Help</a>
-``` ]
+```)
 
 #index[htmx][attribute inheritance]
 Htmx offers a feature to help reduce this redundancy: attribute inheritance.
@@ -175,13 +178,14 @@ functionality from the parent `div`.
 Note that any legal HTML element could be used here, we just use a `div`
 out of habit.
 
-#figure(caption: [Boosting links via the parent])[ ```html
+#figure(caption: [Boosting links via the parent],
+```html
 <div hx-boost="true"> <1>
     <a href="/contacts">Contacts</a>
     <a href="/settings">Settings</a>
     <a href="/help">Help</a>
 </div>
-``` ]
+```)
 1. The `hx-boost` has been moved to the parent div.
 
 Now we don’t have to put an `hx-boost="true"` on every link and, in fact, we can
@@ -199,14 +203,15 @@ To handle this situation, you simply override the parent `hx-boost`
 value with `hx-boost="false"` on the anchor tag that you don’t want to boost:
 
 #figure(
-  caption: [Disabling boosting], ```html
-              <div hx-boost="true"> <1>
-                  <a href="/contacts">Contacts</a>
-                  <a href="/settings">Settings</a>
-                  <a href="/help">Help</a>
-                  <a href="/help/documentation.pdf" hx-boost="false">Download Docs</a> <2>
-              </div>
-              ```,
+  caption: [Disabling boosting], 
+  ```html
+  <div hx-boost="true"> <1>
+      <a href="/contacts">Contacts</a>
+      <a href="/settings">Settings</a>
+      <a href="/help">Help</a>
+      <a href="/help/documentation.pdf" hx-boost="false">Download Docs</a> <2>
+  </div>
+  ```,
 )
 1. The `hx-boost` is still on the parent div.
 2. The boosting behavior is overridden for this link.
@@ -267,15 +272,15 @@ Well, it’s easy (and pretty common in htmx-powered web applications): we can
 just add `hx-boost` on the `body` tag of our `layout.html` template, and we are
 done.
 
-#figure(caption: [Boosting the entire contact.app])[ ```html
+#figure(caption: [Boosting the entire contact.app],
+```html
 <html>
 ...
 <body hx-boost="true"> <1>
 ...
 </body>
 </html>
-``` ]
-
+```)
 1. All links and forms will be boosted now!
 
 Now every link and form in our application will use AJAX by default, making it
@@ -310,11 +315,12 @@ practicality, and so it is included as a feature in the library.
 For our next step with htmx, recall that Contact.app has a small form on the
 edit page of a contact that is used to delete the contact:
 
-#figure(caption: [Plain HTML form to delete a contact])[ ```html
+#figure(caption: [Plain HTML form to delete a contact],
+```html
     <form action="/contacts/{{ contact.id }}/delete" method="post">
         <button>Delete Contact</button>
     </form>
-``` ]
+```)
 
 This form issued an HTTP `POST` to, for example, `/contacts/42/delete`, in order
 to delete the contact with the ID 42.
@@ -335,11 +341,10 @@ resource is `/contacts/42`. So the ideal is a `DELETE` request to `/contacts/42/
 Let’s update our application to do this by adding the htmx `hx-delete`
 attribute to the "Delete Contact" button:
 
-#figure(
-  caption: [An htmx-powered button for deleting a contact], ```html
-                <button hx-delete="/contacts/{{ contact.id }}">Delete Contact</button>
-              ```,
-)
+#figure(caption: [An htmx-powered button for deleting a contact],
+```html
+  <button hx-delete="/contacts/{{ contact.id }}">Delete Contact</button>
+```)
 
 Now, when a user clicks this button, htmx will issue an HTTP `DELETE`
 request via AJAX to the URL for the contact in question.
@@ -377,28 +382,28 @@ do. Since we updated both the route and the HTTP method we are using, we are
 going to need to update the server-side implementation as well to handle this
 new HTTP Request.
 
-#figure(
-  caption: [The original server-side code for deleting a contact], ```python
-              @app.route("/contacts/<contact_id>/delete", methods=["POST"])
-              def contacts_delete(contact_id=0):
-                  contact = Contact.find(contact_id)
-                  contact.delete()
-                  flash("Deleted Contact!")
-                  return redirect("/contacts")
-              ```,
-)
+#figure(caption: [The original server-side code for deleting a contact],
+```python
+@app.route("/contacts/<contact_id>/delete", methods=["POST"])
+def contacts_delete(contact_id=0):
+    contact = Contact.find(contact_id)
+    contact.delete()
+    flash("Deleted Contact!")
+    return redirect("/contacts")
+```)
 
 We’ll need to make two changes to our handler: update the route, and update the
 HTTP method we are using to delete contacts.
 
-#figure(caption: [Updated handler with new route and method])[ ```python
+#figure(caption: [Updated handler with new route and method],
+```python
 @app.route("/contacts/<contact_id>", methods=["DELETE"]) <1>
 def contacts_delete(contact_id=0):
     contact = Contact.find(contact_id)
     contact.delete()
     flash("Deleted Contact!")
     return redirect("/contacts")
-``` ]
+```)
 1. An updated path and method for the handler.
 
 Pretty simple, and much cleaner.
@@ -437,14 +442,15 @@ So we want to update our code to use the `303` response code in the controller.
 Thankfully, this is very easy: there is a second parameter to
 `redirect()` that takes the numeric response code you wish to send.
 
-#figure(caption: [Updated handler with `303` redirect response])[ ```python
+#figure(caption: [Updated handler with `303` redirect response],
+```python
 @app.route("/contacts/<contact_id>", methods=["DELETE"])
 def contacts_delete(contact_id=0):
     contact = Contact.find(contact_id)
     contact.delete()
     flash("Deleted Contact!")
     return redirect("/contacts", 303) <1>
-``` ]
+```)
 1. The response code is now a 303.
 
 Now, when you want to remove a given contact, you can simply issue a
@@ -470,12 +476,13 @@ htmx and can lead to some pretty funny situations.
 The fix for this is easy: add an explicit target to the button, and target the `body` element
 with the response:
 
-#figure(caption: [A fixed htmx-powered button for deleting a contact])[ ```html
+#figure(caption: [A fixed htmx-powered button for deleting a contact],
+```html
   <button hx-delete="/contacts/{{ contact.id }}"
           hx-target="body"> <1>
     Delete Contact
   </button>
-``` ]
+```)
 1. An explicit target added to the button.
 
 Now our button behaves as expected: clicking on the button will issue an HTTP `DELETE` to
@@ -505,15 +512,14 @@ request "pushed" into the location bar.
 We can achieve this by adding the `hx-push-url` attribute with the value
 `true` to our button:
 
-#figure(
-  caption: [Deleting a contact, now with proper location information],
-)[ ```html
+#figure(caption: [Deleting a contact, now with proper location information],
+```html
   <button hx-delete="/contacts/{{ contact.id }}"
           hx-target="body"
           hx-push-url="true"> <1>
     Delete Contact
   </button>]
-``` ]
+```)
 1. We tell htmx to push the redirected URL up into the location bar.
 
 _Now_ we are done.
@@ -548,16 +554,15 @@ to prevent accidents.
 
 Here is how we would add confirmation of the contact delete operation:
 
-#figure(
-  caption: [Confirming deletion],
-)[ ```html
+#figure(caption: [Confirming deletion],
+```html
   <button hx-delete="/contacts/{{ contact.id }}"
           hx-target="body"
           hx-push-url="true"
           hx-confirm="Are you sure you want to delete this contact?"> <1>
     Delete Contact
   </button>
-``` ]
+```)
 1. This message will be shown to the user, asking them to confirm the delete.
 
 Now, when someone clicks on the "Delete Contact" button, they will be presented
@@ -604,9 +609,8 @@ We are not going to go into the details of how validation works in the model
 objects, but recall what the code for updating a contact looks like from Chapter
 3:
 
-#figure(
-  caption: [Server-side validation on contact update],
-)[ ```python
+#figure(caption: [Server-side validation on contact update],
+```python
 def contacts_edit_post(contact_id=0):
     c = Contact.find(contact_id)
     c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) <1>
@@ -615,7 +619,7 @@ def contacts_edit_post(contact_id=0):
         return redirect("/contacts/" + str(contact_id))
     else:
         return render_template("edit.html", contact=c) <2>
-``` ]
+```)
 
 1. We attempt to save the contact.
 2. If the save does not succeed we re-render the form to display error messages.
@@ -628,15 +632,14 @@ correct the errors, which are displayed alongside the inputs.
 
 Let’s take a look at the HTML for the email input:
 
-#figure(
-  caption: [Validation error messages], ```html
-              <p>
-                  <label for="email">Email</label>
-                  <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}">
-                  <span class="error">{{ contact.errors['email'] }}</span> <1>
-              </p>
-              ```,
-)
+#figure(caption: [Validation error messages],
+```html
+<p>
+    <label for="email">Email</label>
+    <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}">
+    <span class="error">{{ contact.errors['email'] }}</span> <1>
+</p>
+```)
 1. Display any errors associated with the email field
 
 We have a label for the input, an input of type `text` and then a bit of HTML to
@@ -683,14 +686,15 @@ application: HTML 5 supports inputs of type `email`. All we need to do is switch
 our input from type `text` to type `email`, and the browser will enforce that
 the value entered properly matches the email format:
 
-#figure(caption: [Changing the input to type `email`], ```html
-  <p>
-      <label for="email">Email</label>
-      <input name="email" id="email" type="email" <1>
-        placeholder="Email" value="{{ contact.email }}">
-      <span class="error">{{ contact.errors['email'] }}</span>
-  </p>
-  ```)
+#figure(caption: [Changing the input to type `email`],
+```html
+<p>
+    <label for="email">Email</label>
+    <input name="email" id="email" type="email" <1>
+      placeholder="Email" value="{{ contact.email }}">
+    <span class="error">{{ contact.errors['email'] }}</span>
+</p>
+```)
 1. A change of the `type` attribute to `email` ensures that values entered are
   valid emails.
 
@@ -735,15 +739,14 @@ message if necessary.
 
 Recall the current HTML for our email input:
 
-#figure(
-  caption: [The initial email configuration],
-)[ ```html
+#figure(caption: [The initial email configuration],
+```html
 <p>
     <label for="email">Email</label>
     <input name="email" id="email" type="email" placeholder="Email" value="{{ contact.email }}"> <1>
     <span class="error">{{ contact.errors['email'] }}</span> <2>
 </p>
-``` ]
+```)
 1. This is the input that we want to have drive an HTTP request to validate the
   email.
 2. This is the span we want to put the error message, if any, into.
@@ -755,7 +758,8 @@ returned from the server.
 
 Let’s make those changes to our HTML:
 
-#figure(caption: [Our updated HTML])[ ```html
+#figure(caption: [Our updated HTML],
+```html
 <p>
     <label for="email">Email</label>
     <input name="email" id="email" type="email"
@@ -764,7 +768,7 @@ Let’s make those changes to our HTML:
            placeholder="Email" value="{{ contact.email }}">
     <span class="error">{{ contact.errors['email'] }}</span>
 </p>
-``` ]
+```)
 1. Issue an HTTP `GET` to the `email` endpoint for the contact.
 2. Target the next element with the class `error` on it.
 
@@ -818,14 +822,15 @@ That method will validate the email is unique and so forth. At that point we can
 return any errors associated with the email directly, or the empty string if
 none exist.
 
-#figure(caption: [Code for our email validation endpoint])[ ```python
+#figure(caption: [Code for our email validation endpoint],
+```python
 @app.route("/contacts/<contact_id>/email", methods=["GET"])
 def contacts_email_get(contact_id=0):
     c = Contact.find(contact_id) <1>
     c.email = request.args.get('email') <2>
     c.validate() <3>
     return c.errors.get('email') or "" <4>
-``` ]
+```)
 1. Look up the contact by id.
 2. Update its email (note that since this is a `GET`, we use the `args` property
   rather than the `form` property).
@@ -877,7 +882,8 @@ In fact, all we need to do is to change our trigger. Currently, we are using the
 default trigger for inputs, which is the `change` event. To validate as the user
 types, we would want to capture the `keyup` event as well:
 
-#figure(caption: [Triggering With `keyup` events])[ ```html
+#figure(caption: [Triggering With `keyup` events],
+```html
 <p>
     <label for="email">Email</label>
     <input name="email" id="email" type="email"
@@ -887,7 +893,7 @@ types, we would want to capture the `keyup` event as well:
            placeholder="Email" value="{{ contact.email }}">
     <span class="error">{{ contact.errors['email'] }}</span>
 </p>
-``` ]
+```)
 1. An explicit `keyup` trigger has been added along with `change`.
 
 With this tiny change, every time a user types a character we will issue a
@@ -915,7 +921,8 @@ leave the field, we’ll issue a request.
 Let’s add a delay of 200 milliseconds to the `keyup` trigger, which is long
 enough to detect that the user has stopped typing.:
 
-#figure(caption: [Debouncing the `keyup` event])[ ```html
+#figure(caption: [Debouncing the `keyup` event],
+```html
 <p>
     <label for="email">Email</label>
     <input name="email" id="email" type="email"
@@ -925,7 +932,7 @@ enough to detect that the user has stopped typing.:
            placeholder="Email" value="{{ contact.email }}">
     <span class="error">{{ contact.errors['email'] }}</span>
 </p>
-``` ]
+```)
 1. We debounce the `keyup` event by adding a `delay` modifier.
 
 Now we no longer issue a stream of validation requests as the user types.
@@ -947,7 +954,8 @@ event triggered by the DOM on input elements.)
 By adding `changed` to our `keyup` trigger, the input will not issue validation
 requests unless the keyup event actually updates the inputs value:
 
-#figure(caption: [Only sending requests when the input value changes])[ ```html
+#figure(caption: [Only sending requests when the input value changes],
+```html
 <p>
     <label for="email">Email</label>
     <input name="email" id="email" type="email"
@@ -957,7 +965,7 @@ requests unless the keyup event actually updates the inputs value:
            placeholder="Email" value="{{ contact.email }}">
     <span class="error">{{ contact.errors['email'] }}</span>
 </p>
-``` ]
+```)
 1. We do away with pointless requests by only issuing them when the input’s value
   has actually changed.
 
@@ -1005,7 +1013,8 @@ application.
 
 Let’s look at the jinja template code for this in `index.html`.
 
-#figure(caption: [Adding paging widgets to our list of contacts])[ ```html
+#figure(caption: [Adding paging widgets to our list of contacts],
+```html
 <div>
     <span style="float: right"> <1>
         {% if page > 1 %}
@@ -1016,7 +1025,7 @@ Let’s look at the jinja template code for this in `index.html`.
         {% endif %}
     </span>
 </div>
-``` ]
+```)
 1. Include a new div under the table to hold our navigation links.
 2. If we are beyond page 1, include an anchor tag with the page decremented by one.
 3. If there are 10 contacts in the current page, include an anchor tag linking to
@@ -1036,9 +1045,8 @@ So, in our handler, we need to look for that `page` parameter and pass that
 through to our model, as an integer, so the model knows which page of contacts
 to return:
 
-#figure(
-  caption: [Adding paging to our request handler],
-)[ ```python
+#figure(caption: [Adding paging to our request handler],
+```python
 @app.route("/contacts")
 def contacts():
     search = request.args.get("q")
@@ -1048,7 +1056,7 @@ def contacts():
     else:
         contacts_set = Contact.all(page) <2>
     return render_template("index.html", contacts=contacts_set, page=page)
-``` ]
+```)
 1. Resolve the page parameter, defaulting to page 1 if no page is passed in.
 2. Pass the page through to the model when loading all contacts so it knows which
   page of 10 contacts to return.
@@ -1100,33 +1108,32 @@ of contacts to the current, exiting table, rather than re-rendering the whole
 table. This can be achieved by adding a new row to our table that has just such
 a button in it:
 
-#figure(
-  caption: [Changing to "click to load"],
-)[ ```html
-        <tbody>
-        {% for contact in contacts %}
-            <tr>
-                <td>{{ contact.first }}</td>
-                <td>{{ contact.last }}</td>
-                <td>{{ contact.phone }}</td>
-                <td>{{ contact.email }}</td>
-                <td><a href="/contacts/{{ contact.id }}/edit">Edit</a> <a href="/contacts/{{ contact.id }}">View</a></td>
-            </tr>
-        {% endfor %}
-        {% if contacts|length == 10 %} <1>
-            <tr>
-                <td colspan="5" style="text-align: center">
-                    <button hx-target="closest tr" <2>
-                            hx-swap="outerHTML" <3>
-                            hx-select="tbody > tr" <4>
-                            hx-get="/contacts?page={{ page + 1 }}">
-                      Load More
-                    </button>
-                </td>
-            </tr>
-        {% endif %}
-        </tbody>
-``` ]
+#figure(caption: [Changing to "click to load"],
+```html
+<tbody>
+{% for contact in contacts %}
+    <tr>
+        <td>{{ contact.first }}</td>
+        <td>{{ contact.last }}</td>
+        <td>{{ contact.phone }}</td>
+        <td>{{ contact.email }}</td>
+        <td><a href="/contacts/{{ contact.id }}/edit">Edit</a> <a href="/contacts/{{ contact.id }}">View</a></td>
+    </tr>
+{% endfor %}
+{% if contacts|length == 10 %} <1>
+    <tr>
+        <td colspan="5" style="text-align: center">
+            <button hx-target="closest tr" <2>
+                    hx-swap="outerHTML" <3>
+                    hx-select="tbody > tr" <4>
+                    hx-get="/contacts?page={{ page + 1 }}">
+              Load More
+            </button>
+        </td>
+    </tr>
+{% endif %}
+</tbody>
+```)
 1. Only show "Load More" if there are 10 contact results in the current page.
 2. Target the closest enclosing row.
 3. Replace the entire row with the response from the server.
@@ -1184,9 +1191,8 @@ trigger a request when, well, when an element is revealed.
 #index[hx-select][example]
 So let’s convert our button to a span and take advantage of this event:
 
-#figure(
-  caption: [Changing to "infinite scroll"],
-)[ ```html
+#figure(caption: [Changing to "infinite scroll"],
+```html
 {% if contacts|length == 10 %}
     <tr>
         <td colspan="5" style="text-align: center">
@@ -1198,7 +1204,7 @@ So let’s convert our button to a span and take advantage of this event:
         </td>
     </tr>
 {% endif %}
-``` ]
+```)
 1. We have converted our element from a button to a span, since the user will not
   be clicking on it.
 2. We trigger the request when the element is revealed, that is when it comes into

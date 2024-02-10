@@ -28,6 +28,13 @@ const compile = async (path: string) => {
         ids.set(id, count + 1);
         heading.setAttribute("id", id);
       })
+      this.dom.querySelectorAll("blockquote p:last-child").forEach((line) => {
+        if (line.textContent?.startsWith("℄")) {
+          line.classList.add("quote-attribution");
+          line.parentElement.after(line);
+          line.firstChild.data = line.firstChild.data.replace("℄", "");
+        }
+      })
     }
   };
 }
