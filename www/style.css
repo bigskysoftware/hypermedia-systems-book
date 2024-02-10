@@ -10,6 +10,7 @@
 
   max-width: 70ch;
   padding: 1em;
+  margin: auto;
 
   color-scheme: light dark;
 }
@@ -66,6 +67,36 @@ blockquote {
 
 a {
   color: inherit;
+}
+
+.book-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  overflow-x: auto;
+
+  background: rgb(14, 19, 65);
+  color: rgb(215, 215, 242);
+
+  font-family: var(--secondary);
+
+  a {
+    margin-inline: 1em;
+    &:not(:hover, :focus-visible, :active) {
+      text-decoration: none;
+    }
+  }
+
+  .homepage-link {
+    font-family: var(--display);
+    text-transform: uppercase;
+  }
+
+  + header {
+    margin-block-start: 3em;
+  }
 }
 
 .book-title {
