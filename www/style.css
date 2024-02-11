@@ -83,6 +83,10 @@ label {
   font-family: var(--secondary);
 }
 
+.smallcaps {
+  font-variant-caps: small-caps;
+}
+
 .book-header {
   margin-block: 0;
   padding-inline: .4em;
