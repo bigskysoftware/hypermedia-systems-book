@@ -30,12 +30,36 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2em;
 }
 
+h1 {
+  font-size: 1.5em;
+  margin-block: 0.5em;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin-block: 0.5em;
+}
+
+h3 {
+  font-size: 1em;
+  margin-block: 0.5em;
+}
+
+h4 {
+  font-size: .8em;
+  margin-block: 0.5em;
+}
+
 figcaption, ol::marker, ul::marker, header, footer {
   font-family: var(--secondary);
 }
 
 header, footer {
   font-size: 0.8em;
+
+  h1 {
+    font-size: 2.2em;
+  }
 }
 
 pre {
@@ -177,12 +201,15 @@ label {
 }
 
 .table-of-contents {
+  counter-reset: chapter 0;
+
   ul {
     column-width: 30ch;
     column-gap: 2em;
     display: flow-root;
     margin-block: 1.4em;
   }
+
   li + li {
     margin-block-start: 1.4em;
   }
@@ -196,10 +223,20 @@ label {
   
     &:hover, &:focus-visible, &:active {
       text-decoration: underline;
+    }  
+    
+    .part > & {
+      font-family: var(--display);
+      font-weight: 900;
     }
-  
-    &:not(.internal-contents a) {
-      font-weight: bold;
+  }
+
+  .chapter {
+    counter-increment: chapter;
+    &::before {
+      content: counter(chapter, decimal-leading-zero);
+      font-family: var(--display);
+      font-weight: 900;
     }
   }
 }
@@ -214,10 +251,17 @@ label {
   }
 }
 
+.division-header {
+  margin-block: 7rem 1em;
+}
+
 .division-toc {
   font-family: var(--secondary);
   summary {
-    font-weight: bold;
+    color: rgb(48, 56, 122);
+    @media (prefers-color-scheme: dark) {
+      color: rgb(137, 137, 181);
+    }
   }
   ul {
     font-size: .8em;
@@ -228,6 +272,16 @@ label {
   }
   a:not(:hover, :focus-visible, :active) {
     text-decoration: none;
+  }
+}
+
+.division-content {
+  margin-block: 4em;
+}
+
+.navigation-footer {
+  & ~ & {
+    font-size: 1.2em;
   }
 }
 
