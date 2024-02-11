@@ -1,7 +1,7 @@
 :root {
-  --text: Linux Libertine, Georgia, serif;
-  --secondary: Linux Biolinum, Optima, sans-serif;
-  --display: ChicagoFLF, Chicago, Impact, sans-serif;
+  --text: Novello Reduced, serif;
+  --secondary: Novello Reduced, serif;
+  --display: Chiq Reduced, ChicagoFLF, Chicago, Impact, sans-serif;
   --code: Berkeley Mono, Consolas, monospace;
 
   font-family: var(--text);
@@ -9,8 +9,8 @@
   line-height: 1.4em;
 
   max-width: 70ch;
-  padding: 1em;
-  margin: auto;
+  padding: 0 1em;
+  margin: 0 auto;
 
   color-scheme: light dark;
 
@@ -20,9 +20,13 @@
   }
 }
 
+body {
+  margin: 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--display);
-  font-weight: normal;
+  font-weight: 900;
   line-height: 1.2em;
 }
 
@@ -40,11 +44,7 @@ pre {
 
 pre, code {
   font-family: var(--code);
-  font-size: 0.8em;
   line-height: 1.2em;
-  & & {
-    font-size: 1em;
-  }
 }
 
 ul, ol {
@@ -84,40 +84,37 @@ label {
 }
 
 .book-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  overflow-x: auto;
-
-  background: rgb(14, 19, 65);
-  color: rgb(215, 215, 242);
-
-  font-family: var(--secondary);
-
-  a {
-    margin-inline: 1em;
-    &:not(:hover, :focus-visible, :active) {
-      text-decoration: none;
-    }
+  margin-block: 0;
+  padding-inline: .4em;
+  background: rgb(215, 215, 242);
+  @media (prefers-color-scheme: dark) {
+    background: rgb(37, 42, 53);
   }
 
   .homepage-link {
     font-family: var(--display);
+    font-weight: 900;
     text-transform: uppercase;
+    pointer-events: all;
+    text-decoration: none;
+
+    &:hover, &:focus-visible, &:active {
+      color: rgb(14, 19, 65);
+      @media (prefers-color-scheme: dark) {
+        color: rgb(215, 215, 242);
+      }
+    }
   }
 
-  + header {
-    margin-block-start: 3em;
+  + .navigation-footer nav {
+    margin-block-start: .2em;
   }
 }
 
 .book-title {
-  font-size: 5vw;
+  font-size: clamp(2em, 8vw, 5.2em);
   text-transform: uppercase;
   line-height: 1em;
-  font-style: italic;
 }
 
 .top-blurb {
@@ -224,6 +221,9 @@ label {
     li {
       margin-block: .5em;
     }
+  }
+  a:not(:hover, :focus-visible, :active) {
+    text-decoration: none;
   }
 }
 

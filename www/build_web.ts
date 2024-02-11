@@ -50,11 +50,7 @@ const HypermediaSystems = new Book("Hypermedia Systems",
     htmlHead: `
     <link rel="stylesheet" href="/style.css">
     <header class="book-header">
-      <nav class="book-nav" aria-label="Site-wide nav">
-        <a href="/" class="homepage-link">Hypermedia Systems</a>
-        <a href="/book/contents/">Contents</a>
-        <a href="https://github.com/bigskysoftware/hypermedia-systems">GitHub</a>
-      </nav>
+      <a href="/" class="homepage-link">Hypermedia Systems</a>
     </header>
     `
   },
