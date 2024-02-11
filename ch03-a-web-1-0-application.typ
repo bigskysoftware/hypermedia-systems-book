@@ -125,11 +125,12 @@ decorators work in Python, just know that this feature allows us to map a given 
 a particular function (i.e., handler). The Flask application, when started, will
 take HTTP requests and look up the matching handler and invoke it.
 
-#figure(caption: [A simple "Hello World" route], ```python
-  @app.route("/") <1>
-  def index(): <2>
-      return "Hello World!" <3>
-  ```)
+#figure(caption: [A simple "Hello World" route],
+```python
+@app.route("/") <1>
+def index(): <2>
+    return "Hello World!" <3>
+```)
 
 1. Establishes we are mapping the `/` path as a route.
 2. The next method is the handler for that route.
@@ -179,11 +180,12 @@ terms of routes we will set up later in the application.
 To change our "Hello World" route to a redirect, we only need to change one line
 of code:
 
-#figure(caption: [Changing "Hello World" to a redirect], ```python
-  @app.route("/")
-  def index():
-      return redirect("/contacts") <1>
-  ```)
+#figure(caption: [Changing "Hello World" to a redirect],
+```python
+@app.route("/")
+def index():
+    return redirect("/contacts") <1>
+```)
 1. Update to a call to `redirect()`
 
 Now the `index()` function returns the result of the Flask-supplied
@@ -230,16 +232,17 @@ display that is common to both types of request.
 
 Here is what the code looks like for this handler:
 
-#figure(caption: [A handler for server-side search], ```python
-  @app.route("/contacts")
-  def contacts():
-      search = request.args.get("q") <1>
-      if search is not None:
-          contacts_set = Contact.search(search) <2>
-      else:
-          contacts_set = Contact.all() <3>
-      return render_template("index.html", contacts=contacts_set)
-  ```)
+#figure(caption: [A handler for server-side search], 
+```python
+@app.route("/contacts")
+def contacts():
+    search = request.args.get("q") <1>
+    if search is not None:
+        contacts_set = Contact.search(search) <2>
+    else:
+        contacts_set = Contact.all() <3>
+    return render_template("index.html", contacts=contacts_set)
+```)
 
 1. Look for the query parameter named `q`, which stands for "query."
 2. If the parameter exists, call the `Contact.search()` function with it.
@@ -308,19 +311,18 @@ used to generate content, and should be easy to follow for most web developers.
 
 Let’s look at the first few lines of code in the `index.html` template:
 
-#figure(
-  caption: [Start of index.html], ```html
-              {% extends 'layout.html' %} <1>
+#figure(caption: [Start of index.html], 
+```html
+{% extends 'layout.html' %} <1>
 
-              {% block content %} <2>
+{% block content %} <2>
 
-                  <form action="/contacts" method="get" class="tool-bar"> <3>
-                          <label for="search">Search Term</label>
-                          <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> <4>
-                          <input type="submit" value="Search"/>
-                  </form>
-              ```,
-)
+    <form action="/contacts" method="get" class="tool-bar"> <3>
+            <label for="search">Search Term</label>
+            <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> <4>
+            <input type="submit" value="Search"/>
+    </form>
+```)
 
 1. Set the layout template for this template.
 2. Delimit the content to be inserted into the layout.
@@ -363,28 +365,28 @@ search was done.
 
 Here is what the template code for the contact table looks like:
 
-#figure(
-  caption: [The contacts table], ```html
-                  <table>
-                      <thead>
-                      <tr>
-                          <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th> <1>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      {% for contact in contacts %} <2>
-                          <tr>
-                              <td>{{ contact.first }}</td>
-                              <td>{{ contact.last }}</td>
-                              <td>{{ contact.phone }}</td>
-                              <td>{{ contact.email }}</td> <3>
-                              <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
-                                  <a href="/contacts/{{ contact.id }}">View</a></td> <4>
-                          </tr>
-                      {% endfor %}
-                      </tbody>
-                  </table>
-              ```,
+#figure(caption: [The contacts table],
+```html
+<table>
+    <thead>
+    <tr>
+        <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th> <1>
+    </tr>
+    </thead>
+    <tbody>
+    {% for contact in contacts %} <2>
+        <tr>
+            <td>{{ contact.first }}</td>
+            <td>{{ contact.last }}</td>
+            <td>{{ contact.phone }}</td>
+            <td>{{ contact.email }}</td> <3>
+            <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
+                <a href="/contacts/{{ contact.id }}">View</a></td> <4>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+```,
 )
 - Output some headers for our table.
 - Iterate over the contacts that were passed in to the template.
@@ -409,14 +411,14 @@ Additionally, we have a table cell that includes two links:
 Finally, we have a bit of end-matter: a link to add a new contact and a Jinja2
 directive to end the `content` block:
 
-#figure(caption: [The "add contact" link], ```html
-      <p>
-          <a href="/contacts/new">Add Contact</a> <1>
-      </p>
+#figure(caption: [The "add contact" link],
+```html
+    <p>
+        <a href="/contacts/new">Add Contact</a> <1>
+    </p>
 
-  {% endblock %} <2>
-  ```)
-
+{% endblock %} <2>
+```)
 1. Link to the page that allows you to create a new contact.
 2. The closing element of the `content` block.
 
@@ -457,11 +459,12 @@ method we want to handle when we declare this route.
 
 Here is the code:
 
-#figure(caption: [The "new contact" GET route], ```python
-  @app.route("/contacts/new", methods=['GET']) <1>
-  def contacts_new_get():
-      return render_template("new.html", contact=Contact()) <2>
-  ```)
+#figure(caption: [The "new contact" GET route],
+```python
+@app.route("/contacts/new", methods=['GET']) <1>
+def contacts_new_get():
+    return render_template("new.html", contact=Contact()) <2>
+```)
 
 1. Declare a route, explicitly handling `GET` requests to this path.
 2. Render the `new.html` template, passing in a new contact object.
@@ -484,9 +487,8 @@ server.
 
 Here is what our HTML looks like:
 
-#figure(
-  caption: [The "new contact" form],
-)[ ```html
+#figure(caption: [The "new contact" form],
+```html
 <form action="/contacts/new" method="post"> <1>
     <fieldset>
         <legend>Contact Values</legend>
@@ -495,7 +497,7 @@ Here is what our HTML looks like:
             <input name="email" id="email" type="email" placeholder="Email" value="{{ contact.email or '' }}"> <3>
             <span class="error">{{ contact.errors['email'] }}</span> <4>
         </p>
-``` ]
+```)
 
 1. A form that submits to the `/contacts/new` path, using an HTTP `POST`.
 2. A label for the first form input.
@@ -516,38 +518,39 @@ key.
 
 Next we have inputs for the other fields for contacts:
 
-#figure(
-  caption: [Inputs and labels for the "new contact" form], ```html
-                      <p>
-                          <label for="first_name">First Name</label>
-                          <input name="first_name" id="first_name" type="text" placeholder="First Name" value="{{ contact.first or '' }}">
-                          <span class="error">{{ contact.errors['first'] }}</span>
-                      </p>
-                      <p>
-                          <label for="last_name">Last Name</label>
-                          <input name="last_name" id="last_name" type="text" placeholder="Last Name" value="{{ contact.last or '' }}">
-                          <span class="error">{{ contact.errors['last'] }}</span>
-                      </p>
-                      <p>
-                          <label for="phone">Phone</label>
-                          <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone or '' }}">
-                          <span class="error">{{ contact.errors['phone'] }}</span>
-                      </p>
-              ```,
+#figure(caption: [Inputs and labels for the "new contact" form],
+```html
+<p>
+    <label for="first_name">First Name</label>
+    <input name="first_name" id="first_name" type="text" placeholder="First Name" value="{{ contact.first or '' }}">
+    <span class="error">{{ contact.errors['first'] }}</span>
+</p>
+<p>
+    <label for="last_name">Last Name</label>
+    <input name="last_name" id="last_name" type="text" placeholder="Last Name" value="{{ contact.last or '' }}">
+    <span class="error">{{ contact.errors['last'] }}</span>
+</p>
+<p>
+    <label for="phone">Phone</label>
+    <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone or '' }}">
+    <span class="error">{{ contact.errors['phone'] }}</span>
+</p>
+```,
 )
 
 Finally, we have a button that will submit the form, the end of the form tag,
 and a link back to the main contacts table:
 
-#figure(caption: [The submit button for the "new contact" form], ```html
-          <button>Save</button>
-      </fieldset>
-  </form>
+#figure(caption: [The submit button for the "new contact" form],
+```html
+        <button>Save</button>
+    </fieldset>
+</form>
 
-  <p>
-      <a href="/contacts">Back</a>
-  </p>
-  ```)
+<p>
+    <a href="/contacts">Back</a>
+</p>
+```)
 
 It is easy to miss in this straight-forward example: we are seeing the
 flexibility of hypermedia in action.
@@ -574,20 +577,18 @@ correct them.
 
 Here is our new request handler:
 
-#figure(
-  caption: [The "new contact" controller code], ```python
-              @app.route("/contacts/new", methods=['POST'])
-              def contacts_new():
-                  c = Contact(None, request.form['first_name'], request.form['last_name'], request.form['phone'],
-                              request.form['email']) <1>
-                  if c.save(): <2>
-                      flash("Created New Contact!")
-                      return redirect("/contacts") <3>
-                  else:
-                      return render_template("new.html", contact=c) <4>
-              ```,
-)
-
+#figure(caption: [The "new contact" controller code],
+```python
+@app.route("/contacts/new", methods=['POST'])
+def contacts_new():
+    c = Contact(None, request.form['first_name'], request.form['last_name'], request.form['phone'],
+                request.form['email']) <1>
+    if c.save(): <2>
+        flash("Created New Contact!")
+        return redirect("/contacts") <3>
+    else:
+        return render_template("new.html", contact=c) <4>
+```)
 1. We construct a new contact object with the values from the form.
 2. We try to save it.
 3. On success, "flash" a success message & redirect to the `/contacts`
@@ -718,19 +719,20 @@ good place to do so.
 
 Again, we will omit the "chrome" of the template and focus on the meat:
 
-#figure(caption: [The "contact details" template], ```html
-  <h1>{{contact.first}} {{contact.last}}</h1>
+#figure(caption: [The "contact details" template],
+```html
+<h1>{{contact.first}} {{contact.last}}</h1>
 
-  <div>
-    <div>Phone: {{contact.phone}}</div>
-    <div>Email: {{contact.email}}</div>
-  </div>
+<div>
+  <div>Phone: {{contact.phone}}</div>
+  <div>Email: {{contact.email}}</div>
+</div>
 
-  <p>
-    <a href="/contacts/{{contact.id}}/edit">Edit</a>
-    <a href="/contacts">Back</a>
-  </p>
-  ```)
+<p>
+  <a href="/contacts/{{contact.id}}/edit">Edit</a>
+  <a href="/contacts">Back</a>
+</p>
+```)
 
 We simply render a First Name and Last Name header, with the additional contact
 information below it, and a couple of links: a link to edit the contact and a
@@ -751,12 +753,13 @@ editing functionality. To do this we will need to handle a
 Let’s look at the code to handle the `GET`, which, again, will return an HTML
 representation of an editing interface for the given resource:
 
-#figure(caption: [The "edit contact" controller code], ```python
-  @app.route("/contacts/<contact_id>/edit", methods=["GET"])
-  def contacts_edit_get(contact_id=0):
-      contact = Contact.find(contact_id)
-      return render_template("edit.html", contact=contact)
-  ```)
+#figure(caption: [The "edit contact" controller code],
+```python
+@app.route("/contacts/<contact_id>/edit", methods=["GET"])
+def contacts_edit_get(contact_id=0):
+    contact = Contact.find(contact_id)
+    return render_template("edit.html", contact=contact)
+```)
 
 As you can see this looks a lot like our "Show Contact" functionality. In fact,
 it is nearly identical except for the template: here we render
@@ -770,18 +773,17 @@ editing, along with any error messages.
 
 Here is the first bit of the form:
 
-#figure(
-  caption: [The "edit contact" form start], ```html
-                  <form action="/contacts/{{ contact.id }}/edit" method="post"> <1>
-                      <fieldset>
-                          <legend>Contact Values</legend>
-                            <p>
-                                <label for="email">Email</label>
-                                <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}"> <2>
-                                <span class="error">{{ contact.errors['email'] }}</span>
-                            </p>
-              ```,
-)
+#figure(caption: [The "edit contact" form start],
+```html
+<form action="/contacts/{{ contact.id }}/edit" method="post"> <1>
+    <fieldset>
+        <legend>Contact Values</legend>
+          <p>
+              <label for="email">Email</label>
+              <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}"> <2>
+              <span class="error">{{ contact.errors['email'] }}</span>
+          </p>
+```)
 
 1. Issue a `POST` to the `/contacts/{{ contact.id }}/edit` path.
 2. As with the `new.html` page, the input is tied to the contact’s email.
@@ -795,30 +797,29 @@ HTML.)
 Following this we have the remainder of our form, again very similar to the `new.html` template,
 and our button to submit the form.
 
-#figure(
-  caption: [The "edit contact" form body], ```html
-                            <p>
-                                <label for="first_name">First Name</label>
-                                <input name="first_name" id="first_name" type="text" placeholder="First Name"
-                                      value="{{ contact.first }}">
-                                <span class="error">{{ contact.errors['first'] }}</span>
-                            </p>
-                            <p>
-                                <label for="last_name">Last Name</label>
-                                <input name="last_name" id="last_name" type="text" placeholder="Last Name"
-                                      value="{{ contact.last }}">
-                                <span class="error">{{ contact.errors['last'] }}</span>
-                            </p>
-                            <p>
-                                <label for="phone">Phone</label>
-                                <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone }}">
-                                <span class="error">{{ contact.errors['phone'] }}</span>
-                            </p>
-                          <button>Save</button>
-                      </fieldset>
-                  </form>
-              ```,
-)
+#figure(caption: [The "edit contact" form body],
+```html
+          <p>
+              <label for="first_name">First Name</label>
+              <input name="first_name" id="first_name" type="text" placeholder="First Name"
+                    value="{{ contact.first }}">
+              <span class="error">{{ contact.errors['first'] }}</span>
+          </p>
+          <p>
+              <label for="last_name">Last Name</label>
+              <input name="last_name" id="last_name" type="text" placeholder="Last Name"
+                    value="{{ contact.last }}">
+              <span class="error">{{ contact.errors['last'] }}</span>
+          </p>
+          <p>
+              <label for="phone">Phone</label>
+              <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone }}">
+              <span class="error">{{ contact.errors['phone'] }}</span>
+          </p>
+        <button>Save</button>
+    </fieldset>
+</form>
+```)
 
 In the final part of our template we have a small difference between the
 `new.html` and `edit.html`. Below the main editing form, we include a second
@@ -829,15 +830,16 @@ one. Unfortunately that also isn’t possible in plain HTML.
 
 To finish up the page, there is a simple hyperlink back to the list of contacts.
 
-#figure(caption: [The "edit contact" form footer], ```html
-      <form action="/contacts/{{ contact.id }}/delete" method="post">
-          <button>Delete Contact</button>
-      </form>
+#figure(caption: [The "edit contact" form footer],
+```html
+<form action="/contacts/{{ contact.id }}/delete" method="post">
+    <button>Delete Contact</button>
+</form>
 
-      <p>
-          <a href="/contacts/">Back</a>
-      </p>
-  ```)
+<p>
+    <a href="/contacts/">Back</a>
+</p>
+```)
 
 Given all the similarities between the `new.html` and `edit.html`
 templates, you may be wondering why we are not _refactoring_ these two templates
@@ -879,18 +881,17 @@ Here is the new handler code:
 
 #index[POST request]
 #figure(
-  ```python
-            @app.route("/contacts/<contact_id>/edit", methods=["POST"]) <1>
-            def contacts_edit_post(contact_id=0):
-                c = Contact.find(contact_id) <2>
-                c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) <3>
-                if c.save(): <4>
-                    flash("Updated Contact!")
-                    return redirect("/contacts/" + str(contact_id)) <5>
-                else:
-                    return render_template("edit.html", contact=c) <6>
-            ```,
-)
+```python
+@app.route("/contacts/<contact_id>/edit", methods=["POST"]) <1>
+def contacts_edit_post(contact_id=0):
+    c = Contact.find(contact_id) <2>
+    c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) <3>
+    if c.save(): <4>
+        flash("Updated Contact!")
+        return redirect("/contacts/" + str(contact_id)) <5>
+    else:
+        return render_template("edit.html", contact=c) <6>
+```)
 
 1. Handle a `POST` to `/contacts/<contact_id>/edit`.
 2. Look the contact up by id.
@@ -917,14 +918,15 @@ path as well.
 
 Here is what the controller looks like:
 
-#figure(caption: [The "delete contact" controller code], ```python
-  @app.route("/contacts/<contact_id>/delete", methods=["POST"]) <3>
-  def contacts_delete(contact_id=0):
-      contact = Contact.find(contact_id)
-      contact.delete() <2>
-      flash("Deleted Contact!")
-      return redirect("/contacts") <3>
-  ```)
+#figure(caption: [The "delete contact" controller code],
+```python
+@app.route("/contacts/<contact_id>/delete", methods=["POST"]) <3>
+def contacts_delete(contact_id=0):
+    contact = Contact.find(contact_id)
+    contact.delete() <2>
+    flash("Deleted Contact!")
+    return redirect("/contacts") <3>
+```)
 
 1. Handle a `POST` the `/contacts/<contact_id>/delete` path.
 2. Look up and then invoke the `delete()` method on the contact.

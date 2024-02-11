@@ -246,7 +246,8 @@ will be written inline, directly in the HTML. When the button is clicked, we
 will look up the `output` element holding the number, and increment the number
 contained within it.
 
-#figure(caption: [Counter in vanilla JavaScript, inline version])[ ```html
+#figure(caption: [Counter in vanilla JavaScript, inline version])[
+```html
 <section class="counter">
   <output id="my-output">0</output>  <1>
   <button
@@ -289,16 +290,16 @@ The JavaScript is a bit more complex than in our inline version: we need to look
 up the button using a query selector and add an _event listener_ to handle the
 click event and increment the counter.
 
-#figure(caption: [Counter HTML])[ ```html
+#figure(caption: [Counter HTML])[
+```html
 <section class="counter">
   <output id="my-output">0</output>
   <button class="increment-btn">Increment</button>
 </section>
 ``` ]
 
-#figure(
-  caption: [Counter JavaScript],
-)[ ```js
+#figure(caption: [Counter JavaScript])[
+```js
 const counterOutput = document.querySelector("#my-output") <1>
 const incrementBtn  = document.querySelector(".counter .increment-btn") <2>
 
@@ -499,9 +500,8 @@ components found on the page. (You never know how many counters you might want!)
 
 Here is what our code looks like now:
 
-#figure(
-  caption: [Counter in vanilla JavaScript, with RSJS],
-)[ ```html
+#figure(caption: [Counter in vanilla JavaScript, with RSJS])[
+```html
 <section class="counter" data-counter> <1>
   <output id="my-output" data-counter-output>0</output> <2>
   <button class="increment-btn" data-counter-increment>Increment</button>
@@ -510,7 +510,8 @@ Here is what our code looks like now:
 1. Invoke a JavaScript behavior with a data attribute.
 2. Mark relevant descendant elements.
 
-#figure[```js
+#figure[
+```js
 // counter.js <1>
 document.querySelectorAll("[data-counter]") <1>
   .forEach(el => {
@@ -564,7 +565,8 @@ table.
 
 Here is what our updated, RSJS-structured HTML looks like:
 
-#figure[```html
+#figure[
+```html
 <div data-overflow-menu> <1>
     <button type="button" aria-haspopup="menu"
         aria-controls="contact-menu-{{ contact.id }}"
@@ -649,7 +651,8 @@ data attribute, iterate over them, get any relevant descendants.
 Note that, below, we’ve modified the RSJS boilerplate a bit to integrate with
 htmx; we load the overflow menu when htmx loads new content.
 
-#figure[```js
+#figure[
+```js
 function overflowMenu(subtree = document) {
   document.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
     const
@@ -683,7 +686,8 @@ lean on the `hidden` attribute on the menu element to tell us it’s closed. If
 the HTML of the page is snapshotted and restored, the menu can be restored as
 well by simply re-running the JS.
 
-#figure[```js
+#figure[
+```js
   items = [...menu.querySelectorAll("[role=menuitem]")];
 
   const isOpen = () => !menu.hidden; <1>
@@ -696,7 +700,8 @@ well by simply re-running the JS.
 We’ll also make the menu items non-tabbable, so we can manage their focus
 ourselves.
 
-#figure[```js
+#figure[
+```js
   const isOpen = () => !menu.hidden;
 
   items.forEach(item => item.setAttribute("tabindex", "-1"));
@@ -706,7 +711,8 @@ ourselves.
 
 Now let’s implement toggling the menu in JavaScript:
 
-#figure[```js
+#figure[
+```js
   items.forEach(item => item.setAttribute("tabindex", "-1"));
 
   function toggleMenu(open = !isOpen()) { <1>
@@ -758,7 +764,8 @@ listeners in a nondeterministic amount of time after they are no longer needed.
 Fortunately for us, With a frequent event like "the user clicks anywhere in the
 page" driving the collection, it should work well enough for our system.
 
-#figure[```js
+#figure[
+```js
   menuRoot.addEventListener("blur", e => toggleMenu(false));
 
   window.addEventListener("click", function clickAway(event) {
@@ -774,7 +781,8 @@ Now, let’s move on to the keyboard interactions for our dropdown menu. The
 keyboard handlers turn out to all be pretty similar to one another and not
 particularly intricate, so let’s knock them all out in one go:
 
-#figure[```js
+#figure[
+```js
     if (!menuRoot.contains(event.target)) toggleMenu(false);
   });
 
@@ -1016,7 +1024,7 @@ In this case, we want to bind the value of the checkbox inputs to the
 
 #figure[```html
 <td>
-<input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}" x-model="selected"> <1>
+  <input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}" x-model="selected"> <1>
 </td>
 ```]
 1. The `x-model` attribute binds the `value` of this input to the
@@ -1230,8 +1238,9 @@ property (to see if it is `"KeyS"`) of the event to achieve this.
 
 So far our \_hyperscript looks like this:
 
-#figure(caption: [A start on our keyboard shortcut])[ ```hyperscript
-  on keydown[altKey and code is 'KeyS'] ...
+#figure(caption: [A start on our keyboard shortcut])[
+```hyperscript
+on keydown[altKey and code is 'KeyS'] ...
 ``` ]
 
 #index[\_hyperscript][from]
@@ -1244,8 +1253,9 @@ Not a problem! We can listen for the `keyDown` event elsewhere by using a `from`
 in our event handler. In this case we want to listen for the `keyDown` from the
 window, and our code ends up looking, naturally, like this:
 
-#figure(caption: [Listening globally])[ ```hyperscript
-  on keydown[altKey and code is 'KeyS'] from window ...
+#figure(caption: [Listening globally])[
+```hyperscript
+on keydown[altKey and code is 'KeyS'] from window ...
 ``` ]
 
 Using the `from` clause, we can attach the listener to the window while, at the
@@ -1257,7 +1267,8 @@ let’s implement the actual focusing by calling the standard
 
 Here is the entire script, embedded in HTML:
 
-#figure(caption: [Our final script])[ ```html
+#figure(caption: [Our final script])[
+```html
 <input id="search" name="q" type="search" placeholder="Search Contacts"
   _="on keydown[altKey and code is 'KeyS'] from the window
        me.focus()"> <1>
@@ -1486,7 +1497,8 @@ some htmx directly, will instead trigger a
 
 Here is what our JavaScript function looks like:
 
-#figure(caption: [An event-based confirmation dialog])[ ```javascript
+#figure(caption: [An event-based confirmation dialog])[
+```javascript
 function sweetConfirm(elt, config) {
       Swal.fire(config) <1>
           .then((result) => {
@@ -1516,9 +1528,8 @@ adding an
 
 Here is what our code looks like:
 
-#figure(
-  caption: [An Event-based Confirmation Dialog],
-)[ ```html
+#figure(caption: [An Event-based Confirmation Dialog])[
+```html
 <button type="button" class="bad bg color border"
         hx-delete="/contacts" hx-target="body" hx-trigger="confirmed" <1>
         @click="sweetConfirm($el, <2>
@@ -1625,7 +1636,7 @@ Just don’t make it a habit.
   )[
     - #smallcaps[Software was not supposed to use native toolkits]
 
-    - #smallcaps[Years of windows ui libraries] yet #smallcaps[no real-world use found] for going lower level
+    - #smallcaps[Years of windows UI libraries] yet #smallcaps[no real-world use found] for going lower level
       than #smallcaps[the Web]
 
     - Wanted a window anyway for a laugh? We had a tool for that: It was called "#smallcaps[Electron]"

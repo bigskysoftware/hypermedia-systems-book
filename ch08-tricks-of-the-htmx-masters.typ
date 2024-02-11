@@ -95,7 +95,8 @@ So, for example, if we had a button that issued a `GET` request, and we wished
 to scroll to the top of the `body` element when the request completed, we would
 write the following HTML:
 
-#figure(caption: [Scrolling to the top of the page])[ ```html
+#figure(caption: [Scrolling to the top of the page])[
+```html
 <button hx-get="/contacts" hx-target="#content-div"
         hx-swap="innerHTML show:body:top"> <1>
   Get Contacts
@@ -122,10 +123,11 @@ A classic example is the active search example we implemented in Contact.app:
 
 #figure(
   caption: [The active search input],
-)[ ```html
-    <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"
-           hx-get="/contacts"
-           hx-trigger="search, keyup delay:200ms changed"/> <1>
+)[
+```html
+<input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"
+        hx-get="/contacts"
+        hx-trigger="search, keyup delay:200ms changed"/> <1>
 ``` ]
 1. An elaborate trigger specification.
 
@@ -207,9 +209,8 @@ on a button that issues a request to `/contacts`?
 
 To do this using an event filter in htmx, you would write the following HTML:
 
-#figure(
-  caption: [The active search input],
-)[ ```html
+#figure(caption: [The active search input])[
+```html
 <script>
   function contactRetrievalEnabled() {
       // code to test if contact retrieval is enabled
@@ -286,7 +287,8 @@ Let’s take a look at `hx-sync`, which allows us to synchronize AJAX requests
 between two or more elements. Consider a simple case where we have two buttons
 that both target the same element on the screen:
 
-#figure(caption: [Two competing buttons])[ ```html
+#figure(caption: [Two competing buttons])[
+```html
 <button hx-get="/contacts" hx-target="body">
   Get Contacts
 </button>
@@ -317,7 +319,8 @@ that div to coordinate requests between the two buttons.
 Here is our updated code:
 
 #index[hx-sync][example]
-#figure(caption: [Syncing two buttons])[ ```html
+#figure(caption: [Syncing two buttons])[
+```html
 <div hx-target="body" <1>
      hx-sync="this"> <2>
     <button hx-get="/contacts">
@@ -409,9 +412,10 @@ the slot `special-token`.
 The token is being set via some JavaScript (don’t worry about the details yet)
 when the user first logs in:
 
-#figure(caption: [Getting The Token in JavaScript])[ ```js
-    let response = await fetch("/token"); <1>
-    localStorage['special-token'] = await response.text();
+#figure(caption: [Getting The Token in JavaScript])[
+```js
+let response = await fetch("/token"); <1>
+localStorage['special-token'] = await response.text();
 ``` ]
 1. Get the value of the token then set it into localStorage
 
@@ -424,9 +428,8 @@ with this token from
 In VanillaJS, it would look something like this, placed in a `<script>`
 tag in the `<head>` of our HTML document:
 
-#figure(
-  caption: [Adding the `X-SPECIAL-TOKEN` header],
-)[ ```js
+#figure(caption: [Adding the `X-SPECIAL-TOKEN` header])[
+```js
 document.body.addEventListener("htmx:configRequest", function(configEvent){
     configEvent.detail.headers['X-SPECIAL-TOKEN'] = localStorage['special-token']; <1>
 })
@@ -461,9 +464,8 @@ So, for example, if the server-side team decided they wanted the token included
 as a parameter, rather than as a request header, you could update your code to
 look like this:
 
-#figure(
-  caption: [Adding the `token` parameter],
-)[ ```js
+#figure(caption: [Adding the `token` parameter])[
+```js
 document.body.addEventListener("htmx:configRequest", function(configEvent){
     configEvent.detail.parameters['token'] = localStorage['special-token']; <1>
 })
@@ -495,9 +497,8 @@ event to the first one.
 
 Here is what the code might look like:
 
-#figure(
-  caption: [A button with an abort],
-)[ ```html
+#figure(caption: [A button with an abort])[
+```html
 <button id="contacts-btn" hx-get="/contacts" hx-target="body"> <1>
   Get Contacts
 </button>
@@ -517,9 +518,8 @@ pure JavaScript.
 Thankfully this isn’t too bad to implement in hyperscript, so let’s take a look
 at what that would look like:
 
-#figure(
-  caption: [A hyperscript-Powered Button With An Abort],
-)[ ```html
+#figure(caption: [A hyperscript-Powered Button With An Abort])[
+```html
 <button id="contacts-btn" hx-get="/contacts" hx-target="body">
   Get Contacts
 </button>
@@ -564,7 +564,8 @@ table.
 To implement this we could conditionally add an `HX-Trigger` response header
 with the value `contacts-updated`:
 
-#figure(caption: [Conditionally Triggering a `contacts-updated` event])[ ```py
+#figure(caption: [Conditionally Triggering a `contacts-updated` event])[
+```py
 @app.route('/sync', methods=["POST"])
 def sync_with_server():
     contacts_updated = RemoteServer.sync() <1>
@@ -586,16 +587,17 @@ Here is what the client-side code might look like:
 
 #figure(
   caption: [The Contacts Table],
-)[ ```html
-   <button hx-post="/integrations/1"> <1>
-     Pull Contacts From Integration
-   </button>
+)[
+```html
+<button hx-post="/integrations/1"> <1>
+  Pull Contacts From Integration
+</button>
 
-      ...
+  ...
 
-    <table hx-get="/contacts/table" hx-trigger="contacts-updated from:body"> <2>
-      ...
-    </table>
+<table hx-get="/contacts/table" hx-trigger="contacts-updated from:body"> <2>
+  ...
+</table>
 ``` ]
 1. The response to this request may conditionally trigger the
   `contacts-updated` event
@@ -659,9 +661,10 @@ alert the user that an error had occurred. To do so, you want to invoke a
 JavaScript method, `showNotFoundError()`. Let’s add some code to use the `htmx:beforeSwap` event
 to make this happen:
 
-#figure(caption: [Showing a 404 dialog])[ ```js
+#figure(caption: [Showing a 404 dialog])[
+```js
 document.body.addEventListener('htmx:beforeSwap', function(evt) { <1>
-    if(evt.detail.xhr.status === 404){ <2>
+    if (evt.detail.xhr.status === 404) { <2>
         showNotFoundError();
     }
 });
@@ -717,16 +720,17 @@ This time, we’ll use the `hx-swap-oob` attribute in the response to the
 `POST` to `/integrations/1`. The new contacts table content will
 "piggyback" on the response.
 
-#figure(caption: [The updated contacts table])[ ```html
-   <button hx-post="/integrations/1"> <1>
-     Pull Contacts From Integration
-   </button>
+#figure(caption: [The updated contacts table])[
+```html
+<button hx-post="/integrations/1"> <1>
+  Pull Contacts From Integration
+</button>
 
-      ...
+  ...
 
-    <table id="contacts-table"> <2>
-      ...
-    </table>
+<table id="contacts-table"> <2>
+  ...
+</table>
 ``` ]
 1. The button still issues a `POST` to `/integrations/1`.
 2. The table no longer listens for an event, but it now has an id.
@@ -738,7 +742,8 @@ marked as `hx-swap-oob="true"`. This content will be removed from the response
 so that it is not inserted into the button. Instead, it is swapped into the DOM
 in place of the existing table since it has a matching id.
 
-#figure(caption: [A response with out-of-band content])[ ```
+#figure(caption: [A response with out-of-band content])[
+```
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 ...
@@ -832,7 +837,8 @@ link on #link("https://htmx.org"), with
 
 #figure(
   caption: [Htmx logs],
-)[ ```text
+)[
+```text
 htmx:configRequest
 <a href="/docs/">
 Object { parameters: {}, unfilteredParameters: {}, headers: {…}, target: body, verb: "get", errors: [], withCredentials: false, timeout: 0, path: "/docs/", triggeringEvent: a
@@ -897,7 +903,8 @@ your page. But, if you are working with htmx in Chrome, and are curious why an
 event isn’t triggering on an element, you can open the developers console and
 type the following:
 
-#figure(caption: [Htmx logs])[ ```javascript
+#figure(caption: [Htmx logs])[
+```javascript
 monitorEvents(document.getElementById("some-element"));
 ``` ]
 
@@ -972,7 +979,8 @@ The name of the meta tag should be `htmx-config`, and the content attribute
 should contain the configuration overrides, formatted as JSON. Here is an
 example:
 
-#figure(caption: [An htmx configuration via `meta` tag])[ ```html
+#figure(caption: [An htmx configuration via `meta` tag])[
+```html
 <meta name="htmx-config" content='{"defaultSwapStyle":"outerHTML"}'>
 ``` ]
 

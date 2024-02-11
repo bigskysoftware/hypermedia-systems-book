@@ -96,11 +96,12 @@ itself.
 Consider again this simple #indexed[anchor tag] which, when interpreted by a
 browser, creates a #indexed[hyperlink] to the website for this book:
 
-#figure(caption: [A simple hyperlink, revisited])[ ```html
+#figure(caption: [A simple hyperlink, revisited],
+```html
 <a href="https://hypermedia.systems/">
   Hypermedia Systems
 </a>
-``` ]
+```)
 
 Let’s break down exactly what happens with this link:
 - The browser will render the text "Hypermedia Systems" to the screen, likely with
@@ -257,16 +258,14 @@ we expect. This SHA can be found on the htmx website.
 We also mark the script as `crossorigin="anonymous"` so no credentials will be
 sent to the CDN.
 
-#figure(
-  caption: [Installing htmx],
-)[ ```html
+#figure(caption: [Installing htmx],
+```html
 <head>
 <script src="https://unpkg.com/htmx.org@1.9.2"
         integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
         crossorigin="anonymous"></script>
-
 </head>
-``` ]
+```)
 
 If you are used to modern JavaScript development, with complex build systems and
 large numbers of dependencies, it may be a pleasant surprise to find that that’s
@@ -325,11 +324,12 @@ given HTTP request type to. Typically, this is done via a server-relative path.
 For example, if we wanted a button to issue a `GET` request to
 `/contacts` then we would write the following HTML:
 
-#figure(caption: [A simple htmx-powered button])[ ```html
+#figure(caption: [A simple htmx-powered button],
+```html
 <button hx-get="/contacts"> <1>
   Get The Contacts
 </button>
-``` ]
+```)
 1. A simple button that issues an HTTP `GET` to `/contacts`.
 
 The htmx library will see the `hx-get` attribute on this button, and hook up
@@ -377,13 +377,14 @@ forth.
 When the "Get Contacts" button is clicked, a _partial_ HTML response might look
 something like this:
 
-#figure(caption: [A partial HTML response to an htmx request])[ ```html
+#figure(caption: [A partial HTML response to an htmx request],
+```html
 <ul>
   <li><a href="mailto:joe@example.com">Joe</a></li>
   <li><a href="mailto:sarah@example.com">Sarah</a></li>
   <li><a href="mailto:fred@example.com">Fred</a></li>
 </ul>
-``` ]
+```)
 
 This is just an unordered list of contacts with some clickable elements in it.
 Note that there is no opening `html` tag, no `head` tag, and so forth: it is a _raw_ HTML
@@ -428,15 +429,16 @@ Let’s add a `div` tag that encloses the button with the id `main`. We will the
 target this `div` with the response:
 
 #index[hx-target][example]
-#figure(caption: [A simple htmx-powered button], ```html
-  <div id="main"> <1>
+#figure(caption: [A simple htmx-powered button],
+```html
+<div id="main"> <1>
 
-    <button hx-get="/contacts" hx-target="#main"> <2>
-      Get The Contacts
-    </button>
+  <button hx-get="/contacts" hx-target="#main"> <2>
+    Get The Contacts
+  </button>
 
-  </div>
-  ```)
+</div>
+```)
 
 1. A `div` element that wraps the button.
 2. The `hx-target` attribute that specifies the target of the response.
@@ -453,15 +455,16 @@ a user clicks on this button and a response has been received and processed?
 
 It would look something like this:
 
-#figure(caption: [Our HTML after the htmx request finishes], ```html
-  <div id="main">
-    <ul>
-      <li><a href="mailto:joe@example.com">Joe</a></li>
-      <li><a href="mailto:sarah@example.com">Sarah</a></li>
-      <li><a href="mailto:fred@example.com">Fred</a></li>
-    </ul>
-  </div>
-  ```)
+#figure(caption: [Our HTML after the htmx request finishes],
+```html
+<div id="main">
+  <ul>
+    <li><a href="mailto:joe@example.com">Joe</a></li>
+    <li><a href="mailto:sarah@example.com">Sarah</a></li>
+    <li><a href="mailto:fred@example.com">Fred</a></li>
+  </ul>
+</div>
+```)
 
 The response HTML has been swapped into the `div`, replacing the button that
 triggered the request. Transclusion! And this has happened "in the background"
@@ -531,13 +534,14 @@ To do so would require only a small change to our button, adding a new
 Now, when a response is received, the _entire_ div will be replaced with the
 hypermedia content:
 
-#figure(caption: [Our HTML after the htmx request finishes])[ ```html
+#figure(caption: [Our HTML after the htmx request finishes],
+```html
 <ul>
   <li><a href="mailto:joe@example.com">Joe</a></li>
   <li><a href="mailto:sarah@example.com">Sarah</a></li>
   <li><a href="mailto:fred@example.com">Fred</a></li>
 </ul>
-``` ]
+```)
 
 You can see that, with this change, the target div has been entirely removed
 from the DOM, and the list that was returned as the response has replaced it.
@@ -596,17 +600,16 @@ example.
 To respond to a mouse entering the button, we would add the following attribute
 to our button:
 
-#figure(
-  caption: [A (bad?) button that triggers on mouse entry], ```html
-              <div id="main">
+#figure(caption: [A (bad?) button that triggers on mouse entry], 
+```html
+<div id="main">
 
-                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="mouseenter"> <1>
-                  Get The Contacts
-                </button>
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="mouseenter"> <1>
+    Get The Contacts
+  </button>
 
-              </div>
-              ```,
-)
+</div>
+```)
 1. Issue a request on the... `mouseenter` event.
 
 Now, with this `hx-trigger` attribute in place, whenever the mouse enters this
@@ -629,17 +632,16 @@ trigger the request. If not, the request will not be triggered.
 In the case of keyboard shortcuts, we want to catch the `keyup` event in
 addition to the click event:
 
-#figure(
-  caption: [A start, trigger on keyup], ```html
-              <div id="main">
+#figure(caption: [A start, trigger on keyup],
+```html
+<div id="main">
 
-                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup">
-                  Get The Contacts
-                </button>
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup">
+    Get The Contacts
+  </button>
 
-              </div>
-              ```,
-)
+</div>
+```)
 1. A trigger with two events.
 
 #index[hx-trigger][multiple events]
@@ -657,17 +659,16 @@ Let’s fix these two issues. To fix the first one, we will use a trigger filter
 to test that Control key and the "L" key are pressed together:
 
 #index[event filter][example]
-#figure(
-  caption: [Getting better with filter on keyup], ```html
-              <div id="main">
+#figure(caption: [Getting better with filter on keyup],
+```html
+<div id="main">
 
-                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l']"> <1>
-                  Get The Contacts
-                </button>
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l']"> <1>
+    Get The Contacts
+  </button>
 
-              </div>
-              ```,
-)
+</div>
+```)
 1. `keyup` now has a filter, so the control key and L must be pressed.
 
 The trigger filter in this case is `ctrlKey && key == 'l'`. This can be read as "A
@@ -705,17 +706,16 @@ element of all visible elements on the page.
 
 Here is what our updated `hx-trigger` attribute looks like:
 
-#figure(
-  caption: [Even better, listen for keyup on the body], ```html
-              <div id="main">
+#figure(caption: [Even better, listen for keyup on the body],
+```html
+<div id="main">
 
-                <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body"> <1>
-                  Get The Contacts
-                </button>
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body"> <1>
+    Get The Contacts
+  </button>
 
-              </div>
-              ```,
-)
+</div>
+```)
 1. Listen to the 'keyup' event on the `body` tag.
 
 Now, in addition to clicks, the button will listen for `keyup` events on the
@@ -788,21 +788,20 @@ element making a request within a form tag.
 Let’s take our original button for retrieving contacts and repurpose it for #indexed[search]ing
 contacts:
 
-#figure(
-  caption: [An htmx-powered search button], ```html
-              <div id="main">
+#figure(caption: [An htmx-powered search button],
+```html
+<div id="main">
 
-                <form> <1>
-                    <label for="search">Search Contacts:</label>
-                    <input id="search" name="q" type="search" placeholder="Search Contacts"> <2>
-                    <button hx-post="/contacts" hx-target="#main"> <3>
-                      Search The Contacts
-                    </button>
-                </form>
+  <form> <1>
+      <label for="search">Search Contacts:</label>
+      <input id="search" name="q" type="search" placeholder="Search Contacts"> <2>
+      <button hx-post="/contacts" hx-target="#main"> <3>
+        Search The Contacts
+      </button>
+  </form>
 
-              </div>
-              ```,
-)
+</div>
+```)
 
 1. With an enclosing form tag, all input values will be submitted.
 2. A new input for user search text entry.
@@ -849,9 +848,8 @@ request via CSS selectors.
 
 Here is the above example reworked to include the input, dropping the form:
 
-#figure(
-  caption: [An htmx-powered search button with `hx-include`],
-)[ ```html
+#figure(caption: [An htmx-powered search button with `hx-include`],
+```html
 <div id="main">
 
   <label for="search">Search Contacts:</label>
@@ -861,7 +859,7 @@ Here is the above example reworked to include the input, dropping the form:
   </button>
 
 </div>
-``` ]
+```)
 1. `hx-include` can be used to include values directly in a request.
 
 The `hx-include` attribute takes a CSS selector value and allows you to specify
@@ -911,11 +909,12 @@ additional, hidden information in HTML.)
 #index[query strings]
 Here is an example of `hx-vals`:
 
-#figure(caption: [An htmx-powered button with `hx-vals`])[ ```html
+#figure(caption: [An htmx-powered button with `hx-vals`],
+```html
 <button hx-get="/contacts" hx-vals='{"state":"MT"}'> <1>
   Get The Contacts In Montana
 </button>
-``` ]
+```)
 1. `hx-vals`, a JSON value to include in the request.
 
 The parameter `state` with the value `MT` will be included in the `GET`
@@ -935,11 +934,12 @@ JavaScript, and there existed a JavaScript function,
 `getCurrentState()`, that returned the currently selected state, it could be
 included dynamically in htmx requests like so:
 
-#figure(caption: [A dynamic value])[ ```html
+#figure(caption: [A dynamic value],
+```html
 <button hx-get="/contacts" hx-vals='js:{"state":getCurrentState()}'> <1>
   Get The Contacts In The Selected State
 </button>
-``` ]
+```)
 1. With the `js:` prefix, this expression will evaluate at submit time.
 
 These three mechanisms, using `form` tags, using the `hx-include`
@@ -980,11 +980,12 @@ right is typically much easier to do in an htmx-based application.
 
 Consider the button we have been looking at to load contacts:
 
-#figure(caption: [Our trusty button])[ ```html
+#figure(caption: [Our trusty button],
+```html
 <button hx-get="/contacts" hx-target="#main">
   Get The Contacts
 </button>
-``` ]
+```)
 
 As it stands, if you click this button it will retrieve the content from
 `/contacts` and load it into the element with the id `main`, but it will
@@ -995,11 +996,12 @@ _not_ create a new history entry.
 If we wanted it to create a history entry when this request happened, we would
 add a new attribute to the button, the `hx-push-url` attribute:
 
-#figure(caption: [Our trusty button, now with history!], ```html
-  <button hx-get="/contacts" hx-target="#main" hx-push-url="true"> <1>
-    Get The Contacts
-  </button>
-  ```)
+#figure(caption: [Our trusty button, now with history!],
+```html
+<button hx-get="/contacts" hx-target="#main" hx-push-url="true"> <1>
+  Get The Contacts
+</button>
+```)
 1. `hx-push-url` will create an entry in history when the button is clicked.
 
 Now, when the button is clicked, the `/contacts` path will be put into the

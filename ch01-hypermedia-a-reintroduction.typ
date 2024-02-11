@@ -217,11 +217,12 @@ the right place for developing a deeper understanding of hypermedia.
 
 Consider a simple anchor tag, embedded within a larger HTML document:
 
-#figure(caption: [A simple hyperlink])[ ```html
+#figure(caption: [A simple hyperlink],
+```html
 <a href="https://hypermedia.systems/">
   Hypermedia Systems
 </a>
-``` ]
+```)
 
 An anchor tag consists of the tag itself, `<a></a>`, as well as the attributes
 and content within the tag. Of particular interest is the
@@ -268,14 +269,13 @@ you to update those resources. That functionality falls to the #indexed[form tag
 
 Here is a simple example of a form in HTML:
 
-#figure(
-  caption: [A simple form],
-)[ ```html
+#figure(caption: [A simple form],
+```html
 <form action="/signup" method="post">
   <input type="text" name="email" placeholder="Enter Email To Sign Up..."/>
   <button>Sign Up</button>
 </form>
-``` ]
+```)
 
 Like an anchor tag, a form tag consists of the tag itself,
 `<form></form>`, combined with the attributes and content within the tag. Note
@@ -355,13 +355,14 @@ an HTTP request via #index[JavaScript] JavaScript. To do this, we will use the
 API, a popular API for issuing an "Asynchronous JavaScript and XML," or AJAX #index[AJAX] request,
 available in all modern web browsers:
 
-#figure(caption: [JavaScript], ```html
-  <button onclick="fetch('/api/v1/contacts/1') <1>
-                  .then(response => response.json()) <2>
-                  .then(data => updateUI(data)) "> <3>
-      Fetch Contact
-  </button>
-  ```)
+#figure(caption: [JavaScript],
+```html
+<button onclick="fetch('/api/v1/contacts/1') <1>
+                .then(response => response.json()) <2>
+                .then(data => updateUI(data)) "> <3>
+    Fetch Contact
+</button>
+```)
 1. Issue the request.
 2. Convert the response to a JavaScript object.
 3. Invoke the `updateUI()` function with the object.
@@ -382,12 +383,13 @@ rather than XML.
 
 An HTTP response to this request might look something like this:
 
-#figure(caption: [JSON], ```json
-  { <1>
-    "id": 42, <2>
-    "email" : "json-example@example.org" <3>
-  }
-  ```)
+#figure(caption: [JSON],
+```json
+{ <1>
+  "id": 42, <2>
+  "email" : "json-example@example.org" <3>
+}
+```)
 
 1. The start of a JSON object.
 2. A property, in this case with the name `id` and the value `42`.
@@ -715,11 +717,12 @@ So, what does an HDA look like up close?
 Let’s look at an htmx-powered implementation of the simple JavaScript-powered
 button above:
 
-#figure(caption: [An htmx implementation], ```html
-  <button hx-get="/contacts/1" hx-target="#contact-ui"> <1>
-      Fetch Contact
-  </button>
-  ```)
+#figure(caption: [An htmx implementation], 
+```html
+<button hx-get="/contacts/1" hx-target="#contact-ui"> <1>
+    Fetch Contact
+</button>
+```)
 
 1. issues a `GET` request to `/contacts/1`, replacing the `contact-ui`.
 
@@ -741,16 +744,17 @@ _The HTTP response from the server is expected to be in HTML format, not JSON_.
 
 An HTTP response to this htmx-driven request might look something like this:
 
-#figure(caption: [JSON], ```html
-  <details>
-    <div>
-      Contact: HTML Example
-    </div>
-    <div>
-      <a href="mailto:html-example@example.com">Email</a>
-    </div>
-  </details>
-  ```)
+#figure(caption: [JSON], 
+```html
+<details>
+  <div>
+    Contact: HTML Example
+  </div>
+  <div>
+    <a href="mailto:html-example@example.com">Email</a>
+  </div>
+</details>
+```)
 
 This small bit of HTML would be placed into the element in the DOM with the id `contact-ui`.
 
@@ -905,9 +909,10 @@ more work for ourselves --- probably both.
 For example, instead of adding a button using the dedicated `<button>`
 element, a `<div>` element might have a `click` event listener added to it.
 
-#figure(```html
-  <div class="bg-accent padding-4 rounded-2" onclick="doStuff()">Do stuff</div>
-  ```)
+#figure(
+```html
+<div class="bg-accent padding-4 rounded-2" onclick="doStuff()">Do stuff</div>
+```)
 
 There are two main issues with this button:
 
@@ -918,12 +923,13 @@ There are two main issues with this button:
 Yes, we can fix that by adding `role="button"` and
 `tabindex="0"`:
 
-#figure(```html
-  <div class="bg-accent padding-4 rounded-2"
-    role="button"
-    tabindex="0"
-    onclick="doStuff()">Do stuff</div>
-  ```)
+#figure(
+```html
+<div class="bg-accent padding-4 rounded-2"
+  role="button"
+  tabindex="0"
+  onclick="doStuff()">Do stuff</div>
+```)
 
 These are easy fixes, but they’re things you have to _remember_. It’s also not
 obvious from the HTML source that this is a button, making the source harder to

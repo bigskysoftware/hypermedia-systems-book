@@ -157,7 +157,8 @@ behave in the manner that we have described above.
 This feels a little redundant, doesn’t it? It seems silly to annotate all three
 links with the `hx-boost="true"` attribute right next to one another.
 
-#figure(caption: [A set of boosted links], ```html
+#figure(caption: [A set of boosted links],
+```html
 <a href="/contacts" hx-boost="true">Contacts</a>
 <a href="/settings" hx-boost="true">Settings</a>
 <a href="/help" hx-boost="true">Help</a>
@@ -202,17 +203,15 @@ will then offer to save as a file on the user’s local system.
 To handle this situation, you simply override the parent `hx-boost`
 value with `hx-boost="false"` on the anchor tag that you don’t want to boost:
 
-#figure(
-  caption: [Disabling boosting], 
-  ```html
-  <div hx-boost="true"> <1>
-      <a href="/contacts">Contacts</a>
-      <a href="/settings">Settings</a>
-      <a href="/help">Help</a>
-      <a href="/help/documentation.pdf" hx-boost="false">Download Docs</a> <2>
-  </div>
-  ```,
-)
+#figure(caption: [Disabling boosting], 
+```html
+<div hx-boost="true"> <1>
+    <a href="/contacts">Contacts</a>
+    <a href="/settings">Settings</a>
+    <a href="/help">Help</a>
+    <a href="/help/documentation.pdf" hx-boost="false">Download Docs</a> <2>
+</div>
+```)
 1. The `hx-boost` is still on the parent div.
 2. The boosting behavior is overridden for this link.
 
@@ -287,9 +286,10 @@ Now every link and form in our application will use AJAX by default, making it
 feel much snappier. Consider the "New Contact" link that we created on the main
 page:
 
-#figure(caption: [A newly boosted "add contact" link])[ ```html
+#figure(caption: [A newly boosted "add contact" link],
+```html
   <a href="/contacts/new">Add Contact</a>
-``` ]
+```)
 
 Even though we haven’t touched anything on this link or on the server-side
 handling of the URL it targets, it will now "just work" as a boosted link, using
@@ -1252,16 +1252,17 @@ interfaces. If you want to hide an element visually without hiding it from
 assistive technology (e.g. the element contains information that is communicated
 through styling), you can use this utility class:
 
-#figure(```css
-  .vh {
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-      block-size: 1px;
-      inline-size: 1px;
-      overflow: hidden;
-      white-space: nowrap;
-  }
-  ```)
+#figure(
+```css
+.vh {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    block-size: 1px;
+    inline-size: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+```)
 
 `vh` is short for "visually hidden." This class uses multiple methods and
 workarounds to make sure no browser removes the element’s function.

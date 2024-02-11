@@ -137,12 +137,13 @@ let’s wrap the entire UI in a `div` tag, and then use that
 
 Here is the start of the template for our new archive user interface:
 
-#figure(caption: [Our initial archive UI template])[ ```html
+#figure(caption: [Our initial archive UI template],
+```html
 <div id="archive-ui"
     hx-target="this" <1>
     hx-swap="outerHTML"> <2>
 </div>
-``` ]
+```)
 1. This div will be the target for all elements within it.
 2. Replace the entire div every time using `outerHTML`.
 
@@ -150,25 +151,27 @@ Next, lets add the "Download Contact Archive" button to the `div` that will kick
 off the archive-then-download process. We’ll use a `POST` to the path `/contacts/archive` to
 trigger the start of the archiving process:
 
-#figure(caption: [Adding the archive button])[ ```html
+#figure(caption: [Adding the archive button],
+```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
   <button hx-post="/contacts/archive"> <1>
       Download Contact Archive
   </button>
 </div>
-``` ]
+```)
 1. This button will issue a `POST` to `/contacts/archive`.
 
 Finally, let’s include this new template in our main `index.html`
 template, above the contacts table:
 
-#figure(caption: [Our initial archive UI template])[ ```html
+#figure(caption: [Our initial archive UI template],
+```html
 {% block content %}
 
     {% include 'archive_ui.html' %} <1>
 
     <form action="/contacts" method="get" class="tool-bar">
-``` ]
+```)
 1. This template will now be included in the main template.
 
 With that done, we now have a button showing up in our web application to get
@@ -202,13 +205,14 @@ archive process.
 
 Here is what the code looks like:
 
-#figure(caption: [Server-side code to start the archive process], ```python
-  @app.route("/contacts/archive", methods=["POST"]) <1>
-  def start_archive():
-      archiver = Archiver.get() <2>
-      archiver.run() <3>
-      return render_template("archive_ui.html", archiver=archiver) <4>
-  ```)
+#figure(caption: [Server-side code to start the archive process],
+```python
+@app.route("/contacts/archive", methods=["POST"]) <1>
+def start_archive():
+    archiver = Archiver.get() <2>
+    archiver.run() <3>
+    return render_template("archive_ui.html", archiver=archiver) <4>
+```)
 1. Handle `POST` to `/contacts/archive`.
 2. Look up the Archiver.
 3. Invoke the non-blocking `run()` method on it.
@@ -230,7 +234,8 @@ If the archiver has the status `Waiting`, we want to render the
 a message indicating that progress is happening. Let’s update our template code
 to do just that:
 
-#figure(caption: [Adding conditional rendering])[ ```html
+#figure(caption: [Adding conditional rendering]),
+```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
     {% if archiver.status() == "Waiting" %} <1>
         <button hx-post="/contacts/archive">
@@ -240,7 +245,7 @@ to do just that:
        Running... <3>
     {% end %}
 </div>
-``` ]
+```)
 1. Only render the archive button if the status is "Waiting."
 2. Render different content when status is "Running."
 3. For now, just some text saying the process is running.
@@ -250,7 +255,8 @@ server-side logic to support kicking off the archive process. We don’t have a
 progress bar yet, but we’ll get there! Let’s see how this works as it stands,
 and refresh the main page of our application…​
 
-#figure(caption: [Something Went Wrong], ```
+#figure(caption: [Something Went Wrong],
+```
 UndefinedError
 jinja2.exceptions.UndefinedError: 'archiver' is undefined
 ```)
@@ -265,9 +271,8 @@ it can conditionally render the correct UI.
 That’s an easy fix: we just need to pass the archiver through when we render the `index.html` template
 as well:
 
-#figure(
-  caption: [Including the archiver when we render index.html],
-)[ ```python
+#figure(caption: [Including the archiver when we render index.html],
+```python
 @app.route("/contacts")
 def contacts():
     search = request.args.get("q")
@@ -278,7 +283,7 @@ def contacts():
     else:
         contacts_set = Contact.all()
     return render_template("index.html", contacts=contacts_set, archiver=Archiver.get()) <1>
-``` ]
+```)
 1. Pass through archiver to the main template
 
 Now with that done, we can load up the page. And, sure enough, we can see the "Download
@@ -317,10 +322,11 @@ fixed interval.
 
 Here is an example:
 
-#figure(caption: [Fixed interval polling])[ ```html
+#figure(caption: [Fixed interval polling],
+```html
 <div hx-get="/messages" hx-trigger="every 3s"> <1>
 </div>
-``` ]
+```)
 1. Trigger a `GET` to `/messages` every three seconds.
 
 This works great in situations when you want to poll indefinitely, for example
@@ -348,12 +354,13 @@ is to completion.
 
 Here is the snippet of HTML we will use:
 
-#figure(caption: [A CSS-based progress bar])[ ```html
+#figure(caption: [A CSS-based progress bar],
+```html
 <div class="progress">
     <div class="progress-bar"
          style="width:{{ archiver.progress() * 100 }}%"></div> <1>
 </div>
-``` ]
+```)
 1. The width of the inner element corresponds to the progress.
 
 This CSS-based progress bar has two components: an outer `div` that provides the
@@ -384,7 +391,8 @@ to make our `div`-based progress bar play well with assistive technologies.]
 Let’s update our #indexed[progress bar] to have the proper ARIA roles and
 values:
 
-#figure(caption: [A CSS-based progress bar])[ ```html
+#figure(caption: [A CSS-based progress bar])[
+```html
 <div class="progress">
     <div class="progress-bar"
          role="progressbar" <1>
@@ -398,7 +406,8 @@ values:
 
 Finally, for completeness, here is the CSS we’ll use for this progress bar:
 
-#figure(caption: [The CSS for our progress bar])[ ```css
+#figure(caption: [The CSS for our progress bar])[
+```css
 .progress {
     height: 20px;
     margin-bottom: 20px;
@@ -433,9 +442,8 @@ Let’s add the code for our progress bar into our `archive_ui.html`
 template for the case when the archiver is running, and let’s update the copy to
 say "Creating Archive…​":
 
-#figure(
-  caption: [Adding the progress bar],
-)[ ```html
+#figure(caption: [Adding the progress bar])[
+```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
     {% if archiver.status() == "Waiting" %}
         <button hx-post="/contacts/archive">
@@ -467,9 +475,8 @@ is wrapping around the "Creating Archive…​" text and the progress bar.
 Let’s make it poll by issuing an HTTP `GET` to the same path as the
 `POST`: `/contacts/archive`.
 
-#figure(
-  caption: [Implementing load polling],
-)[ ```html
+#figure(caption: [Implementing load polling])[
+```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
     {% if archiver.status() == "Waiting" %}
         <button hx-post="/contacts/archive">
@@ -499,7 +506,8 @@ Now we need to handle the `GET` to `/contacts/archive` on the server.
 Thankfully, this is quite easy: all we want to do is re-render
 `archive_ui.html` with the archiver:
 
-#figure(caption: [Handling progress updates])[ ```python
+#figure(caption: [Handling progress updates])[
+```python
 @app.route("/contacts/archive", methods=["GET"]) <1>
 def archive_status():
     archiver = Archiver.get()
@@ -524,9 +532,8 @@ Let’s add another case to our if statement to handle the "Complete" state, and
 when the archive job is complete, lets render a link to a new path, `/contacts/archive/file`,
 which will respond with the archived JSON file. Here is the new code:
 
-#figure(
-  caption: [Rendering A Download Link When Archiving Completes],
-)[ ```html
+#figure(caption: [Rendering A Download Link When Archiving Completes])[
+```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
     {% if archiver.status() == "Waiting" %}
         <button hx-post="/contacts/archive">
@@ -567,9 +574,8 @@ attachment." This last argument tells Flask to set the HTTP response header `Con
 the given filename; this is what triggers the browser’s file-downloading
 behavior.
 
-#figure(
-  caption: [Sending A File To The Client],
-)[ ```python
+#figure(caption: [Sending A File To The Client])[
+```python
 @app.route("/contacts/archive/file", methods=["GET"])
 def archive_content():
     manager = Archiver.get()
@@ -651,7 +657,8 @@ So, we arrive at our fix.
 
 All we need to do is add a stable ID to our `progress-bar` element.
 
-#figure(caption: [Smoothing things out])[ ```html
+#figure(caption: [Smoothing things out])[
+```html
 <div class="progress" >
     <div id="archive-progress" class="progress-bar" role="progressbar"
          aria-valuenow="{{ archiver.progress() * 100}}"
@@ -687,9 +694,8 @@ cleaned up.
 
 We’ll add it after the download link, like so:
 
-#figure(
-  caption: [Clearing the download],
-)[ ```html
+#figure(caption: [Clearing the download])[
+```html
     <a hx-boost="false" href="/contacts/archive/file">Archive Ready!  Click here to download. &downarrow;</a>
     <button hx-delete="/contacts/archive">Clear Download</button> <1>
 ``` ]
@@ -706,7 +712,8 @@ configuration as everything else, it "just works."
 
 Here is the server-side code:
 
-#figure(caption: [The handler to reset the download])[ ```python
+#figure(caption: [The handler to reset the download])[
+```python
 @app.route("/contacts/archive", methods=["DELETE"])
 def reset_archive():
     archiver = Archiver.get()
@@ -745,11 +752,12 @@ the download link renders, automatically click on the link for the user.
 The \_hyperscript code reads almost the same as the previous sentence (which is
 a major reason why we love hyperscript):
 
-#figure(caption: [Auto-downloading])[ ```html
-  <a hx-boost="false" href="/contacts/archive/file"
-     _="on load click() me"> <1>
-    Archive Downloading! Click here if the download does not start.
-  </a>
+#figure(caption: [Auto-downloading])[
+```html
+<a hx-boost="false" href="/contacts/archive/file"
+    _="on load click() me"> <1>
+  Archive Downloading! Click here if the download does not start.
+</a>
 ``` ]
 1. A bit of \_hyperscript to make the file auto-download.
 
@@ -775,8 +783,9 @@ language provides shorthand for, even when these elements are incorrect. More
 seriously, it’s important to be aware of the full power of our tools, including
 HTML. Consider the following example of an IEEE-style citation:
 
-#figure(```markdown
-  [1] C.H. Gross, A. Stepinski, and D. Akşimşek, <1>
+#figure(
+```markdown
+[1] C.H. Gross, A. Stepinski, and D. Akşimşek, <1>
   _Hypermedia Systems_, <2>
   Bozeman, MT, USA: Big Sky Software.
   Available: <https://hypermedia.systems/>
@@ -799,13 +808,14 @@ brackets would apply to all ordered lists.
 Don’t shy away from using embedded HTML in Markdown. For larger sites, also
 consider Markdown extensions.
 
-#figure(```markdown
-  {.ieee-reference-list} <1>
-  1. C.H. Gross, A. Stepinski, and D. Akşimşek, <2>
-    <cite>Hypermedia Systems</cite>, <3>
-    Bozeman, MT, USA: Big Sky Software.
-    Available: <https://hypermedia.systems/>
-  ```)
+#figure(
+```markdown
+{.ieee-reference-list} <1>
+1. C.H. Gross, A. Stepinski, and D. Akşimşek, <2>
+  <cite>Hypermedia Systems</cite>, <3>
+  Bozeman, MT, USA: Big Sky Software.
+  Available: <https://hypermedia.systems/>
+```)
 
 1. Many Markdown dialects let us add ids, classes and attributes using curly
   braces.
@@ -816,14 +826,15 @@ consider Markdown extensions.
 You can also use custom processors to produce extra-detailed HTML instead of
 writing it by hand:
 
-#figure(```markdown
-  {% reference_list %} <1>
-  [hypers2023]: <2>
-    C.H. Gross, A. Stepinski, and D. Akşimşek, _Hypermedia Systems_,
-    Bozeman, MT, USA: Big Sky Software, 2023.
-    Available: <https://hypermedia.systems/>
-  {% end %}
-  ```)
+#figure(
+```markdown
+{% reference_list %} <1>
+[hypers2023]: <2>
+  C.H. Gross, A. Stepinski, and D. Akşimşek, _Hypermedia Systems_,
+  Bozeman, MT, USA: Big Sky Software, 2023.
+  Available: <https://hypermedia.systems/>
+{% end %}
+```)
 
 1. `reference_list` is a macro that will transform the plain text to
   highly-detailed HTML.

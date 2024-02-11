@@ -50,17 +50,19 @@ operations using _Uniform Resource Locators (URLs)_:
 
 A URL is a string consisting of various subcomponents:
 
-#figure(caption: [URL Components])[ ```
+#figure(caption: [URL Components],
+```
 [scheme]://[userinfo]@[host]:[port][path]?[query]#[fragment]
-``` ]
+```)
 
 Many of these subcomponents are not required, and are often omitted.
 
 A typical URL might look like this:
 
-#figure(caption: [A simple URL])[ ```
+#figure(caption: [A simple URL],
+```
 https://hypermedia.systems/book/contents/
-``` ]
+```)
 
 This particular URL is made up of the following components:- A protocol or
 scheme (in this case, `https`)- A domain (e.g., `hypermedia.systems`)- A path
@@ -77,9 +79,10 @@ to another location, etc.)
 Note that URLs are often not written out entirely within HTML. It is very common
 to see anchor tags that look like this, for example:
 
-#figure(caption: [A Simple Link])[ ```html
+#figure(caption: [A Simple Link],
+```html
 <a href="/book/contents/">Table Of Contents</a>
-``` ]
+```)
 
 Here we have a _relative_ hypermedia reference, where the protocol, host and
 port are _implied_ to be that of the "current document," that is, the same as
@@ -103,11 +106,12 @@ what the `GET` request triggered by the anchor tag would look like. This is the
 request that would be sent to the server found at
 `hypermedia.systems`, on port `80` by default:
 
-#figure[ ```http
+#figure(
+```http
 GET /book/contents/ HTTP/1.1
 Accept: text/html,*/*
 Host: hypermedia.systems
-``` ]
+```)
 
 The first line specifies that this is an HTTP `GET` request. It then specifies
 the path of the resource being requested. Finally, it contains the HTTP version
@@ -125,7 +129,8 @@ sent to. This is useful when multiple domains are hosted on the same host.
 
 An HTTP response from a server to this request might look something like this:
 
-#figure[```http
+#figure(
+```http
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
 Content-Length: 870
@@ -140,7 +145,7 @@ Date: Sat, 23 Apr 2022 18:27:55 GMT
   ...
 </body>
 </html>
-```]
+```)
 
 In the first line, the HTTP Response specifies the HTTP version being used,
 followed by a _response code_ of `200`, indicating that the given resource was
@@ -676,7 +681,8 @@ take very different forms.
 
 The first implementation returns an HTML representation:
 
-#figure[```html
+#figure(
+```html
 <html lang="en">
 <body>
 <h1>Joe Smith</h1>
@@ -689,17 +695,18 @@ The first implementation returns an HTML representation:
 </p>
 </body>
 </html>
-```]
+```)
 
 The second implementation returns a JSON representation:
 
-#figure[```json
+#figure(
+```json
 {
   "name": "Joe Smith",
   "email": "joe@example.org",
   "status": "Active"
 }
-```]
+```)
 
 What can we say about the differences between these two responses?
 
@@ -774,6 +781,7 @@ What do our responses look like?
 
 The first implementation returns the following HTML:
 
+#figure(
 ```html
 <html lang="en">
 <body>
@@ -787,17 +795,18 @@ The first implementation returns the following HTML:
 </p>
 </body>
 </html>
-```
+```)
 
 The second implementation returns the following JSON representation:
 
-#figure[```json
+#figure(
+```json
 {
   "name": "Joe Smith",
   "email": "joe@example.org",
   "status": "Archived"
 }
-```]
+```)
 
 The important point to notice here is that, by virtue of being a self-describing
 message, the HTML response now shows that the "Archive" operation is no longer
@@ -850,7 +859,8 @@ How would this change each of the two responses—​HTML and JSON—​from the
 
 The HTML representation might now look like this:
 
-#figure[```html
+#figure(
+```html
 <html lang="en">
 <body>
 <h1>Joe Smith</h1>
@@ -864,17 +874,18 @@ The HTML representation might now look like this:
 </p>
 </body>
 </html>
-```]
+```)
 
 The JSON representation, on the other hand, might look like this:
 
-#figure[```json
+#figure(
+```json
 {
   "name": "Joe Smith",
   "email": "joe@example.org",
   "status": "Active"
 }
-```]
+```)
 
 Note that, once again, the JSON representation is unchanged. There is no
 indication of this new functionality. Instead, a client must _know_

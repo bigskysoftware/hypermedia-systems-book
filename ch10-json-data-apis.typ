@@ -591,24 +591,26 @@ extracting common properties like name, URL and photo without classes. By adding
 these classes into the HTML representation of an object, we allow the properties
 of the object to be recovered from the HTML. For example, this simple HTML:
 
-#figure(```html
-    <a class="h-card" href="https://john.example">
-      <img src="john.jpg" alt=""> John Doe
-    </a>
-  ```)
+#figure(
+```html
+<a class="h-card" href="https://john.example">
+  <img src="john.jpg" alt=""> John Doe
+</a>
+```)
 
 can be parsed into this JSON-like structure by a microformats parser:
 
-#figure(```json
-    {
-      "type": ["h-card"],
-      "properties": {
-        "name": ["John Doe"],
-        "photo": ["john.jpg"],
-        "url": ["https://john.example"]
-      }
-    }
-    ```)
+#figure(
+```json
+{
+  "type": ["h-card"],
+  "properties": {
+    "name": ["John Doe"],
+    "photo": ["john.jpg"],
+    "url": ["https://john.example"]
+  }
+}
+```)
 
 Using a variety of properties and nested objects, we could mark up every bit of
 information about a contact, for example, in a machine-readable way.

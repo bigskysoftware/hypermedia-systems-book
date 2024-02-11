@@ -146,7 +146,8 @@ familiarity of XML and the ease of integration on the backend make it simple to
 adopt in both new and existing codebases. Take a look at a "Hello World" app
 written in HXML. The syntax should be familiar to anyone who’s worked with HTML:
 
-#figure(caption: [Hello World])[ ```xml
+#figure(caption: [Hello World])[
+```xml
 <doc xmlns="https://hyperview.org/hyperview">
   <screen>
     <styles />
