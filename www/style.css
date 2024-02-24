@@ -1,22 +1,66 @@
+
+@font-face {
+  font-family: "Chicago FLF";
+  src: url("/fonts/ChicagoFLF.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Yrsa";
+  src: url("/fonts/Yrsa-Regular.ttf") format("truetype");
+  size-adjust: 125%;
+}
+@font-face {
+  font-family: "Yrsa";
+  font-weight: bold;
+  src: url("/fonts/Yrsa-Bold.ttf") format("truetype");
+  size-adjust: 125%;
+}
+@font-face {
+  font-family: "Yrsa";
+  font-style: italic;
+  src: url("/fonts/Yrsa-Italic.ttf") format("truetype");
+  size-adjust: 125%;
+}
+@font-face {
+  font-family: "Yrsa";
+  font-weight: bold;
+  font-style: italic;
+  src: url("/fonts/Yrsa-BoldItalic.ttf") format("truetype");
+  size-adjust: 125%;
+}
+
 :root {
-  --text: Linux Libertine, serif;
-  --secondary: Linux Biolinum, serif;
+  --text: Yrsa, serif;
+  --secondary: sans-serif;
   --display: ChicagoFLF, Chicago, Impact, sans-serif;
   --code: Berkeley Mono, Consolas, monospace;
 
-  font-family: var(--text);
-  font-size: 1.2em;
-  line-height: 1.2em;
+  --link-color: #145591;
+  --bg: #f8fafb;
+  --fg: #121210;
+  --line-color: #3a3a37;
 
-  max-width: 70ch;
+  --max-width: 43rem;
+  --width: min(calc(100vw - 2em), var(--max-width));
+  --page-margin: calc((100vw - var(--width)) / 2);
+
+  background-color: var(--bg);
+  color: var(--fg);
+
+  font-family: var(--text);
+  font-size: calc((18 / 16) * 100%);
+  line-height: 1.5em;
+
   padding: 0 1em;
-  margin: 0 auto;
+  margin: 0 var(--page-margin);
 
   color-scheme: light dark;
 
   @media (prefers-color-scheme: dark) {
-    background: black;
-    color: #ddd;
+    --link-color: #4a90e2;
+    --bg: #050505;
+    --fg: #f8fafb;
+    --line-color: #777;
   }
 }
 
@@ -26,31 +70,31 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--display);
-  font-weight: 900;
+  font-weight: normal;
   line-height: 1.2em;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 2em;
   margin-block-start: 1.5em;
   margin-block-end: 1em;
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-block-start: 1.5em;
   margin-block-end: 1em;
 }
 
 h3 {
-  font-size: 1em;
+  font-size: 1.25em;
   margin-block-start: 1.5em;
   margin-block-end: 1em;
 }
 
 h4 {
-  font-size: .8em;
+  font-size: 1em;
   margin-block-start: 1.5em;
   margin-block-end: 1em;
 }
@@ -63,7 +107,7 @@ header, footer {
   font-size: 0.8em;
 
   h1 {
-    font-size: 2.2em;
+    font-size: 2.8em;
   }
 }
 
@@ -106,11 +150,13 @@ dt {
 
 blockquote {
   font-style: italic;
-  margin-inline: 1em;
+  padding-inline: 1em;
+  margin-inline: 0;
+  border-inline-start: 1px dotted var(--line-color);
 }
 
 a {
-  color: inherit;
+  color: var(--link-color);
 }
 
 sub, sup {
@@ -131,9 +177,8 @@ label {
 }
 
 .book-header {
-  margin-block: 0;
-  padding-inline: .4em;
-  background: rgb(215, 215, 242);
+  display: none;
+  /* margin-block: .5em;
   @media (prefers-color-scheme: dark) {
     background: rgb(37, 42, 53);
   }
@@ -155,49 +200,23 @@ label {
 
   + .navigation-footer nav {
     margin-block-start: .2em;
-  }
+  } */
 }
 
-.book-title {
-  font-size: clamp(2em, 8vw, 5.2em);
-  text-transform: uppercase;
-  line-height: 1em;
-}
-
-.top-blurb {
-  font-size: 1.2em;
-  font-style: italic;
-}
-
-.bottom-blurb {
-  font-family: var(--secondary);
-  font-size: .8em;
-  line-height: 1.2em;
-  width: max(20ch, 50%);
-  max-width: 100%;
-}
-
-.buy-it {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: start;
-  gap: .2em;
-  width: 80%;
-
+.buy-it {  
   > a {
-    flex: 1 0 15ch;
-
+    display: block;
+    margin-block: .2em;
+    
     font-family: var(--secondary);
     font-weight: bold;
-    font-size: .9em;
-    line-height: 1.4em;
+    line-height: 1em;
 
     background: rgb(215, 215, 242);
     color: rgb(14, 19, 65);
 
     text-decoration: none;
-    text-align: center;
-    padding: 0.2em;
+    padding: .4em;
 
     @media (prefers-color-scheme: dark) {
       background: rgb(37, 42, 53);
@@ -213,7 +232,6 @@ label {
     }
 
     small {
-      display: block;
       font-weight: normal;
     }
   }
@@ -236,6 +254,7 @@ label {
 
   .internal-contents {
     display: none;
+    grid-column: 1 / span 2;
   }
   
   a {
@@ -247,21 +266,21 @@ label {
     
     .part > & {
       font-family: var(--display);
-      font-weight: 900;
     }
   }
 
   .chapter {
     counter-increment: chapter;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: min-content 1fr;
     gap: 1em;
     align-items: baseline;
 
     &::before {
       content: counter(chapter, decimal-leading-zero);
       font-family: var(--display);
-      font-weight: 900;
+      font-size: .8em;
     }
   }
 }
@@ -277,36 +296,37 @@ label {
 }
 
 .division-header {
-  margin-block: 7rem 1em;
+  margin-block: 3rem 2rem;
+  margin-inline: calc(-1 * var(--page-margin));
+  padding: 0 var(--page-margin);
+
+  border-bottom: 1px dotted var(--line-color);
 }
 
 .division-toc {
   font-family: var(--secondary);
+
   summary {
-    color: rgb(48, 56, 122);
-    @media (prefers-color-scheme: dark) {
-      color: rgb(137, 137, 181);
-    }
+    font-size: inherit;
+    font-weight: bold;
   }
-  ul {
-    font-size: .8em;
-    ul { font-size: 1em; }
-    li {
-      margin-block: .5em;
-    }
+
+  li {
+    margin-block: .5em;
   }
+
   a:not(:hover, :focus-visible, :active) {
     text-decoration: none;
   }
 }
 
 .division-content {
-  margin-block: 4em;
+  margin-block: 1em 4em;
 }
 
 .navigation-footer {
   & ~ & {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 }
 
@@ -328,25 +348,6 @@ label {
     font-family: var(--secondary);
     font-size: .9em;
     line-height: 1.4em;
-
-    text-decoration: none;
-    padding: .2em .4em;
-    
-    background: rgb(215, 215, 242);
-    color: rgb(14, 19, 65);
-
-    @media (prefers-color-scheme: dark) {
-      background: rgb(37, 42, 53);
-      color: rgb(215, 215, 242);
-    }
-    
-    &:hover, &:focus, &:active {
-      background: rgb(200, 200, 239);
-
-      @media (prefers-color-scheme: dark) {
-        background: rgb(26, 47, 80);
-      }
-    }
   }
 
   [rel=next] {
@@ -397,10 +398,11 @@ label {
 }
 
 .quote-attribution {
-  margin-inline: 1em;
+  margin-block-start: -1.3em;
   text-align: right;
   font-size: .8em;
   font-family: var(--secondary);
+  border-inline-start: 1px dotted var(--line-color);
 }
 
 .footnotes {

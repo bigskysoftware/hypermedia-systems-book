@@ -66,9 +66,10 @@ A typical URL might look like this:
 https://hypermedia.systems/book/contents/
 ```)
 
-This particular URL is made up of the following components:- A protocol or
-scheme (in this case, `https`)- A domain (e.g., `hypermedia.systems`)- A path
-(e.g., `/book/contents`)
+This particular URL is made up of the following components:
+- A protocol or scheme (in this case, `https`)
+- A domain (e.g., `hypermedia.systems`)
+- A path (e.g., `/book/contents`)
 
 This URL uniquely identifies a retrievable _resource_ on the internet, to which
 an _HTTP Request_ can be issued by a hypermedia client that "speaks" HTTPS, such

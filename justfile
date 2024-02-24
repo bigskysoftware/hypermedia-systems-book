@@ -15,6 +15,7 @@ build-html:
   rm -rf _site
   www/build_web.ts
   cp -r images _site/images
+  cp -r fonts _site/fonts
 
 serve:
   (trap 'kill 0' SIGINT; \

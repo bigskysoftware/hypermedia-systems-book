@@ -10,6 +10,73 @@ Enhancing web applications without using SPA frameworks.">
 
 <title>Hypermedia Systems</title>
 
+<style>
+  .Cover-Header {
+    text-align: center;
+    padding: 2em 0;
+
+    margin-inline: calc(-1 * var(--page-margin));
+    margin-block-end: 2em;
+
+    border-bottom: 1px dotted var(--line-color);
+  }
+
+  .book-title {
+    font-size: calc(.125 * var(--width));
+    font-style: italic;
+    margin: 2rem;
+    text-transform: uppercase;
+    line-height: 1em;
+  }
+
+  .Cover-Header p {
+    font-size: 1.5em;
+    line-height: 1em;
+  }
+
+  main {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 1fr 15rem;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'top-blurb buy-it'
+      'top-blurb bottom-blurb';
+
+    @media (max-width: 40em) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'top-blurb'
+        'buy-it'
+        'bottom-blurb';
+    }
+    
+    .top-blurb {
+      grid-area: top-blurb;
+      font-size: 1.4em;
+      line-height: 1.5em;
+      font-style: italic;
+      
+      p {
+        margin: 0;
+      }
+      p + p {
+        margin-block-start: 1.2em;
+      }
+    }
+    .buy-it {
+      grid-area: buy-it;
+    }
+    .bottom-blurb {
+      grid-area: bottom-blurb;
+      margin: 0;
+      font-family: var(--secondary);
+      font-size: .8em;
+      line-height: 1.2em;
+    }
+  }
+</style>
+
 <header class="Cover-Header">
   <h1 class="book-title">Hypermedia Systems</h1>
 
