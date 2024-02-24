@@ -234,7 +234,7 @@ If the archiver has the status `Waiting`, we want to render the
 a message indicating that progress is happening. Let’s update our template code
 to do just that:
 
-#figure(caption: [Adding conditional rendering]),
+#figure(caption: [Adding conditional rendering],
 ```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
     {% if archiver.status() == "Waiting" %} <1>
