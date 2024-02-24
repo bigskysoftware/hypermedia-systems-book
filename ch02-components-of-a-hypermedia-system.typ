@@ -577,7 +577,7 @@ their roles, partially created domain objects, caches, and so forth.
 
 This violation of the Statelessness REST architectural constraint has proven to
 be useful for building web applications and does not appear to have had a major
-impact on the overall flexibility the web. But it is worth bearing in mind that
+impact on the overall flexibility of the web. But it is worth bearing in mind that
 even Web 1.0 applications often violate the purity of REST in the interest of
 pragmatic trade-offs.
 

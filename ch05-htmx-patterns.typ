@@ -380,7 +380,7 @@ We have updated the client-side code (if HTML can be considered code) so it now
 issues a `DELETE` request to the appropriate URL, but we still have some work to
 do. Since we updated both the route and the HTTP method we are using, we are
 going to need to update the server-side implementation as well to handle this
-new HTTP Request.
+new HTTP request.
 
 #figure(caption: [The original server-side code for deleting a contact],
 ```python
@@ -1104,7 +1104,7 @@ repurpose it a bit using nothing but a few htmx attributes!
 
 #index[hx-select][example]
 We want to have a button that, when clicked, appends the rows from the next page
-of contacts to the current, exiting table, rather than re-rendering the whole
+of contacts to the current, existing table, rather than re-rendering the whole
 table. This can be achieved by adding a new row to our table that has just such
 a button in it:
 

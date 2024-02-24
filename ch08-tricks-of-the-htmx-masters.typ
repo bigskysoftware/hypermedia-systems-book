@@ -507,7 +507,7 @@ Here is what the code might look like:
 </button>
 ``` ]
 1. A normal htmx-driven `GET` request to `/contacts`
-2. JavaScript to look up the button and send it an `htxm:abort` event
+2. JavaScript to look up the button and send it an `htmx:abort` event
 
 So now, if a user clicks on the "Get Contacts" button and the request takes a
 while, they can click on the "Cancel" button and end the request. Of course, in
@@ -530,7 +530,7 @@ at what that would look like:
 </button>
 ``` ]
 
-Now we have a "Cancel" button that is disabled only when a request from the `contacts-btn` button
+Now we have a "Cancel" button that is enabled only when a request from the `contacts-btn` button
 is in flight. And we are taking advantage of htmx-generated and handled events,
 as well as the event-friendly syntax of hyperscript, to make it happen. Slick!
 

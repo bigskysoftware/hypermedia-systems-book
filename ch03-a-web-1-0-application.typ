@@ -118,7 +118,7 @@ called "decorators" to declare the route that will be handled, which is then
 followed by a function to handle requests to that route. We’ll use the term "handler"
 to refer to the functions associated with a route.
 
-Let’s create our first route definition, a simple "Hello Flask" route. In the
+Let’s create our first route definition, a simple "Hello World" route. In the
 following Python code you will see the `@app` symbol. This is the flask
 decorator that allows us to set up our routes. Don’t worry too much about how
 decorators work in Python, just know that this feature allows us to map a given _path_ to
@@ -155,17 +155,17 @@ the root, and this will become the handler for the root URL in our web
 application.
 
 The handler in this case is dead simple, it just returns a string,
-"Hello Flask!", to the client. This isn’t hypermedia yet, but a browser will
+"Hello World!", to the client. This isn’t hypermedia yet, but a browser will
 render it just fine:
 
 #figure([#image("images/figure_2-1_hello_world.png")], caption: [
-  Hello Flask!
+  Hello World!
 ])
 
 Great, there’s our first step into Flask, showing the core technique we are
 going to use to respond to HTTP requests: routes mapped to handlers.
 
-For Contact.app, rather than rendering "Hello Flask!" at the root path, we are
+For Contact.app, rather than rendering "Hello World!" at the root path, we are
 going to do something a little fancy: we are going to redirect to another path,
 the `/contacts` path. Redirects are a feature of HTTP that allow you to redirect
 a client to another location with an HTTP response.
@@ -281,7 +281,7 @@ management of Contacts.
 
 #index[Contact.app][model]
 It could be working with a database (it isn’t) or a simple flat file (it is),
-but we’re going skip over the internal details of the model. Think of it as a "normal"
+but we’re going to skip over the internal details of the model. Think of it as a "normal"
 domain model class, with methods on it that act in a
 "normal" manner.
 
@@ -872,7 +872,7 @@ leave the templates separate.
   DRY.
 ]
 
-===== Handling the post to /contacts/\<contact\_id\> <_handling_the_post_to_contactscontact_id>
+===== Handling the post to /contacts/\<contact\_id\>/edit <_handling_the_post_to_contactscontact_id>
 Next we need to handle the HTTP `POST` request that the form in our
 `edit.html` template submits. We will declare another route that handles the
 same path as the `GET` above.

@@ -44,7 +44,7 @@ One of the reasons Richardson and Ruby’s work was so important was that, unlik
 dissertations and futuristic predictions, the _RESTful Web Services_ book
 outlined a practical working framework for building powerful applications for
 the Web. It described not only the power of REST but also provided step-by-step
-instructions on how to build them. Richard and Ruby brought together the
+instructions on how to build them. Richardson and Ruby brought together the
 hypermedia scholarship of the previous twenty years all in one place.
 
 And now we can add this book (_“Hypermedia Systems”_) to that list of important

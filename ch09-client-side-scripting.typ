@@ -654,7 +654,7 @@ htmx; we load the overflow menu when htmx loads new content.
 #figure[
 ```js
 function overflowMenu(subtree = document) {
-  document.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
+  subtree.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
     const
     button = menuRoot.querySelector("[aria-haspopup]"), <2>
     menu = menuRoot.querySelector("[role=menu]"), <3>

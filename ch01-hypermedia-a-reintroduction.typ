@@ -483,7 +483,7 @@ foregoes the hypermedia architecture. It leaves aside the advantages of the
 existing RESTful architecture of the web and the built-in functionality found in
 HTML’s native hypermedia controls in favor of JavaScript driven behaviors.
 
-SPAs are more much like _#indexed[thick client application]s_, that is, like the
+SPAs are much more like _#indexed[thick client application]s_, that is, like the
 client-server applications of the 1980s --- an architecture popular
 _before_ the web came along and that the web was, in many ways, a reaction to.
 
