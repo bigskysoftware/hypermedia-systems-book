@@ -1,12 +1,12 @@
 :root {
-  --text: Novello Reduced, serif;
-  --secondary: Novello Reduced, serif;
-  --display: Chiq Reduced, ChicagoFLF, Chicago, Impact, sans-serif;
+  --text: Linux Libertine, serif;
+  --secondary: Linux Biolinum, serif;
+  --display: ChicagoFLF, Chicago, Impact, sans-serif;
   --code: Berkeley Mono, Consolas, monospace;
 
   font-family: var(--text);
   font-size: 1.2em;
-  line-height: 1.4em;
+  line-height: 1.2em;
 
   max-width: 70ch;
   padding: 0 1em;
@@ -28,26 +28,31 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--display);
   font-weight: 900;
   line-height: 1.2em;
+  text-wrap: balance;
 }
 
 h1 {
   font-size: 1.5em;
-  margin-block: 0.5em;
+  margin-block-start: 1.5em;
+  margin-block-end: 1em;
 }
 
 h2 {
   font-size: 1.2em;
-  margin-block: 0.5em;
+  margin-block-start: 1.5em;
+  margin-block-end: 1em;
 }
 
 h3 {
   font-size: 1em;
-  margin-block: 0.5em;
+  margin-block-start: 1.5em;
+  margin-block-end: 1em;
 }
 
 h4 {
   font-size: .8em;
-  margin-block: 0.5em;
+  margin-block-start: 1.5em;
+  margin-block-end: 1em;
 }
 
 figcaption, ol::marker, ul::marker, header, footer {
@@ -64,10 +69,15 @@ header, footer {
 
 pre {
   overflow-x: auto;
+  margin-inline-end: calc((100% - 100vw) / 2);
 }
 
-pre, code {
+pre, code, samp, kbd {
   font-family: var(--code);
+}
+
+pre, code:not(pre code) {
+  font-size: .8em;
   line-height: 1.2em;
 }
 
@@ -101,6 +111,15 @@ blockquote {
 
 a {
   color: inherit;
+}
+
+sub, sup {
+  line-height: 1em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 label {
@@ -208,6 +227,7 @@ label {
     column-gap: 2em;
     display: flow-root;
     margin-block: 1.4em;
+    padding-inline: 0 !important;
   }
 
   li + li {
@@ -233,6 +253,11 @@ label {
 
   .chapter {
     counter-increment: chapter;
+
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+
     &::before {
       content: counter(chapter, decimal-leading-zero);
       font-family: var(--display);
@@ -388,6 +413,13 @@ label {
   .footnote-back {
     font-size: .8em;
     text-decoration: none;
+  }
+}
+
+.footnote-ref {
+  text-decoration: none;
+  sup {
+    text-decoration: 1px solid currentcolor;
   }
 }
 
