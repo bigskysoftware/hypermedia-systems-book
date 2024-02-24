@@ -3,10 +3,12 @@
 
 == Components Of A Hypermedia System
 
-A _hypermedia system_ consists of a number of components, including:- A
-hypermedia, such as HTML.- A network protocol, such as HTTP.- A server that
-presents a hypermedia API responding to network requests with hypermedia
-responses.- A client that properly interprets those responses.
+A _hypermedia system_ consists of a number of components, including:
+
+- A hypermedia, such as HTML.
+- A network protocol, such as HTTP.
+- A server that presents a hypermedia API responding to network requests with hypermedia responses.
+- A client that properly interprets those responses.
 
 In this chapter we will look at these components and their implementation in the
 context of the web.
