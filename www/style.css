@@ -252,9 +252,15 @@ label {
     margin-block-start: 1.4em;
   }
 
-  .internal-contents {
+  ul.internal-contents {
     display: none;
     grid-column: 1 / span 2;
+    margin-block: 0;
+    padding-inline-start: 4em !important;
+
+    & & {
+      margin-block: 1.4em;
+    }
   }
   
   a {
@@ -280,7 +286,16 @@ label {
     &::before {
       content: counter(chapter, decimal-leading-zero);
       font-family: var(--display);
-      font-size: .8em;
+      font-size: .9em;
+    }
+
+    &.introduction {
+      counter-increment: none;
+
+      &::before {
+        content: "☛";
+        font: inherit;
+      }
     }
   }
 }
@@ -422,6 +437,22 @@ label {
   text-decoration: none;
   sup {
     text-decoration: 1px solid currentcolor;
+  }
+}
+
+.book-footer {
+  margin-block: 3em 0;
+  font-size: .8em;
+  font-family: var(--secondary);
+  text-align: center;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1em;
+
+  .footer-book-title {
+    font-family: var(--display);
   }
 }
 

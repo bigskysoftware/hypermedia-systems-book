@@ -52,6 +52,12 @@ const HypermediaSystems = new Book("Hypermedia Systems",
     <header class="book-header">
       <a href="/" class="homepage-link">Hypermedia Systems</a>
     </header>
+    `,
+    htmlFooter: `
+    <footer class="book-footer">
+      <a href="/" class="footer-book-title">Hypermedia Systems</a>
+      <a href="/book/contents/">Contents</a>
+    </footer>
     `
   },
   new LandingPage("Hypermedia Systems", { url: '/', content: await Deno.readTextFile("www/cover.html") }),

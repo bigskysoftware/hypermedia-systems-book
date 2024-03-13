@@ -1,6 +1,6 @@
 #let leading = 0.6em
-#let body-font = "Yrsa"
-#let secondary-font = "Open Sans"
+#let body-font = "Linux Libertine"
+#let secondary-font = "Linux Biolinum"
 #let display-font = "ChicagoFLF"
 #let mono-font = "Berkeley Mono"
 

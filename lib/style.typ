@@ -46,7 +46,7 @@
 
 #let hypermedia-systems-book(title, authors: (), frontmatter: []) = content => [
   #set text(font: body-font, size: 12pt, lang: "en")
-  #show raw: set text(font: mono-font)
+  #show raw: set text(font: mono-font, size: 9pt)
 
   #show heading: set text(font: display-font)
 
