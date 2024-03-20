@@ -31,7 +31,7 @@
 
 :root {
   --text: Yrsa, serif;
-  --secondary: sans-serif;
+  --secondary: Open Sans, sans-serif;
   --display: ChicagoFLF, Chicago, Impact, sans-serif;
   --code: Berkeley Mono, Consolas, monospace;
 
@@ -441,7 +441,7 @@ label {
 }
 
 .book-footer {
-  margin-block: 3em 0;
+  margin-block: 3em;
   font-size: .8em;
   font-family: var(--secondary);
   text-align: center;

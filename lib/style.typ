@@ -141,7 +141,7 @@
 
     #set heading(
       supplement: it => ([Part], [Chapter]).at(
-        it.level - 1, default: [Section]),
+        it.at("level", default: 1) - 1, default: [Section]),
       numbering: (..bits) => if bits.pos().len() < 2 {
         // Show part number only on parts.
         numbering("I.", ..bits)
