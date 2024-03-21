@@ -1,4 +1,6 @@
 
+/* #region Font face declarations */
+
 @font-face {
   font-family: "Chicago FLF";
   src: url("/fonts/ChicagoFLF.ttf") format("truetype");
@@ -28,12 +30,55 @@
   src: url("/fonts/Yrsa-BoldItalic.ttf") format("truetype");
   size-adjust: 125%;
 }
+@font-face {
+  font-family: 'U001';
+  src: url('/fonts/u001-reg.ttf') format('truetype');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'U001';
+  src: url('/fonts/u001-bol.ttf') format('truetype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'U001';
+  src: url('/fonts/u001-ita.ttf') format('truetype');
+  font-style: italic;
+}
+@font-face {
+  font-family: 'U001';
+  src: url('/fonts/u001-bolita.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'U001con';
+  src: url('/fonts/u001con-reg.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'U001con';
+  src: url('/fonts/u001con-bol.ttf') format('truetype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'U001con';
+  src: url('/fonts/u001con-ita.ttf') format('truetype');
+  font-style: italic;
+}
+@font-face {
+  font-family: 'U001con';
+  src: url('/fonts/u001con-bolita.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* #endregion */
 
 :root {
   --text: Yrsa, serif;
-  --secondary: Open Sans, sans-serif;
+  --secondary: U001, sans-serif;
   --display: ChicagoFLF, Chicago, Impact, sans-serif;
-  --code: Berkeley Mono, Consolas, monospace;
+  --code: Berkeley Mono, Consolas, monospace, monospace;
 
   --link-color: #145591;
   --bg: #f8fafb;
@@ -99,6 +144,10 @@ h4 {
   margin-block-end: 1em;
 }
 
+figure {
+  margin-inline: 1em;
+}
+
 figcaption, ol::marker, ul::marker, header, footer {
   font-family: var(--secondary);
 }
@@ -114,6 +163,12 @@ header, footer {
 pre {
   overflow-x: auto;
   margin-inline-end: calc((100% - 100vw) / 2);
+  padding-block: .75em;
+  margin-block: -.75em;
+
+  #html-note &, #important &, #sidebar & {
+    margin-inline-end: -2em;
+  }
 }
 
 pre, code, samp, kbd {
@@ -121,7 +176,6 @@ pre, code, samp, kbd {
 }
 
 pre, code:not(pre code) {
-  font-size: .8em;
   line-height: 1.2em;
 }
 
@@ -416,7 +470,6 @@ label {
   margin-block-start: -1.3em;
   text-align: right;
   font-size: .8em;
-  font-family: var(--secondary);
   border-inline-start: 1px dotted var(--line-color);
 }
 

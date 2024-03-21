@@ -22,3 +22,6 @@ serve:
   python3 -m http.server --directory _site & \
   watchexec -w . -i '_site/**/*' -r just build-html & \
   wait 0)
+
+deploy:
+  netlify deploy -d _site --prod
