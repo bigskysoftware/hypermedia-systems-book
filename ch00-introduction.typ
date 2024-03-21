@@ -38,7 +38,7 @@ applications entirely in JavaScript. Applications built in this manner have come
 to be called Single Page Applications (SPAs). Rather than navigating between
 pages, these web applications use JavaScript for updating the user interface
 directly. When they communicate with a server, these applications typically use
-JSON API calls via AJAX. And they often update the user interface using a "`reactive`" style
+JSON API calls via AJAX. And they often update the user interface using a "reactive" style
 frontend JavaScript library.
 
 In these applications HTML becomes a (somewhat awkward) graphical interface
@@ -76,11 +76,11 @@ We define a _hypermedia system_ as a system that adheres to the RESTful network
 architecture in Fielding's _original_
 sense of this term.
 
-Unfortunately, today, you probably associate the term "`REST`" with JSON APIs,
+Unfortunately, today, you probably associate the term "REST" with JSON APIs,
 since that is where the term is typically used in industry. This is a misapplied
 use of the term REST because JSON is not a _natural_ hypermedia due to the
 absence of hypermedia controls. The exchange of hypermedia is an explicit
-requirement for a system to be considered "`RESTful.`"
+requirement for a system to be considered "RESTful."
 It is a long story how we got here, using the term REST so incorrectly, and we
 will go into the details later in this book. But, for now, if you think REST
 implies JSON, please try to set that understanding aside while reading this

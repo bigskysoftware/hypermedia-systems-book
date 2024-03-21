@@ -1515,7 +1515,7 @@ With this method available, we can now tighten up our delete button quite a bit.
 We can remove all the SweetAlert2 code that we had in the
 `@click` Alpine attribute, and simply call this new `sweetConfirm()`
 method, passing in the arguments `$el`, which is the Alpine syntax for getting
-\`"the current element\`" that the script is on, and then the exact
+"the current element" that the script is on, and then the exact
 configuration we want for our dialog.
 
 If the user confirms the action, a `confirmed` event will be triggered on the
