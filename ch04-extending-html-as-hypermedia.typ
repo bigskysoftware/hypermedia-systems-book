@@ -877,19 +877,19 @@ selector, also support _relative_ CSS selectors. These allow you to specify a
 CSS selector _relative_ to the element it is declared on. Here are some
 examples:
 
-`closest`:: #index[relative CSS selectors][closest] Find the closest parent
+/ `closest`: #index[relative CSS selectors][closest] Find the closest parent
 element matching the given selector, e.g., `closest form`.
 
-`next`:: #index[relative CSS selectors][next] Find the next element (scanning
+/ `next`: #index[relative CSS selectors][next] Find the next element (scanning
 forward) matching the given selector, e.g., `next input`.
 
-`previous`:: #index[relative CSS selectors][previous] Find the previous element
+/ `previous`: #index[relative CSS selectors][previous] Find the previous element
 (scanning backwards) matching the given selector, e.g., `previous input`.
 
-`find`:: #index[relative CSS selectors][find] Find the next element within this
+/ `find`: #index[relative CSS selectors][find] Find the next element within this
 element matching the given selector, e.g., `find input`.
 
-`this`:: #index[relative CSS selectors][this] The current element.
+/ `this`: #index[relative CSS selectors][this] The current element.
 
 Using relative CSS selectors often allows you to avoid generating ids for
 elements, since you can take advantage of their local structural layout instead.
