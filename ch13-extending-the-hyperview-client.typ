@@ -87,7 +87,7 @@ functionality for calls and emails.
 > cd hyperview/demo
 > yarn add react-native-communications <1>
 > yarn start <2>
-```]
+```
 + Add dependency on `react-native-communications`
 + Re-start the mobile app
 

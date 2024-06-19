@@ -1,7 +1,7 @@
 #let leading = 0.6em
-#let body-font = "Linux Libertine"
-#let secondary-font = "Linux Biolinum"
-#let display-font = "ChicagoFLF"
+#let body-font = "PermianSerifTypeface"
+#let secondary-font = "PermianSansTypeface"
+#let display-font = "Jaro"
 #let mono-font = "Berkeley Mono"
 
 #import "./indexing.typ": *

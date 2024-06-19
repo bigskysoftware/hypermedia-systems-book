@@ -63,6 +63,7 @@
     let fields = it.fields()
     let _ = fields.remove("text")
     let _ = fields.remove("lines")
+    let _ = fields.remove("theme")
     [#raw(..fields, new-text)#processed-label]
   }
 }

@@ -19,7 +19,7 @@
 
 #let page-header() = locate(
   loc => [
-    #set text(font: secondary-font)
+    #set text(font: secondary-font, size: 10pt)
     #let h1 = query(heading.where(level: 1).or(heading.where(level: 2)), loc).any(h => counter(page).at(h.location()) == counter(page).at(loc))
     #if not h1 {
       let reference-title(title, numbering-style) = [
@@ -46,12 +46,31 @@
 
 #let hypermedia-systems-book(title, authors: (), frontmatter: []) = content => [
   #set text(font: body-font, size: 12pt, lang: "en")
-  #show raw: set text(font: mono-font, size: 9pt)
+  #set par(leading: .5em)
+  #show raw: set text(font: mono-font)
+  #show raw.where(block: false): set text(size: 10pt)
+  #show raw.where(block: true): it => {
+    set text(size: 9pt)
+    rect(
+      fill: luma(240),
+      stroke: luma(200),
+      radius: 1em,
+      inset: 1em,
+      it,
+    )
+  }
 
-  #show heading: set text(font: display-font)
+  #show heading.where(level: 1): set text(font: display-font)
+  #show heading.where(level: 2): set text(font: display-font)
+  #show heading.where(level: 3): set text(font: secondary-font)
+  #show heading.where(level: 4): set text(font: secondary-font)
+  #show heading.where(level: 5): set text(font: secondary-font)
+  #show heading.where(level: 6): set text(font: secondary-font)
 
   #set par(justify: true, first-line-indent: 1em, leading: leading)
   #show par: set block(spacing: leading)
+
+  #show list: set par(justify: false)
 
   #set list(
     body-indent: .6em,
@@ -84,10 +103,15 @@
     show figure.caption: align.with(if it.kind == raw { start } else { center })
     it
   }
-  #show figure.where(kind: raw): set figure.caption(position: top)
-  #show figure.where(kind: raw): set par(justify: false)
-  #show figure.where(kind: raw): set block(breakable: true)
+  #show figure.caption: set text(font: secondary-font, size: 10pt)
   #show figure.where(kind: raw): it => {
+    set figure.caption(position: top)
+    show figure.caption: it => {
+      pad(it, bottom: 1em)
+      v(-1em)
+    }
+    set par(justify: false)
+    set block(breakable: true)
     show raw.where(block: true): it => block(width: 100%, align(start, it))
     block(
       spacing: 1em + leading,
@@ -95,9 +119,7 @@
       align(start, it),
     )
   }
-  #show figure.where(kind: raw): set block(breakable: true)
-  #show figure.caption: set text(font: secondary-font)
-
+  
   #show raw.where(block: true): code-with-callouts
 
   #set page(
