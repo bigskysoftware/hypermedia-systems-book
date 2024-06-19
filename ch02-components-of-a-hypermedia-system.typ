@@ -219,10 +219,10 @@ While HTTP Actions correspond roughly to CRUD, they are not the same. The
 technical specifications for these methods make no such connection, and are
 often somewhat difficult to read. Here, for example, is the documentation on the
 distinction between a `POST` and a `PUT` from
-#link("https://www.rfc-editor.org/rfc/rfc2616")[RFC-2616].
+#link("https://www.rfc-editor.org/rfc/rfc9110")[RFC-9110].
 
 #blockquote(
-  attribution: [RFC-2616, https:\/\/www.rfc-editor.org/rfc/rfc2616\#section-9.6],
+  attribution: [RFC-9110, https:\/\/www.rfc-editor.org/rfc/rfc9110\#section-9.3.4],
 )[
   The target resource in a POST request is intended to handle the enclosed
   representation according to the resource’s own semantics, whereas the enclosed

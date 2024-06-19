@@ -2,7 +2,6 @@
 :url: /book/dedication/
 :layout: frontmatter.njk
 :chapter: -b
-:tags: dedication
 
 [.airy.padding-block]
 --
@@ -14,3 +13,6 @@
 [.big]_+++<span lang="tr">Annem Lamia Akşimşek ve babam Özgür Akşimşek&#8217;e.</span>+++_ -- Deniz Akşimşek
 
 --
+
+[.secondary-font.f-row,role="justify-content:end"]
+*Next:* link:/book/contents[Table of Contents]

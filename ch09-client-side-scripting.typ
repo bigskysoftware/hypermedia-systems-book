@@ -1520,7 +1520,7 @@ configuration we want for our dialog.
 
 If the user confirms the action, a `confirmed` event will be triggered on the
 button. This means that we can go back to using our trusty htmx attributes!
-Namely, we can move `DELETE` to an `hx-delete` attribute, and we can we can use `hx-target` to
+Namely, we can move `DELETE` to an `hx-delete` attribute, and we can use `hx-target` to
 target the body. And then, and here is the crucial step, we can use the `confirmed` event
 that is triggered in the `sweetConfirm()` function, to trigger the request, but
 adding an

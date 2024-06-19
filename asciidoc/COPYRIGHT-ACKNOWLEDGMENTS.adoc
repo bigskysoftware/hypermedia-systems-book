@@ -4,7 +4,9 @@
 :chapter: -a
 :layout: frontmatter.njk
 :url: /book/copyright-acknowledgments/
-:tags: copyright
+
+[.allcaps.massivetext.display-font.italic,role="text-align:center"]
+Hypermedia Systems
 
 [.cite.block.italic.bold]#Hypermedia Systems#
 (C) 2023 Carson Gross, Adam Stepinski, Deniz Akşimşek
@@ -18,8 +20,6 @@ http://creativecommons.org/licenses/by-nc-sa/4.0/
 or send a letter to Creative Commons, PO Box 1866, Mountain View,
 CA 94042, USA.
 
-**Read online:**
-https://hypermedia.systems/
 
 [discrete,role="<h6> bold"]
 == Acknowledgements
@@ -37,3 +37,6 @@ Thanks to:
 Typefaces: [.cite]#ChicagoFLF# (by Robin Casady, headings), [.cite]#Literata# (by TypeTogether, body text), [.cite]#Berkeley Mono# (Berkeley Graphics, code).
 
 Tools: HTML, CSS, Asciidoc (https://asciidoc.org/, markup language), Paged.js (https://pagedjs.org/).
+
+[.secondary-font.f-row,role="justify-content:end"]
+*Next:* link:/book/dedication[Dedication]

@@ -1,29 +1,7 @@
-
-++++
-<style>
-.index-list > ul {
-    list-style: none;
-    padding-left: 0;
-    columns: 2;
-}
-
-.index-list :is(ul ul) {
-    list-style: none;
-    padding-left: 1em;
-}
-
-.index-list * {
-    margin-block: 0;
-}
-</style>
-++++
-
-[index]
 = Index
-:url: /index/
-:tags: term_index
 
-[.index-list]
+:url: /index/
+
 * accessibility	154, 207
 * AJAX	21, 86, 98, 102
 * Alpine.js	212
@@ -407,6 +385,4 @@
 * web stack	53
 * web, 1.0	20
 	
-++++
-</section>
-++++	
+	

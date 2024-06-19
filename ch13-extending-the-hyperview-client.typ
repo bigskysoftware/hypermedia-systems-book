@@ -808,5 +808,5 @@ can save you a tremendous amount of complexity when building your applications.
 
 Do not let the perfect be the enemy of the good. Many advantages are to be
 gained by accepting a slightly less sophisticated user experience in some cases,
-and tools like htmx and HyperView make that compromise much more palatable when
+and tools like htmx and Hyperview make that compromise much more palatable when
 they are used properly.

@@ -25,3 +25,10 @@ serve:
 
 deploy:
   netlify deploy -d _site --prod
+
+diff-with-old:
+  #!/usr/bin/env bash
+  for f in $(find asciidoc/ -type f)
+  do
+    diff -u $f ../hypermedia-systems/book/$(basename $f)
+  done

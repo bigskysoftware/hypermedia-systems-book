@@ -744,7 +744,7 @@ _The HTTP response from the server is expected to be in HTML format, not JSON_.
 
 An HTTP response to this htmx-driven request might look something like this:
 
-#figure(caption: [JSON], 
+#figure(caption: [HTML],
 ```html
 <details>
   <div>
@@ -943,5 +943,5 @@ spec, it’s more of a tool _shed_).
 
 Of course, not every UI pattern has a designated HTML element. We often need to
 compose elements and augment them with attributes. Before you do, though,
-rummage through the html tool chest. Sometimes you might be surprised by how
+rummage through the HTML tool chest. Sometimes you might be surprised by how
 much is available. ]

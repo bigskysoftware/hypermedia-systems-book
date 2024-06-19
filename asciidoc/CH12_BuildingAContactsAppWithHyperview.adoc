@@ -1332,11 +1332,8 @@ We're not done yet.
 In the next chapter we'll implement custom behaviors and UI elements to finish our mobile Contact.app.
 
 
-:sectnums!:
 
-++++
-<div style="display: flow-root">
-++++
+:sectnums!:
 
 [.html-note]
 == Hypermedia Notes: API Endpoints
@@ -1355,7 +1352,3 @@ your application developers and as use cases change.
 
 A great strength of the hypermedia approach is that you can completely rework your API to adapt to new needs over
 time without needing to version the API or even document it.  Take advantage of it!
-
-++++
-</div>
-++++

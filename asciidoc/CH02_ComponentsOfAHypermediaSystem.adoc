@@ -187,9 +187,9 @@ These methods _roughly_ line up with the "`Create/Read/Update/Delete`" or CRUD p
 ****
 While HTTP Actions correspond roughly to CRUD, they are not the same. The technical specifications for these methods make
 no such connection, and are often somewhat difficult to read.  Here, for example, is the documentation
-on the distinction between a `POST` and a `PUT` from https://www.rfc-editor.org/rfc/rfc2616[RFC-2616].
+on the distinction between a `POST` and a `PUT` from https://www.rfc-editor.org/rfc/rfc9110[RFC-9110].
 
-[quote, RFC-2616, https://www.rfc-editor.org/rfc/rfc2616#section-9.6]
+[quote, RFC-9110, https://www.rfc-editor.org/rfc/rfc9110#section-9.3.4]
 ____
 The target resource in a POST request is intended to handle the enclosed representation according to the
 resource's own semantics, whereas the enclosed representation in a PUT request is defined as replacing the state of the
@@ -480,7 +480,7 @@ This session information is typically stored in some sort of shared storage acro
 like the current user's email or id, their roles, partially created domain objects, caches, and so forth.
 
 This violation of the Statelessness REST architectural constraint has proven to be useful for building web applications
-and does not appear to have had a major impact on the overall flexibility the web.  But it is worth bearing in mind that
+and does not appear to have had a major impact on the overall flexibility of the web.  But it is worth bearing in mind that
 even Web 1.0 applications often violate the purity of REST in the interest of pragmatic trade-offs.
 
 And it must be said that sessions _do_ cause additional operational complexity headaches when deploying hypermedia
