@@ -1,5 +1,5 @@
 
-typst_flags = "--font-path fonts"
+typst_flags := "--font-path fonts"
 
 build: build-pdf build-html
 
@@ -18,6 +18,9 @@ build-pdf:
 
 watch-pdf:
   typst watch {{ typst_flags }} HypermediaSystems.typ
+
+typst-fonts:
+  typst fonts {{ typst_flags }}
 
 build-html:
   rm -rf _site
