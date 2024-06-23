@@ -1,4 +1,6 @@
 
+typst_flags = "--font-path fonts"
+
 build: build-pdf build-html
 
 format:
@@ -8,8 +10,14 @@ clean:
   find  . -name '*.pdf' | xargs rm -rf
   rm -rf _site
 
+open-pdf:
+  typst compile {{ typst_flags }} --open HypermediaSystems.typ
+
 build-pdf:
-  typst compile HypermediaSystems.typ
+  typst compile {{ typst_flags }} HypermediaSystems.typ
+
+watch-pdf:
+  typst watch {{ typst_flags }} HypermediaSystems.typ
 
 build-html:
   rm -rf _site
