@@ -645,9 +645,9 @@ Always remember to #strong[test] your website for accessibility to ensure all
 users can interact with it easily and effectively.
 ]
 
-With this brief introduction to ARIA, let’s return to our VanillaJS drop down
-menu. We’ll begin with the RSJS boilerplate: query for all elements with some
-data attribute, iterate over them, get any relevant descendants.
+On the JS side of our implementation, we’ll begin with the RSJS boilerplate:
+query for all elements with some data attribute, iterate over them, get any
+relevant descendants.
 
 Note that, below, we’ve modified the RSJS boilerplate a bit to integrate with
 htmx; we load the overflow menu when htmx loads new content.
