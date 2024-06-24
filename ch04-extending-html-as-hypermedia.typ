@@ -600,7 +600,7 @@ example.
 To respond to a mouse entering the button, we would add the following attribute
 to our button:
 
-#figure(caption: [A (bad?) button that triggers on mouse entry], 
+#figure(caption: [A (bad?) button that triggers on mouse entry],
 ```html
 <div id="main">
 
@@ -710,7 +710,7 @@ Here is what our updated `hx-trigger` attribute looks like:
 ```html
 <div id="main">
 
-  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'L'] from:body"> <1>
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l'] from:body"> <1>
     Get The Contacts
   </button>
 
