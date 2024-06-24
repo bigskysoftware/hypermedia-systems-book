@@ -317,12 +317,12 @@ Let’s look at the first few lines of code in the `index.html` template:
 
 {% block content %} <2>
 
-    <form action="/contacts" method="get" class="tool-bar"> <3>
-        <label for="search">Search Term</label>
-        <input id="search" type="search" name="q"
-          value="{{ request.args.get('q') or '' }}" /> <4>
-        <input type="submit" value="Search"/>
-    </form>
+  <form action="/contacts" method="get" class="tool-bar"> <3>
+    <label for="search">Search Term</label>
+    <input id="search" type="search" name="q"
+      value="{{ request.args.get('q') or '' }}" /> <4>
+    <input type="submit" value="Search"/>
+  </form>
 ```)
 
 1. Set the layout template for this template.
@@ -369,23 +369,23 @@ Here is what the template code for the contact table looks like:
 #figure(caption: [The contacts table],
 ```html
 <table>
-    <thead>
+  <thead>
+  <tr>
+    <th>First <th>Last <th>Phone <th>Email <th/> <1>
+  </tr>
+  </thead>
+  <tbody>
+  {% for contact in contacts %} <2>
     <tr>
-        <th>First <th>Last <th>Phone <th>Email <th/> <1>
+      <td>{{ contact.first }}</td>
+      <td>{{ contact.last }}</td>
+      <td>{{ contact.phone }}</td>
+      <td>{{ contact.email }}</td> <3>
+      <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
+        <a href="/contacts/{{ contact.id }}">View</a></td> <4>
     </tr>
-    </thead>
-    <tbody>
-    {% for contact in contacts %} <2>
-        <tr>
-            <td>{{ contact.first }}</td>
-            <td>{{ contact.last }}</td>
-            <td>{{ contact.phone }}</td>
-            <td>{{ contact.email }}</td> <3>
-            <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
-                <a href="/contacts/{{ contact.id }}">View</a></td> <4>
-        </tr>
-    {% endfor %}
-    </tbody>
+  {% endfor %}
+  </tbody>
 </table>
 ```,
 )
@@ -414,9 +414,9 @@ directive to end the `content` block:
 
 #figure(caption: [The "add contact" link],
 ```html
-    <p>
-        <a href="/contacts/new">Add Contact</a> <1>
-    </p>
+  <p>
+    <a href="/contacts/new">Add Contact</a> <1>
+  </p>
 
 {% endblock %} <2>
 ```)
@@ -491,17 +491,17 @@ Here is what our HTML looks like:
 #figure(caption: [The "new contact" form],
 ```html
 <form action="/contacts/new" method="post"> <1>
-    <fieldset>
-        <legend>Contact Values</legend>
-        <p>
-            <label for="email">Email</label> <2>
-            <input name="email" id="email" 
-              type="email" placeholder="Email"
-              value="{{ contact.email or '' }}"> <3>
-            <span class="error">
-              {{ contact.errors['email'] }} <4>
-            </span>
-        </p>
+  <fieldset>
+    <legend>Contact Values</legend>
+    <p>
+      <label for="email">Email</label> <2>
+      <input name="email" id="email" 
+        type="email" placeholder="Email"
+        value="{{ contact.email or '' }}"> <3>
+      <span class="error">
+        {{ contact.errors['email'] }} <4>
+      </span>
+    </p>
 ```)
 
 1. A form that submits to the `/contacts/new` path, using an HTTP `POST`.
@@ -526,22 +526,22 @@ Next we have inputs for the other fields for contacts:
 #figure(caption: [Inputs and labels for the "new contact" form],
 ```html
 <p>
-    <label for="first_name">First Name</label>
-    <input name="first_name" id="first_name" type="text"
-      placeholder="First Name" value="{{ contact.first or '' }}">
-    <span class="error">{{ contact.errors['first'] }}</span>
+  <label for="first_name">First Name</label>
+  <input name="first_name" id="first_name" type="text"
+    placeholder="First Name" value="{{ contact.first or '' }}">
+  <span class="error">{{ contact.errors['first'] }}</span>
 </p>
 <p>
-    <label for="last_name">Last Name</label>
-    <input name="last_name" id="last_name" type="text"
-      placeholder="Last Name" value="{{ contact.last or '' }}">
-    <span class="error">{{ contact.errors['last'] }}</span>
+  <label for="last_name">Last Name</label>
+  <input name="last_name" id="last_name" type="text"
+    placeholder="Last Name" value="{{ contact.last or '' }}">
+  <span class="error">{{ contact.errors['last'] }}</span>
 </p>
 <p>
-    <label for="phone">Phone</label>
-    <input name="phone" id="phone" type="text" placeholder="Phone"
-      value="{{ contact.phone or '' }}">
-    <span class="error">{{ contact.errors['phone'] }}</span>
+  <label for="phone">Phone</label>
+  <input name="phone" id="phone" type="text" placeholder="Phone"
+    value="{{ contact.phone or '' }}">
+  <span class="error">{{ contact.errors['phone'] }}</span>
 </p>
 ```,
 )
@@ -551,12 +551,12 @@ and a link back to the main contacts table:
 
 #figure(caption: [The submit button for the "new contact" form],
 ```html
-        <button>Save</button>
-    </fieldset>
+    <button>Save</button>
+  </fieldset>
 </form>
 
 <p>
-    <a href="/contacts">Back</a>
+  <a href="/contacts">Back</a>
 </p>
 ```)
 
@@ -788,14 +788,14 @@ Here is the first bit of the form:
 #figure(caption: [The "edit contact" form start],
 ```html
 <form action="/contacts/{{ contact.id }}/edit" method="post"> <1>
-    <fieldset>
-        <legend>Contact Values</legend>
-          <p>
-              <label for="email">Email</label>
-              <input name="email" id="email" type="text"
-                placeholder="Email" value="{{ contact.email }}"> <2>
-              <span class="error">{{ contact.errors['email'] }}</span>
-          </p>
+  <fieldset>
+    <legend>Contact Values</legend>
+    <p>
+      <label for="email">Email</label>
+      <input name="email" id="email" type="text"
+        placeholder="Email" value="{{ contact.email }}"> <2>
+      <span class="error">{{ contact.errors['email'] }}</span>
+    </p>
 ```)
 
 1. Issue a `POST` to the `/contacts/{{ contact.id }}/edit` path.
@@ -812,26 +812,26 @@ and our button to submit the form.
 
 #figure(caption: [The "edit contact" form body],
 ```html
-          <p>
-              <label for="first_name">First Name</label>
-              <input name="first_name" id="first_name" type="text"
-                placeholder="First Name" value="{{ contact.first }}">
-              <span class="error">{{ contact.errors['first'] }}</span>
-          </p>
-          <p>
-              <label for="last_name">Last Name</label>
-              <input name="last_name" id="last_name" type="text"
-                placeholder="Last Name" value="{{ contact.last }}">
-              <span class="error">{{ contact.errors['last'] }}</span>
-          </p>
-          <p>
-              <label for="phone">Phone</label>
-              <input name="phone" id="phone" type="text"
-                placeholder="Phone" value="{{ contact.phone }}">
-              <span class="error">{{ contact.errors['phone'] }}</span>
-          </p>
-        <button>Save</button>
-    </fieldset>
+    <p>
+      <label for="first_name">First Name</label>
+      <input name="first_name" id="first_name" type="text"
+        placeholder="First Name" value="{{ contact.first }}">
+      <span class="error">{{ contact.errors['first'] }}</span>
+    </p>
+    <p>
+      <label for="last_name">Last Name</label>
+      <input name="last_name" id="last_name" type="text"
+        placeholder="Last Name" value="{{ contact.last }}">
+      <span class="error">{{ contact.errors['last'] }}</span>
+    </p>
+    <p>
+      <label for="phone">Phone</label>
+      <input name="phone" id="phone" type="text"
+        placeholder="Phone" value="{{ contact.phone }}">
+      <span class="error">{{ contact.errors['phone'] }}</span>
+    </p>
+    <button>Save</button>
+  </fieldset>
 </form>
 ```)
 
@@ -847,11 +847,11 @@ To finish up the page, there is a simple hyperlink back to the list of contacts.
 #figure(caption: [The "edit contact" form footer],
 ```html
 <form action="/contacts/{{ contact.id }}/delete" method="post">
-    <button>Delete Contact</button>
+  <button>Delete Contact</button>
 </form>
 
 <p>
-    <a href="/contacts/">Back</a>
+  <a href="/contacts/">Back</a>
 </p>
 ```)
 

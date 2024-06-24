@@ -794,15 +794,15 @@ Let’s take our original #indexed[search] form and convert it to use htmx inste
 
 #figure(caption: [An htmx-powered search button],
 ```html
-  <form action="/contacts" method="get" class="tool-bar"> <1>
-      <label for="search">Search Term</label>
-      <input id="search" type="search" name="q" 
-             value="{{ request.args.get('q') or '' }}"
-             placeholder="Search Contacts"/>
-      <button hx-post="/contacts" hx-target="#main"> <2>
-        Search
-      </button>
-  </form>
+<form action="/contacts" method="get" class="tool-bar"> <1>
+  <label for="search">Search Term</label>
+  <input id="search" type="search" name="q" 
+    value="{{ request.args.get('q') or '' }}"
+    placeholder="Search Contacts"/>
+  <button hx-post="/contacts" hx-target="#main"> <2>
+    Search
+  </button>
+</form>
 ```)
 
 1. When an htmx-powered element is withing an ancestor form tag, all input values within that
@@ -858,8 +858,8 @@ Here is the above example reworked to include the input, dropping the form:
 
   <label for="search">Search Contacts:</label>
   <input id="search" name="q"  type="search" 
-         value="{{ request.args.get('q') or '' }}"
-         placeholder="Search Contacts"/>
+    value="{{ request.args.get('q') or '' }}"
+    placeholder="Search Contacts"/>
   <button hx-post="/contacts" hx-target="#main" hx-include="#search"> <1>
     Search
   </button>
