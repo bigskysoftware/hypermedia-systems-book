@@ -347,8 +347,11 @@ successful --- show error messages. Here is the code:
 )[ ```python
 @app.route("/api/v1/contacts", methods=["POST"]) <1>
 def json_contacts_new():
-    c = Contact(None, request.form.get('first_name'), request.form.get('last_name'), request.form.get('phone'),
-                request.form.get('email')) <2>
+    c = Contact(None,
+      request.form.get('first_name'),
+      request.form.get('last_name'),
+      request.form.get('phone'),
+      request.form.get('email')) <2>
     if c.save(): <3>
         return c.__dict__
     else:
@@ -416,7 +419,11 @@ handler and the detail view handler.
 @app.route("/api/v1/contacts/<contact_id>", methods=["PUT"]) <1>
 def json_contacts_edit(contact_id):
     c = Contact.find(contact_id) <2>
-    c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) <3>
+    c.update(
+        request.form['first_name'],
+        request.form['last_name'],
+        request.form['phone'],
+        request.form['email']) <3>
     if c.save(): <4>
         return c.__dict__
     else:

@@ -164,16 +164,17 @@ There are many methods available in HTTP; the ones of most practical importance 
   A GET request retrieves the representation of the specified resource. GET requests should not mutate data.
 
 `POST`::
-  A POST request submits data to the specified resource. This will often result in a mutation of state on the server.
+  A POST request submits data to the specified resource. This can often result in a mutation of state on the server (e.g.
+  creation or modification of a resource) but the exact semantics are determined by the server.
 
 `PUT`::
-  A PUT request replaces the data of the specified resource. This results in a mutation of state on the server.
+  A PUT request requests that the server completely replace the data of the specified resource with the given data. This often results in a mutation of state on the server if the request is accepted.
 
 `PATCH`::
-  A PATCH request replaces the data of the specified resource. This results in a mutation of state on the server.
+  A PATCH request requests a partial modification of the specified resource. This often results in a mutation of state on the server if the request is accepted.
 
 `DELETE`::
-  A DELETE request deletes the specified resource. This results in a mutation of state on the server.
+  A DELETE request deletes the specified resource. This often results in a mutation of state on the server if the request is accepted.
 
 (((CRUD)))
 These methods _roughly_ line up with the "`Create/Read/Update/Delete`" or CRUD pattern found in many applications:

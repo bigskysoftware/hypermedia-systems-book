@@ -8,8 +8,9 @@
     page(include "-1-copy-ack.typ", header: none, numbering: none)
     page({
       include "-2-dedication.typ"
-      counter(page).update(0)
     }, header: none, numbering: none)
+    page(counter(page).update(0),
+      header: none, numbering: none)
     include "-3-foreword.typ"
   },
 )

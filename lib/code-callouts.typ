@@ -20,7 +20,7 @@
   )
 }
 
-#let callout-pat = regex("<(\\d+)>(?:\\n|$)")
+#let callout-pat = regex("<(\\d+)>(\\n|$)")
 
 #let parse-callouts(
   code-text /*: str */

@@ -609,7 +609,8 @@ Let’s re-visit the Hello World app and fill out the `<styles>` element.
   <screen>
     <styles> <1>
       <style class="body" flex="1" flexDirection="column" /> <2>
-      <style class="header" borderBottomWidth="1" borderBottomColor="#ccc" />
+      <style class="header"
+        borderBottomWidth="1" borderBottomColor="#ccc" />
       <style class="main" margin="24" />
       <style class="h1" fontSize="32" />
       <style class="info" color="blue" />
@@ -683,7 +684,8 @@ like this:
     <body>
       <view>
         <text>Hello World!</text>
-        <area latitude="37.8270" longitude="122.4230" latitude-delta="0.1" longitude-delta="0.1"> <1>
+        <area latitude="37.8270" longitude="122.4230"
+          latitude-delta="0.1" longitude-delta="0.1"> <1>
           <marker latitude="37.8118" longitude="-122.4177" /> <2>
         </area>
       </view>
@@ -714,7 +716,8 @@ be the default for the document, we also need to assign the namespace to a
 prefix we will add to our elements:
 
 #figure[```xml
-<doc xmlns="https://hyperview.org/hyperview" xmlns:map="https://mycompany.com/hyperview-map">
+<doc xmlns="https://hyperview.org/hyperview"
+  xmlns:map="https://mycompany.com/hyperview-map">
 ```]
 
 This new attribute declares that the `map:` prefix is associated with the
@@ -726,12 +729,14 @@ Now that we have a namespace and prefix, we need to use it for our elements:
 #figure(
   caption: [Namespacing the custom elements],
 )[ ```xml
-<doc xmlns="https://hyperview.org/hyperview" xmlns:map="https://mycompany.com/hyperview-map"> <1>
+<doc xmlns="https://hyperview.org/hyperview"
+  xmlns:map="https://mycompany.com/hyperview-map"> <1>
   <screen>
     <body>
       <view>
         <text>Hello World!</text>
-        <map:area latitude="37.8270" longitude="122.4230" latitude-delta="0.1" longitude=delta="0.1"> <2>
+        <map:area latitude="37.8270" longitude="122.4230"
+          latitude-delta="0.1" longitude=delta="0.1"> <2>
           <map:marker latitude="37.8118" longitude="-122.4177" /> <3>
         </map:area> <4>
       </view>
@@ -999,7 +1004,8 @@ let’s assume our backend accepts `GET` requests to
     </view>
 
     <text>
-      <behavior action="replace-inner" href="/fragment" target="area2" /> <2>
+      <behavior action="replace-inner"
+        href="/fragment" target="area2" /> <2>
       Replace-inner
     </text>
     <view id="area2">
@@ -1065,7 +1071,8 @@ four buttons:
     <text>My fragment</text>
 
     <text>
-      <behavior action="replace-inner" href="/fragment" target="area2" /> <2>
+      <behavior action="replace-inner"
+        href="/fragment" target="area2" /> <2>
       Replace-inner
     </text>
     <view id="area2">
@@ -1208,7 +1215,8 @@ child elements to represent the behavior of each button.
   trigger="press"
   action="alert" <2>
   alert:title="Continue to next screen?" <3>
-  alert:message="Are you sure you want to navigate to the next screen?" <4>
+  alert:message=
+    "Are you sure you want to navigateto the next screen?" <4>
 >
   <alert:option alert:label="Continue"> <5>
     <behavior action="push" href="/next" /> <6>
@@ -1268,7 +1276,8 @@ elements on the same UI element.
 )[ ```xml
 <text>
   <behavior trigger="press" action="push" href="/next-screen" /> <1>
-  <behavior trigger="longPress" action="push" href="/secret-screen" /> <2>
+  <behavior trigger="longPress" <2>
+    action="push" href="/secret-screen" />
   Press (or long-press) me!
 </text>
 ``` ]
@@ -1295,7 +1304,8 @@ action.
   <view>
     <text>My app</text>
     <view id="container"> <1>
-      <behavior trigger="load" action="replace" href="/content" target="container"> <2>
+      <behavior trigger="load" action="replace" href="/content"
+        target="container"> <2>
       <text>Loading...</text> <3>
     </view>
   </view>
@@ -1364,7 +1374,7 @@ trigger.
 
 In this admittedly contrived example, we want to hide two elements on the screen
 when pressing the "Hide" button. The two elements are far apart in the HXML, and
-cannot be hidden by hiding a common parent element. But, we can trigger two
+cannot be hidden by hiding a common ancestor element. But, we can trigger two
 behaviors at the same time, each one executing a "hide" action but targeting
 different elements.
 

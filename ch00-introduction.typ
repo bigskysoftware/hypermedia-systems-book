@@ -96,7 +96,7 @@ REST was about _hypermedia_ and the 1.0 version of the web.
 
 === Hypermedia-Driven Applications
 
-#index[Hypermedia-Driven Application (HDA)]
+#index(text("Hypermedia-Driven Application (HDA)"))
 In this book we are going to take a look at hypermedia as a _system architecture_ and
 then explore some practical,
 _modern_ approaches to building web applications using it. We will call

@@ -58,10 +58,10 @@ using Expo. We will use this demo client but point it to our contacts app
 backend as a starting point.
 
 #figure[```bash
-> git clone git@github.com:Instawork/hyperview.git
-> cd hyperview/demo
-> yarn <1>
-> yarn start <2>
+git clone git@github.com:Instawork/hyperview.git
+cd hyperview/demo
+yarn <1>
+yarn start <2>
 ```]
 1. Install dependencies for the demo app
 2. Start the Expo server to run the mobile app in the iOS simulator.
@@ -161,7 +161,8 @@ specifically for the contacts list screen.
 
 {% block content %} <2>
   <form> <3>
-    <text-field name="q" value="" placeholder="Search..." style="search-field" />
+    <text-field name="q" value="" placeholder="Search..."
+      style="search-field" />
     <list id="contacts-list"> <4>
       {% include 'hv/rows.xml' %}
     </list>
@@ -202,7 +203,7 @@ infinite scroll, and pull-to-refresh.
   {% endfor %}
 </items>
 ``` ]
-1. An HXML element that groups a set of `<item>` elements in a common parent.
+1. An HXML element that groups a set of `<item>` elements in a common ancestor.
 2. Iterate over the contacts that were passed in to the template.
 3. Render an `<item>` for each contact, showing the name, phone number, or email.
 
@@ -228,10 +229,12 @@ def contacts():
     if search:
         contacts_set = Contact.search(search)
         if request.headers.get('HX-Trigger') == 'search':
-            return render_template("rows.html", contacts=contacts_set, page=page)
+            return render_template("rows.html",
+              contacts=contacts_set, page=page)
     else:
         contacts_set = Contact.all(page)
-    return render_template("index.html", contacts=contacts_set, page=page)
+    return render_template("index.html",
+      contacts=contacts_set, page=page)
 ``` ]
 
 This view supports fetching a set of contacts based on two query params,
@@ -266,7 +269,8 @@ def contacts():
         contacts_set = Contact.all(page)
 
     template_name = "hv/rows.xml" if rows_only else "hv/index.xml" <1>
-    return render_template(template_name, contacts=contacts_set, page=page)
+    return render_template(template_name,
+      contacts=contacts_set, page=page)
 ``` ]
 1. Check for a new `rows_only` query param.
 2. Render the appropriate HXML template based on `rows_only`.
@@ -285,7 +289,8 @@ will do this by introducing a new helper function, `render_to_response()`:
 def render_to_response(template_name, *args, **kwargs):
     content = render_template(template_name, *args, **kwargs) <1>
     response = make_response(content) <2>
-    response.headers['Content-Type'] = 'application/vnd.hyperview+xml' <3>
+    response.headers['Content-Type'] =
+      'application/vnd.hyperview+xml' <3>
     return response
 ``` ]
 1. Renders the given template with the supplied arguments and keyword arguments.
@@ -304,7 +309,8 @@ in our views. So all we need to do is update the last line of the
 #figure(
   caption: [`contacts() function`],
 )[ ```py
-return render_to_response(template_name, contacts=contacts_set, page=page) <1>
+return render_to_response(template_name,
+  contacts=contacts_set, page=page) <1>
 ``` ]
 1. Render the HXML template to an XML response.
 
@@ -329,7 +335,8 @@ add a
 #figure(
   caption: [Snippet of `hv/index.xml`],
 )[ ```xml
-<text-field name="q" value="" placeholder="Search..." style="search-field">
+<text-field name="q" value="" placeholder="Search..."
+  style="search-field">
   <behavior
     trigger="change" <1>
     action="replace-inner" <2>
@@ -379,7 +386,7 @@ and replace the list with the search results. You may be wondering, how does the
 backend know the query to use? The
 `href` attribute in the behavior does not include the `q` param expected by our
 backend. But remember, in `index.xml`, we wrapped the
-`<text-field>` and `<list>` elements with a parent `<form>` element. The
+`<text-field>` and `<list>` elements with a `<form>` element. The
 `<form>` element defines a group of inputs that will be serialized and included
 in any HTTP requests triggered by its child elements. In this case, the `<form>` element
 surrounds the search behavior and the text field. So the value of the `<text-field>` will
@@ -544,7 +551,8 @@ the details screen.
 <items xmlns="https://hyperview.org/hyperview">
   {% for contact in contacts %}
     <item key="{{ contact.id }}" style="contact-item">
-      <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}" /> <1>
+      <behavior trigger="press" action="push"
+        href="/contacts/{{ contact.id }}" /> <1>
       <text style="contact-item-label">
         <!-- omitted for brevity -->
       </text>
@@ -590,7 +598,9 @@ also generating the response from a new HXML template, which we can create now:
 
 {% block content %} <4>
 <view style="details">
-  <text style="contact-name">{{ contact.first }} {{ contact.last }}</text>
+  <text style="contact-name">
+    {{ contact.first }} {{ contact.last }}
+  </text>
 
   <view style="contact-section">
     <text style="contact-section-label">Phone</text>
@@ -660,7 +670,8 @@ the header of the contact details screen.
   </text>
 
   <text style="header-button"> <1>
-    <behavior trigger="press" action="reload" href="/contacts/{{contact.id}}/edit" /> <2>
+    <behavior trigger="press" action="reload"
+      href="/contacts/{{contact.id}}/edit" /> <2>
     Edit
   </text>
 {% endblock %}
@@ -721,12 +732,14 @@ added to the edit screen using a Jinja include tag.
 )[ ```xml
 <view style="edit-group">
   <view style="edit-field">
-    <text-field name="first_name" placeholder="First name" value="{{ contact.first }}" /> <1>
+    <text-field name="first_name" placeholder="First name"
+      value="{{ contact.first }}" /> <1>
     <text style="edit-field-error">{{ contact.errors.first }}</text> <2>
   </view>
 
   <view style="edit-field"> <3>
-    <text-field name="last_name" placeholder="Last name" value="{{ contact.last }}" />
+    <text-field name="last_name" placeholder="Last name"
+      value="{{ contact.last }}" />
     <text style="edit-field-error">{{ contact.errors.last }}</text>
   </view>
 
@@ -776,10 +789,15 @@ these two scenarios, let’s make some changes to the existing
 @app.route("/contacts/<contact_id>/edit", methods=["POST"])
 def contacts_edit_post(contact_id=0):
     c = Contact.find(contact_id)
-    c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) <1>
+    c.update(
+      request.form['first_name'],
+      request.form['last_name'], 
+      request.form['phone'], 
+      request.form['email']) <1>
     if c.save(): <2>
         flash("Updated Contact!")
-        return render_to_response("hv/form_fields.xml", contact=c, saved=True) <3>
+        return render_to_response("hv/form_fields.xml",
+          contact=c, saved=True) <3>
     else:
         return render_to_response("hv/form_fields.xml", contact=c) <4>
 ``` ]
@@ -812,7 +830,8 @@ our desired UI: switching the UI back to display mode.
   {% endif %}
 
   <view style="edit-field">
-    <text-field name="first_name" placeholder="First name" value="{{ contact.first }}" />
+    <text-field name="first_name" placeholder="First name"
+      value="{{ contact.first }}" />
     <text style="edit-field-error">{{ contact.errors.first }}</text>
   </view>
 
@@ -873,7 +892,8 @@ below the "Save" button.
   caption: [Snippet of `hv/edit.xml`],
 )[ ```xml
 <view style="button">
-  <behavior trigger="press" action="replace-inner" target="form-fields" href="/contacts/{{contact.id}}/edit" verb="post" />
+  <behavior trigger="press" action="replace-inner"target="form-fields"
+    href="/contacts/{{contact.id}}/edit" verb="post" />
   <text style="button-label">Save</text>
 </view>
 <view style="button"> <1>
@@ -1039,7 +1059,7 @@ behavior. Assume that before pressing on "Joe Blow," the user had searched the
 contacts by typing "Joe" in the search field. When the user later updates the
 contact to "Joseph Blow", our template dispatches the "contact-updated" event,
 which triggers the `replace-inner` behavior on the contact list screen. Due to
-the parent `<form>` element, the search query "Joe" will be serialized with the
+the `<form>` element, the search query "Joe" will be serialized with the
 request:
 `GET /contacts?rows_only=true&q=Joe`. Since the name "Joseph" doesn’t match the
 query "Joe", the contact we edited will not appear in the list (until the user
@@ -1065,11 +1085,13 @@ will let users delete a contact from the Edit UI. So let’s add a new button to
   caption: [Snippet of `hv/edit.xml`],
 )[ ```xml
 <view style="button">
-  <behavior trigger="press" action="replace-inner" target="form-fields" href="/contacts/{{contact.id}}/edit" verb="post" />
+  <behavior trigger="press" action="replace-inner" target="form-fields"
+    href="/contacts/{{contact.id}}/edit" verb="post" />
   <text style="button-label">Save</text>
 </view>
 <view style="button">
-  <behavior trigger="press" action="reload" href="/contacts/{{contact.id}}" />
+  <behavior trigger="press" action="reload"
+    href="/contacts/{{contact.id}}" />
   <text style="button-label">Cancel</text>
 </view>
 <view style="button"> <1>
@@ -1109,7 +1131,8 @@ will preserve the current UI while Hyperview runs the actions.
   caption: [Snippet of `hv/deleted.xml`],
 )[ ```xml
 <view>
-  <behavior trigger="load" action="dispatch-event" event-name="contact-updated" /> <1>
+  <behavior trigger="load" action="dispatch-event"
+    event-name="contact-updated" /> <1>
   <behavior trigger="load" action="back" /> <2>
 </view>
 ``` ]
@@ -1380,9 +1403,15 @@ negotiation based on the request’s `Accept` header:
 HTML_MIME = 'text/html'
 HXML_MIME = 'application/vnd.hyperview+xml'
 
-def render_to_response(html_template_name, hxml_template_name, *args, **kwargs): <1>
-    response_type = request.accept_mimetypes.best_match([HTML_MIME, HXML_MIME], default=HTML_MIME) <2>
-    template_name = hxml_template_name if response_type == HXML_MIME else html_template_name <3>
+def render_to_response(
+    html_template_name, hxml_template_name, *args, **kwargs <1>
+):
+    response_type = request.accept_mimetypes.best_match(
+      [HTML_MIME, HXML_MIME], default=HTML_MIME) <2>
+    template_name =
+      hxml_template_name
+      if response_type == HXML_MIME
+      else html_template_name <3>
     content = render_template(template_name, *args, **kwargs)
     response = make_response(content)
     response.headers['Content-Type'] = response_type <4>
@@ -1407,7 +1436,8 @@ need to provide both an HTML and HXML template:
 @app.route("/contacts/<contact_id>")
 def contacts_view(contact_id=0):
     contact = Contact.find(contact_id)
-    return render_to_response("show.html", "hv/show.xml", contact=contact)
+    return render_to_response("show.html", "hv/show.xml",
+      contact=contact)
 ``` ]
 - Template switching between an HTML and HXML template, based on the client.
 
@@ -1452,7 +1482,8 @@ HXML_MIME = 'application/vnd.hyperview+xml'
 
 @app.route("/")
 def index():
-    response_type = request.accept_mimetypes.best_match([HTML_MIME, HXML_MIME], default=HTML_MIME) <1>
+    response_type = request.accept_mimetypes.best_match(
+      [HTML_MIME, HXML_MIME], default=HTML_MIME) <1>
     if response_type == HXML_MIME:
       return redirect("/mobile/contacts") <2>
     else:

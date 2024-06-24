@@ -52,13 +52,16 @@ two new actions,
 #figure(
   caption: [Phone and Email actions],
 )[ ```xml
-<view xmlns:comms="https://hypermedia.systems/hyperview/communications"> <1>
+<view
+  xmlns:comms="https://hypermedia.systems/hyperview/communications"> <1>
   <text>
-    <behavior action="open-phone" comms:phone-number="555-555-5555" /> <2>
+    <behavior action="open-phone"
+      comms:phone-number="555-555-5555" /> <2>
     Call
   </text>
   <text>
-    <behavior action="open-email" comms:email-address="joe@example.com" /> <3>
+    <behavior action="open-email"
+      comms:email-address="joe@example.com" /> <3>
     Email
   </text>
 </view>
@@ -84,9 +87,9 @@ our demo app. This library provides a simple API that interacts with OS-level
 functionality for calls and emails.
 
 ```bash
-> cd hyperview/demo
-> yarn add react-native-communications <1>
-> yarn start <2>
+cd hyperview/demo
+yarn add react-native-communications <1>
+yarn start <2>
 ```
 + Add dependency on `react-native-communications`
 + Re-start the mobile app
@@ -104,7 +107,8 @@ const namespace = "https://hypermedia.systems/hyperview/communications";
 export default {
   action: "open-phone", <2>
   callback: (behaviorElement) => { <3>
-    const number = behaviorElement.getAttributeNS(namespace, "phone-number"); <4>
+    const number = behaviorElement
+      .getAttributeNS(namespace, "phone-number"); <4>
     if (number != null) {
       phonecall(number, false); <5>
     }
@@ -175,7 +179,9 @@ by updating the `show.xml` template in our Flask app:
 )[ ```xml
 {% block content %}
 <view style="details">
-  <text style="contact-name">{{ contact.first }} {{ contact.last }}</text>
+  <text style="contact-name">
+    {{ contact.first }} {{ contact.last }}
+  </text>
 
   <view style="contact-section">
     <behavior <1>
@@ -261,9 +267,9 @@ we’re going to need to extend the Hyperview client with a new custom action,
 Let’s add this library to our demo app.
 
 ```bash
-> cd hyperview/demo
-> yarn add react-native-root-toast <1>
-> yarn start <2>
+cd hyperview/demo
+yarn add react-native-root-toast <1>
+yarn start <2>
 ```]
 + Add dependency on `react-native-root-toast`
 + Re-start the mobile app
@@ -282,7 +288,9 @@ export default {
   callback: (behaviorElement) => { <3>
     const text = behaviorElement.getAttributeNS(namespace, "text");
     if (text != null) {
-      Toast.show(text, {position: Toast.positions.TOP, duration: 2000}); <4>
+      Toast.show(text, { <4>
+        position: Toast.positions.TOP, duration: 2000
+      });
     }
   },
 };
@@ -367,8 +375,10 @@ need to include this template in
 <view xmlns="https://hyperview.org/hyperview" style="edit-group">
   {% if saved %}
     {% include "hv/messages.xml" %} <1>
-    <behavior trigger="load" once="true" action="dispatch-event" event-name="contact-updated" />
-    <behavior trigger="load" once="true" action="reload" href="/contacts/{{contact.id}}" />
+    <behavior trigger="load" once="true" action="dispatch-event"
+      event-name="contact-updated" />
+    <behavior trigger="load" once="true" action="reload"
+      href="/contacts/{{contact.id}}" />
   {% endif %}
   <!-- omitted for brevity -->
 </view>
@@ -382,7 +392,8 @@ And we can do the same thing in `deleted.xml`:
 )[ ```xml
 <view xmlns="https://hyperview.org/hyperview">
   {% include "hv/messages.xml" %} <1>
-  <behavior trigger="load" action="dispatch-event" event-name="contact-updated" />
+  <behavior trigger="load" action="dispatch-event"
+    event-name="contact-updated" />
   <behavior trigger="load" action="back" />
 </view>
 ``` ]
@@ -425,9 +436,9 @@ Rather than implementing the swipe gesture from scratch, we will once again use
 an open-source third-party library: `react-native-swipeable`.
 
 ```bash
-> cd hyperview/demo
-> yarn add react-native-swipeable <1>
-> yarn start <2>
+cd hyperview/demo
+yarn add react-native-swipeable <1>
+yarn start <2>
 ```]
 + Add dependency on `react-native-swipeable`.
 + Re-start the mobile app.
@@ -445,7 +456,8 @@ For the swipeable row, we need a way to represent the entire component, the main
 content, and one of many buttons.
 
 ```xml
-<swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
+<swipe:row
+  xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
   <swipe:main> <2>
     <!-- main content shown here -->
   </swipe:main>
@@ -510,12 +522,16 @@ export default class SwipeableRow extends PureComponent { <1>
   static localName = "row"; <3>
 
   getElements = (tagName) => {
-    return Array.from(this.props.element.getElementsByTagNameNS(NAMESPACE_URI, tagName));
+    return Array.from(this.props.element
+      .getElementsByTagNameNS(NAMESPACE_URI, tagName));
   };
 
   getButtons = () => { <4>
     return this.getElements("button").map((buttonElement) => {
-      return Hyperview.renderChildren(buttonElement, this.props.stylesheets, this.props.onUpdate, this.props.options); <5>
+      return Hyperview.renderChildren(buttonElement,
+        this.props.stylesheets,
+        this.props.onUpdate,
+        this.props.options); <5>
     });
   };
 
@@ -527,7 +543,10 @@ export default class SwipeableRow extends PureComponent { <1>
 
     return (
       <Swipeable rightButtons={this.getButtons()}> <6>
-        {Hyperview.renderChildren(main, this.props.stylesheets, this.props.onUpdate, this.props.options)} <7>
+        {Hyperview.renderChildren(main,
+          this.props.stylesheets,
+          this.props.onUpdate,
+          this.props.options)} <7>
       </Swipeable>
     );
   }
@@ -623,7 +642,8 @@ Currently, the HXML for a contact item in the list consists of a
   caption: [Snippet of `hv/rows.xml`],
 )[ ```xml
 <item key="{{ contact.id }}" style="contact-item">
-  <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}" />
+  <behavior trigger="press" action="push"
+    href="/contacts/{{ contact.id }}" />
   <text style="contact-item-label">
     <!-- omitted for brevity -->
   </text>
@@ -631,16 +651,18 @@ Currently, the HXML for a contact item in the list consists of a
 ``` ]
 
 With our swipeable row component, this markup will become the "main" UI. So
-let’s start by adding `<row>` and `<main>` as parent elements.
+let’s start by adding `<row>` and `<main>` as ancestor elements.
 
 #figure(
   caption: [Adding swipeable row `hv/rows.xml`],
 )[ ```xml
 <item key="{{ contact.id }}">
-  <swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
+  <swipe:row <1>
+    xmlns:swipe="https://hypermedia.systems/hyperview/swipeable">
     <swipe:main> <2>
       <view style="contact-item"> <3>
-        <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}" />
+        <behavior trigger="press" action="push"
+          href="/contacts/{{ contact.id }}" />
         <text style="contact-item-label">
           <!-- omitted for brevity -->
         </text>
@@ -649,7 +671,7 @@ let’s start by adding `<row>` and `<main>` as parent elements.
   </swipe:row>
 </item>
 ``` ]
-+ Added `<swipe:row>` parent element, with namespace alias for `swipe`.
++ Added `<swipe:row>` ancestor element, with namespace alias for `swipe`.
 + Added `<swipe:main>` element to define the main content.
 + Wrapped the existing `<behavior>` and `<text>` elements in a `<view>`.
 
@@ -666,7 +688,8 @@ reveal when swiping a row. Let’s add two buttons to the swipeable row.
   caption: [Adding swipeable row `hv/rows.xml`],
 )[ ```xml
 <item key="{{ contact.id }}">
-  <swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable">
+  <swipe:row
+    xmlns:swipe="https://hypermedia.systems/hyperview/swipeable">
     <swipe:main>
       <!-- omitted for brevity -->
     </swipe:main>
@@ -699,7 +722,8 @@ in edit mode.
 )[ ```xml
 <swipe:button>
   <view style="swipe-button">
-    <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}/edit" /> <1>
+    <behavior trigger="press" action="push"
+      href="/contacts/{{ contact.id }}/edit" /> <1>
     <text style="button-label">Edit</text>
   </view>
 </swipe:button>
@@ -725,7 +749,8 @@ will work for our action button as well:
       trigger="press"
       action="alert"
       alert:title="Confirm delete"
-      alert:message="Are you sure you want to delete {{ contact.first }}?"
+      alert:message="Are you sure you want to delete
+        {{ contact.first }}?"
     >
       <alert:option alert:label="Confirm">
         <behavior <2>
@@ -744,7 +769,7 @@ will work for our action button as well:
 ``` ]
 + When pressed, open a system dialog box asking the user to confirm the action.
 + If confirmed, make a POST request to the deletion endpoint, and append the
-  response to the parent `<item>`.
+  response to the enclosing `<item>`.
 
 Now when we press "Delete," we get the confirmation dialog as expected. After
 pressing confirm, the backend response triggers behaviors that show a
