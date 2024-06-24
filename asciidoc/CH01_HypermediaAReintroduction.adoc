@@ -778,8 +778,8 @@ Yes, we can fix that by adding `role="button"`` and `tabindex="0"`:
 [source,html]
 ----
 <div class="bg-accent padding-4 rounded-2"
-  role="button" 
-  tabindex="0" 
+  role="button"
+  tabindex="0"
   onclick="doStuff()">Do stuff</div>
 ----
 

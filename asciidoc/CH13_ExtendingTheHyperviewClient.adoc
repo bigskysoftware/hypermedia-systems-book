@@ -358,7 +358,7 @@ And we can do the same thing in `deleted.xml`:
 </view>
 ----
 <1> Show the messages as soon as the screen loads.
- 
+
 In both `form_fields.xml` and `deleted.xml`, multiple behaviors get triggered on "`load.`"
 In `deleted.xml`, we immediately navigate back to the previous screen.
 In `form_fields.xml`, we immediately reload the current screen to show the Contact details.
@@ -400,7 +400,7 @@ Rather than implementing the swipe gesture from scratch, we will once again use 
 <2> Re-start the mobile app.
 
 This library provides a React Native component called `Swipeable`.
-It can render any React Native components as its main content (the part that can be swiped). 
+It can render any React Native components as its main content (the part that can be swiped).
 It also takes an array of React Native components as a prop to render as the action buttons.
 
 When designing a custom component, we like to define the HXML of the component before writing the code.

@@ -19,7 +19,7 @@ slick features that most developers today would assume requires the use of a SPA
 In order to demonstrate how web 1.0 applications work, we need to pick a server-side language and a library for
 handling HTTP requests.  Colloquially, this is called our "`Server-Side`" or "`Web`" stack, and there are literally hundreds
 of options to choose from, many with passionate followings.  You probably have a web framework that you prefer and, while
-we wish we could write this book for every possible stack out there, in the interest of simplicity (and sanity) we can only pick one. 
+we wish we could write this book for every possible stack out there, in the interest of simplicity (and sanity) we can only pick one.
 
 For this book we are going to use the following stack:
 
@@ -35,7 +35,7 @@ https://www.tiobe.com/tiobe-index/[TIOBE index], a respected measure of programm
 More importantly, Python is easy to read even if you aren't familiar with it.
 
 We chose the Flask web framework because it is simple and does not impose a lot of structure on top of the
-basics of HTTP request handling. 
+basics of HTTP request handling.
 
 This bare-bones approach is a good match for our needs: in other cases you might consider a more full-featured Python
 framework, such as https://www.djangoproject.com/[Django], which supplies much more functionality out of the box than
@@ -420,7 +420,7 @@ def contacts_new_get():
 Simple enough. We just render a `new.html` template with a new Contact.  (`Contact()` is how you construct a new instance
 of the `Contact` class in Python, if you aren't familiar with it.)
 
-While the handler code for this route is very simple, the `new.html` template is more complicated.  
+While the handler code for this route is very simple, the `new.html` template is more complicated.
 
 ****
 For the remaining templates we are going to omit the layout directive and the content block declaration, but you
@@ -571,7 +571,7 @@ We will use the PRG pattern in a few different places in this book.
 ****
 
 OK, so we have our server-side logic set up to save contacts.  And, believe it or not, this is about as complicated as
-our handler logic will get, even when we look at adding more sophisticated htmx-driven behaviors. 
+our handler logic will get, even when we look at adding more sophisticated htmx-driven behaviors.
 
 === Viewing The Details Of A Contact
 
@@ -846,7 +846,7 @@ No need for a template in this case, the contact is gone.
 
 === Contact.app... Implemented!
 
-And, well... believe it or not, that's our entire contact application! 
+And, well... believe it or not, that's our entire contact application!
 
 If you've struggled with parts of the code so far, don't worry: we don't expect you to be a Python or Flask expert (we aren't!). You just need a basic understanding of how they work to benefit from the remainder of the book.
 

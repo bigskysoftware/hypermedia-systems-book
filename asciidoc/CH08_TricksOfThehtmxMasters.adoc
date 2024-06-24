@@ -61,24 +61,24 @@ before it was removed from the DOM.
 In addition to these, `hx-swap` offers further control with the following modifiers:
 
 `settle`::
-(((hx-swap, settle))) 
+(((hx-swap, settle)))
 Like `swap`, this allows you to apply a specific delay between when the content has been swapped into the DOM and when
 its attributes are "`settled`", that is, updated from their old values (if any) to their new values. This can give you
 fine-grained control over CSS transitions.
 
 `show`::
-(((hx-swap, show))) 
+(((hx-swap, show)))
 Allows you to specify an element that should be shown -- that is, scrolled into the viewport of the browser if
 necessary -- when a request is completed.
 
 `scroll`::
-(((hx-swap, scroll))) 
+(((hx-swap, scroll)))
 Allows you to specify a scrollable element (that is, an element with scrollbars), that should be scrolled to the top or
 bottom when a request is completed.
 
 
 `focus-scroll`::
-(((hx-swap, focus-scroll))) 
+(((hx-swap, focus-scroll)))
 Allows you to specify that htmx should scroll to the focused element when a request completes. The default for this
 modifier is "`false.`"
 
@@ -136,7 +136,7 @@ able to take advantage of all the power they offer.  We will discuss events in m
 Here are the other modifiers available on `hx-trigger`:
 
 `once`::
-(((hx-trigger, once)))  
+(((hx-trigger, once)))
 The given event will only trigger a request once.
 
 `throttle`::

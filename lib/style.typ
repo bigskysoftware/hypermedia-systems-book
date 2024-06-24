@@ -123,7 +123,7 @@
       it
     )
   }
-  
+
   #show raw.where(block: true): code-with-callouts
 
   #show link: it => {

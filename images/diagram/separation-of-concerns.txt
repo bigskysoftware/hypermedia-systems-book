@@ -1,6 +1,6 @@
  EXPECTATION              REALITY
 
- HTML   CSS    JS         HTML   CSS    JS  
+ HTML   CSS    JS         HTML   CSS    JS
 ┌────┐ ┌────┐ ┌────┐     ┌────┐ ┌────┐ ┌────┐
 │    │ │    │ │    │     │    │ │    │ │    │
 │ C  │ │ C  │ │ c  │     │ CO │ │ NC │ │ern │

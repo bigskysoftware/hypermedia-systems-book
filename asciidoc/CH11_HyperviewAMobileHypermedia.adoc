@@ -47,7 +47,7 @@ To understand what the app does, a developer needs to trace interactions between
 There's another downside that affects mobile apps more than SPAs: API churn.
 Remember, the app stores control how your app gets distributed and updated.
 Users can even control if and when they get updated versions of your app.
-As a mobile developer, you can't assume that every user will be on the latest version of your app. 
+As a mobile developer, you can't assume that every user will be on the latest version of your app.
 Your frontend code gets fragmented across many versions, and now your backend needs to support all of them.
 
 
@@ -319,7 +319,7 @@ This is equivalent to the `<body>` element in HTML.
 
 (((HXML, "<header>")))
 `<header>` defines the header of the screen.
-Typically in mobile apps, the header includes some navigation (like a back button), and the title of the screen. 
+Typically in mobile apps, the header includes some navigation (like a back button), and the title of the screen.
 It's useful to define the header separately from the rest of the body.
 Some mobile OSes will use a different transition for the header than the rest of the screen content.
 
@@ -1293,7 +1293,7 @@ Using multiple behaviors with custom actions keeps HXML declarative, without sac
 
 === Summary
 We're covering a lot of new concepts here, and this introduction to HXML just scratches the surface.
-To learn more about HXML, we recommend consulting the link:https://hyperview.org/docs/reference_index[official reference documentation].  
+To learn more about HXML, we recommend consulting the link:https://hyperview.org/docs/reference_index[official reference documentation].
 For now, we hope you come away with a few key takeaways.
 
 First, HXML looks and feels similar to HTML.
@@ -1321,13 +1321,13 @@ But apps that use a thick client suffer from the same problems as SPAs on the we
 Using the hypermedia architecture for mobile apps can solve these problems.
 
 Hyperview, based on a new format called HXML, offers a path here.
-It provides an open-source mobile thin client to render HXML. 
+It provides an open-source mobile thin client to render HXML.
 And HXML opens a toolkit of elements and patterns that correspond to mobile UIs.
 Developers can evolve Hyperview to suit their apps' requirements, while fully embracing the hypermedia architecture.
 That's a win.
 
 Yes, hypermedia can work for mobile apps, too.
-In the next two chapters we'll show how by turning the Contact.app web application into a native mobile app using Hyperview. 
+In the next two chapters we'll show how by turning the Contact.app web application into a native mobile app using Hyperview.
 
 
 :sectnums!:

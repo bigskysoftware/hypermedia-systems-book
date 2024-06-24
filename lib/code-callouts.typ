@@ -15,7 +15,7 @@
   str.from-unicode(
     if      number ==  0 { 0x24EA }
     else if number <= 20 { 0x245F + number }
-    else if number <= 35 { 0x3250 + (number - 20) } 
+    else if number <= 35 { 0x3250 + (number - 20) }
     else if number <= 50 { 0x32B0 + (number - 35) } else                 { number }
   )
 }

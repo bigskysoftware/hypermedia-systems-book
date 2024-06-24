@@ -68,7 +68,7 @@ Just seems wrong, doesn't it?
 
 It turns out that we can boost the interactivity of our application and address both of these issues _without_ resorting
 to the SPA approach.  We can do so by using a _hypermedia-oriented_ JavaScript library, https://htmx.org[htmx]. The authors of this book built htmx specifically to extend HTML as a hypermedia and address the issues
-with legacy HTML applications we mentioned above (as well as a few others.) 
+with legacy HTML applications we mentioned above (as well as a few others.)
 
 Before we get into how htmx allows us to improve the UX of our Web 1.0 style application, let's revisit the
 hyperlink/anchor tag from Chapter 1.  Recall, a hyperlink is what is known as a _hypermedia control_, a mechanism that
@@ -239,7 +239,7 @@ We also mark the script as `crossorigin="anonymous"` so no credentials will be s
 If you are used to modern JavaScript development, with complex build systems and large numbers of dependencies, it may
 be a pleasant surprise to find that that's all it takes to install htmx.
 
-This is in the spirit of the early web, when you could simply include a script tag and things would "`just work.`"  
+This is in the spirit of the early web, when you could simply include a script tag and things would "`just work.`"
 
 If you don't want to use a CDN, you can download htmx to your local system and adjust the
 script tag to point to wherever you keep your static assets.  Or, you may have a build system
@@ -924,7 +924,7 @@ Now, the name `hx-push-url` for this attribute might sound a little obscure, but
 so you are "`pushing`" new entries onto the top of the stack of history entries.
 
 With this relatively simple, declarative mechanism, htmx allows you to integrate with the back button in a way that mimics the
-"`normal`" behavior of HTML. 
+"`normal`" behavior of HTML.
 
 Now, there is one additional thing we need to handle to get history "`just right`": we have "`pushed`" the `/contacts` path
 into the browsers location bar successfully, and the back button works.  But what if someone refreshes their browser while
@@ -941,7 +941,7 @@ more sophisticated web application than is possible in plain HTML, with minimal 
 
 Htmx aims to incrementally improve HTML as a hypermedia in a manner that is
 conceptually coherent with the underlying markup language.  Like any technical choice, this is not without
-trade-offs: by staying so close to HTML, htmx does not give developers a lot of infrastructure that many might feel 
+trade-offs: by staying so close to HTML, htmx does not give developers a lot of infrastructure that many might feel
 should be there "`by default`".
 
 By staying closer to the native model of the web, htmx aims to strike a balance between simplicity and functionality,
