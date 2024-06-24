@@ -689,13 +689,13 @@ well by simply re-running the JS.
 
 #figure[
 ```js
-  items = [...menu.querySelectorAll("[role=menuitem]")];
+items = [...menu.querySelectorAll("[role=menuitem]")]; <1>
 
-  const isOpen = () => !menu.hidden; <1>
-
-});
+const isOpen = () => !menu.hidden; <2>
 ```]
-1. The `hidden` attribute is helpfully reflected as a `hidden`
+1. We get the list of menu items at the start. This implementation
+  will not support dynamically adding or removing menu items.
+2. The `hidden` attribute is helpfully reflected as a `hidden`
   _property_, so we don’t need to use `getAttribute`.
 
 We’ll also make the menu items non-tabbable, so we can manage their focus
@@ -703,35 +703,27 @@ ourselves.
 
 #figure[
 ```js
-  const isOpen = () => !menu.hidden;
-
-  items.forEach(item => item.setAttribute("tabindex", "-1"));
-
-});
+items.forEach(item => item.setAttribute("tabindex", "-1"));
 ```]
 
 Now let’s implement toggling the menu in JavaScript:
 
 #figure[
 ```js
-  items.forEach(item => item.setAttribute("tabindex", "-1"));
-
-  function toggleMenu(open = !isOpen()) { <1>
-    if (open) {
-      menu.hidden = false;
-      button.setAttribute("aria-expanded", "true");
-      items[0].focus(); <2>
-    } else {
-      menu.hidden = true;
-      button.setAttribute("aria-expanded", "false");
-    }
+function toggleMenu(open = !isOpen()) { <1>
+  if (open) {
+    menu.hidden = false;
+    button.setAttribute("aria-expanded", "true");
+    items[0].focus(); <2>
+  } else {
+    menu.hidden = true;
+    button.setAttribute("aria-expanded", "false");
   }
+}
 
-  toggleMenu(isOpen()); <3>
-  button.addEventListener("click", () => toggleMenu()); <4>
-  menuRoot.addEventListener("blur", e => toggleMenu(false)); <5>
-
-})
+toggleMenu(isOpen()); <3>
+button.addEventListener("click", () => toggleMenu()); <4>
+menuRoot.addEventListener("blur", e => toggleMenu(false)); <5>
 ```]
 1. Optional parameter to specify desired state. This allows us to use one function
   to open, close, or toggle the menu.
@@ -767,13 +759,10 @@ page" driving the collection, it should work well enough for our system.
 
 #figure[
 ```js
-  menuRoot.addEventListener("blur", e => toggleMenu(false));
-
-  window.addEventListener("click", function clickAway(event) {
-    if (!menuRoot.isConnected)
-      window.removeEventListener("click", clickAway); <1>
-    if (!menuRoot.contains(event.target)) toggleMenu(false); <2>
-  });
+window.addEventListener("click", function clickAway(event) {
+  if (!menuRoot.isConnected)
+    window.removeEventListener("click", clickAway); <1>
+  if (!menuRoot.contains(event.target)) toggleMenu(false); <2>
 });
 ```]
 1. This line is the garbage collection.
@@ -785,36 +774,32 @@ particularly intricate, so let’s knock them all out in one go:
 
 #figure[
 ```js
-    if (!menuRoot.contains(event.target)) toggleMenu(false);
-  });
+const currentIndex = () => { <1>
+  const idx = items.indexOf(document.activeElement);
+  if (idx === -1) return 0;
+  return idx;
+}
 
-  const currentIndex = () => { <1>
-    const idx = items.indexOf(document.activeElement);
-    if (idx === -1) return 0;
-    return idx;
+menu.addEventListener("keydown", e => {
+  if (e.key === "ArrowUp") {
+    items[currentIndex() - 1]?.focus(); <2>
+
+  } else if (e.key === "ArrowDown") {
+    items[currentIndex() + 1]?.focus(); <3>
+
+  } else if (e.key === "Space") {
+    items[currentIndex()].click(); <4>
+
+  } else if (e.key === "Home") {
+    items[0].focus(); <5>
+
+  } else if (e.key === "End") {
+    items[items.length - 1].focus(); <6>
+
+  } else if (e.key === "Escape") {
+    toggleMenu(false); <7>
+    button.focus(); <8>
   }
-
-  menu.addEventListener("keydown", e => {
-    if (e.key === "ArrowUp") {
-      items[currentIndex() - 1]?.focus(); <2>
-
-    } else if (e.key === "ArrowDown") {
-      items[currentIndex() + 1]?.focus(); <3>
-
-    } else if (e.key === "Space") {
-      items[currentIndex()].click(); <4>
-
-    } else if (e.key === "Home") {
-      items[0].focus(); <5>
-
-    } else if (e.key === "End") {
-      items[items.length - 1].focus(); <6>
-
-    } else if (e.key === "Escape") {
-      toggleMenu(false); <7>
-      button.focus(); <8>
-    }
-  });
 });
 ```]
 1. Helper: Get the index in the items array of the currently focused menu item (0
