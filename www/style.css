@@ -509,6 +509,30 @@ label {
   }
 }
 
+color-customizer {
+  h2 {
+    margin-inline: 2em;
+  }
+  form {
+    margin: 2em;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .5em;
+    justify-items: start;
+    label {
+      display: contents;
+    }
+    .buttons {
+      grid-column: 1/-1;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      justify-self: stretch;
+      padding-block: .5em;
+    }
+  }
+}
+
 .kw, .cf, .bu, .ex, .pp, .at, .in, .wa {
   font-weight: bold;
 }

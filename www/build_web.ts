@@ -49,6 +49,7 @@ const HypermediaSystems = new Book("Hypermedia Systems",
     lang: "en",
     htmlHead: `
     <link rel="stylesheet" href="/style.css">
+    <script type="module" src="/color-customizer.js"></script>
     <header class="book-header">
       <a href="/" class="homepage-link">Hypermedia Systems</a>
     </header>
@@ -57,6 +58,7 @@ const HypermediaSystems = new Book("Hypermedia Systems",
     <footer class="book-footer">
       <a href="/" class="footer-book-title">Hypermedia Systems</a>
       <a href="/book/contents/">Contents</a>
+      <color-customizer></color-customizer>
     </footer>
     `
   },
@@ -104,3 +106,4 @@ const built = await build(HypermediaSystems);
 console.log(built.length);
 write(built, { directory: "_site" })
 Deno.copyFileSync("www/style.css", "_site/style.css");
+Deno.copyFileSync("www/color-customizer.js", "_site/color-customizer.js");
