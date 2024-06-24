@@ -336,7 +336,7 @@ button up in JavaScript and add in an event handler for the "click" event.
 
 Now, in both the HTML and the JavaScript, this class name is just a string and
 there isn’t any process to _verify_ that the button has the right classes on it
-or its parents to ensure that the event handler is actually added to the right
+or its ancestors to ensure that the event handler is actually added to the right
 element.
 
 Unfortunately, it has turned out that the careless use of CSS selectors in
@@ -972,7 +972,7 @@ one go.
 
 The first thing we will need to add is an `x-data` attribute, to hold the state
 that we will use to determine if the toolbar is visible or not. We will need to
-place this on a parent element of both the toolbar that we are going to add, as
+place this on an ancestor element of both the toolbar that we are going to add, as
 well as the checkboxes, which will be updating the state when they are checked
 and unchecked. The best option given our current HTML is to place the attribute
 on the `form` element that surrounds the contacts table. We will declare a

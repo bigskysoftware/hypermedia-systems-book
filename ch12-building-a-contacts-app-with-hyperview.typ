@@ -203,7 +203,7 @@ infinite scroll, and pull-to-refresh.
   {% endfor %}
 </items>
 ``` ]
-1. An HXML element that groups a set of `<item>` elements in a common parent.
+1. An HXML element that groups a set of `<item>` elements in a common ancestor.
 2. Iterate over the contacts that were passed in to the template.
 3. Render an `<item>` for each contact, showing the name, phone number, or email.
 
@@ -383,7 +383,7 @@ and replace the list with the search results. You may be wondering, how does the
 backend know the query to use? The
 `href` attribute in the behavior does not include the `q` param expected by our
 backend. But remember, in `index.xml`, we wrapped the
-`<text-field>` and `<list>` elements with a parent `<form>` element. The
+`<text-field>` and `<list>` elements with a `<form>` element. The
 `<form>` element defines a group of inputs that will be serialized and included
 in any HTTP requests triggered by its child elements. In this case, the `<form>` element
 surrounds the search behavior and the text field. So the value of the `<text-field>` will
@@ -1053,7 +1053,7 @@ behavior. Assume that before pressing on "Joe Blow," the user had searched the
 contacts by typing "Joe" in the search field. When the user later updates the
 contact to "Joseph Blow", our template dispatches the "contact-updated" event,
 which triggers the `replace-inner` behavior on the contact list screen. Due to
-the parent `<form>` element, the search query "Joe" will be serialized with the
+the `<form>` element, the search query "Joe" will be serialized with the
 request:
 `GET /contacts?rows_only=true&q=Joe`. Since the name "Joseph" doesn’t match the
 query "Joe", the contact we edited will not appear in the list (until the user

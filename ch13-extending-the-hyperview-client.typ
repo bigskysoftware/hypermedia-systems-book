@@ -635,7 +635,7 @@ Currently, the HXML for a contact item in the list consists of a
 ``` ]
 
 With our swipeable row component, this markup will become the "main" UI. So
-let’s start by adding `<row>` and `<main>` as parent elements.
+let’s start by adding `<row>` and `<main>` as ancestor elements.
 
 #figure(
   caption: [Adding swipeable row `hv/rows.xml`],
@@ -654,7 +654,7 @@ let’s start by adding `<row>` and `<main>` as parent elements.
   </swipe:row>
 </item>
 ``` ]
-+ Added `<swipe:row>` parent element, with namespace alias for `swipe`.
++ Added `<swipe:row>` ancestor element, with namespace alias for `swipe`.
 + Added `<swipe:main>` element to define the main content.
 + Wrapped the existing `<behavior>` and `<text>` elements in a `<view>`.
 
@@ -750,7 +750,7 @@ will work for our action button as well:
 ``` ]
 + When pressed, open a system dialog box asking the user to confirm the action.
 + If confirmed, make a POST request to the deletion endpoint, and append the
-  response to the parent `<item>`.
+  response to the enclosing `<item>`.
 
 Now when we press "Delete," we get the confirmation dialog as expected. After
 pressing confirm, the backend response triggers behaviors that show a

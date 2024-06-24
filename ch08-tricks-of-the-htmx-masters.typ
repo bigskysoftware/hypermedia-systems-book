@@ -173,15 +173,15 @@ Here are the other modifiers available on `hx-trigger`:
 / `target`: #[
   #index[hx-trigger][target] A CSS selector that allows you to filter events to
   only those that occur directly on a given element. In the DOM, events "bubble"
-  to their parent elements, so a `click` event on a button will also trigger a `click`
-  event on a parent `div`, all the way up to the `body` element. Sometimes you
+  to their ancestor elements, so a `click` event on a button will also trigger a `click`
+  event on an enclosing `div`, all the way up to the `body` element. Sometimes you
   want to specify an event directly on a given element, and this attribute allows
   you to do that.
   ]
 
 / `consume`: #[
   #index[hx-trigger][consume] If this option is set to `true`, the triggering
-  event will be cancelled and not propagate to parent elements.
+  event will be cancelled and not propagate to ancestor elements.
   ]
 
 / `queue`: #[
@@ -243,7 +243,7 @@ htmx.
 In addition to these modifiers, `hx-trigger` offers a few "synthetic" events,
 that is events that are not part of the regular DOM API. We have already seen `load` and `revealed` in
 our lazy loading and infinite scroll examples, but htmx also gives you an `intersect` event
-that triggers when an element intersects its parent element.
+that triggers when an element intersects its a viewport.
 
 #index[hx-trigger][intersect]
 This synthetic event uses the modern Intersection Observer API, which you can

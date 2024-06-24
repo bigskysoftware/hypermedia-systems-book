@@ -1369,7 +1369,7 @@ trigger.
 
 In this admittedly contrived example, we want to hide two elements on the screen
 when pressing the "Hide" button. The two elements are far apart in the HXML, and
-cannot be hidden by hiding a common parent element. But, we can trigger two
+cannot be hidden by hiding a common ancestor element. But, we can trigger two
 behaviors at the same time, each one executing a "hide" action but targeting
 different elements.
 
