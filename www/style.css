@@ -2,82 +2,57 @@
 /* #region Font face declarations */
 
 @font-face {
-  font-family: "Chicago FLF";
-  src: url("/fonts/ChicagoFLF.ttf") format("truetype");
+  font-family: "Jaro";
+  src: url("/fonts/Jaro-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Yrsa";
-  src: url("/fonts/Yrsa-Regular.ttf") format("truetype");
-  size-adjust: 125%;
+  font-family: "Linux Biolinum";
+  src: url("/fonts/LinBiolinum_Rah.ttf");
 }
+
 @font-face {
-  font-family: "Yrsa";
+  font-family: "Linux Biolinum";
   font-weight: bold;
-  src: url("/fonts/Yrsa-Bold.ttf") format("truetype");
-  size-adjust: 125%;
+  src: url("/fonts/LinBiolinum_RBah.ttf");
 }
+
 @font-face {
-  font-family: "Yrsa";
+  font-family: "Linux Biolinum";
   font-style: italic;
-  src: url("/fonts/Yrsa-Italic.ttf") format("truetype");
-  size-adjust: 125%;
+  src: url("/fonts/LinBiolinum_RIah.ttf");
 }
+
 @font-face {
-  font-family: "Yrsa";
+  font-family: "Linux Libertine";
+  src: url("/fonts/LinLibertine_Rah.ttf");
+}
+
+@font-face {
+  font-family: "Linux Libertine";
   font-weight: bold;
+  src: url("/fonts/LinLibertine_Rah.ttf");
+}
+
+@font-face {
+  font-family: "Linux Libertine";
   font-style: italic;
-  src: url("/fonts/Yrsa-BoldItalic.ttf") format("truetype");
-  size-adjust: 125%;
+  src: url("/fonts/LinLibertine_RIah.ttf");
 }
+
 @font-face {
-  font-family: 'U001';
-  src: url('/fonts/u001-reg.ttf') format('truetype');
-  font-weight: normal;
-}
-@font-face {
-  font-family: 'U001';
-  src: url('/fonts/u001-bol.ttf') format('truetype');
-  font-weight: bold;
-}
-@font-face {
-  font-family: 'U001';
-  src: url('/fonts/u001-ita.ttf') format('truetype');
-  font-style: italic;
-}
-@font-face {
-  font-family: 'U001';
-  src: url('/fonts/u001-bolita.ttf') format('truetype');
+  font-family: "Linux Libertine";
   font-weight: bold;
   font-style: italic;
-}
-@font-face {
-  font-family: 'U001con';
-  src: url('/fonts/u001con-reg.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'U001con';
-  src: url('/fonts/u001con-bol.ttf') format('truetype');
-  font-weight: bold;
-}
-@font-face {
-  font-family: 'U001con';
-  src: url('/fonts/u001con-ita.ttf') format('truetype');
-  font-style: italic;
-}
-@font-face {
-  font-family: 'U001con';
-  src: url('/fonts/u001con-bolita.ttf') format('truetype');
-  font-weight: bold;
-  font-style: italic;
+  src: url("/fonts/LinLibertine_RBIah.ttf");
 }
 
 /* #endregion */
 
 :root {
-  --text: Yrsa, serif;
-  --secondary: U001, sans-serif;
-  --display: ChicagoFLF, Chicago, Impact, sans-serif;
+  --text: Linux Libertine, serif;
+  --secondary: Linux Biolinum, sans-serif;
+  --display: Jaro, Chicago, Impact, sans-serif;
   --code: Berkeley Mono, Consolas, monospace, monospace;
 
   --link-color: #145591;
@@ -177,6 +152,7 @@ pre, code, samp, kbd {
 
 pre, code:not(pre code) {
   line-height: 1.2em;
+  font-size: .9em;
 }
 
 ul, ol {

@@ -1,6 +1,7 @@
 #!/usr/bin/env -S deno run -A --unstable
 
 import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introduction, Chapter, write, TableOfContents, LandingPage, Division } from "../../../dz4k.com/muteferrika/lib/müteferrika.ts";
+import { copySync } from "https://deno.land/std@0.157.0/fs/copy.ts";
 
 const compile = async (path: string) => {
   const pandoc = new Deno.Command("pandoc", {
@@ -105,5 +106,6 @@ const HypermediaSystems = new Book("Hypermedia Systems",
 const built = await build(HypermediaSystems);
 console.log(built.length);
 write(built, { directory: "_site" })
-Deno.copyFileSync("www/style.css", "_site/style.css");
-Deno.copyFileSync("www/color-customizer.js", "_site/color-customizer.js");
+copySync("www/style.css", "_site/style.css");
+copySync("fonts", "_site/fonts");
+copySync("www/color-customizer.js", "_site/color-customizer.js");
