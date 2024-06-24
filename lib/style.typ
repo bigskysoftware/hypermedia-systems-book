@@ -144,9 +144,9 @@
 
     = Contents
     #set par(first-line-indent: 0pt, justify: false)
-    #set text(number-width: "tabular")
     #show linebreak: []
     #show outline.entry: it => {
+      show regex("\\d"): text.with(number-width: "tabular")
       show grid: set block(spacing: 0pt)
       box(
         inset: (left: (it.level - 1) * 1em),
