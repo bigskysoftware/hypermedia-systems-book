@@ -49,11 +49,8 @@
   #set text(font: body-font, size: 12pt, lang: "en")
   #set par(leading: .5em)
   #show raw: set text(font: mono-font)
-  #show raw.where(block: false): set text(size: 10pt)
-  #show raw.where(block: true): it => {
-    set text(size: 9pt)
-    it
-  }
+  #show raw.where(block: false): set text(size: 11 * 1em / 12) // 11pt in 12pt body
+  #show raw.where(block: true): set text(size: 9pt)
 
   #show heading.where(level: 1): set text(font: display-font, size: 24pt)
   #show heading.where(level: 2): set text(font: display-font, size: 20pt)
