@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run -A --unstable
 
-import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introduction, Chapter, write, TableOfContents, LandingPage, Division } from "../../../dz4k.com/muteferrika/lib/müteferrika.ts";
+import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introduction, Chapter, write, TableOfContents, LandingPage, Division } from "https://codeberg.org/dz4k/muteferrika/raw/commit/4446c946f7216ca9d848b91b9dbcd56db95e9b1f/lib/muteferrika.ts";
 import { copySync } from "https://deno.land/std@0.157.0/fs/copy.ts";
 
 const compile = async (path: string) => {
