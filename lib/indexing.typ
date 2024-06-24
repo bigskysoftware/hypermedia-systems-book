@@ -45,7 +45,7 @@
       let sorted-keys = terms-dict.keys().sorted()
 
       // Output.
-      set par(justify: false)
+      set par(justify: false, hanging-indent: 2em)
 
       let last-term = ("",)
       for key in sorted-keys {
