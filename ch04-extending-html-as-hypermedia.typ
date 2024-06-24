@@ -595,7 +595,7 @@ and should be fairly intuitive:
 
 To demonstrate how `hx-trigger` works, consider the following situation: we want
 to trigger the request on our button when the mouse enters it. Now, this is
-certainly not a _good_ UX pattern, but bear with us: we are just using this an
+certainly not a _good_ UX pattern, but bear with us: we are just using this as an
 example.
 
 To respond to a mouse entering the button, we would add the following attribute
