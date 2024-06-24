@@ -609,7 +609,8 @@ Let’s re-visit the Hello World app and fill out the `<styles>` element.
   <screen>
     <styles> <1>
       <style class="body" flex="1" flexDirection="column" /> <2>
-      <style class="header" borderBottomWidth="1" borderBottomColor="#ccc" />
+      <style class="header"
+        borderBottomWidth="1" borderBottomColor="#ccc" />
       <style class="main" margin="24" />
       <style class="h1" fontSize="32" />
       <style class="info" color="blue" />
@@ -1003,7 +1004,8 @@ let’s assume our backend accepts `GET` requests to
     </view>
 
     <text>
-      <behavior action="replace-inner" href="/fragment" target="area2" /> <2>
+      <behavior action="replace-inner"
+        href="/fragment" target="area2" /> <2>
       Replace-inner
     </text>
     <view id="area2">
@@ -1069,7 +1071,8 @@ four buttons:
     <text>My fragment</text>
 
     <text>
-      <behavior action="replace-inner" href="/fragment" target="area2" /> <2>
+      <behavior action="replace-inner"
+        href="/fragment" target="area2" /> <2>
       Replace-inner
     </text>
     <view id="area2">
@@ -1212,7 +1215,8 @@ child elements to represent the behavior of each button.
   trigger="press"
   action="alert" <2>
   alert:title="Continue to next screen?" <3>
-  alert:message="Are you sure you want to navigate to the next screen?" <4>
+  alert:message=
+    "Are you sure you want to navigateto the next screen?" <4>
 >
   <alert:option alert:label="Continue"> <5>
     <behavior action="push" href="/next" /> <6>
@@ -1272,7 +1276,8 @@ elements on the same UI element.
 )[ ```xml
 <text>
   <behavior trigger="press" action="push" href="/next-screen" /> <1>
-  <behavior trigger="longPress" action="push" href="/secret-screen" /> <2>
+  <behavior trigger="longPress" <2>
+    action="push" href="/secret-screen" />
   Press (or long-press) me!
 </text>
 ``` ]

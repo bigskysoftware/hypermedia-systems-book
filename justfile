@@ -43,3 +43,9 @@ diff-with-old:
   do
     diff -u $f ../hypermedia-systems/book/$(basename $f)
   done
+
+find-overlong-code-lines:
+  find . -name "ch*" | xargs -I% awk ' \
+    /```/   { code = !code } \
+    /.{74}/ { if (code) print FILENAME ":" NR " " $0 } \
+  ' % | less

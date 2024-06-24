@@ -604,7 +604,8 @@ Here is what the client-side code might look like:
 
   ...
 
-<table hx-get="/contacts/table" hx-trigger="contacts-updated from:body"> <2>
+<table hx-get="/contacts/table"
+  hx-trigger="contacts-updated from:body"> <2>
   ...
 </table>
 ``` ]

@@ -233,7 +233,8 @@ def contacts():
               contacts=contacts_set, page=page)
     else:
         contacts_set = Contact.all(page)
-    return render_template("index.html", contacts=contacts_set, page=page)
+    return render_template("index.html",
+      contacts=contacts_set, page=page)
 ``` ]
 
 This view supports fetching a set of contacts based on two query params,
@@ -288,7 +289,8 @@ will do this by introducing a new helper function, `render_to_response()`:
 def render_to_response(template_name, *args, **kwargs):
     content = render_template(template_name, *args, **kwargs) <1>
     response = make_response(content) <2>
-    response.headers['Content-Type'] = 'application/vnd.hyperview+xml' <3>
+    response.headers['Content-Type'] =
+      'application/vnd.hyperview+xml' <3>
     return response
 ``` ]
 1. Renders the given template with the supplied arguments and keyword arguments.
@@ -333,7 +335,8 @@ add a
 #figure(
   caption: [Snippet of `hv/index.xml`],
 )[ ```xml
-<text-field name="q" value="" placeholder="Search..." style="search-field">
+<text-field name="q" value="" placeholder="Search..."
+  style="search-field">
   <behavior
     trigger="change" <1>
     action="replace-inner" <2>
@@ -595,7 +598,9 @@ also generating the response from a new HXML template, which we can create now:
 
 {% block content %} <4>
 <view style="details">
-  <text style="contact-name">{{ contact.first }} {{ contact.last }}</text>
+  <text style="contact-name">
+    {{ contact.first }} {{ contact.last }}
+  </text>
 
   <view style="contact-section">
     <text style="contact-section-label">Phone</text>
@@ -791,7 +796,8 @@ def contacts_edit_post(contact_id=0):
       request.form['email']) <1>
     if c.save(): <2>
         flash("Updated Contact!")
-        return render_to_response("hv/form_fields.xml", contact=c, saved=True) <3>
+        return render_to_response("hv/form_fields.xml",
+          contact=c, saved=True) <3>
     else:
         return render_to_response("hv/form_fields.xml", contact=c) <4>
 ``` ]
@@ -1084,7 +1090,8 @@ will let users delete a contact from the Edit UI. So let’s add a new button to
   <text style="button-label">Save</text>
 </view>
 <view style="button">
-  <behavior trigger="press" action="reload" href="/contacts/{{contact.id}}" />
+  <behavior trigger="press" action="reload"
+    href="/contacts/{{contact.id}}" />
   <text style="button-label">Cancel</text>
 </view>
 <view style="button"> <1>
@@ -1429,7 +1436,8 @@ need to provide both an HTML and HXML template:
 @app.route("/contacts/<contact_id>")
 def contacts_view(contact_id=0):
     contact = Contact.find(contact_id)
-    return render_to_response("show.html", "hv/show.xml", contact=contact)
+    return render_to_response("show.html", "hv/show.xml",
+      contact=contact)
 ``` ]
 - Template switching between an HTML and HXML template, based on the client.
 

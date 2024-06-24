@@ -859,8 +859,10 @@ Here is the above example reworked to include the input, dropping the form:
 <div id="main">
 
   <label for="search">Search Contacts:</label>
-  <input id="search" name="q" type="search" placeholder="Search Contacts">
-  <button hx-post="/contacts" hx-target="#main" hx-include="#search"> <1>
+  <input id="search" name="q" type="search"
+    placeholder="Search Contacts">
+  <button hx-post="/contacts" hx-target="#main"
+    hx-include="#search"> <1>
     Search The Contacts
   </button>
 
@@ -942,7 +944,8 @@ included dynamically in htmx requests like so:
 
 #figure(caption: [A dynamic value],
 ```html
-<button hx-get="/contacts" hx-vals='js:{"state":getCurrentState()}'> <1>
+<button hx-get="/contacts"
+  hx-vals='js:{"state":getCurrentState()}'> <1>
   Get The Contacts In The Selected State
 </button>
 ```)

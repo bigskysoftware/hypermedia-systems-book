@@ -271,10 +271,8 @@ Here is a simple example of a form in HTML:
 
 #figure(caption: [A simple form],
 ```html
-1234567890123456789012345678901234567890123456789012345678901234567890
-1         2         3         4         5         6         7         
 <form action="/signup" method="post">
-  <input type="text" name="email" placeholder="Enter Email To Sign Up..."/>
+  <input type="text" name="email" placeholder="Enter Email To Sign Up">
   <button>Sign Up</button>
 </form>
 ```)
@@ -913,7 +911,9 @@ element, a `<div>` element might have a `click` event listener added to it.
 
 #figure(
 ```html
-<div class="bg-accent padding-4 rounded-2" onclick="doStuff()">Do stuff</div>
+<div class="bg-accent padding-4 rounded-2" onclick="doStuff()">
+  Do stuff
+</div>
 ```)
 
 There are two main issues with this button:

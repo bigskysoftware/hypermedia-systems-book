@@ -300,8 +300,8 @@ click event and increment the counter.
 
 #figure(caption: [Counter JavaScript])[
 ```js
-const counterOutput = document.querySelector("#my-output") <1>
-const incrementBtn  = document.querySelector(".counter .increment-btn") <2>
+const counterOutput = document.querySelector("#my-output"), <1>
+  incrementBtn = document.querySelector(".counter .increment-btn") <2>
 
 incrementBtn.addEventListener("click", e => { <3>
   counterOutput.innerHTML++ <4>
@@ -572,7 +572,8 @@ Here is what our updated, RSJS-structured HTML looks like:
         aria-controls="contact-menu-{{ contact.id }}"
         >Options</button> <2>
     <div role="menu" hidden id="contact-menu-{{ contact.id }}"> <3>
-        <a role="menuitem" href="/contacts/{{ contact.id }}/edit">Edit</a> <4>
+        <a role="menuitem"
+          href="/contacts/{{ contact.id }}/edit">Edit</a> <4>
         <a role="menuitem" href="/contacts/{{ contact.id }}">View</a>
         <!-- ... -->
     </div>
@@ -653,8 +654,8 @@ htmx; we load the overflow menu when htmx loads new content.
 
 #figure[
 ```js
-function overflowMenu(subtree = document) {
-  subtree.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
+function overflowMenu(tree = document) {
+  tree.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
     const
     button = menuRoot.querySelector("[aria-haspopup]"), <2>
     menu = menuRoot.querySelector("[role=menu]"), <3>
@@ -1025,8 +1026,8 @@ In this case, we want to bind the value of the checkbox inputs to the
 
 #figure[```html
 <td>
-  <input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}"
-    x-model="selected"> <1>
+  <input type="checkbox" name="selected_contact_ids"
+    value="{{ contact.id }}" x-model="selected"> <1>
 </td>
 ```]
 1. The `x-model` attribute binds the `value` of this input to the
@@ -1167,7 +1168,8 @@ As you’ll see, that last sentence is close to the actual \_hyperscript code:
 #figure[```html
 <div class="counter">
   <output>0</output>
-  <button _="on click increment the textContent of the previous <output/>"> <1>
+  <button _="on click
+    increment the textContent of the previous <output/>"> <1>
     Increment
   </button>
 </div>
@@ -1278,7 +1280,8 @@ Here is the entire script, embedded in HTML:
 #figure(caption: [Our final script])[
 ```html
 <input id="search" name="q" type="search" placeholder="Search Contacts"
-  _="on keydown[altKey and code is 'KeyS'] from the window focus() me"> <1>
+  _="on keydown[altKey and code is 'KeyS'] from the window
+    focus() me"> <1>
 ``` ]
 1. "me" refers to the element that the script is written on.
 

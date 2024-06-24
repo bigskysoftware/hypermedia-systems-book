@@ -52,13 +52,16 @@ two new actions,
 #figure(
   caption: [Phone and Email actions],
 )[ ```xml
-<view xmlns:comms="https://hypermedia.systems/hyperview/communications"> <1>
+<view
+  xmlns:comms="https://hypermedia.systems/hyperview/communications"> <1>
   <text>
-    <behavior action="open-phone" comms:phone-number="555-555-5555" /> <2>
+    <behavior action="open-phone"
+      comms:phone-number="555-555-5555" /> <2>
     Call
   </text>
   <text>
-    <behavior action="open-email" comms:email-address="joe@example.com" /> <3>
+    <behavior action="open-email"
+      comms:email-address="joe@example.com" /> <3>
     Email
   </text>
 </view>
@@ -103,8 +106,9 @@ const namespace = "https://hypermedia.systems/hyperview/communications";
 
 export default {
   action: "open-phone", <2>
-  callback: (behaviorEl) => { <3>
-    const number = behaviorEl.getAttributeNS(namespace, "phone-number"); <4>
+  callback: (behaviorElement) => { <3>
+    const number = behaviorElement
+      .getAttributeNS(namespace, "phone-number"); <4>
     if (number != null) {
       phonecall(number, false); <5>
     }
@@ -175,7 +179,9 @@ by updating the `show.xml` template in our Flask app:
 )[ ```xml
 {% block content %}
 <view style="details">
-  <text style="contact-name">{{ contact.first }} {{ contact.last }}</text>
+  <text style="contact-name">
+    {{ contact.first }} {{ contact.last }}
+  </text>
 
   <view style="contact-section">
     <behavior <1>
@@ -282,7 +288,9 @@ export default {
   callback: (behaviorElement) => { <3>
     const text = behaviorElement.getAttributeNS(namespace, "text");
     if (text != null) {
-      Toast.show(text, {position: Toast.positions.TOP, duration: 2000}); <4>
+      Toast.show(text, { <4>
+        position: Toast.positions.TOP, duration: 2000
+      });
     }
   },
 };
@@ -448,7 +456,8 @@ For the swipeable row, we need a way to represent the entire component, the main
 content, and one of many buttons.
 
 ```xml
-<swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
+<swipe:row
+  xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
   <swipe:main> <2>
     <!-- main content shown here -->
   </swipe:main>
@@ -519,7 +528,10 @@ export default class SwipeableRow extends PureComponent { <1>
 
   getButtons = () => { <4>
     return this.getElements("button").map((buttonElement) => {
-      return Hyperview.renderChildren(buttonElement, this.props.stylesheets, this.props.onUpdate, this.props.options); <5>
+      return Hyperview.renderChildren(buttonElement,
+        this.props.stylesheets,
+        this.props.onUpdate,
+        this.props.options); <5>
     });
   };
 
@@ -531,7 +543,10 @@ export default class SwipeableRow extends PureComponent { <1>
 
     return (
       <Swipeable rightButtons={this.getButtons()}> <6>
-        {Hyperview.renderChildren(main, this.props.stylesheets, this.props.onUpdate, this.props.options)} <7>
+        {Hyperview.renderChildren(main,
+          this.props.stylesheets,
+          this.props.onUpdate,
+          this.props.options)} <7>
       </Swipeable>
     );
   }
@@ -627,7 +642,8 @@ Currently, the HXML for a contact item in the list consists of a
   caption: [Snippet of `hv/rows.xml`],
 )[ ```xml
 <item key="{{ contact.id }}" style="contact-item">
-  <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}" />
+  <behavior trigger="press" action="push"
+    href="/contacts/{{ contact.id }}" />
   <text style="contact-item-label">
     <!-- omitted for brevity -->
   </text>
@@ -641,7 +657,8 @@ let’s start by adding `<row>` and `<main>` as ancestor elements.
   caption: [Adding swipeable row `hv/rows.xml`],
 )[ ```xml
 <item key="{{ contact.id }}">
-  <swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
+  <swipe:row <1>
+    xmlns:swipe="https://hypermedia.systems/hyperview/swipeable">
     <swipe:main> <2>
       <view style="contact-item"> <3>
         <behavior trigger="press" action="push"
@@ -671,7 +688,8 @@ reveal when swiping a row. Let’s add two buttons to the swipeable row.
   caption: [Adding swipeable row `hv/rows.xml`],
 )[ ```xml
 <item key="{{ contact.id }}">
-  <swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable">
+  <swipe:row
+    xmlns:swipe="https://hypermedia.systems/hyperview/swipeable">
     <swipe:main>
       <!-- omitted for brevity -->
     </swipe:main>
@@ -731,7 +749,8 @@ will work for our action button as well:
       trigger="press"
       action="alert"
       alert:title="Confirm delete"
-      alert:message="Are you sure you want to delete {{ contact.first }}?"
+      alert:message="Are you sure you want to delete
+        {{ contact.first }}?"
     >
       <alert:option alert:label="Confirm">
         <behavior <2>

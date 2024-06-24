@@ -209,7 +209,9 @@ value with `hx-boost="false"` on the anchor tag that you don’t want to boost:
   <a href="/contacts">Contacts</a>
   <a href="/settings">Settings</a>
   <a href="/help">Help</a>
-  <a href="/help/documentation.pdf" hx-boost="false">Download Docs</a> <2>
+  <a href="/help/documentation.pdf" hx-boost="false"> <2>
+    Download Docs
+  </a>
 </div>
 ```)
 1. The `hx-boost` is still on the parent div.
@@ -1061,7 +1063,8 @@ def contacts():
         contacts_set = Contact.search(search)
     else:
         contacts_set = Contact.all(page) <2>
-    return render_template("index.html", contacts=contacts_set, page=page)
+    return render_template("index.html",
+      contacts=contacts_set, page=page)
 ```)
 1. Resolve the page parameter, defaulting to page 1 if no page is passed in.
 2. Pass the page through to the model when loading all contacts so it knows which
@@ -1123,7 +1126,9 @@ a button in it:
     <td>{{ contact.last }}</td>
     <td>{{ contact.phone }}</td>
     <td>{{ contact.email }}</td>
-    <td><a href="/contacts/{{ contact.id }}/edit">Edit</a> <a href="/contacts/{{ contact.id }}">View</a></td>
+    <td>
+      <a href="/contacts/{{ contact.id }}/edit">Edit</a>
+      <a href="/contacts/{{ contact.id }}">View</a></td>
   </tr>
 {% endfor %}
 {% if contacts|length == 10 %} <1>
