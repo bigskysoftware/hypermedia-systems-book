@@ -790,34 +790,27 @@ itself.
 The simplest way to pass input values with a request in htmx is to enclose the
 element making a request within a form tag.
 
-Let’s take our original button for retrieving contacts and repurpose it for #indexed[search]ing
-contacts:
+Let’s take our original #indexed[search] form and convert it to use htmx instead:
 
 #figure(caption: [An htmx-powered search button],
 ```html
-<div id="main">
-
-  <form> <1>
-      <label for="search">Search Contacts:</label>
-      <input id="search" name="q" type="search"
-        placeholder="Search Contacts"> <2>
-      <button hx-post="/contacts" hx-target="#main"> <3>
-        Search The Contacts
+  <form action="/contacts" method="get" class="tool-bar"> <1>
+      <label for="search">Search Term</label>
+      <input id="search" type="search" name="q" 
+             value="{{ request.args.get('q') or '' }}"
+             placeholder="Search Contacts"/>
+      <button hx-post="/contacts" hx-target="#main"> <2>
+        Search
       </button>
   </form>
-
-</div>
 ```)
 
-1. With an enclosing form tag, all input values will be submitted.
-2. A new input for user search text entry.
-3. Our button has been converted to an `hx-post`.
-
-Here we have added a form tag surrounding the button along with a search input
-that can be used to enter a term to search contacts.
+1. When an htmx-powered element is withing an ancestor form tag, all input values within that
+   form will be submitted for non-`GET` requests
+2. We have switched from an `input` of type `submit` to a `button` and added the `hx-post` attribute
 
 #index[htmx][form values]
-Now, when a user clicks on the button, the value of the input with the id `search` will
+Now, when a user clicks on this button, the value of the input with the id `search` will
 be included in the request. This is by virtue of the fact that there is a form
 tag enclosing both the button and the input: when an htmx-driven request is
 triggered, htmx will look up the DOM hierarchy for an enclosing form, and, if
@@ -832,14 +825,19 @@ _does_ include the form for all other types of requests.
 
 This may seem a little strange, but it avoids junking up URLs that are used
 within forms when dealing with history entries, which we will discuss in a bit.
-And you can always include an enclosing form’s values with an element that uses
-a `GET` by using the `hx-include` attribute, discussed next.
+You can always include an enclosing form’s values with an element that uses
+a `GET` by using the `hx-include` attribute, which we will discuss next.
+
+Note also that we could have added the `hx-post` attribute to the form, rather than to the button
+but that would create a somewhat awkward duplication of the search URL in the `action` and `hx-post`
+attributes.  This can be avoided by using the `hx-boost` attribute, which we discuss in the next
+chapter.
 
 ==== Including Inputs <_including_inputs>
 
 #index[form tag][in tables]
-While enclosing all the inputs you want included in a request is the most common
-approach for inputs in htmx requests, it isn’t always possible or desirable:
+While enclosing all the inputs you want included in a request within a form is the most common
+approach for serializing inputs for htmx requests, it isn’t always possible or desirable:
 form tags can have layout consequences and simply cannot be placed in some spots
 in HTML documents. A good example of the latter situation is in table row (`tr`)
 elements: the `form` tag is not a valid child or parent of table rows, so you
@@ -859,11 +857,11 @@ Here is the above example reworked to include the input, dropping the form:
 <div id="main">
 
   <label for="search">Search Contacts:</label>
-  <input id="search" name="q" type="search"
-    placeholder="Search Contacts">
-  <button hx-post="/contacts" hx-target="#main"
-    hx-include="#search"> <1>
-    Search The Contacts
+  <input id="search" name="q"  type="search" 
+         value="{{ request.args.get('q') or '' }}"
+         placeholder="Search Contacts"/>
+  <button hx-post="/contacts" hx-target="#main" hx-include="#search"> <1>
+    Search
   </button>
 
 </div>

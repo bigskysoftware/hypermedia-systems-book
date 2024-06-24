@@ -232,7 +232,7 @@ display that is common to both types of request.
 
 Here is what the code looks like for this handler:
 
-#figure(caption: [A handler for server-side search], 
+#figure(caption: [A handler for server-side search],
 ```python
 @app.route("/contacts")
 def contacts():
@@ -311,17 +311,17 @@ used to generate content, and should be easy to follow for most web developers.
 
 Let’s look at the first few lines of code in the `index.html` template:
 
-#figure(caption: [Start of index.html], 
+#figure(caption: [Start of index.html],
 ```html
 {% extends 'layout.html' %} <1>
 
 {% block content %} <2>
 
     <form action="/contacts" method="get" class="tool-bar"> <3>
-            <label for="search">Search Term</label>
-            <input id="search" type="search" name="q"
-              value="{{ request.args.get('q') or '' }}" /> <4>
-            <input type="submit" value="Search"/>
+        <label for="search">Search Term</label>
+        <input id="search" type="search" name="q"
+          value="{{ request.args.get('q') or '' }}" /> <4>
+        <input type="submit" value="Search"/>
     </form>
 ```)
 
