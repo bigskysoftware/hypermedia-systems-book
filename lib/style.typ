@@ -6,11 +6,12 @@
   header: none,
 )[
   #set align(start + horizon)
-  #set par(leading: 5pt, justify: false)
+  #set par(leading: 10pt, justify: false)
+  #show heading: set text(size: 3em, font: display-font)
   #skew(
     -0.174, // -10deg
     upper(
-      text(style: "oblique", size: 3em, heading(level: 1, outlined: false, title)),
+      text(style: "oblique", heading(level: 1, outlined: false, title)),
     ),
   )
   #box(height: 1em)
@@ -54,8 +55,8 @@
     it
   }
 
-  #show heading.where(level: 1): set text(font: display-font)
-  #show heading.where(level: 2): set text(font: display-font)
+  #show heading.where(level: 1): set text(font: display-font, size: 24pt)
+  #show heading.where(level: 2): set text(font: display-font, size: 20pt)
   #show heading.where(level: 3): set text(font: secondary-font)
   #show heading.where(level: 4): set text(font: secondary-font)
   #show heading.where(level: 5): set text(font: secondary-font)
