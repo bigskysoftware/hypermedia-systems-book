@@ -1,41 +1,45 @@
 #let leading = 0.6em
-#let body-font = "PermianSerifTypeface"
-#let secondary-font = "PermianSansTypeface"
+#let body-font = "Linux Libertine"
+#let secondary-font = "Linux Biolinum"
 #let display-font = "Jaro"
 #let mono-font = "Berkeley Mono"
 
 #import "./indexing.typ": *
 
 #let part-heading(it) = [
-  #pagebreak(to: "even")
+  #page([], header: none, footer: none)
+  #pagebreak(to: "odd")
   #align(horizon)[
     #set par(leading: 5pt, justify: false)
     #set text(size: 32pt, font: display-font)
     #text(fill: luma(140))[
-      #it.supplement
-      #counter(heading).display()
+      #it.at("supplement", default: none)
+      #counter(heading).display("I")
     ]
     #linebreak()
     #it.body
+    #metadata("")<heading-here>
   ]
-  #pagebreak()
 ]
 
 #let chapter-heading(it) = [
-  #pagebreak(to: "even")
+  #page([], header: none, footer: none)
+  #pagebreak(to: "odd")
   #v(3in)
-  #set par(leading: 0pt, justify: false)
+  #set par(justify: false)
   #set text(size: 22pt, font: display-font)
-  #block[
-    #if it.numbering != none [
-      #text(fill: luma(140))[
-        #it.supplement
-        #counter(heading).display()
-      ]
-      #linebreak()
-    ]
-    #it.body
-  ]
+  #block({
+    if it.at("numbering") != none {
+      text(fill: luma(140), {
+        it.supplement
+        [ ]
+        str(counter(heading).get().at(1))
+      })
+      linebreak()
+    }
+    it.body
+    [#metadata("")<heading-here>]
+  })
 ]
 
 #let asciiart(..args, source) = figure({
@@ -88,7 +92,7 @@
     breakable: true,
   )[
     #set text(.8em, font: secondary-font)
-    #show heading: set text(.8em)
+    #show heading: set text(1em)
 
     === #label: #title
     #body

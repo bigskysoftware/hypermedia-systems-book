@@ -24,9 +24,9 @@ Thanks to:
 - India Hackle for her valuable feedback and editing.
 
 Typefaces:
-- ChicagoFLF (by Robin Casady, for headings),
+- Jaro (by Agyei Archer, Celine Hurka, and Mirko Velimirović, for headings)
 - Linux Libertine (by the Libertine Open Fonts Project, for body text),
 - Linux Biolinum (by the same, for secondary text),
-- Berkeley Mono (by Berkeley Graphics, for code and ascii art).
+- Berkeley Mono (by Berkeley Graphics, for code and ascii art diagrams).
 
 Written and typeset with Typst.

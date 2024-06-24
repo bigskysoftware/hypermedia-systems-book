@@ -140,8 +140,8 @@ Here is the start of the template for our new archive user interface:
 #figure(caption: [Our initial archive UI template],
 ```html
 <div id="archive-ui"
-    hx-target="this" <1>
-    hx-swap="outerHTML"> <2>
+  hx-target="this" <1>
+  hx-swap="outerHTML"> <2>
 </div>
 ```)
 1. This div will be the target for all elements within it.
@@ -155,7 +155,7 @@ trigger the start of the archiving process:
 ```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
   <button hx-post="/contacts/archive"> <1>
-      Download Contact Archive
+    Download Contact Archive
   </button>
 </div>
 ```)
@@ -167,10 +167,9 @@ template, above the contacts table:
 #figure(caption: [Our initial archive UI template],
 ```html
 {% block content %}
+  {% include 'archive_ui.html' %} <1>
 
-    {% include 'archive_ui.html' %} <1>
-
-    <form action="/contacts" method="get" class="tool-bar">
+  <form action="/contacts" method="get" class="tool-bar">
 ```)
 1. This template will now be included in the main template.
 
@@ -237,13 +236,13 @@ to do just that:
 #figure(caption: [Adding conditional rendering],
 ```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
-    {% if archiver.status() == "Waiting" %} <1>
-        <button hx-post="/contacts/archive">
-            Download Contact Archive
-        </button>
-    {% elif archiver.status() == "Running" %} <2>
-       Running... <3>
-    {% endif %}
+  {% if archiver.status() == "Waiting" %} <1>
+    <button hx-post="/contacts/archive">
+      Download Contact Archive
+    </button>
+  {% elif archiver.status() == "Running" %} <2>
+    Running... <3>
+  {% endif %}
 </div>
 ```)
 1. Only render the archive button if the status is "Waiting."
@@ -282,7 +281,8 @@ def contacts():
             return render_template("rows.html", contacts=contacts_set)
     else:
         contacts_set = Contact.all()
-    return render_template("index.html", contacts=contacts_set, archiver=Archiver.get()) <1>
+    return render_template("index.html",
+      contacts=contacts_set, archiver=Archiver.get()) <1>
 ```)
 1. Pass through archiver to the main template
 
@@ -394,10 +394,10 @@ values:
 #figure(caption: [A CSS-based progress bar])[
 ```html
 <div class="progress">
-    <div class="progress-bar"
-         role="progressbar" <1>
-         aria-valuenow="{{ archiver.progress() * 100}}}" <2>
-         style="width:{{ archiver.progress() * 100 }}%"></div>
+  <div class="progress-bar"
+    role="progressbar" <1>
+    aria-valuenow="{{ archiver.progress() * 100 }}" <2>
+    style="width:{{ archiver.progress() * 100 }}%"></div>
 </div>
 ``` ]
 1. This element will act as a progress bar
@@ -445,20 +445,20 @@ say "Creating Archive…​":
 #figure(caption: [Adding the progress bar])[
 ```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
-    {% if archiver.status() == "Waiting" %}
-        <button hx-post="/contacts/archive">
-            Download Contact Archive
-        </button>
-    {% elif archiver.status() == "Running" %}
-        <div>
-            Creating Archive...
-            <div class="progress" > <1>
-                <div class="progress-bar" role="progressbar"
-                     aria-valuenow="{{ archiver.progress() * 100}}"
-                     style="width:{{ archiver.progress() * 100 }}%"></div>
-            </div>
-        </div>
-    {% endif %}
+  {% if archiver.status() == "Waiting" %}
+    <button hx-post="/contacts/archive">
+      Download Contact Archive
+    </button>
+  {% elif archiver.status() == "Running" %}
+    <div>
+      Creating Archive...
+      <div class="progress"> <1>
+        <div class="progress-bar" role="progressbar"
+          aria-valuenow="{{ archiver.progress() * 100}}"
+          style="width:{{ archiver.progress() * 100 }}%"></div>
+      </div>
+    </div>
+  {% endif %}
 </div>
 ``` ]
 1. Our shiny new progress bar
@@ -478,20 +478,20 @@ Let’s make it poll by issuing an HTTP `GET` to the same path as the
 #figure(caption: [Implementing load polling])[
 ```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
-    {% if archiver.status() == "Waiting" %}
-        <button hx-post="/contacts/archive">
-            Download Contact Archive
-        </button>
-    {% elif archiver.status() == "Running" %}
-        <div hx-get="/contacts/archive" hx-trigger="load delay:500ms"> <1>
-            Creating Archive...
-            <div class="progress" >
-                <div class="progress-bar" role="progressbar"
-                     aria-valuenow="{{ archiver.progress() * 100}}"
-                     style="width:{{ archiver.progress() * 100 }}%"></div>
-            </div>
-        </div>
-    {% endif %}
+  {% if archiver.status() == "Waiting" %}
+    <button hx-post="/contacts/archive">
+      Download Contact Archive
+    </button>
+  {% elif archiver.status() == "Running" %}
+    <div hx-get="/contacts/archive" hx-trigger="load delay:500ms"> <1>
+      Creating Archive...
+      <div class="progress" >
+        <div class="progress-bar" role="progressbar"
+          aria-valuenow="{{ archiver.progress() * 100}}"
+          style="width:{{ archiver.progress() * 100 }}%"></div>
+      </div>
+    </div>
+  {% endif %}
 </div>
 ``` ]
 1. Issue a `GET` to `/contacts/archive` 500 milliseconds after the content loads.
@@ -535,22 +535,24 @@ which will respond with the archived JSON file. Here is the new code:
 #figure(caption: [Rendering A Download Link When Archiving Completes])[
 ```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">
-    {% if archiver.status() == "Waiting" %}
-        <button hx-post="/contacts/archive">
-            Download Contact Archive
-        </button>
-    {% elif archiver.status() == "Running" %}
-        <div hx-get="/contacts/archive" hx-trigger="load delay:500ms">
-            Creating Archive...
-            <div class="progress" >
-                <div class="progress-bar" role="progressbar"
-                     aria-valuenow="{{ archiver.progress() * 100}}"
-                     style="width:{{ archiver.progress() * 100 }}%"></div>
-            </div>
-        </div>
-    {% elif archiver.status() == "Complete" %} <1>
-        <a hx-boost="false" href="/contacts/archive/file">Archive Ready!  Click here to download. &downarrow;</a> <2>
-    {% endif %}
+  {% if archiver.status() == "Waiting" %}
+    <button hx-post="/contacts/archive">
+      Download Contact Archive
+    </button>
+  {% elif archiver.status() == "Running" %}
+    <div hx-get="/contacts/archive" hx-trigger="load delay:500ms">
+      Creating Archive...
+      <div class="progress" >
+        <div class="progress-bar" role="progressbar"
+          aria-valuenow="{{ archiver.progress() * 100}}"
+          style="width:{{ archiver.progress() * 100 }}%"></div>
+      </div>
+    </div>
+  {% elif archiver.status() == "Complete" %} <1>
+    <a hx-boost="false" href="/contacts/archive/file">
+      Archive Ready! Click here to download. &downarrow;
+    </a> <2>
+  {% endif %}
 </div>
 ``` ]
 1. If the status is "Complete", render a download link.
@@ -579,7 +581,8 @@ behavior.
 @app.route("/contacts/archive/file", methods=["GET"])
 def archive_content():
     manager = Archiver.get()
-    return send_file(manager.archive_file(), "archive.json", as_attachment=True) <1>
+    return send_file(
+      manager.archive_file(), "archive.json", as_attachment=True) <1>
 ``` ]
 1. Send the file to the client via Flask’s `send_file()` method.
 
@@ -661,7 +664,7 @@ All we need to do is add a stable ID to our `progress-bar` element.
 ```html
 <div class="progress" >
     <div id="archive-progress" class="progress-bar" role="progressbar"
-         aria-valuenow="{{ archiver.progress() * 100}}"
+         aria-valuenow="{{ archiver.progress() * 100 }}"
          style="width:{{ archiver.progress() * 100 }}%"></div> <1>
 </div>
 ``` ]
@@ -696,8 +699,10 @@ We’ll add it after the download link, like so:
 
 #figure(caption: [Clearing the download])[
 ```html
-    <a hx-boost="false" href="/contacts/archive/file">Archive Ready!  Click here to download. &downarrow;</a>
-    <button hx-delete="/contacts/archive">Clear Download</button> <1>
+<a hx-boost="false" href="/contacts/archive/file">
+ Archive Ready! Click here to download. &downarrow;
+</a>
+<button hx-delete="/contacts/archive">Clear Download</button> <1>
 ``` ]
 1. A simple button that issues a `DELETE` to `/contacts/archive`.
 
@@ -755,7 +760,7 @@ a major reason why we love hyperscript):
 #figure(caption: [Auto-downloading])[
 ```html
 <a hx-boost="false" href="/contacts/archive/file"
-    _="on load click() me"> <1>
+  _="on load click() me"> <1>
   Archive Downloading! Click here if the download does not start.
 </a>
 ``` ]
@@ -789,7 +794,7 @@ HTML. Consider the following example of an IEEE-style citation:
   _Hypermedia Systems_, <2>
   Bozeman, MT, USA: Big Sky Software.
   Available: <https://hypermedia.systems/>
-  ```)
+```)
 1. The reference number is written in brackets.
 2. Underscores around the book title creates an \<em\> element.
 

@@ -45,26 +45,37 @@
       let sorted-keys = terms-dict.keys().sorted()
 
       // Output.
+      set par(justify: false, hanging-indent: 2em)
+
       let last-term = ("",)
       for key in sorted-keys {
         let entry = terms-dict.at(key)
-        // #(last-term: last-term)
-        if entry.term.len() > 1 {
-          if last-term.at(0) != entry.term.at(0) {
+        show grid: set block(inset: 0pt, spacing: 0pt)
+        grid(
+          columns:(1fr, auto),
+          if entry.term.len() > 1 {
+            if last-term.at(0) != entry.term.at(0) {
+              entry.term.at(0)
+              h(1fr)
+              parbreak()
+            }
+            h(1em)
+            entry.term.slice(1).join(", ")
+          } else {
             entry.term.at(0)
-            parbreak()
-          }
-          h(1em)
-          entry.term.slice(1).join(", ")
-        } else {
-          entry.term.at(0)
-        }
-        box(width: 1fr)
-        box(
-          entry.locations.map(location =>
-          link(location.position(), str(counter(page).at(location).last()))).join(", "),
+          },
+          box(
+            entry.locations.map(location =>
+              link(location.position(),
+                text(
+                  number-width: "tabular",
+                  str(counter(page).at(location).last())
+                )
+              )
+            ).join(", "),
+          )
         )
-        parbreak()
+        v(5pt)
         (last-term = entry.term)
       }
     },

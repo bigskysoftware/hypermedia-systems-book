@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run -A --unstable
 
-import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introduction, Chapter, write, TableOfContents, LandingPage } from "../../../dz4k.com/muteferrika/lib/müteferrika.ts";
+import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introduction, Chapter, write, TableOfContents, LandingPage, Division } from "../../../dz4k.com/muteferrika/lib/müteferrika.ts";
 
 const compile = async (path: string) => {
   const pandoc = new Deno.Command("pandoc", {

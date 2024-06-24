@@ -262,8 +262,9 @@ sent to the CDN.
 ```html
 <head>
 <script src="https://unpkg.com/htmx.org@1.9.2"
-        integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
-        crossorigin="anonymous"></script>
+  integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/
+    bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
+  crossorigin="anonymous"></script>
 </head>
 ```)
 
@@ -594,7 +595,7 @@ and should be fairly intuitive:
 
 To demonstrate how `hx-trigger` works, consider the following situation: we want
 to trigger the request on our button when the mouse enters it. Now, this is
-certainly not a _good_ UX pattern, but bear with us: we are just using this an
+certainly not a _good_ UX pattern, but bear with us: we are just using this as an
 example.
 
 To respond to a mouse entering the button, we would add the following attribute
@@ -604,7 +605,8 @@ to our button:
 ```html
 <div id="main">
 
-  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="mouseenter"> <1>
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML"
+    hx-trigger="mouseenter"> <1>
     Get The Contacts
   </button>
 
@@ -636,7 +638,8 @@ addition to the click event:
 ```html
 <div id="main">
 
-  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup">
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML"
+    hx-trigger="click, keyup"> <1>
     Get The Contacts
   </button>
 
@@ -663,7 +666,8 @@ to test that Control key and the "L" key are pressed together:
 ```html
 <div id="main">
 
-  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l']"> <1>
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML"
+    hx-trigger="click, keyup[ctrlKey && key == 'l']"> <1>
     Get The Contacts
   </button>
 
@@ -710,7 +714,8 @@ Here is what our updated `hx-trigger` attribute looks like:
 ```html
 <div id="main">
 
-  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML" hx-trigger="click, keyup[ctrlKey && key == 'l'] from:body"> <1>
+  <button hx-get="/contacts" hx-target="#main" hx-swap="outerHTML"
+    hx-trigger="click, keyup[ctrlKey && key == 'l'] from:body"> <1>
     Get The Contacts
   </button>
 
@@ -794,7 +799,8 @@ contacts:
 
   <form> <1>
       <label for="search">Search Contacts:</label>
-      <input id="search" name="q" type="search" placeholder="Search Contacts"> <2>
+      <input id="search" name="q" type="search"
+        placeholder="Search Contacts"> <2>
       <button hx-post="/contacts" hx-target="#main"> <3>
         Search The Contacts
       </button>
@@ -853,8 +859,10 @@ Here is the above example reworked to include the input, dropping the form:
 <div id="main">
 
   <label for="search">Search Contacts:</label>
-  <input id="search" name="q" type="search" placeholder="Search Contacts">
-  <button hx-post="/contacts" hx-target="#main" hx-include="#search"> <1>
+  <input id="search" name="q" type="search"
+    placeholder="Search Contacts">
+  <button hx-post="/contacts" hx-target="#main"
+    hx-include="#search"> <1>
     Search The Contacts
   </button>
 
@@ -936,7 +944,8 @@ included dynamically in htmx requests like so:
 
 #figure(caption: [A dynamic value],
 ```html
-<button hx-get="/contacts" hx-vals='js:{"state":getCurrentState()}'> <1>
+<button hx-get="/contacts"
+  hx-vals='js:{"state":getCurrentState()}'> <1>
   Get The Contacts In The Selected State
 </button>
 ```)

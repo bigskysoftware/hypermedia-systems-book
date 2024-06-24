@@ -300,8 +300,8 @@ click event and increment the counter.
 
 #figure(caption: [Counter JavaScript])[
 ```js
-const counterOutput = document.querySelector("#my-output") <1>
-const incrementBtn  = document.querySelector(".counter .increment-btn") <2>
+const counterOutput = document.querySelector("#my-output"), <1>
+  incrementBtn = document.querySelector(".counter .increment-btn") <2>
 
 incrementBtn.addEventListener("click", e => { <3>
   counterOutput.innerHTML++ <4>
@@ -336,7 +336,7 @@ button up in JavaScript and add in an event handler for the "click" event.
 
 Now, in both the HTML and the JavaScript, this class name is just a string and
 there isn’t any process to _verify_ that the button has the right classes on it
-or its parents to ensure that the event handler is actually added to the right
+or its ancestors to ensure that the event handler is actually added to the right
 element.
 
 Unfortunately, it has turned out that the careless use of CSS selectors in
@@ -572,7 +572,8 @@ Here is what our updated, RSJS-structured HTML looks like:
         aria-controls="contact-menu-{{ contact.id }}"
         >Options</button> <2>
     <div role="menu" hidden id="contact-menu-{{ contact.id }}"> <3>
-        <a role="menuitem" href="/contacts/{{ contact.id }}/edit">Edit</a> <4>
+        <a role="menuitem"
+          href="/contacts/{{ contact.id }}/edit">Edit</a> <4>
         <a role="menuitem" href="/contacts/{{ contact.id }}">View</a>
         <!-- ... -->
     </div>
@@ -644,17 +645,17 @@ Always remember to #strong[test] your website for accessibility to ensure all
 users can interact with it easily and effectively.
 ]
 
-With this brief introduction to ARIA, let’s return to our VanillaJS drop down
-menu. We’ll begin with the RSJS boilerplate: query for all elements with some
-data attribute, iterate over them, get any relevant descendants.
+On the JS side of our implementation, we’ll begin with the RSJS boilerplate:
+query for all elements with some data attribute, iterate over them, get any
+relevant descendants.
 
 Note that, below, we’ve modified the RSJS boilerplate a bit to integrate with
 htmx; we load the overflow menu when htmx loads new content.
 
 #figure[
 ```js
-function overflowMenu(subtree = document) {
-  subtree.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
+function overflowMenu(tree = document) {
+  tree.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
     const
     button = menuRoot.querySelector("[aria-haspopup]"), <2>
     menu = menuRoot.querySelector("[role=menu]"), <3>
@@ -688,13 +689,13 @@ well by simply re-running the JS.
 
 #figure[
 ```js
-  items = [...menu.querySelectorAll("[role=menuitem]")];
+items = [...menu.querySelectorAll("[role=menuitem]")]; <1>
 
-  const isOpen = () => !menu.hidden; <1>
-
-});
+const isOpen = () => !menu.hidden; <2>
 ```]
-1. The `hidden` attribute is helpfully reflected as a `hidden`
+1. We get the list of menu items at the start. This implementation
+  will not support dynamically adding or removing menu items.
+2. The `hidden` attribute is helpfully reflected as a `hidden`
   _property_, so we don’t need to use `getAttribute`.
 
 We’ll also make the menu items non-tabbable, so we can manage their focus
@@ -702,35 +703,27 @@ ourselves.
 
 #figure[
 ```js
-  const isOpen = () => !menu.hidden;
-
-  items.forEach(item => item.setAttribute("tabindex", "-1"));
-
-});
+items.forEach(item => item.setAttribute("tabindex", "-1"));
 ```]
 
 Now let’s implement toggling the menu in JavaScript:
 
 #figure[
 ```js
-  items.forEach(item => item.setAttribute("tabindex", "-1"));
-
-  function toggleMenu(open = !isOpen()) { <1>
-    if (open) {
-      menu.hidden = false;
-      button.setAttribute("aria-expanded", "true");
-      items[0].focus(); <2>
-    } else {
-      menu.hidden = true;
-      button.setAttribute("aria-expanded", "false");
-    }
+function toggleMenu(open = !isOpen()) { <1>
+  if (open) {
+    menu.hidden = false;
+    button.setAttribute("aria-expanded", "true");
+    items[0].focus(); <2>
+  } else {
+    menu.hidden = true;
+    button.setAttribute("aria-expanded", "false");
   }
+}
 
-  toggleMenu(isOpen()); <3>
-  button.addEventListener("click", () => toggleMenu()); <4>
-  menuRoot.addEventListener("blur", e => toggleMenu(false)); <5>
-
-})
+toggleMenu(isOpen()); <3>
+button.addEventListener("click", () => toggleMenu()); <4>
+menuRoot.addEventListener("blur", e => toggleMenu(false)); <5>
 ```]
 1. Optional parameter to specify desired state. This allows us to use one function
   to open, close, or toggle the menu.
@@ -766,12 +759,10 @@ page" driving the collection, it should work well enough for our system.
 
 #figure[
 ```js
-  menuRoot.addEventListener("blur", e => toggleMenu(false));
-
-  window.addEventListener("click", function clickAway(event) {
-    if (!menuRoot.isConnected) window.removeEventListener("click", clickAway); <1>
-    if (!menuRoot.contains(event.target)) toggleMenu(false); <2>
-  });
+window.addEventListener("click", function clickAway(event) {
+  if (!menuRoot.isConnected)
+    window.removeEventListener("click", clickAway); <1>
+  if (!menuRoot.contains(event.target)) toggleMenu(false); <2>
 });
 ```]
 1. This line is the garbage collection.
@@ -783,36 +774,32 @@ particularly intricate, so let’s knock them all out in one go:
 
 #figure[
 ```js
-    if (!menuRoot.contains(event.target)) toggleMenu(false);
-  });
+const currentIndex = () => { <1>
+  const idx = items.indexOf(document.activeElement);
+  if (idx === -1) return 0;
+  return idx;
+}
 
-  const currentIndex = () => { <1>
-    const idx = items.indexOf(document.activeElement);
-    if (idx === -1) return 0;
-    return idx;
+menu.addEventListener("keydown", e => {
+  if (e.key === "ArrowUp") {
+    items[currentIndex() - 1]?.focus(); <2>
+
+  } else if (e.key === "ArrowDown") {
+    items[currentIndex() + 1]?.focus(); <3>
+
+  } else if (e.key === "Space") {
+    items[currentIndex()].click(); <4>
+
+  } else if (e.key === "Home") {
+    items[0].focus(); <5>
+
+  } else if (e.key === "End") {
+    items[items.length - 1].focus(); <6>
+
+  } else if (e.key === "Escape") {
+    toggleMenu(false); <7>
+    button.focus(); <8>
   }
-
-  menu.addEventListener("keydown", e => {
-    if (e.key === "ArrowUp") {
-      items[currentIndex() - 1]?.focus(); <2>
-
-    } else if (e.key === "ArrowDown") {
-      items[currentIndex() + 1]?.focus(); <3>
-
-    } else if (e.key === "Space") {
-      items[currentIndex()].click(); <4>
-
-    } else if (e.key === "Home") {
-      items[0].focus(); <5>
-
-    } else if (e.key === "End") {
-      items[items.length - 1].focus(); <6>
-
-    } else if (e.key === "Escape") {
-      toggleMenu(false); <7>
-      button.focus(); <8>
-    }
-  });
 });
 ```]
 1. Helper: Get the index in the items array of the currently focused menu item (0
@@ -971,7 +958,7 @@ one go.
 
 The first thing we will need to add is an `x-data` attribute, to hold the state
 that we will use to determine if the toolbar is visible or not. We will need to
-place this on a parent element of both the toolbar that we are going to add, as
+place this on an ancestor element of both the toolbar that we are going to add, as
 well as the checkboxes, which will be updating the state when they are checked
 and unchecked. The best option given our current HTML is to place the attribute
 on the `form` element that surrounds the contacts table. We will declare a
@@ -1024,7 +1011,8 @@ In this case, we want to bind the value of the checkbox inputs to the
 
 #figure[```html
 <td>
-  <input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}" x-model="selected"> <1>
+  <input type="checkbox" name="selected_contact_ids"
+    value="{{ contact.id }}" x-model="selected"> <1>
 </td>
 ```]
 1. The `x-model` attribute binds the `value` of this input to the
@@ -1071,9 +1059,13 @@ JavaScript API to issue a `DELETE` request.
 
 #figure[```html
 <button type="button" class="bad bg color border"
-  @click="confirm(`Delete ${selected.length} contacts?`) && <1>
-    htmx.ajax('DELETE', '/contacts', { source: $root, target: document.body })" <2>
->Delete</button>
+  @click="
+    confirm(`Delete ${selected.length} contacts?`) && <1>
+    htmx.ajax('DELETE', '/contacts',
+      { source: $root, target: document.body }) <2>
+  ">
+  Delete
+</button>
 ```]
 1. Confirm the user wishes to delete the selected number of contacts.
 2. Issue a `DELETE` using the htmx JavaScript API.
@@ -1161,7 +1153,10 @@ As you’ll see, that last sentence is close to the actual \_hyperscript code:
 #figure[```html
 <div class="counter">
   <output>0</output>
-  <button _="on click increment the textContent of the previous <output/>">Increment</button> <1>
+  <button _="on click
+    increment the textContent of the previous <output/>"> <1>
+    Increment
+  </button>
 </div>
 ```]
 1. The \_hyperscript code added inline to the button.
@@ -1271,7 +1266,7 @@ Here is the entire script, embedded in HTML:
 ```html
 <input id="search" name="q" type="search" placeholder="Search Contacts"
   _="on keydown[altKey and code is 'KeyS'] from the window
-       me.focus()"> <1>
+    focus() me"> <1>
 ``` ]
 1. "me" refers to the element that the script is written on.
 
@@ -1458,14 +1453,13 @@ Given all that, our updated code will look like this:
 )[ ```html
 <button type="button" class="bad bg color border"
   @click="Swal.fire({ <1>
-                  title: 'Delete these contacts?', <2>
-                  showCancelButton: true,
-                  confirmButtonText: 'Delete'
-                }).then((result) => { <3>
-                  if (result.isConfirmed) {
-                    htmx.ajax('DELETE', '/contacts', { source: $root, target: document.body })
-                  }
-               });"
+    title: 'Delete these contacts?', <2>
+    showCancelButton: true,
+    confirmButtonText: 'Delete'
+  }).then((result) => { <3>
+    if (result.isConfirmed) htmx.ajax('DELETE', '/contacts',
+        { source: $root, target: document.body })
+  });"
 >Delete</button>
 ``` ]
 1. Invoke the `Swal.fire()` function
@@ -1500,12 +1494,12 @@ Here is what our JavaScript function looks like:
 #figure(caption: [An event-based confirmation dialog])[
 ```javascript
 function sweetConfirm(elt, config) {
-      Swal.fire(config) <1>
-          .then((result) => {
-                  if (result.isConfirmed) {
-                      elt.dispatchEvent(new Event('confirmed')); <2>
-                  }
-          });
+  Swal.fire(config) <1>
+    .then((result) => {
+      if (result.isConfirmed) {
+        elt.dispatchEvent(new Event('confirmed')); <2>
+      }
+    });
 }
 ``` ]
 1. Pass the config through to the `fire()` function.
@@ -1531,11 +1525,12 @@ Here is what our code looks like:
 #figure(caption: [An Event-based Confirmation Dialog])[
 ```html
 <button type="button" class="bad bg color border"
-        hx-delete="/contacts" hx-target="body" hx-trigger="confirmed" <1>
-        @click="sweetConfirm($el, <2>
-                { title: 'Delete these contacts?', <3>
-                  showCancelButton: true,
-                  confirmButtonText: 'Delete'})">
+  hx-delete="/contacts" hx-target="body" hx-trigger="confirmed" <1>
+  @click="sweetConfirm($el, { <2>
+    title: 'Delete these contacts?', <3>
+    showCancelButton: true,
+    confirmButtonText: 'Delete'
+  })">
 ``` ]
 1. Our htmx attributes are back.
 2. We pass the button in to the function, so an event can be triggered on it.

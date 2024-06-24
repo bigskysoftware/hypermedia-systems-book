@@ -98,7 +98,7 @@ write the following HTML:
 #figure(caption: [Scrolling to the top of the page])[
 ```html
 <button hx-get="/contacts" hx-target="#content-div"
-        hx-swap="innerHTML show:body:top"> <1>
+  hx-swap="innerHTML show:body:top"> <1>
   Get Contacts
 </button>
 ``` ]
@@ -125,9 +125,10 @@ A classic example is the active search example we implemented in Contact.app:
   caption: [The active search input],
 )[
 ```html
-<input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"
-        hx-get="/contacts"
-        hx-trigger="search, keyup delay:200ms changed"/> <1>
+<input id="search" type="search" name="q"
+  value="{{ request.args.get('q') or '' }}"
+  hx-get="/contacts"
+  hx-trigger="search, keyup delay:200ms changed"/> <1>
 ``` ]
 1. An elaborate trigger specification.
 
@@ -172,15 +173,15 @@ Here are the other modifiers available on `hx-trigger`:
 / `target`: #[
   #index[hx-trigger][target] A CSS selector that allows you to filter events to
   only those that occur directly on a given element. In the DOM, events "bubble"
-  to their parent elements, so a `click` event on a button will also trigger a `click`
-  event on a parent `div`, all the way up to the `body` element. Sometimes you
+  to their ancestor elements, so a `click` event on a button will also trigger a `click`
+  event on an enclosing `div`, all the way up to the `body` element. Sometimes you
   want to specify an event directly on a given element, and this attribute allows
   you to do that.
   ]
 
 / `consume`: #[
   #index[hx-trigger][consume] If this option is set to `true`, the triggering
-  event will be cancelled and not propagate to parent elements.
+  event will be cancelled and not propagate to ancestor elements.
   ]
 
 / `queue`: #[
@@ -213,11 +214,12 @@ To do this using an event filter in htmx, you would write the following HTML:
 ```html
 <script>
   function contactRetrievalEnabled() {
-      // code to test if contact retrieval is enabled
-      ...
+    // code to test if contact retrieval is enabled
+    ...
   }
 </script>
-<button hx-get="/contacts" hx-trigger="click[contactRetrievalEnabled()]"> <1>
+<button hx-get="/contacts"
+  hx-trigger="click[contactRetrievalEnabled()]"> <1>
   Get Contacts
 </button>
 ``` ]
@@ -241,7 +243,7 @@ htmx.
 In addition to these modifiers, `hx-trigger` offers a few "synthetic" events,
 that is events that are not part of the regular DOM API. We have already seen `load` and `revealed` in
 our lazy loading and infinite scroll examples, but htmx also gives you an `intersect` event
-that triggers when an element intersects its parent element.
+that triggers when an element intersects its a viewport.
 
 #index[hx-trigger][intersect]
 This synthetic event uses the modern Intersection Observer API, which you can
@@ -322,13 +324,13 @@ Here is our updated code:
 #figure(caption: [Syncing two buttons])[
 ```html
 <div hx-target="body" <1>
-     hx-sync="this"> <2>
-    <button hx-get="/contacts">
-      Get Contacts
-    </button>
-    <button hx-get="/settings">
-      Get Settings
-    </button>
+  hx-sync="this"> <2>
+  <button hx-get="/contacts">
+    Get Contacts
+  </button>
+  <button hx-get="/settings">
+    Get Settings
+  </button>
 </div>
 ``` ]
 1. Hoist the duplicate `hx-target` attributes to the parent `div`.
@@ -430,8 +432,9 @@ tag in the `<head>` of our HTML document:
 
 #figure(caption: [Adding the `X-SPECIAL-TOKEN` header])[
 ```js
-document.body.addEventListener("htmx:configRequest", function(configEvent){
-    configEvent.detail.headers['X-SPECIAL-TOKEN'] = localStorage['special-token']; <1>
+document.body.addEventListener("htmx:configRequest", configEvent => {
+  configEvent.detail.headers['X-SPECIAL-TOKEN'] = <1>
+    localStorage['special-token'];
 })
 ``` ]
 1. Retrieve the value from local storage and set it into a header.
@@ -466,8 +469,9 @@ look like this:
 
 #figure(caption: [Adding the `token` parameter])[
 ```js
-document.body.addEventListener("htmx:configRequest", function(configEvent){
-    configEvent.detail.parameters['token'] = localStorage['special-token']; <1>
+document.body.addEventListener("htmx:configRequest", configEvent => {
+    configEvent.detail.parameters['token'] = <1>
+      localStorage['special-token'];
 })
 ``` ]
 1. Retrieve the value from local storage and set it into a parameter.
@@ -502,7 +506,11 @@ Here is what the code might look like:
 <button id="contacts-btn" hx-get="/contacts" hx-target="body"> <1>
   Get Contacts
 </button>
-<button onclick="document.getElementById('contacts-btn').dispatchEvent(new Event('htmx:abort'))"> <2>
+<button
+  onclick="
+    document.getElementById('contacts-btn')
+      .dispatchEvent(new Event('htmx:abort')) <2>
+  ">
   Cancel
 </button>
 ``` ]
@@ -523,9 +531,10 @@ at what that would look like:
 <button id="contacts-btn" hx-get="/contacts" hx-target="body">
   Get Contacts
 </button>
-<button _="on click send htmx:abort to #contacts-btn
-           on htmx:beforeRequest from #contacts-btn remove @disabled from me
-           on htmx:afterRequest from #contacts-btn add @disabled to me">
+<button
+  _="on click send htmx:abort to #contacts-btn
+    on htmx:beforeRequest from #contacts-btn remove @disabled from me
+    on htmx:afterRequest from #contacts-btn add @disabled to me">
   Cancel
 </button>
 ``` ]
@@ -595,7 +604,8 @@ Here is what the client-side code might look like:
 
   ...
 
-<table hx-get="/contacts/table" hx-trigger="contacts-updated from:body"> <2>
+<table hx-get="/contacts/table"
+  hx-trigger="contacts-updated from:body"> <2>
   ...
 </table>
 ``` ]
@@ -663,10 +673,10 @@ to make this happen:
 
 #figure(caption: [Showing a 404 dialog])[
 ```js
-document.body.addEventListener('htmx:beforeSwap', function(evt) { <1>
-    if (evt.detail.xhr.status === 404) { <2>
-        showNotFoundError();
-    }
+document.body.addEventListener('htmx:beforeSwap', evt => { <1>
+  if (evt.detail.xhr.status === 404) { <2>
+    showNotFoundError();
+  }
 });
 ``` ]
 1. Hook into the `htmx:beforeSwap` event.
