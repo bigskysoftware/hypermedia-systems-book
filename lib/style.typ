@@ -20,7 +20,8 @@
 
 #let page-header() = context {
   set text(font: secondary-font, size: 10pt)
-  let h1 = query(heading.where(level: 1).or(heading.where(level: 2))).any(h => h.location().page() == here().page())
+  let h1 = query(<heading-here>)
+    .any(h => h.location().page() == here().page())
   if not h1 {
     let reference-title(title, numbering-style) = [
       #if title.numbering != none [
@@ -64,6 +65,7 @@
   #show par: set block(spacing: leading)
 
   #show list: set par(justify: false)
+  #show list: set block(spacing: 0pt, inset: 0pt)
 
   #set list(
     indent: 1em,
@@ -136,10 +138,28 @@
 
     #frontmatter
 
+    #page([], header: none, footer: none)
     #pagebreak(to: "odd")
 
     = Contents
-    #set par(first-line-indent: 0pt)
+    #set par(first-line-indent: 0pt, justify: false)
+    #set text(number-width: "tabular")
+    #show linebreak: []
+    #show outline.entry: it => {
+      show grid: set block(spacing: 0pt)
+      box(
+        inset: (left: (it.level - 1) * 1em),
+        grid(
+          columns: (1fr, auto),
+          column-gutter: 1em,
+          par(
+            it.body,
+            hanging-indent: (it.level) * 12pt + 3pt
+          ),
+          it.page,
+        )
+      )
+    }
     #outline(indent: 1em, depth: 4, title: none)<table-of-contents>
   ]
 
