@@ -20,7 +20,10 @@
 ]
 
 #let page-header() = context {
+  counter(footnote).update(0)
+
   set text(font: secondary-font, size: 10pt)
+
   let h1 = query(<heading-here>)
     .any(h => h.location().page() == here().page())
   if not h1 {
@@ -122,6 +125,14 @@
   }
   
   #show raw.where(block: true): code-with-callouts
+
+  #show link: it => {
+    if type(it.dest) != str { it }
+    else {
+      it.body
+      footnote(it.dest)
+    }
+  }
 
   #set page(
     width: 8.5in, height: 11in,
