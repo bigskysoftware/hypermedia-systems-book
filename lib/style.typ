@@ -70,6 +70,7 @@
   #set list(
     indent: 1em,
     body-indent: .6em,
+    spacing: 5pt,
   )
 
   #set enum(
