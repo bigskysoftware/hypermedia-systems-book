@@ -84,9 +84,9 @@ our demo app. This library provides a simple API that interacts with OS-level
 functionality for calls and emails.
 
 ```bash
-> cd hyperview/demo
-> yarn add react-native-communications <1>
-> yarn start <2>
+cd hyperview/demo
+yarn add react-native-communications <1>
+yarn start <2>
 ```
 + Add dependency on `react-native-communications`
 + Re-start the mobile app
@@ -103,8 +103,8 @@ const namespace = "https://hypermedia.systems/hyperview/communications";
 
 export default {
   action: "open-phone", <2>
-  callback: (behaviorElement) => { <3>
-    const number = behaviorElement.getAttributeNS(namespace, "phone-number"); <4>
+  callback: (behaviorEl) => { <3>
+    const number = behaviorEl.getAttributeNS(namespace, "phone-number"); <4>
     if (number != null) {
       phonecall(number, false); <5>
     }
@@ -261,9 +261,9 @@ we’re going to need to extend the Hyperview client with a new custom action,
 Let’s add this library to our demo app.
 
 ```bash
-> cd hyperview/demo
-> yarn add react-native-root-toast <1>
-> yarn start <2>
+cd hyperview/demo
+yarn add react-native-root-toast <1>
+yarn start <2>
 ```]
 + Add dependency on `react-native-root-toast`
 + Re-start the mobile app
@@ -367,8 +367,10 @@ need to include this template in
 <view xmlns="https://hyperview.org/hyperview" style="edit-group">
   {% if saved %}
     {% include "hv/messages.xml" %} <1>
-    <behavior trigger="load" once="true" action="dispatch-event" event-name="contact-updated" />
-    <behavior trigger="load" once="true" action="reload" href="/contacts/{{contact.id}}" />
+    <behavior trigger="load" once="true" action="dispatch-event"
+      event-name="contact-updated" />
+    <behavior trigger="load" once="true" action="reload"
+      href="/contacts/{{contact.id}}" />
   {% endif %}
   <!-- omitted for brevity -->
 </view>
@@ -382,7 +384,8 @@ And we can do the same thing in `deleted.xml`:
 )[ ```xml
 <view xmlns="https://hyperview.org/hyperview">
   {% include "hv/messages.xml" %} <1>
-  <behavior trigger="load" action="dispatch-event" event-name="contact-updated" />
+  <behavior trigger="load" action="dispatch-event"
+    event-name="contact-updated" />
   <behavior trigger="load" action="back" />
 </view>
 ``` ]
@@ -425,9 +428,9 @@ Rather than implementing the swipe gesture from scratch, we will once again use
 an open-source third-party library: `react-native-swipeable`.
 
 ```bash
-> cd hyperview/demo
-> yarn add react-native-swipeable <1>
-> yarn start <2>
+cd hyperview/demo
+yarn add react-native-swipeable <1>
+yarn start <2>
 ```]
 + Add dependency on `react-native-swipeable`.
 + Re-start the mobile app.
@@ -510,7 +513,8 @@ export default class SwipeableRow extends PureComponent { <1>
   static localName = "row"; <3>
 
   getElements = (tagName) => {
-    return Array.from(this.props.element.getElementsByTagNameNS(NAMESPACE_URI, tagName));
+    return Array.from(this.props.element
+      .getElementsByTagNameNS(NAMESPACE_URI, tagName));
   };
 
   getButtons = () => { <4>
@@ -640,7 +644,8 @@ let’s start by adding `<row>` and `<main>` as parent elements.
   <swipe:row xmlns:swipe="https://hypermedia.systems/hyperview/swipeable"> <1>
     <swipe:main> <2>
       <view style="contact-item"> <3>
-        <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}" />
+        <behavior trigger="press" action="push"
+          href="/contacts/{{ contact.id }}" />
         <text style="contact-item-label">
           <!-- omitted for brevity -->
         </text>
@@ -699,7 +704,8 @@ in edit mode.
 )[ ```xml
 <swipe:button>
   <view style="swipe-button">
-    <behavior trigger="press" action="push" href="/contacts/{{ contact.id }}/edit" /> <1>
+    <behavior trigger="press" action="push"
+      href="/contacts/{{ contact.id }}/edit" /> <1>
     <text style="button-label">Edit</text>
   </view>
 </swipe:button>

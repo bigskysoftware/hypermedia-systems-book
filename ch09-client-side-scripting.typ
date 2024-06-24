@@ -769,7 +769,8 @@ page" driving the collection, it should work well enough for our system.
   menuRoot.addEventListener("blur", e => toggleMenu(false));
 
   window.addEventListener("click", function clickAway(event) {
-    if (!menuRoot.isConnected) window.removeEventListener("click", clickAway); <1>
+    if (!menuRoot.isConnected)
+      window.removeEventListener("click", clickAway); <1>
     if (!menuRoot.contains(event.target)) toggleMenu(false); <2>
   });
 });
@@ -1024,7 +1025,8 @@ In this case, we want to bind the value of the checkbox inputs to the
 
 #figure[```html
 <td>
-  <input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}" x-model="selected"> <1>
+  <input type="checkbox" name="selected_contact_ids" value="{{ contact.id }}"
+    x-model="selected"> <1>
 </td>
 ```]
 1. The `x-model` attribute binds the `value` of this input to the
@@ -1071,9 +1073,13 @@ JavaScript API to issue a `DELETE` request.
 
 #figure[```html
 <button type="button" class="bad bg color border"
-  @click="confirm(`Delete ${selected.length} contacts?`) && <1>
-    htmx.ajax('DELETE', '/contacts', { source: $root, target: document.body })" <2>
->Delete</button>
+  @click="
+    confirm(`Delete ${selected.length} contacts?`) && <1>
+    htmx.ajax('DELETE', '/contacts',
+      { source: $root, target: document.body }) <2>
+  ">
+  Delete
+</button>
 ```]
 1. Confirm the user wishes to delete the selected number of contacts.
 2. Issue a `DELETE` using the htmx JavaScript API.
@@ -1161,7 +1167,9 @@ As you’ll see, that last sentence is close to the actual \_hyperscript code:
 #figure[```html
 <div class="counter">
   <output>0</output>
-  <button _="on click increment the textContent of the previous <output/>">Increment</button> <1>
+  <button _="on click increment the textContent of the previous <output/>"> <1>
+    Increment
+  </button>
 </div>
 ```]
 1. The \_hyperscript code added inline to the button.
@@ -1270,8 +1278,7 @@ Here is the entire script, embedded in HTML:
 #figure(caption: [Our final script])[
 ```html
 <input id="search" name="q" type="search" placeholder="Search Contacts"
-  _="on keydown[altKey and code is 'KeyS'] from the window
-       me.focus()"> <1>
+  _="on keydown[altKey and code is 'KeyS'] from the window focus() me"> <1>
 ``` ]
 1. "me" refers to the element that the script is written on.
 
@@ -1458,14 +1465,13 @@ Given all that, our updated code will look like this:
 )[ ```html
 <button type="button" class="bad bg color border"
   @click="Swal.fire({ <1>
-                  title: 'Delete these contacts?', <2>
-                  showCancelButton: true,
-                  confirmButtonText: 'Delete'
-                }).then((result) => { <3>
-                  if (result.isConfirmed) {
-                    htmx.ajax('DELETE', '/contacts', { source: $root, target: document.body })
-                  }
-               });"
+    title: 'Delete these contacts?', <2>
+    showCancelButton: true,
+    confirmButtonText: 'Delete'
+  }).then((result) => { <3>
+    if (result.isConfirmed) htmx.ajax('DELETE', '/contacts',
+        { source: $root, target: document.body })
+  });"
 >Delete</button>
 ``` ]
 1. Invoke the `Swal.fire()` function
@@ -1500,12 +1506,12 @@ Here is what our JavaScript function looks like:
 #figure(caption: [An event-based confirmation dialog])[
 ```javascript
 function sweetConfirm(elt, config) {
-      Swal.fire(config) <1>
-          .then((result) => {
-                  if (result.isConfirmed) {
-                      elt.dispatchEvent(new Event('confirmed')); <2>
-                  }
-          });
+  Swal.fire(config) <1>
+    .then((result) => {
+      if (result.isConfirmed) {
+        elt.dispatchEvent(new Event('confirmed')); <2>
+      }
+    });
 }
 ``` ]
 1. Pass the config through to the `fire()` function.
@@ -1531,11 +1537,12 @@ Here is what our code looks like:
 #figure(caption: [An Event-based Confirmation Dialog])[
 ```html
 <button type="button" class="bad bg color border"
-        hx-delete="/contacts" hx-target="body" hx-trigger="confirmed" <1>
-        @click="sweetConfirm($el, <2>
-                { title: 'Delete these contacts?', <3>
-                  showCancelButton: true,
-                  confirmButtonText: 'Delete'})">
+  hx-delete="/contacts" hx-target="body" hx-trigger="confirmed" <1>
+  @click="sweetConfirm($el, { <2>
+    title: 'Delete these contacts?', <3>
+    showCancelButton: true,
+    confirmButtonText: 'Delete'
+  })">
 ``` ]
 1. Our htmx attributes are back.
 2. We pass the button in to the function, so an event can be triggered on it.

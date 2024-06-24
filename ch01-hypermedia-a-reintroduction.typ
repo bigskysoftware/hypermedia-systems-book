@@ -271,6 +271,8 @@ Here is a simple example of a form in HTML:
 
 #figure(caption: [A simple form],
 ```html
+1234567890123456789012345678901234567890123456789012345678901234567890
+1         2         3         4         5         6         7         
 <form action="/signup" method="post">
   <input type="text" name="email" placeholder="Enter Email To Sign Up..."/>
   <button>Sign Up</button>

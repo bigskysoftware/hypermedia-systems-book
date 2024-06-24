@@ -319,7 +319,8 @@ Let’s look at the first few lines of code in the `index.html` template:
 
     <form action="/contacts" method="get" class="tool-bar"> <3>
             <label for="search">Search Term</label>
-            <input id="search" type="search" name="q" value="{{ request.args.get('q') or '' }}"/> <4>
+            <input id="search" type="search" name="q"
+              value="{{ request.args.get('q') or '' }}" /> <4>
             <input type="submit" value="Search"/>
     </form>
 ```)
@@ -370,7 +371,7 @@ Here is what the template code for the contact table looks like:
 <table>
     <thead>
     <tr>
-        <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th> <1>
+        <th>First <th>Last <th>Phone <th>Email <th/> <1>
     </tr>
     </thead>
     <tbody>
@@ -494,7 +495,8 @@ Here is what our HTML looks like:
         <legend>Contact Values</legend>
         <p>
             <label for="email">Email</label> <2>
-            <input name="email" id="email" type="email" placeholder="Email" value="{{ contact.email or '' }}"> <3>
+            <input name="email" id="email" type="email" placeholder="Email"
+              value="{{ contact.email or '' }}"> <3>
             <span class="error">{{ contact.errors['email'] }}</span> <4>
         </p>
 ```)
@@ -522,17 +524,20 @@ Next we have inputs for the other fields for contacts:
 ```html
 <p>
     <label for="first_name">First Name</label>
-    <input name="first_name" id="first_name" type="text" placeholder="First Name" value="{{ contact.first or '' }}">
+    <input name="first_name" id="first_name" type="text"
+      placeholder="First Name" value="{{ contact.first or '' }}">
     <span class="error">{{ contact.errors['first'] }}</span>
 </p>
 <p>
     <label for="last_name">Last Name</label>
-    <input name="last_name" id="last_name" type="text" placeholder="Last Name" value="{{ contact.last or '' }}">
+    <input name="last_name" id="last_name" type="text"
+      placeholder="Last Name" value="{{ contact.last or '' }}">
     <span class="error">{{ contact.errors['last'] }}</span>
 </p>
 <p>
     <label for="phone">Phone</label>
-    <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone or '' }}">
+    <input name="phone" id="phone" type="text" placeholder="Phone"
+      value="{{ contact.phone or '' }}">
     <span class="error">{{ contact.errors['phone'] }}</span>
 </p>
 ```,
@@ -581,8 +586,12 @@ Here is our new request handler:
 ```python
 @app.route("/contacts/new", methods=['POST'])
 def contacts_new():
-    c = Contact(None, request.form['first_name'], request.form['last_name'], request.form['phone'],
-                request.form['email']) <1>
+    c = Contact(
+      None,
+      request.form['first_name'],
+      request.form['last_name'],
+      request.form['phone'],
+      request.form['email']) <1>
     if c.save(): <2>
         flash("Created New Contact!")
         return redirect("/contacts") <3>
@@ -780,7 +789,8 @@ Here is the first bit of the form:
         <legend>Contact Values</legend>
           <p>
               <label for="email">Email</label>
-              <input name="email" id="email" type="text" placeholder="Email" value="{{ contact.email }}"> <2>
+              <input name="email" id="email" type="text"
+                placeholder="Email" value="{{ contact.email }}"> <2>
               <span class="error">{{ contact.errors['email'] }}</span>
           </p>
 ```)
@@ -801,19 +811,20 @@ and our button to submit the form.
 ```html
           <p>
               <label for="first_name">First Name</label>
-              <input name="first_name" id="first_name" type="text" placeholder="First Name"
-                    value="{{ contact.first }}">
+              <input name="first_name" id="first_name" type="text"
+                placeholder="First Name" value="{{ contact.first }}">
               <span class="error">{{ contact.errors['first'] }}</span>
           </p>
           <p>
               <label for="last_name">Last Name</label>
-              <input name="last_name" id="last_name" type="text" placeholder="Last Name"
-                    value="{{ contact.last }}">
+              <input name="last_name" id="last_name" type="text"
+                placeholder="Last Name" value="{{ contact.last }}">
               <span class="error">{{ contact.errors['last'] }}</span>
           </p>
           <p>
               <label for="phone">Phone</label>
-              <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone }}">
+              <input name="phone" id="phone" type="text"
+                placeholder="Phone" value="{{ contact.phone }}">
               <span class="error">{{ contact.errors['phone'] }}</span>
           </p>
         <button>Save</button>
@@ -885,7 +896,11 @@ Here is the new handler code:
 @app.route("/contacts/<contact_id>/edit", methods=["POST"]) <1>
 def contacts_edit_post(contact_id=0):
     c = Contact.find(contact_id) <2>
-    c.update(request.form['first_name'], request.form['last_name'], request.form['phone'], request.form['email']) <3>
+    c.update(
+      request.form['first_name'],
+      request.form['last_name'],
+      request.form['phone'],
+      request.form['email']) <3>
     if c.save(): <4>
         flash("Updated Contact!")
         return redirect("/contacts/" + str(contact_id)) <5>

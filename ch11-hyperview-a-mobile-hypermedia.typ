@@ -683,7 +683,8 @@ like this:
     <body>
       <view>
         <text>Hello World!</text>
-        <area latitude="37.8270" longitude="122.4230" latitude-delta="0.1" longitude-delta="0.1"> <1>
+        <area latitude="37.8270" longitude="122.4230"
+          latitude-delta="0.1" longitude-delta="0.1"> <1>
           <marker latitude="37.8118" longitude="-122.4177" /> <2>
         </area>
       </view>
@@ -714,7 +715,8 @@ be the default for the document, we also need to assign the namespace to a
 prefix we will add to our elements:
 
 #figure[```xml
-<doc xmlns="https://hyperview.org/hyperview" xmlns:map="https://mycompany.com/hyperview-map">
+<doc xmlns="https://hyperview.org/hyperview"
+  xmlns:map="https://mycompany.com/hyperview-map">
 ```]
 
 This new attribute declares that the `map:` prefix is associated with the
@@ -726,12 +728,14 @@ Now that we have a namespace and prefix, we need to use it for our elements:
 #figure(
   caption: [Namespacing the custom elements],
 )[ ```xml
-<doc xmlns="https://hyperview.org/hyperview" xmlns:map="https://mycompany.com/hyperview-map"> <1>
+<doc xmlns="https://hyperview.org/hyperview"
+  xmlns:map="https://mycompany.com/hyperview-map"> <1>
   <screen>
     <body>
       <view>
         <text>Hello World!</text>
-        <map:area latitude="37.8270" longitude="122.4230" latitude-delta="0.1" longitude=delta="0.1"> <2>
+        <map:area latitude="37.8270" longitude="122.4230"
+          latitude-delta="0.1" longitude=delta="0.1"> <2>
           <map:marker latitude="37.8118" longitude="-122.4177" /> <3>
         </map:area> <4>
       </view>
@@ -1295,7 +1299,8 @@ action.
   <view>
     <text>My app</text>
     <view id="container"> <1>
-      <behavior trigger="load" action="replace" href="/content" target="container"> <2>
+      <behavior trigger="load" action="replace" href="/content"
+        target="container"> <2>
       <text>Loading...</text> <3>
     </view>
   </view>
