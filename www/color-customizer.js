@@ -34,6 +34,7 @@ class ColorCustomizer extends HTMLElement {
     const colorInput = this.querySelector('[name="fg"]');
     const linkColorInput = this.querySelector('[name="link-color"]');
     const borderColorInput = this.querySelector('[name="line-color"]');
+    const applyButton = this.querySelector('[type="submit"]');
     const resetButton = this.querySelector('[type="reset"]');
 
     openButton.onclick = () => {
@@ -56,6 +57,10 @@ class ColorCustomizer extends HTMLElement {
       document.documentElement.style.setProperty(`--${name}`, value);
       localStorage.setItem(name, value);
     };
+
+    applyButton.onclick = () => {
+      dialog.close();
+    }
 
     resetButton.onclick = () => {
       document.documentElement.style.removeProperty("--bg");
