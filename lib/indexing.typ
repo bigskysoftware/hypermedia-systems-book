@@ -51,19 +51,24 @@
       for key in sorted-keys {
         let entry = terms-dict.at(key)
         show grid: set block(inset: 0pt, spacing: 0pt)
-        grid(
-          columns:(1fr, auto),
-          if entry.term.len() > 1 {
-            if last-term.at(0) != entry.term.at(0) {
-              entry.term.at(0)
-              h(1fr)
-              parbreak()
-            }
+
+        let term = none
+        if entry.term.len() > 1 {
+          if last-term.at(0) != entry.term.at(0) {
+            grid(entry.term.at(0))
+            v(5pt)
+          }
+          term = {
             h(1em)
             entry.term.slice(1).join(", ")
-          } else {
-            entry.term.at(0)
-          },
+          }
+        } else {
+          term = entry.term.at(0)
+        }
+
+        grid(
+          columns:(1fr, auto),
+          term,
           box(
             entry.locations.map(location =>
               link(location.position(),
