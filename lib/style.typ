@@ -55,12 +55,25 @@
   #show raw.where(block: false): set text(size: 11 * 1em / 12) // 11pt in 12pt body
   #show raw.where(block: true): set text(size: 9pt)
 
+  #let inline-heading(it) = {
+    set text(font: secondary-font)
+    v(1em)
+    h(-1em)
+    counter(heading).display()
+    [ ]
+    it.body
+    [.]
+    h(.5em)
+  }
+
   #show heading.where(level: 1): set text(font: display-font, size: 24pt)
   #show heading.where(level: 2): set text(font: display-font, size: 20pt)
   #show heading.where(level: 3): set text(font: secondary-font)
-  #show heading.where(level: 4): set text(font: secondary-font)
-  #show heading.where(level: 5): set text(font: secondary-font)
-  #show heading.where(level: 6): set text(font: secondary-font)
+  #show heading.where(level: 4): inline-heading
+  #show heading.where(level: 5): set text(weight: "regular", style: "italic")
+  #show heading.where(level: 5): inline-heading
+  #show heading.where(level: 6): set text(weight: "regular", style: "italic")
+  #show heading.where(level: 6): inline-heading
 
   #set par(justify: true, first-line-indent: 1em, leading: leading)
   #show par: set block(spacing: leading)
