@@ -19,6 +19,9 @@ build-pdf:
 watch-pdf:
   typst watch {{ typst_flags }} HypermediaSystems.typ
 
+build-epub:
+  pandoc HypermediaSystems-ebook.typ -o HypermediaSystems.epub -M title="Hypermedia Systems"
+
 typst-fonts:
   typst fonts {{ typst_flags }}
 
