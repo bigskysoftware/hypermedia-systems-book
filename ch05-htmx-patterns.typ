@@ -203,7 +203,7 @@ will then offer to save as a file on the user’s local system.
 To handle this situation, you simply override the parent `hx-boost`
 value with `hx-boost="false"` on the anchor tag that you don’t want to boost:
 
-#figure(caption: [Disabling boosting], 
+#figure(caption: [Disabling boosting],
 ```html
 <div hx-boost="true"> <1>
   <a href="/contacts">Contacts</a>

@@ -451,7 +451,7 @@ Let's implement a feature in Contact.app using the RSJS/vanilla JavaScript appro
 Our homepage has "`Edit`", "`View`" and "`Delete`" links for every contact in our table. This uses a lot of space and creates
 visual clutter.  Let's fix that by placing these actions inside a drop-down menu with a button to open it.
 
-If you're less familiar with JavaScript and the code here starts to feel too complicated, don't worry; the Alpine.js and +_hyperscript+ examples -- which we'll look at next -- are easier to follow. 
+If you're less familiar with JavaScript and the code here starts to feel too complicated, don't worry; the Alpine.js and +_hyperscript+ examples -- which we'll look at next -- are easier to follow.
 
 Let's begin by sketching the markup we want for our dropdown menu.  First, we need an element, we'll use a `<div>`, to enclose the
 entire widget and mark it as a menu component.  Within this div, we will have a standard `<button>` that will function
@@ -856,7 +856,7 @@ to see if there are any selected contacts, quite easily:
   <div class="box info tool-bar">
     <slot x-text="selected.length"></slot>
     contacts selected
-    
+
     <button type="button" class="bad bg color border">Delete</button> <2>
     <hr aria-orientation="vertical">
     <button type="button">Cancel</button>
@@ -889,7 +889,7 @@ With this code written, we can make the toolbar appear and disappear, based on w
 
 Very slick.
 
-Before we move on, you may have noticed our code here includes some "`class=`" references. These are for css styling, and are not part of Alpine.js. We've included them only as a reminder that the menu bar we're building will require css to work well. The classes in the code above refer to a minimal css library called Missing.css. If you use other css libraries, such as Bootstrap, Tailwind, Bulma, Pico.css, etc., your styling code will be different. 
+Before we move on, you may have noticed our code here includes some "`class=`" references. These are for css styling, and are not part of Alpine.js. We've included them only as a reminder that the menu bar we're building will require css to work well. The classes in the code above refer to a minimal css library called Missing.css. If you use other css libraries, such as Bootstrap, Tailwind, Bulma, Pico.css, etc., your styling code will be different.
 
 ==== Implementing actions
 
@@ -949,14 +949,14 @@ visual clutter and the toolbar can be extended with more options without creatin
 
 ((("_hyperscript")))
 The final scripting technology we are going to look at is a bit further afield:  https://hyperscript.org[+_hyperscript+]. The authors of this book initially created +_hyperscript+ as a sibling project to htmx. We felt that JavaScript wasn't
-event-oriented enough, which made adding small scripting enhancements to htmx applications cumbersome. 
+event-oriented enough, which made adding small scripting enhancements to htmx applications cumbersome.
 
 While the previous two examples are JavaScript-oriented, +_hyperscript+ has a completely different syntax than JavaScript, based on an older language called HyperTalk.
 HyperTalk was the scripting language for a technology called HyperCard, an old hypermedia system available on early
 Macintosh Computers.
 
 The most noticeable thing about +_hyperscript+ is that it resembles English prose more than it resembles other programming
-languages.  
+languages.
 
 Like Alpine,
 +_hyperscript+ is a modern jQuery replacement. Also like Alpine, +_hyperscript+ allows you to write your scripting inline, in HTML.
@@ -1103,7 +1103,7 @@ at some level, you are right: JavaScript is a decent scripting language, is very
 in web development.  On the other hand, by creating an entirely new front end scripting language, we had the freedom
 to address some problems that we saw generating ugly and verbose code in JavaScript:
 
-Async transparency:: 
+Async transparency::
 ((("_hyperscript", "async transparency")))
 In +_hyperscript+, asynchronous functions (i.e., functions that return `Promise` instances) can be
 invoked _as if they were synchronous_. Changing a function from sync to async does not break any +_hyperscript+ code that

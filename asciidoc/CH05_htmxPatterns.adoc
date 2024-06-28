@@ -53,7 +53,7 @@ Believe it or not, that's it!  This simple script tag will make htmx's functiona
 (((htmx patterns, boosting)))
 To get our feet wet with htmx, the first feature we are going to take advantage of is known as "`boosting.`" This is
 a bit of a "`magic`" feature in that we don't need to do much beyond adding a single attribute, `hx-boost`, to the
-application. 
+application.
 
 When you put `hx-boost` on a given element with the value `true`, it will "`boost`" all anchor and form elements within that
 element.  "`Boost`", here, means that htmx will convert all those anchors and forms from "`normal`" hypermedia controls
@@ -393,7 +393,7 @@ to send.
 
 
 [source, python]
-.Updated handler with `303` redirect response 
+.Updated handler with `303` redirect response
 ----
 @app.route("/contacts/<contact_id>", methods=["DELETE"])
 def contacts_delete(contact_id=0):
@@ -434,7 +434,7 @@ The fix for this is easy: add an explicit target to the button, and target the `
 <1> An explicit target added to the button.
 
 Now our button behaves as expected: clicking on the button will issue an HTTP `DELETE` to the server against the URL for
-the current contact, delete the contact and redirect back to the contact list page, with a nice flash message.  
+the current contact, delete the contact and redirect back to the contact list page, with a nice flash message.
 
 Is everything working smoothly now?
 
@@ -687,7 +687,7 @@ Let's make those changes to our HTML:
 <2> Target the next element with the class `error` on it.
 
 Note that in the `hx-target` attribute we are using a _relative positional_ selector, `next`.  This is a feature of htmx and
-an extension to normal CSS.  Htmx supports prefixes that will find targets _relative_ to the current element.  
+an extension to normal CSS.  Htmx supports prefixes that will find targets _relative_ to the current element.
 
 
 .Relative Positional Expressions in Htmx

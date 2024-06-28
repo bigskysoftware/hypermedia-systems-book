@@ -717,7 +717,7 @@ So, what does an HDA look like up close?
 Let’s look at an htmx-powered implementation of the simple JavaScript-powered
 button above:
 
-#figure(caption: [An htmx implementation], 
+#figure(caption: [An htmx implementation],
 ```html
 <button hx-get="/contacts/1" hx-target="#contact-ui"> <1>
     Fetch Contact

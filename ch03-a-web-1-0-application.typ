@@ -495,7 +495,7 @@ Here is what our HTML looks like:
     <legend>Contact Values</legend>
     <p>
       <label for="email">Email</label> <2>
-      <input name="email" id="email" 
+      <input name="email" id="email"
         type="email" placeholder="Email"
         value="{{ contact.email or '' }}"> <3>
       <span class="error">

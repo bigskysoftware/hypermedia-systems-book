@@ -207,7 +207,7 @@ In a properly structured HTML-based hypermedia system you would use an appropria
 particular hypermedia control performs. For example, if a hypermedia control such as a button _deletes_ a resource,
 ideally it should issue an HTTP `DELETE` request to do so.
 
-A strange thing about HTML, though, is that the native hypermedia controls can only issue HTTP `GET` and `POST` requests. 
+A strange thing about HTML, though, is that the native hypermedia controls can only issue HTTP `GET` and `POST` requests.
 
 Anchor tags always issue a `GET` request.
 
@@ -848,7 +848,7 @@ By using these elements, a page can make false promises, like `<article>` elemen
 (((HTML, spec)))
 The most authoritative resource for learning about HTML is the HTML specification.
 The current specification lives on link:https://html.spec.whatwg.org/multipage[].footnote:[
-The single-page version is too slow to load and render on most computers. 
+The single-page version is too slow to load and render on most computers.
 There's also a developers' edition at /dev, but the standard version has nicer styling.]
 There's no need to rely on hearsay to keep up with developments in HTML.
 

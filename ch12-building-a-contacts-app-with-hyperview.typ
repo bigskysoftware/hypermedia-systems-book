@@ -791,8 +791,8 @@ def contacts_edit_post(contact_id=0):
     c = Contact.find(contact_id)
     c.update(
       request.form['first_name'],
-      request.form['last_name'], 
-      request.form['phone'], 
+      request.form['last_name'],
+      request.form['phone'],
       request.form['email']) <1>
     if c.save(): <2>
         flash("Updated Contact!")
