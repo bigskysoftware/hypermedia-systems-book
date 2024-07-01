@@ -108,4 +108,5 @@ console.log(built.length);
 write(built, { directory: "_site" })
 copySync("www/style.css", "_site/style.css");
 copySync("fonts", "_site/fonts");
+copySync("images", "_site/images");
 copySync("www/color-customizer.js", "_site/color-customizer.js");
