@@ -513,7 +513,7 @@ Here is what our code looks like now:
 #figure[
 ```js
 // counter.js <1>
-document.querySelectorAll("[data-counter]") <1>
+document.querySelectorAll("[data-counter]") <2>
   .forEach(el => {
     const
     output = el.querySelector("[data-counter-output]"),
