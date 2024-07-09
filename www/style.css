@@ -403,6 +403,7 @@ label {
 
 #sidebar, #important, #html-note {
   font-size: .8em;
+  line-height: 1.5em;
   padding: 0 1em;
   display: flow-root;
   font-family: var(--secondary);
@@ -444,8 +445,8 @@ label {
 
 .quote-attribution {
   margin-block-start: -1.3em;
+  padding-inline-start: 1em;
   text-align: right;
-  font-size: .8em;
   border-inline-start: 1px dotted var(--line-color);
 }
 
