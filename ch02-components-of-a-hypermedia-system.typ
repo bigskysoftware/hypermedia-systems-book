@@ -1024,7 +1024,7 @@ browsers, search engines and scrapers that can’t know better. To avoid this:
 The most authoritative resource for learning about HTML is the HTML
 specification. The current specification lives on
 #link("https://html.spec.whatwg.org/multipage").#footnote[The single-page version is too slow to load and render on most computers.
-  There’s also a developers' edition at /dev, but the standard version has nicer
+  There’s also a "developers’ edition" at /dev, but the standard version has nicer
   styling.] There’s no need to rely on hearsay to keep up with developments in
 HTML.
 
