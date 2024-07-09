@@ -5,7 +5,7 @@
 *Hypermedia Systems*\
 #sym.copyright 2023 Carson Gross, Adam Stepinski, Deniz Akşimşek
 
-Editor: Wm Talcott
+Editor: William Talcott
 
 CC BY-NC-SA: This work is licensed under the Creative Commons
 Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
