@@ -9,7 +9,7 @@ const compile = async (path: string) => {
   });
   const pandocOutput = await pandoc.output()
   if (!pandocOutput.success) {
-    console.error(pandocOutput.stderr)
+    console.error(new TextDecoder().decode(pandocOutput.stderr))
     Deno.exit(pandocOutput.code)
   }
   const compiled = new TextDecoder().decode(pandocOutput.stdout);
