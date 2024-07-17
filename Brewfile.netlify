@@ -1,1 +1,1 @@
-brew "pandoc"
+brew "pandoc@3.1"
