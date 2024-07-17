@@ -7,7 +7,12 @@ const compile = async (path: string) => {
   const pandoc = new Deno.Command("pandoc", {
     args: ["-f", "typst", "-t", "html", "--", path],
   });
-  const compiled = new TextDecoder().decode((await pandoc.output()).stdout);
+  const pandocOutput = await pandoc.output()
+  if (!pandocOutput.success) {
+    console.error(pandocOutput.stderr)
+    Deno.exit(pandocOutput.code)
+  }
+  const compiled = new TextDecoder().decode(pandocOutput.stdout);
   const headingsUpleveled = compiled.replace(/<(\/?)h(\d)/g, (_, slash, level) => `<${slash}h${+level - 1}`);
   const title = headingsUpleveled.match(/<h1>(.*)<\/h1>/)?.[1];
   const h1Removed = headingsUpleveled.replace(/<h1>.*<\/h1>/, "");
