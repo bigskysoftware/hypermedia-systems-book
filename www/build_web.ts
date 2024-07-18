@@ -1,7 +1,9 @@
 #!/usr/bin/env -S deno run -A --unstable
 
+import { Element, Text } from "https://codeberg.org/dz4k/muteferrika/raw/commit/4446c946f7216ca9d848b91b9dbcd56db95e9b1f/lib/deps/deno-dom.ts";
 import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introduction, Chapter, write, TableOfContents, LandingPage, Division } from "https://codeberg.org/dz4k/muteferrika/raw/commit/4446c946f7216ca9d848b91b9dbcd56db95e9b1f/lib/muteferrika.ts";
 import { copySync } from "https://deno.land/std@0.157.0/fs/copy.ts";
+
 
 const compile = async (path: string) => {
   const pandoc = new Deno.Command("pandoc", {
@@ -24,9 +26,10 @@ const compile = async (path: string) => {
     title,
     url,
     // add ids to headings
-    process() {
+    process(this: Division) {
       const ids = new Map<string, number>();
-      this.dom.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
+      this.dom.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((node) => {
+        const heading = node as Element
         if (heading.hasAttribute("id")) return;
         let id = heading.textContent.toLowerCase().replace(/[^a-z0-9]/g, "-");
         const count = ids.get(id) || 0;
@@ -34,20 +37,24 @@ const compile = async (path: string) => {
         ids.set(id, count + 1);
         heading.setAttribute("id", id);
       })
-      this.dom.querySelectorAll("img").forEach((img) => {
+      this.dom.querySelectorAll("img").forEach((node) => {
+        const img = node as Element
         if (img.hasAttribute("src") && !img.getAttribute("src")?.startsWith("http")) {
           img.setAttribute("src", `/${img.getAttribute("src")}`);
         }
       })
-      this.dom.querySelectorAll("blockquote p:last-child").forEach((line) => {
+      this.dom.querySelectorAll("blockquote p:last-child").forEach((node) => {
+        const line = node as Element
         if (line.textContent?.startsWith("℄")) {
           line.classList.add("quote-attribution");
-          line.parentElement.after(line);
-          line.firstChild.data = line.firstChild.data.replace("℄", "");
+          line.parentElement!.after(line);
+          const text = line.firstChild as Text
+          text.data = text.data.replace("℄", "");
         }
       })
+      return this.compiledContent
     }
-  };
+  } as Partial<Division>;
 }
 
 const HypermediaSystems = new Book("Hypermedia Systems",
