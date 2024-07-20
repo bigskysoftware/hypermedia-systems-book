@@ -1,7 +1,7 @@
 #!/usr/bin/env -S deno run -A --unstable
 
-import { Element, Text } from "https://codeberg.org/dz4k/muteferrika/raw/commit/4446c946f7216ca9d848b91b9dbcd56db95e9b1f/lib/deps/deno-dom.ts";
-import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introduction, Chapter, write, TableOfContents, LandingPage, Division } from "https://codeberg.org/dz4k/muteferrika/raw/commit/4446c946f7216ca9d848b91b9dbcd56db95e9b1f/lib/muteferrika.ts";
+import { Element, Text } from "https://codeberg.org/dz4k/muteferrika/raw/commit/3c0e7a3551fda9b8808b312e3e88750c0fd3e3ed/lib/deps/deno-dom.ts";
+import { build, Book, Frontmatter, Copyright, Dedication, Foreword, Part, Introduction, Chapter, write, TableOfContents, LandingPage, Division } from "https://codeberg.org/dz4k/muteferrika/raw/commit/3c0e7a3551fda9b8808b312e3e88750c0fd3e3ed/lib/muteferrika.ts";
 import { copySync } from "https://deno.land/std@0.157.0/fs/copy.ts";
 
 
