@@ -61,7 +61,7 @@ const HypermediaSystems = new Book("Hypermedia Systems",
   {
     lang: "en",
     htmlHead: `
-    <meta charset=utf8 name=viewport content=width_device-width>
+    <meta charset=utf8 name=viewport content=width=device-width>
     <link rel="stylesheet" href="/style.css">
     <script type="module" src="/color-customizer.js"></script>
     <header class="book-header">
