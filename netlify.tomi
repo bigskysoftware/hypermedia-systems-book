@@ -1,0 +1,8 @@
+[build]
+command = """
+source www/install-pandoc-netlify.sh &&\
+www/build_web.ts &&\
+cp -r images _site/images &&\
+cp -r fonts _site/fonts
+"""
+publish = "_site"
