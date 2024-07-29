@@ -5,7 +5,7 @@ class ColorCustomizer extends HTMLElement {
       <button popovertarget="color-customizer-dialog">Customize colors</button>
       <dialog id="color-customizer-dialog" popover>
         <h2>Customize colors</h2>
-        <form method="dialog">
+        <form method="dialog" autocomplete="off">
           <label>
             <span>Background</span>
             <input type="color" name="bg">
