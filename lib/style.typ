@@ -127,7 +127,7 @@
   #show raw.where(block: true): code-with-callouts
 
   #show link: it => {
-    if type(it.dest) != str { it }
+    if type(it.dest) != str or it.body == text(it.dest) { it }
     else {
       it.body
       footnote(it.dest)

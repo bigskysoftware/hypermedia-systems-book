@@ -29,4 +29,4 @@ Typefaces:
 - Linux Biolinum (by the same, for secondary text),
 - Berkeley Mono (by Berkeley Graphics, for code and ascii art diagrams).
 
-Written and typeset with Typst.
+Written and typeset with Typst (#link("https://typst.app")).
