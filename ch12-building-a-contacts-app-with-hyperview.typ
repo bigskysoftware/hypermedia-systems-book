@@ -90,8 +90,12 @@ expects an XML response (specifically, HXML). So it’s time to turn our attenti
 to our Flask backend. We will go through the Flask views, and replace the HTML
 templates with HXML templates. Specifically, let’s support the following
 features in our mobile app:
-- A searchable list of contacts- Viewing the details of a contact- Editing a
-  contact- Deleting a contact- Adding a new contact
+
+- A searchable list of contacts
+- Viewing the details of a contact
+- Editing a contact
+- Deleting a contact
+- Adding a new contact
 
 #sidebar[Zero Client-Configuration in Hypermedia Applications][
   #index[Hyperview][entry-point URL]

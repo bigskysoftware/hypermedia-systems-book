@@ -574,9 +574,11 @@ the `Swipeable` component (provided by the `react-native-swipeable` library),
 composed with React Native components for the buttons and main content. The
 React Native components for the buttons and main content are created using a
 similar process:
-- Find the specific child elements (`<button>` or `<main>`).- Turn those elements
-  into React Native components using
-  `Hyperview.renderChildren()`.- Set the components as children or props of `Swipeable`.
+
+- Find the specific child elements (`<button>` or `<main>`).
+- Turn those elements into React Native components using
+  `Hyperview.renderChildren()`.
+- Set the components as children or props of `Swipeable`.
 
 #asciiart(
   read("images/diagram/hyperview-components.txt"), caption: [Rendering delegation between the client and the custom components],

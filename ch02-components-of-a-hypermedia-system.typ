@@ -210,9 +210,12 @@ to developers are the following:
 
 These methods _roughly_ line up with the
 "Create/Read/Update/Delete" or #indexed[CRUD] pattern found in many
-applications:- `POST` corresponds with Creating a resource.- `GET` corresponds
-with Reading a resource.- `PUT` and `PATCH` correspond with Updating a
-resource.- `DELETE` corresponds, well, with Deleting a resource.
+applications:
+
+- `POST` corresponds with Creating a resource.
+- `GET` corresponds with Reading a resource.
+- `PUT` and `PATCH` correspond with Updating a resource.
+- `DELETE` corresponds, well, with Deleting a resource.
 
 #sidebar[Put vs. Post][
 While HTTP Actions correspond roughly to CRUD, they are not the same. The
@@ -527,12 +530,16 @@ outlines and some concrete examples of those constraints it will become easy to
 assess whether a given system actually satisfies the architectural requirements
 of REST or not.
 
-Here are the constraints of REST Fielding outlines:- It is a client-server
-architecture (section 5.1.2).- It must be stateless; (section 5.1.3) that is,
-every request contains all information necessary to respond to that request.- It
-must allow for caching (section 5.1.4).- It must have a _uniform interface_ (section
-5.1.5).- It is a layered system (section 5.1.6).- Optionally, it can allow for
-Code-On-Demand (section 5.1.7), that is, scripting.
+Here are the constraints of REST Fielding outlines:
+
+- It is a client-server architecture (section 5.1.2).
+- It must be stateless; (section 5.1.3) that is, every request contains all
+  information necessary to respond to that request.
+- It must allow for caching (section 5.1.4).
+- It must have a _uniform interface_ (section 5.1.5).
+- It is a layered system (section 5.1.6).
+- Optionally, it can allow for Code-On-Demand (section 5.1.7), that is,
+  scripting.
 
 Let’s go through each of these constraints in turn and discuss them in detail,
 looking at how (and to what extent) the web satisfies each of them.

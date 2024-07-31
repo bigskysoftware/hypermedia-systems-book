@@ -202,9 +202,14 @@ specifying and then implementing our web application.
 What will Contact.app do?
 
 Initially, it will allow users to:
+
 - View a list of contacts, including first name, last name, phone and email
-  address- Search the contacts- Add a new contact- View the details of a contact-
-  Edit the details of a contact- Delete a contact
+  address
+- Search the contacts
+- Add a new contact
+- View the details of a contact
+- Edit the details of a contact
+- Delete a contact
 
 So, as you can see, Contact.app is a #indexed[CRUD] application, the sort of
 application that is perfect for an old-school web 1.0 approach.
