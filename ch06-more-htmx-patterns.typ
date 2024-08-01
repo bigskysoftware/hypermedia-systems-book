@@ -1301,7 +1301,7 @@ looks like:
 def contacts_delete_all():
     contact_ids =  [
       int(id)
-      for id in request.form.getlist("selected_contact_ids")
+      for id in request.args.getlist("selected_contact_ids")
     ] <2>
     for contact_id in contact_ids: <3>
         contact = Contact.find(contact_id)
