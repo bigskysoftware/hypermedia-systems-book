@@ -59,11 +59,12 @@
     breakable: true,
   )[
     #set text(.8em, font: secondary-font)
-    #block(
-      breakable: false,
-      strong(title) + v(3em)
-    )
-    #v(-3em)
+    #if title != [] {
+      block(
+        breakable: false,
+        strong(title)
+      )
+    }
     #block(spacing: 1em, body)
   ],
 )<sidebar>]
@@ -81,9 +82,9 @@
     #set text(.8em, font: secondary-font)
     #block(
       breakable: false,
-      strong(title) + v(3em)
+      strong(title) + v(4em)
     )
-    #v(-3em)
+    #v(-4em)
     #block(spacing: 1em, body)
   ],
 )<important>]
