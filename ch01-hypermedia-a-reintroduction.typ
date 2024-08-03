@@ -244,14 +244,12 @@ In a typical web browser, this anchor tag would be interpreted to mean:
 
 Anchors provide the main mechanism we use to navigate around the web today, by
 selecting links to navigate from document to document, or from resource to
-resource.
-
-Here is what a user interaction with an anchor tag/hyperlink looks like in
-visual form:
+resource. @fig:get-in-action Here is what a user interaction with an anchor tag/hyperlink looks like in
+visual form.
 
 #asciiart(
   read("images/diagram/http-get-in-action.txt"), caption: [An HTTP GET In Action],
-)
+)<fig:get-in-action>
 
 #index[GET request]
 When the link is clicked the browser (or, as we sometimes refer to it, the _hypermedia client_)
@@ -322,13 +320,11 @@ form submission often _redirects_ the client to a different URL.
 
 This is true, and we will get down into the muck with forms in more detail in
 later chapters but, for now, this simple example suffices to demonstrate the
-core mechanism for updating system state purely within hypermedia.
-
-Here is a diagram of the interaction:
+core mechanism for updating system state purely within hypermedia. @fig:post-in-action is a diagram of the interaction.
 
 #asciiart(
   read("images/diagram/http-post-in-action.txt"), caption: [An HTTP POST In Action],
-)
+)<fig:post-in-action>
 
 ===== Web 1.0 applications <_web_1_0_applications>
 As someone interested in web development, the above diagrams and discussion are

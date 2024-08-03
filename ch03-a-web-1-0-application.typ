@@ -155,12 +155,12 @@ the root, and this will become the handler for the root URL in our web
 application.
 
 The handler in this case is dead simple, it just returns a string,
-"Hello World!", to the client. This isn’t hypermedia yet, but a browser will
-render it just fine:
+"Hello World!", to the client. This isn’t hypermedia yet, but as we can see in @fig:helloworld, a browser will
+render it just fine.
 
 #figure([#image("images/figure_2-1_hello_world.png")], caption: [
   Hello World!
-])
+])<fig:helloworld>
 
 Great, there’s our first step into Flask, showing the core technique we are
 going to use to respond to HTTP requests: routes mapped to handlers.
@@ -432,10 +432,10 @@ And that’s our complete template. Using this simple server-side template, in
 combination with our handler method, we can respond with an HTML _representation_ of
 all the contacts requested. So far, so hypermedia.
 
-Here is what the template looks like, rendered with a bit of contact
-information:
+@fig:contactapp is what the template looks like, rendered with a bit of contact
+information.
 
-#figure(image("images/figure_2-2_table_etc.png"), caption: [Contact.app])
+#figure(image("images/figure_2-2_table_etc.png"), caption: [Contact.app])<fig:contactapp>
 
 Now, our application won’t win any design awards at this point, but notice that
 our template, when rendered, provides all the functionality necessary to see all

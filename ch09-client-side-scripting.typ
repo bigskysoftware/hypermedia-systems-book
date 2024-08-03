@@ -1467,16 +1467,14 @@ Given all that, our updated code will look like this:
 3. Handle the result of the user’s selection
 
 And now, when this button is clicked, we get a nice looking dialog in our web
-application:
-
-#figure([#image("images/screenshot_sweet_alert.png")], caption: [
-])
-
-Much nicer than the system confirmation dialog. Still, this feels a little
+application (@fig:swal-screenshot) --- much nicer than the system confirmation dialog. Still, this feels a little
 wrong. This is a lot of code to write just to trigger a slightly nicer `confirm()`,
 isn’t it? And the htmx JavaScript code we are using here feels awkward. It would
 be more natural to move the htmx out to attributes on the button, as we have
 been doing, and then trigger the request via events.
+
+#figure([#image("images/screenshot_sweet_alert.png")], caption: [
+])<fig:swal-screenshot>
 
 So let’s take a different approach and see how that looks.
 

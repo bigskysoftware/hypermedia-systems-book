@@ -657,12 +657,10 @@ contacts next to the link to add new contacts, to give them a sense of how large
 the contact database is. This sort of rapid development is one of the joys of
 developing web applications the old way.
 
-Here is what the feature looks like in our application:
+@fig-totalcontacts is what the feature looks like in our application. Beautiful.
 
 #figure(image("images/screenshot_total_contacts.png"),
-  caption: [Total contact count display])
-
-Beautiful.
+  caption: [Total contact count display])<fig-totalcontacts>
 
 Of course, as you probably suspected, all is not perfect. Unfortunately, upon
 shipping this feature to production, we start getting complaints from users that
@@ -937,9 +935,11 @@ page is re-rendered.
 #sidebar[A Style Sidebar][One side effect of adding this delete link is that we are starting to pile up
   the actions in a contact row:
 
-  #figure([#image("images/screenshot_stacked_actions.png")], caption: [
-    That’s a lot of actions
-  ])
+  #figure(
+    image("images/screenshot_stacked_actions.png"),
+    caption: [That’s a lot of actions],
+    placement: none,
+  )<fig:stacked-actions>
 
   It would be nice if we didn’t show the actions all in a row, and, additionally,
   it would be nice if we only showed the actions when the user indicated interest
@@ -1199,11 +1199,11 @@ Here is what the updated code for `rows.html` looks like:
 
 We’ll also need to add an empty column in the header for the table to
 accommodate the checkbox column. With that done we now get a series of check
-boxes, one for each row, a pattern no doubt familiar to you from the web:
+boxes, one for each row, a pattern no doubt familiar to you from the web (@fig:checkboxes).
 
 #figure(image("images/screenshot_checkboxes.png"), caption: [
   Checkboxes for our contact rows
-])
+])<fig:checkboxes>
 
 If you are not familiar with or have forgotten the way checkboxes work in HTML:
 a checkbox will submit its value associated with the name of the input if and

@@ -666,11 +666,11 @@ they will be displayed in this span, which will be highlighted red.
   1.0 server-side frameworks.]
 
 The error message shown when a user attempts to save a contact with a duplicate
-email is "Email Must Be Unique":
+email is "Email Must Be Unique", as seen in @fig:emailerror.
 
 #figure([#image("images/screenshot_validation_error.png")], caption: [
   Email validation error
-])
+])<fig:emailerror>
 
 All of this is done using plain HTML and using Web 1.0 techniques, and it works
 well.
@@ -1099,9 +1099,9 @@ applications.
 
 #figure(
   caption: [A Click To Load UI], image("images/screenshot_click_to_load.png"),
-)
+)<fig:clicktoload>
 
-Here, you have a button that you can click, and it will load the next set of
+In @fig:clicktoload, you have a button that you can click, and it will load the next set of
 contacts directly into the page, rather than "paging" to the next page. This
 allows you to keep the current contacts "in context" visually on the page, but
 still progress through them as you would in a normal, paged user interface.

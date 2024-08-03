@@ -429,12 +429,10 @@ Finally, for completeness, here is the CSS we’ll use for this progress bar:
     box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
     transition: width .6s ease;
 }
-``` ]
+```]<lst:progress-bar-css>
 
-Which ends up rendering like this:
-
-#figure([#image("images/screenshot_progress_bar.png")], caption: [
-  Our CSS-Based Progress Bar
+#figure(image("images/screenshot_progress_bar.png"), caption: [
+  Our CSS-Based Progress Bar, as implemented in @lst:progress-bar-css
 ])
 
 ===== Adding The Progress Bar UI <_adding_the_progress_bar_ui>

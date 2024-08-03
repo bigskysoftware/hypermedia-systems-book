@@ -187,11 +187,11 @@ It may seem a little strange that developing a HDA using Hyperview requires a
 single-purpose client binary. After all, we don’t ask users to first download
 and install a binary to view a web app. No, users just enter a URL in the
 address bar of a general-purpose web browser. A single HTML client renders apps
-from any HTML server.
+from any HTML server (@fig:1clientmanyserver).
 
 #asciiart(
   read("images/diagram/one-client-many-servers.txt"), caption: [One HTML client, multiple HTML servers],
-)
+)<fig:1clientmanyserver>
 
 It is theoretically possible to build an equivalent general-purpose
 "Hyperview browser." This HXML client would render apps from any HXML server,
@@ -200,11 +200,11 @@ Android are built around the concept of single-purpose apps. Users expect to
 find and install apps from an app store, and launch them from the home screen of
 their device. Hyperview embraces this app-centric paradigm of today’s popular
 mobile platforms. That means that the HXML client (app binary) renders its UI
-from a single pre-configured HXML server:
+from a single pre-configured HXML server (@fig:1client1server).
 
 #asciiart(
   read("images/diagram/one-server-one-hxml-client.txt"), caption: [One HXML client, one HXML server],
-)
+)<fig:1client1server>
 
 Luckily, developers do not need to write a HXML client from scratch; the
 open-source client library does 99% of the work. And as we will see in the next
