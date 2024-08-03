@@ -59,8 +59,11 @@
     breakable: true,
   )[
     #set text(.8em, font: secondary-font)
-    #strong(title)
-
+    #block(
+      breakable: false,
+      strong(title) + v(3em)
+    )
+    #v(-3em)
     #block(spacing: 1em, body)
   ],
 )<sidebar>]
@@ -76,8 +79,11 @@
     breakable: true,
   )[
     #set text(.8em, font: secondary-font)
-    #strong(title)
-
+    #block(
+      breakable: false,
+      strong(title) + v(3em)
+    )
+    #v(-3em)
     #block(spacing: 1em, body)
   ],
 )<important>]
