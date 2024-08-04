@@ -83,7 +83,8 @@ and where nothing else comes close: _interaction design_. Business logic and
 presentation logic are the responsibility of the server, where we can pick
 whichever languages or tools are appropriate for our business domain.
 
-#sidebar[The Server][Keeping business logic and presentation logic both "on the server" does not mean
+#block(breakable: false,
+sidebar[The Server][Keeping business logic and presentation logic both "on the server" does not mean
   these two "concerns" are mixed or coupled. They can be modularized on the
   server. In fact, they _should_ be modularized on the server, along with all the
   other concerns of our application.
@@ -91,7 +92,7 @@ whichever languages or tools are appropriate for our business domain.
   Note also that, especially in web development parlance, the humble
   "server" is usually a whole fleet of racks, virtual machines, containers and
   more. Even a worldwide network of datacenters is reduced to "the server" when
-  discussing the server-side of a Hypermedia-Driven Application.]
+  discussing the server-side of a Hypermedia-Driven Application.])
 
 Satisfying these two constraints sometimes requires us to diverge from what is
 typically considered best practice for JavaScript. Keep in mind that the
