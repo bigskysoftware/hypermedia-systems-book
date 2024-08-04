@@ -244,12 +244,12 @@ In a typical web browser, this anchor tag would be interpreted to mean:
 
 Anchors provide the main mechanism we use to navigate around the web today, by
 selecting links to navigate from document to document, or from resource to
-resource. @fig:get-in-action Here is what a user interaction with an anchor tag/hyperlink looks like in
+resource. @fig-get-in-action shows what a user interaction with an anchor tag/hyperlink looks like in
 visual form.
 
 #asciiart(
   read("images/diagram/http-get-in-action.txt"), caption: [An HTTP GET In Action],
-)<fig:get-in-action>
+)<fig-get-in-action>
 
 #index[GET request]
 When the link is clicked the browser (or, as we sometimes refer to it, the _hypermedia client_)
@@ -320,11 +320,11 @@ form submission often _redirects_ the client to a different URL.
 
 This is true, and we will get down into the muck with forms in more detail in
 later chapters but, for now, this simple example suffices to demonstrate the
-core mechanism for updating system state purely within hypermedia. @fig:post-in-action is a diagram of the interaction.
+core mechanism for updating system state purely within hypermedia. @fig-post-in-action is a diagram of the interaction.
 
 #asciiart(
   read("images/diagram/http-post-in-action.txt"), caption: [An HTTP POST In Action],
-)<fig:post-in-action>
+)<fig-post-in-action>
 
 ===== Web 1.0 applications <_web_1_0_applications>
 As someone interested in web development, the above diagrams and discussion are
@@ -726,7 +726,7 @@ So, what does an HDA look like up close?
 Let’s look at an htmx-powered implementation of the simple JavaScript-powered
 button above:
 
-#figure(caption: [An htmx implementation], 
+#figure(caption: [An htmx implementation],
 ```html
 <button hx-get="/contacts/1" hx-target="#contact-ui"> <1>
     Fetch Contact

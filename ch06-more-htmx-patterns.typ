@@ -939,7 +939,7 @@ page is re-rendered.
     image("images/screenshot_stacked_actions.png"),
     caption: [That’s a lot of actions],
     placement: none,
-  )<fig:stacked-actions>
+  )<fig-stacked-actions>
 
   It would be nice if we didn’t show the actions all in a row, and, additionally,
   it would be nice if we only showed the actions when the user indicated interest
@@ -1199,11 +1199,11 @@ Here is what the updated code for `rows.html` looks like:
 
 We’ll also need to add an empty column in the header for the table to
 accommodate the checkbox column. With that done we now get a series of check
-boxes, one for each row, a pattern no doubt familiar to you from the web (@fig:checkboxes).
+boxes, one for each row, a pattern no doubt familiar to you from the web (@fig-checkboxes).
 
 #figure(image("images/screenshot_checkboxes.png"), caption: [
   Checkboxes for our contact rows
-])<fig:checkboxes>
+])<fig-checkboxes>
 
 If you are not familiar with or have forgotten the way checkboxes work in HTML:
 a checkbox will submit its value associated with the name of the input if and
