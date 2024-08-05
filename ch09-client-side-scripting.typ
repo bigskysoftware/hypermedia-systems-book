@@ -1474,8 +1474,10 @@ isn’t it? And the htmx JavaScript code we are using here feels awkward. It wou
 be more natural to move the htmx out to attributes on the button, as we have
 been doing, and then trigger the request via events.
 
-#figure([#image("images/screenshot_sweet_alert.png")], caption: [
-])<fig-swal-screenshot>
+#figure(
+  image("images/screenshot_sweet_alert.png"),
+  caption: [A SweetAlert dialog box]
+)<fig-swal-screenshot>
 
 So let’s take a different approach and see how that looks.
 
