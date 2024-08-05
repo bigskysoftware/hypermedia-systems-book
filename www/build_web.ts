@@ -84,10 +84,6 @@ const HypermediaSystems = new Book("Hypermedia Systems").with(
     <meta charset=utf8 name=viewport content=width=device-width>
     <link rel="stylesheet" href="/style.css">
     <script type="module" src="/color-customizer.js"></script>
-    <body>
-    <header class="book-header">
-      <a href="/" class="homepage-link">Hypermedia Systems</a>
-    </header>
     `,
     htmlFooter: `
     <footer class="book-footer">
