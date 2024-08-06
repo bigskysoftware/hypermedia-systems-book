@@ -192,7 +192,7 @@ def start_archive():
 === Conditionally Rendering A Progress UI
 
 ((("conditional rendering")))
-Now let's turn our attention to updating our archiving UI by setting `archive_ui.html` to conditionally render different content depending on the state of the archive process.  
+Now let's turn our attention to updating our archiving UI by setting `archive_ui.html` to conditionally render different content depending on the state of the archive process.
 
 Recall that the archiver has a `status()` method. When we pass the archiver through
 as a variable to the template, we can consult this `status()` method to see
@@ -538,7 +538,7 @@ def archive_content():
 
 Perfect.  Now we have an archive UI that is very slick.  You click the "`Download Contacts Archive`" button and a progress
 bar appears.  When the progress bar reaches 100%, it disappears and a link to download the archive file appears.  The user
-can then click on that link and download their archive.  
+can then click on that link and download their archive.
 
 We're offering a user experience that is much more user-friendly than the common
 click-and-wait experience of many websites.
@@ -596,9 +596,9 @@ are restored.
 
 === Our Smoothing Solution
 
-So, we arrive at our fix. 
+So, we arrive at our fix.
 
-All we need to do is add a stable ID to our `progress-bar` element. 
+All we need to do is add a stable ID to our `progress-bar` element.
 
 .Smoothing things out
 [source, html]
@@ -615,7 +615,7 @@ Despite the complicated mechanics going on behind the scenes in htmx, the soluti
 `id` attribute to the element we want to animate.
 
 Now, rather than jumping on every update, the progress bar should smoothly move across the screen as it is updating, using the CSS transition
-defined in our style sheet. The htmx swapping model allows us to achieve this even though we are replacing the content with new HTML. 
+defined in our style sheet. The htmx swapping model allows us to achieve this even though we are replacing the content with new HTML.
 
 And voila: we have a nice, smoothly animated progress bar for our contact archiving feature. The result has the look and
 feel of a JavaScript-based solution, but we did it with the simplicity of an HTML-based approach.

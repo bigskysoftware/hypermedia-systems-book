@@ -405,7 +405,7 @@ a _non-htmx_ request (e.g., refreshing a page) and yet the _htmx_ content is ret
 in a partial page of content for the user.
 
 The solution to this problem is to use the HTTP Response `Vary` header and call out the htmx headers that you are using
-to determine what content you are returning.  A full explanation of HTTP Caching is beyond the scope of this book, but the 
+to determine what content you are returning.  A full explanation of HTTP Caching is beyond the scope of this book, but the
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching[MDN article on the topic] is quite good, and the https://htmx.org/docs/#caching[htmx
 documentation] discusses this issue as well.
 ****
@@ -437,7 +437,7 @@ location is "`pushed`" onto the stack of history elements, and when you click "`
 the history stack.
 
 So, to get proper history support for our Active Search, all we need to do is to set the `hx-push-url` attribute to
-`true`. 
+`true`.
 
 .Updating the URL during active search
 [source, html]
@@ -499,7 +499,7 @@ the element from view, while at the same time not disrupting the layout of the p
 When an htmx request is triggered that points to this indicator, another class, `htmx-request` is added to the indicator
 which transitions its opacity to 1.  So you can use just about anything as an indicator, and it will be hidden by default. Then, when a request is in flight, it will be shown.  This is all done via standard CSS classes, allowing you to control
 the transitions and even the mechanism by which the indicator is shown (e.g., you might use `display` rather than
-`opacity`). 
+`opacity`).
 
 .Use Request Indicators!
 ****
@@ -1187,7 +1187,7 @@ From the link:https://www.w3.org/WAI/ARIA/apg/patterns/tabs/[ARIA Authoring Prac
 
 * ARIA roles, states, and properties
 
-** "`[The element that contains the tabs] has role `tablist`.`" 
+** "`[The element that contains the tabs] has role `tablist`.`"
 
 ** "`Each [tab] has role `tab` [...]`"
 

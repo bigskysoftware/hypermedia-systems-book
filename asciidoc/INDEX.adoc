@@ -25,7 +25,7 @@
 * complexity budget	31
 * components	72, 74, 222
 * conditional rendering	135, 161
-* Contact.app 
+* Contact.app
 ** model 59
 ** specs 57
 * content negotiation	309-13
@@ -43,9 +43,9 @@
 ** example	91
 ** security	193
 * event modifier, changed	120
-* event, change (see hx-trigger, change)	
-* event, keyup (see hx-trigger, keyup)	
-* event, click (see hx-trigger, click)	
+* event, change (see hx-trigger, change)
+* event, keyup (see hx-trigger, keyup)
+* event, click (see hx-trigger, click)
 * event, submit (see hx-trigger, submit)
 * events	90, 181, 189, 301
 ** debugging	190
@@ -65,16 +65,16 @@
 * forms	94, 152
 * GET request	17
 * HATEOAS	47, 279
-* HDA (see Hypermedia-Driven Application)	
+* HDA (see Hypermedia-Driven Application)
 * Hotwire	84
 * HOWL stack	41
-* HTML 
+* HTML
 ** <details>	155
 ** 2.0	16, 25
 ** history of	16
 ** inputs	113, 137
 ** opportunities	94
-* htmx	
+* htmx
 ** about 83
 ** browser history	97
 ** configuration	193
@@ -175,7 +175,7 @@
 *** js: prefix	97
 *** JSON	97
 
-* htmx response headers 
+* htmx response headers
 ** HX-Location	186
 ** HX-Push-Url	186
 ** HX-Refresh	186
@@ -193,7 +193,7 @@
 
 ** response caching	39
 ** response codes 38, 109, 186
-** response headers 
+** response headers
 *** Cache-Control	39
 *** Content-Disposition	169
 *** Vary	40, 136
@@ -203,11 +203,11 @@
 * HXML	248
 ** Hello World!	252
 ** styling 258
-** custom elements	
+** custom elements
 
 ** <body>	253
-** <date-field>	
-** <doc>	
+** <date-field>
+** <doc>
 ** <form>	296
 ** <header>	253
 ** <image>	255-6
@@ -215,7 +215,7 @@
 ** <list>	253-4, 287
 ** <screen>	252-3
 ** <section-list>	255
-** <section-title>	
+** <section-title>
 ** <section>	255,
 ** <select-multiple>	257
 ** <select-single>	257
@@ -249,7 +249,7 @@
 ** behavior actions	263
 ** multiple behaviors	275
 
-** navigation actions	264	
+** navigation actions	264
 ** trigger=‘change’	287
 ** trigger=‘load’	274, 298
 ** trigger=‘longPress’	273
@@ -262,7 +262,7 @@
 * hyperlink (see anchor tag) 14, 17, 81
 
 * hypermedia	14
-** advantages	24 
+** advantages	24
 ** client	7, 41, 249
 ** control	14
 ** for mobile	246
@@ -301,7 +301,7 @@
 ** email	316-19
 ** entry point URL	280-1
 ** events	301
-** images	
+** images
 ** infinite scroll	288
 ** inputs	256-8
 ** installing	280
@@ -327,7 +327,7 @@
 * JSON	21
 * JSON API	22, 229
 ** vs. HTML	231-3
-** API churn	24, 47 
+** API churn	24, 47
 ** Data API	22, 229, 233
 ** endpoint	234
 * Locality of Behavior (LoB)	203
@@ -384,5 +384,3 @@
 * Web Components	222-224
 * web stack	53
 * web, 1.0	20
-	
-	

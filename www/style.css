@@ -233,11 +233,11 @@ label {
   } */
 }
 
-.buy-it {  
+.buy-it {
   > a {
     display: block;
     margin-block: .2em;
-    
+
     font-family: var(--secondary);
     font-weight: bold;
     line-height: 1em;
@@ -252,7 +252,7 @@ label {
       background: rgb(37, 42, 53);
       color: rgb(215, 215, 242);
     }
-    
+
     &:hover, &:focus, &:active {
       background: rgb(200, 200, 239);
 
@@ -292,14 +292,14 @@ label {
       margin-block: 1.4em;
     }
   }
-  
+
   a {
     text-decoration: none;
-  
+
     &:hover, &:focus-visible, &:active {
       text-decoration: underline;
-    }  
-    
+    }
+
     .part > & {
       font-family: var(--display);
     }
