@@ -1,139 +1,153 @@
-<meta property="og:title" content="Hypermedia Systems">
-<meta property="og:description" content="
+<meta property="og:title" content="Hypermedia Systems" />
+<meta
+    property="og:description"
+    content="
 The revolutionary ideas that empowered the Web.
 A simpler approach to building applications on the Web and beyond with htmx and Hyperview.
-Enhancing web applications without using SPA frameworks.">
-<meta property="og:type" content="book">
-<meta property="og:book:author" content="Carson Gross">
-<meta property="og:book:author" content="Adam Stepinski">
-<meta property="og:book:author" content="Deniz Akşimşek">
+Enhancing web applications without using SPA frameworks."
+/>
+<meta property="og:type" content="book" />
+<meta property="og:book:author" content="Carson Gross" />
+<meta property="og:book:author" content="Adam Stepinski" />
+<meta property="og:book:author" content="Deniz Akşimşek" />
 
 <title>Hypermedia Systems</title>
 
 <style>
-  .Cover-Header {
-    text-align: center;
-    padding: 2em 0;
+    .Cover-Header {
+        text-align: center;
+        padding: 2em 0;
 
-    margin-inline: calc(-1 * var(--page-margin));
-    margin-block-end: 2em;
+        margin-inline: calc(-1 * var(--page-margin));
+        margin-block-end: 2em;
 
-    border-bottom: 1px dotted var(--line-color);
-  }
-
-  .book-title {
-    font-size: calc(.125 * var(--width));
-    font-style: italic;
-    margin: 2rem;
-    text-transform: uppercase;
-    line-height: 1em;
-  }
-
-  .Cover-Header p {
-    font-size: 1.5em;
-    line-height: 1em;
-  }
-
-  .authors {
-    text-transform: uppercase;
-    letter-spacing: .1em;
-  }
-
-  .foreword-by {
-    font-style: italic;
-  }
-
-  main {
-    display: grid;
-    gap: 1em;
-    grid-template-columns: 1fr 15rem;
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-      'top-blurb buy-it'
-      'top-blurb bottom-blurb';
-
-    @media (max-width: 40em) {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        'top-blurb'
-        'buy-it'
-        'bottom-blurb';
+        border-bottom: 1px dotted var(--line-color);
     }
 
-    .top-blurb {
-      grid-area: top-blurb;
-      font-size: 1.4em;
-      line-height: 1.5em;
-      font-style: italic;
+    .book-title {
+        font-size: calc(0.125 * var(--width));
+        font-style: italic;
+        margin: 2rem;
+        text-transform: uppercase;
+        line-height: 1em;
+    }
 
-      p {
-        margin: 0;
-      }
-      p + p {
-        margin-block-start: 1.2em;
-      }
+    .Cover-Header p {
+        font-size: 1.5em;
+        line-height: 1em;
     }
-    .buy-it {
-      grid-area: buy-it;
+
+    .authors {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
     }
-    .bottom-blurb {
-      grid-area: bottom-blurb;
-      margin: 0;
-      font-family: var(--secondary);
-      font-size: .8em;
-      line-height: 1.2em;
+
+    .foreword-by {
+        font-style: italic;
     }
-  }
+
+    main {
+        display: grid;
+        gap: 1em;
+        grid-template-columns: 1fr 15rem;
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "top-blurb buy-it"
+            "top-blurb bottom-blurb";
+
+        @media (max-width: 40em) {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "top-blurb"
+                "buy-it"
+                "bottom-blurb";
+        }
+
+        .top-blurb {
+            grid-area: top-blurb;
+            font-size: 1.4em;
+            line-height: 1.5em;
+            font-style: italic;
+
+            p {
+                margin: 0;
+            }
+            p + p {
+                margin-block-start: 1.2em;
+            }
+        }
+        .buy-it {
+            grid-area: buy-it;
+        }
+        .bottom-blurb {
+            grid-area: bottom-blurb;
+            margin: 0;
+            font-family: var(--secondary);
+            font-size: 0.8em;
+            line-height: 1.2em;
+        }
+    }
 </style>
 
 <header class="Cover-Header">
-  <h1 class="book-title">Hypermedia Systems</h1>
+    <h1 class="book-title">Hypermedia Systems</h1>
 
-  <p class="authors">
-    Carson&nbsp;Gross&emsp;
-    Adam&nbsp;Stepinski&emsp;
-    <span lang=tr>Deniz&nbsp;Akşimşek</span>&emsp;
-  </p>
-  <p class="foreword-by">
-    foreword by Mike&nbsp;Amundsen
-  </p>
+    <p class="authors">
+        Carson&nbsp;Gross&emsp; Adam&nbsp;Stepinski&emsp;
+        <span lang="tr">Deniz&nbsp;Akşimşek</span>&emsp;
+    </p>
+    <p class="foreword-by">foreword by Mike&nbsp;Amundsen</p>
 </header>
 
 <main class="">
-  <div id="blurb" class="top-blurb">
-    <p>The revolutionary ideas that empowered the Web
-    <p>A simpler approach to building applications on the Web and beyond with <a href="https://htmx.org">htmx</a> and <a
-        href="https://hyperview.org/">Hyperview</a>
-    <p>Enhancing web applications without using SPA frameworks
-  </div>
+    <div id="blurb" class="top-blurb">
+        <p>The revolutionary ideas that empowered the Web</p>
+        <p>
+            A simpler approach to building applications on the Web and beyond
+            with <a href="https://htmx.org">htmx</a> and
+            <a href="https://hyperview.org/">Hyperview</a>
+        </p>
 
-  <div class="buy-it">
-    <a href="/book/contents">
-      Read online
-      <small>(Free, forever)</small>
-    </a>
-    <a href="https://www.amazon.com/dp/B0C9S88QV6/">
-      Hard cover
-      <small>(Buy on Amazon)</small>
-    </a>
-    <a href="https://www.lulu.com/shop/deniz-ak%C5%9Fim%C5%9Fek-and-adam-stepinski-and-carson-gross-and-mike-amundsen/hypermedia-systems/paperback/product-jen2vm2.html?page=1&pageSize=4">
-      Soft cover
-      <small>(Buy on Lulu)</small>
-    </a>
-    <a href="https://www.lulu.com/shop/deniz-ak%C5%9Fim%C5%9Fek-and-adam-stepinski-and-carson-gross/hypermedia-systems/ebook/product-jenyj66.html">
-      EPUB
-      <small>(Buy on Lulu)</small>
-    </a>
-    <a href="https://www.amazon.com/dp/B0CC315VJK/">
-      Kindle
-      <small>(Buy on Amazon)</small>
-    </a>
-  </div>
+        <p>Enhancing web applications without using SPA frameworks</p>
+    </div>
 
-  <p class="bottom-blurb">
-    For web developers frustrated with the complexity of modern practice,<span class="aestheticbreak"></span>
-    those looking to brush up on web fundamentals,<span class="aestheticbreak"></span>
-    web development shops looking to bring their apps to mobile,<span class="aestheticbreak"></span>
-    and any workaday programmer looking for an introduction to hypermedia and REST.
-  </p>
+    <div class="buy-it">
+        <a href="https://www.amazon.com/dp/B0C9S88QV6/">
+            Hard cover
+            <small>(Buy on Amazon)</small>
+            <img src="/images/cover.png" />
+        </a>
+        <a
+            href="https://www.lulu.com/shop/deniz-ak%C5%9Fim%C5%9Fek-and-adam-stepinski-and-carson-gross-and-mike-amundsen/hypermedia-systems/paperback/product-jen2vm2.html?page=1&pageSize=4"
+        >
+            Soft cover
+            <small>(Buy on Lulu)</small>
+            <img src="/images/cover2.png" />
+        </a>
+        <a href="/book/contents">
+            Read online
+            <small>(Free, forever)</small>
+        </a>
+        <a
+            href="https://www.lulu.com/shop/deniz-ak%C5%9Fim%C5%9Fek-and-adam-stepinski-and-carson-gross/hypermedia-systems/ebook/product-jenyj66.html"
+        >
+            EPUB
+            <small>(Buy on Lulu)</small>
+        </a>
+        <a href="https://www.amazon.com/dp/B0CC315VJK/">
+            Kindle
+            <small>(Buy on Amazon)</small>
+        </a>
+    </div>
+
+    <p class="bottom-blurb">
+        For web developers frustrated with the complexity of modern
+        practice,<span class="aestheticbreak"></span> those looking to brush up
+        on web fundamentals,<span class="aestheticbreak"></span> web development
+        shops looking to bring their apps to mobile,<span
+            class="aestheticbreak"
+        ></span>
+        and any workaday programmer looking for an introduction to hypermedia
+        and REST.
+    </p>
 </main>

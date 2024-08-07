@@ -235,8 +235,12 @@ label {
 
 .buy-it {  
   > a {
-    display: block;
+    display: grid;
     margin-block: .2em;
+    
+    grid-auto-flow: dense;
+    justify-content: start;
+    gap: 0 .5em;
     
     font-family: var(--secondary);
     font-weight: bold;
@@ -263,6 +267,18 @@ label {
 
     small {
       font-weight: normal;
+      grid-column: 2;
+    }
+    
+    &:has(img) {
+      justify-content: space-between;
+      small { grid-column: 1; }
+    }
+    
+    img {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      max-height: 4em;
     }
   }
 }
