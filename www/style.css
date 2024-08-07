@@ -31,7 +31,7 @@
 @font-face {
   font-family: "Linux Libertine";
   font-weight: bold;
-  src: url("/fonts/LinLibertine_Rah.ttf");
+  src: url("/fonts/LinLibertine_RBah.ttf");
 }
 
 @font-face {
@@ -248,6 +248,7 @@ label {
 
     background: rgb(215, 215, 242);
     color: rgb(14, 19, 65);
+    border: 1px solid rgb(115, 115, 170);
 
     text-decoration: none;
     padding: .4em;
@@ -255,6 +256,7 @@ label {
     @media (prefers-color-scheme: dark) {
       background: rgb(37, 42, 53);
       color: rgb(215, 215, 242);
+      border: 1px solid rgb(115, 115, 170);
     }
     
     &:hover, &:focus, &:active {
