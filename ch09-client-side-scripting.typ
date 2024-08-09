@@ -514,7 +514,7 @@ Here is what our code looks like now:
 #figure[
 ```js
 // counter.js <1>
-document.querySelectorAll("[data-counter]") <1>
+document.querySelectorAll("[data-counter]") <2>
   .forEach(el => {
     const
     output = el.querySelector("[data-counter-output]"),
@@ -659,8 +659,8 @@ function overflowMenu(tree = document) {
   tree.querySelectorAll("[data-overflow-menu]").forEach(menuRoot => { <1>
     const
     button = menuRoot.querySelector("[aria-haspopup]"), <2>
-    menu = menuRoot.querySelector("[role=menu]"), <3>
-    items = [...menu.querySelectorAll("[role=menuitem]")];
+    menu = menuRoot.querySelector("[role=menu]"),
+    items = [...menu.querySelectorAll("[role=menuitem]")]; <3>
   });
 }
 
