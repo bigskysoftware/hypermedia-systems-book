@@ -394,10 +394,10 @@ Here is what the template code for the contact table looks like:
 </table>
 ```,
 )
-- Output some headers for our table.
-- Iterate over the contacts that were passed in to the template.
-- Output the values of the current contact, first name, last name, etc.
-- An "operations" column, with links to edit or view the contact details.
+1. Output some headers for our table.
+2. Iterate over the contacts that were passed in to the template.
+3. Output the values of the current contact, first name, last name, etc.
+4. An "operations" column, with links to edit or view the contact details.
 
 This is the core of the page: we construct a table with appropriate headers
 matching the data we are going to show for each contact. We iterate over the
