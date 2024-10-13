@@ -1,9 +1,9 @@
 #!/usr/bin/env -S deno run -A --unstable
 
-import {
+import type {
   Element,
   Text,
-} from "https://codeberg.org/dz4k/muteferrika/raw/commit/e7ccf8d28b309acbd9ef4ec0b24d6bae12c2c814/lib/deps/deno-dom.ts";
+} from "https://codeberg.org/dz4k/muteferrika/raw/commit/f56413a/lib/deps/deno-dom.ts";
 import {
   build,
   Book,
@@ -18,14 +18,15 @@ import {
   TableOfContents,
   LandingPage,
   Division,
-} from "https://codeberg.org/dz4k/muteferrika/raw/commit/e7ccf8d28b309acbd9ef4ec0b24d6bae12c2c814/lib/muteferrika.ts";
+} from "https://codeberg.org/dz4k/muteferrika/raw/commit/f56413a/lib/muteferrika.ts";
 import { copySync } from "https://deno.land/std@0.157.0/fs/copy.ts";
 
 const compile = (path: string) => {
   return {
+    file: path,
     async compile(this: Division) {
       const pandoc = new Deno.Command("pandoc", {
-        args: ["-f", "typst", "-t", "html", "--", path],
+        args: ["-f", "typst", "-t", "html", "--", this.file],
       });
       const pandocOutput = await pandoc.output();
       if (!pandocOutput.success) {
