@@ -805,7 +805,7 @@ Let’s take our original #indexed[search] form and convert it to use htmx inste
 </form>
 ```)
 
-1. When an htmx-powered element is withing an ancestor form tag, all input values within that
+1. When an htmx-powered element is within an ancestor form tag, all input values within that
    form will be submitted for non-`GET` requests
 2. We have switched from an `input` of type `submit` to a `button` and added the `hx-post` attribute
 
