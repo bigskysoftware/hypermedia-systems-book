@@ -38,7 +38,8 @@ const compile = (path: string) => {
         /<(\/?)h(\d)/g,
         (_, slash, level) => `<${slash}h${+level - 1}`,
       );
-      this.title = headingsUpleveled.match(/<h1>(.*)<\/h1>/)?.[1];
+      const title = headingsUpleveled.match(/<h1>(.*)<\/h1>/)?.[1];
+      if (title) this.title = title;
       const h1Removed = headingsUpleveled.replace(/<h1>.*<\/h1>/, "");
       return h1Removed;
     },
