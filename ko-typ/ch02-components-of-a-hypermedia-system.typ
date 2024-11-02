@@ -379,23 +379,15 @@ See
 )[Section 5.1.4]
 for the Caching constraint.
 
-This constraint states that a RESTful system should support the notion of
-caching, with explicit information on the cache-ability of responses for future
-requests of the same resource. This allows both clients as well as intermediary
-servers between a given client and final server to cache the results of a given
-request.
+이 제약은 RESTful 시스템이 캐싱의 개념을 지원해야 하며, 동일한 자원에 대해 향후 요청에 대한 응답의 캐시 가능성에 대한 명확한 정보를 제공해야 함을 의미합니다. 이를 통해 클라이언트는 물론 각 클라이언트와 최종 서버 간의 중개 서버 모두 요청의 결과를 캐시할 수 있습니다.
 
-As we discussed earlier, HTTP has a sophisticated caching mechanism via response
-headers that is often overlooked or underutilized when building hypermedia
-applications. Given the existence of this functionality, however, it is easy to
-see how this constraint is satisfied by the web.
+앞서 논의한 바와 같이 HTTP는 응답 헤더를 통한 정교한 캐싱 메커니즘을 제공하며, 이는 하이퍼미디어 애플리케이션을 구축할 때 종종 간과되거나 제대로 활용되지 않습니다. 이러한 기능이 존재하기 때문에 웹이 이 제약을 얼마나 충족하는지 쉽게 확인할 수 있습니다.
 
-==== The Uniform Interface Constraint <_the_uniform_interface_constraint>
-Now we come to the most interesting and, in our opinion, most innovative
-constraint in REST: that of the _uniform interface_.
 
-This constraint is the source of much of the _flexibility_ and
-_simplicity_ of a hypermedia system, so we are going to spend some time on it.
+==== 통일된 인터페이스 제약 <_the_uniform_interface_constraint>
+이제 REST에서 가장 흥미롭고, 우리 생각으로는, 가장 혁신적인 제약인: _통일된 인터페이스_에 대해 설명합니다.
+
+이 제약은 하이퍼미디어 시스템의 _유연성_과 _단순성_의 많은 부분의 출처가 되기 때문에 우리는 여기에 좀 더 시간을 쓸 것입니다.
 
 See
 #link(
@@ -403,70 +395,41 @@ See
 )[Section 5.1.5]
 for the Uniform Interface constraint.
 
-In this section, Fielding says:
+Fielding은 이 섹션에서 다음과 같이 말합니다:
 
 #blockquote(
   attribution: fielding-rest-thesis,
 )[
-  The central feature that distinguishes the REST architectural style from other
-  network-based styles is its emphasis on a uniform interface between components…​
-  In order to obtain a uniform interface, multiple architectural constraints are
-  needed to guide the behavior of components. REST is defined by four interface
-  constraints: identification of resources; manipulation of resources through
-  representations; self-descriptive messages; and, hypermedia as the engine of
-  application state
+  REST 아키텍처 스타일을 다른 네트워크 기반 스타일과 구별하는 중심 특징은 구성 요소 간의 통일된 인터페이스에 대한 강조입니다…​
+  통일된 인터페이스를 얻기 위해서는 구성 요소의 동작을 안내하는 여러 개의 건축 제약이 필요합니다. REST는 네 가지 인터페이스 제약으로 정의되는데: 자원의 식별; 표현(representations)을 통한 자원의 조작; 자기 설명(self-descriptive)적인 메시지; 애플리케이션 상태 엔진으로서의 하이퍼미디어로 정의됩니다.
 ]
 
-So we have four sub-constraints that, taken together, form the Uniform Interface
-constraint.
+따라서 함께 고려할 때 통일된 인터페이스 제약을 구성하는 네 가지 하위 제약이 있습니다.
 
-===== Identification of resources <_identification_of_resources>
-In a RESTful system, resources should have a unique identifier. Today the
-concept of Universal Resource Locators (URLs) is common, but at the time of
-Fielding’s writing they were still relatively new and novel.
+===== 자원의 식별 <_identification_of_resources>
+RESTful 시스템에서 자원은 고유 식별자를 가져야 합니다. 오늘날 URL의 개념이 보편적이지만, Fielding이 저술했을 당시에는 여전히 비교적 새롭고 참신한 것이었습니다.
 
-What might be more interesting today is the notion of a _resource_, thus being
-identified: in a RESTful system, _any_ sort of data that can be referenced, that
-is, the target of a hypermedia reference, is considered a resource. URLs, though
-common enough today, end up solving the very complex problem of uniquely
-identifying any and every resource on the internet.
+오늘날보다 더 흥미로운 것은 자원이 어떻게 식별되는지의 개념일 수 있습니다. RESTful 시스템에서는 _어떠한_ 종류의 데이터가 참조될 수 있으며, 즉, 하이퍼미디어 참조의 목표로 간주됩니다. 오늘날에는 URL이 보편적이지만, 복잡한 문제를 해결하고 모든 자원을 고유하게 식별하는 데 도움이 됩니다.
 
-===== Manipulation of resources through representations <_manipulation_of_resources_through_representations>
-In a RESTful system, _representations_ of the resource are transferred between
-clients and servers. These representations can contain both data and metadata
-about the request (such as "control data" like an HTTP method or response code).
-A particular data format or
-_media type_ may be used to present a given resource to a client, and that media
-type can be negotiated between the client and the server.
+===== 표현을 통한 자원의 조작 <_manipulation_of_resources_through_representations>
+RESTful 시스템에서 _표현(representations)_ 은 클라이언트와 서버 간에 전달됩니다. 이러한 표현은 요청에 대한 데이터 및 메타데이터(예를 들어, HTTP 메서드나 응답 코드와 같은 "제어 데이터")를 포함할 수 있습니다. 특정 데이터 형식이나 _미디어 타입_이 클라이언트에 표현할 자원을 제시하는 데 사용되며, 이러한 미디어 타입은 클라이언트와 서버 간에 협상이 가능합니다.
 
-We saw this latter aspect of the uniform interface in the `Accept`
-header in the requests above.
+이러한 통일된 인터페이스의 마지막 측면은 위 요청의 `Accept` 헤더에서 보았습니다.
 
-===== Self-descriptive messages <_self_descriptive_messages>
+===== 자기 설명적 메시지 <_self_descriptive_messages>
 
 #index[self-descriptive messages]
-The Self-Descriptive Messages constraint, combined with the next one, HATEOAS,
-form what we consider to be the core of the Uniform Interface, of REST and why
-hypermedia provides such a powerful system architecture.
+자기 설명 메시지 제약은 다음 제약인 HATEOAS와 결합되어, 우리가 REST의 통일된 인터페이스의 핵심이라고 여기는 부분을 형성합니다. 자기 설명 메시지 제약은 RESTful 시스템에서 메시지가 _자기 설명적_이어야 한다고 요구합니다.
 
-The Self-Descriptive Messages constraint requires that, in a RESTful system,
-messages must be _self-describing_.
+즉, _모든 정보_는 데이터를 표시하고 _작업_할 수 있는 데 반드시 응답에 있어야 합니다. 적절히 RESTful 시스템에서 클라이언트가 서버 응답을 유용한 사용자 인터페이스로 전환하는 데 필요한 추가적인 "부수적" 정보는 없어야 합니다. 모든 것은 하이퍼미디어 제어의 형식으로 메시지 자체에 "존재해야" 합니다.
 
-This means that _all information_ necessary to both display
-_and also operate_ on the data being represented must be present in the
-response. In a properly RESTful system, there can be no additional
-"side" information necessary for a client to transform a response from a server
-into a useful user interface. Everything must "be in" the message itself, in the
-form of hypermedia controls.
+이것은 다소 추상적으로 들릴 수 있으니, 구체적인 예를 살펴보겠습니다.
 
-This might sound a little abstract so let’s look at a concrete example.
+HTTP 서버에서 URL `https://example.com/contacts/42`를 위한 두 가지 다른 응답을 고려해보겠습니다.
 
-Consider two different potential responses from an HTTP server for the URL `https://example.com/contacts/42`.
+두 응답 모두 연락처에 대한 정보를 반환하지만, 각각은 매우 다른 형태를 취할 것입니다.
 
-Both responses will return information about a contact, but each response will
-take very different forms.
-
-The first implementation returns an HTML representation:
+첫 번째 구현은 HTML 표현을 반환합니다:
 
 #figure(
 ```html
@@ -484,7 +447,7 @@ The first implementation returns an HTML representation:
 </html>
 ```)
 
-The second implementation returns a JSON representation:
+두 번째 구현은 JSON 표현을 반환합니다:
 
 #figure(
 ```json
@@ -495,78 +458,44 @@ The second implementation returns a JSON representation:
 }
 ```)
 
-What can we say about the differences between these two responses?
+이 두 응답 간의 차이에 대해 어떤 말을 할 수 있을까요?
 
-One thing that may initially jump out at you is that the JSON representation is
-smaller than the HTML representation. Fielding notes exactly this trade-off when
-using a RESTful architecture:
+처음 눈에 띄는 점은 JSON 표현이 HTML 표현보다 더 작다는 것입니다. Fielding은 RESTful 아키텍처를 사용할 때 정확히 이러한 트레이드 오프를 언급합니다:
 
 #blockquote(
   attribution: fielding-rest-thesis,
 )[
-  The trade-off, though, is that a uniform interface degrades efficiency, since
-  information is transferred in a standardized form rather than one which is
-  specific to an application’s needs.
+  트레이드 오프는 통일된 인터페이스가 효율성을 저하시킨다는 것입니다. 정보는 특정 애플리케이션의 필요에 맞지 않은 표준화된 형식으로 전송됩니다.
 ]
 
-So REST _trades off_ representational efficiency for other goals.
+따라서 REST는 표현 효율성을 다른 목표와 _트레이드 오프_합니다.
 
-To understand these other goals, first notice that the HTML representation has a
-hyperlink in it to navigate to a page to archive the contact. The JSON
-representation, in contrast, does not have this link.
+다른 목표를 이해하기 위해서 첫 번째로 HTML 표현에 있는 하이퍼링크를 주목하십시오. 이 링크는 연락처를 아카이브하기 위한 페이지로 이동할 수 있게 해줍니다. 반면 JSON 표현은 이러한 링크가 없습니다.
 
-What are the ramifications of this fact for a _client_ of the JSON API?
+이러한 사실이 JSON API 클라이언트에 대해 어떤 의미를 가질까요?
 
 #index[JSON API][vs. HTML]
-What this means is that the JSON API client must know _in advance_
-exactly what other URLs (and request methods) are available for working with the
-contact information. If the JSON client is able to update this contact in some
-way, it must know how to do so from some source of information _external_ to the
-JSON message. If the contact has a different status, say "Archived", does this
-change the allowable actions? If so, what are the new allowable actions?
+JSON API 클라이언트는 _사전에_ 연락처 정보를 처리하기 위해 어떤 다른 URL(및 요청 메서드)이 있는지 정확히 알아야 합니다. JSON 클라이언트가 이 연락처를 무언가로 업데이트할 수 있는 경우, 이는 JSON 메시지 외부의 정보 출처에서 어떻게 수행해야 하는지 알아야 합니다. 예를 들어, 연락처의 상태가 "아카이브됨"인 경우, 이는 허용 가능한 동작에 변화를 가져올까요? 그렇다면 새로운 허용 가능한 동작은 무엇일까요?
 
-The source of all this information might be API documentation, word of mouth or,
-if the developer controls both the server and the client, internal knowledge.
-But this information is implicit and _outside_
-the response.
+이 모든 정보의 출처는 API 문서, 입소문, 또는 만약 개발자가 서버와 클라이언트를 모두 제어한다면 내부 지식이 될 수 있습니다. 그러나 이 정보는 암묵적이며 _응답 외부_에 존재합니다.
 
-Contrast this with the hypermedia (HTML) response. In this case, the hypermedia
-client (that is, the browser) needs only to know how to render the given HTML.
-It doesn’t need to understand what actions are available for this contact: they
-are simply encoded _within_ the HTML response itself as hypermedia controls. It
-doesn’t need to understand what the status field means. In fact, the client
-doesn’t even know what a contact is!
+하이퍼미디어(HTML) 응답과 대조해 보겠습니다. 이 경우 하이퍼미디어 클라이언트(브라우저)는 단지 주어진 HTML을 렌더링하는 법만 알고 있으면 됩니다. 이 연락처의 사용 가능한 동작을 알아야 할 필요가 없습니다. 그들은 하이퍼미디어 제어로써 HTML 응답 내에 단순히 인코딩되어 있습니다. 그들은 상태 필드가 무엇을 의미하는지 이해할 필요가 없습니다. 사실, 클라이언트는 연락처가 무엇인지조차 모릅니다!
 
-The browser, our hypermedia client, simply renders the HTML and allows the user,
-who presumably understands the concept of a Contact, to make a decision on what
-action to pursue from the actions made available in the representation.
+브라우저는 하이퍼미디어 클라이언트로서 단순히 HTML을 렌더링하고, 사용자가 접촉의 개념을 이해하고 있으며, 제공된 표현에서 사용할 수 있는 동작을 결정하게 합니다.
 
-This difference between the two responses demonstrates the crux of REST and
-hypermedia, what makes them so powerful and flexible: clients (again, web
-browsers) don’t need to understand _anything_ about the underlying resources
-being represented.
+이 두 응답 간의 차이는 REST와 하이퍼미디어의 핵심을 보여줍니다. 클라이언트는 (웹 브라우저를 다시 말하자면) _어떠한_ 기반이 되는 자원에 관하여 알고 있을 필요가 없습니다.
 
-Browsers only (only! As if it is easy!) need to understand how to interpret and
-display hypermedia, in this case HTML. This gives hypermedia-based systems
-unprecedented flexibility in dealing with changes to both the backing
-representations and to the system itself.
+브라우저는 단지 하이퍼미디어(이 경우 HTML)를 해석하고 표시하는 방법을 이해하면 됩니다. 이는 하이퍼미디어 기반 시스템이 백업 표현 및 시스템 자체에 대한 변화를 처리하는 데 있어 전례 없는 유연성을 제공합니다.
 
-===== Hypermedia As The Engine of Application State (HATEOAS) <_hypermedia_as_the_engine_of_application_state_hateoas>
+===== 하이퍼미디어, 애플리케이션 상태 엔진(HATEOAS)으로서의 <_hypermedia_as_the_engine_of_application_state_hateoas>
 
-The final sub-constraint on the Uniform Interface is that, in a RESTful system,
-hypermedia should be "the engine of application state." This is sometimes
-abbreviated as "#indexed[HATEOAS]", although Fielding prefers to use the
-terminology "the hypermedia constraint" when discussing it.
+통일된 인터페이스의 마지막 하위 제약은 RESTful 시스템에서 하이퍼미디어가 "애플리케이션 상태의 엔진"이 되어야 한다는 것입니다. 이러한 것은 때때로 #indexed[HATEOAS]로 약칭되지만, Fielding은 이를 논의할 때 "하이퍼미디어 제약"이라는 용어를 사용하는 것을 선호합니다.
 
-This constraint is closely related to the previous self-describing message
-constraint. Let us consider again the two different implementations of the
-endpoint `/contacts/42`, one returning HTML and one returning JSON. Let’s update
-the situation such that the contact identified by this URL has now been
-archived.
+이 제약은 이전의 자기 설명 메시지 제약과 밀접하게 관련되어 있습니다. 다시 두 가지 서로 다른 `/contacts/42`에 대한 구현, HTML과 JSON을 검토해 보겠습니다. 이 URL로 식별된 연락처가 이제 아카이브되었다고 업데이트하겠습니다.
 
-What do our responses look like?
+우리의 응답은 어떻게 보일까요?
 
-The first implementation returns the following HTML:
+첫 번째 구현은 다음과 같은 HTML을 반환합니다:
 
 #figure(
 ```html
@@ -595,56 +524,28 @@ The second implementation returns the following JSON representation:
 }
 ```)
 
-The important point to notice here is that, by virtue of being a self-describing
-message, the HTML response now shows that the "Archive" operation is no longer
-available, and a new "Unarchive" operation has become available. The HTML
-representation of the contact _encodes_
-the state of the application; it encodes exactly what can and cannot be done
-with this particular representation, in a way that the JSON representation does
-not.
+여기서 유의해야 할 중요한 점은 자기 설명 메시지인 HTML 응답이 "아카이브" 작업이 더 이상 사용할 수 없다는 것을 보여주고, 새로운 "Unarchive" 작업이 사용 가능해졌다는 점입니다.연락처의 HTML 표현은 애플리케이션의 상태를 _인코딩_합니다; 즉, 이 특정 표현으로 할 수 있고 할 수 없는 것을 정확히 인코딩합니다. JSON 표현은 이렇게 하지 않습니다.
 
-A client interpreting the JSON response must, again, understand not only the
-general concept of a Contact, but also specifically what the
-"status" field with the value "Archived" means. It must know exactly what
-operations are available on an "Archived" contact, to appropriately display them
-to an end user. The state of the application is not encoded in the response, but
-rather conveyed through a mix of raw data and side channel information such as
-API documentation.
+JSON 응답을 해석하는 클라이언트는 연락처의 일반적인 개념을 이해해야 할 뿐만 아니라, "상태" 필드가 "Archived"라는 값을 가질 때의 의미를 명확히 이해해야 합니다. "아카이브된" 연락처에 사용할 수 있는 작업은 무엇인지, 이를 적절히 표시하기 위한 방법을 반드시 알아야 합니다. 응답의 상태는 응답에 인코딩되어 있지 않고, 대신 원시 데이터와 API 문서와 같은 측면의 부수적 정보로 전달됩니다.
 
-Furthermore, in the majority of front end SPA frameworks today, this contact
-information would live _in memory_ in a JavaScript object representing a model
-of the contact, while the page data is held in the browser’s
-#link(
+게다가 오늘날 대부분의 프론트 엔드 SPA 프레임워크에서 이러한 연락처 정보는 JavaScript 객체의 모델로 _메모리_에 존재할 것이며, 페이지 데이터는 브라우저의 #link(
   "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
 )[Document Object Model]
-(DOM). The DOM would be updated based on changes to this model, that is, the DOM
-would "react" to changes to this backing JavaScript model.
+(DOM)에 저장될 것입니다. DOM은 모델의 변화에 따라 업데이트되므로, 이는 DOM이 이 뒷받침 JavaScript 모델의 변화에 "반응"하게 됩니다.
 
-This approach is certainly _not_ using Hypermedia As The Engine Of Application
-State: rather, it is using a JavaScript model as the engine of application
-state, and synchronizing that model with a server and with the browser.
+이 접근 방식은 애플리케이션 상태 엔진으로서의 하이퍼미디어(HATEOAS)을 사용하는 것이 _아닙니다_: 오히려 JavaScript 모델을 애플리케이션 상태의 엔진으로 사용하고, 해당 모델을 서버와 브라우저와 연결하여 동기화하는 것입니다.
 
-With the HTML approach, the Hypermedia is, indeed, The Engine Of Application
-State: there is no additional model on the client side, and all state is
-expressed directly in the hypermedia, in this case HTML. As state changes on the
-server, it is reflected in the representation (that is, HTML) sent back to the
-client. The hypermedia client (a browser) doesn’t know anything about contacts,
-what the concept of "Archiving" is, or anything else about the particular domain
-model for this response: it simply knows how to render HTML.
+HTML 접근 방식에서는 하이퍼미디어가 실제로 애플리케이션 상태의 엔진입니다: 즉, 클라이언트 측에 추가적인 모델이 없고 모든 상태가 하이퍼미디어, 이 경우 HTML로 직접 표현됩니다. 서버에서 상태가 변경될 때, 이는 클라이언트에 전송되는 표현(HTML 형식)에서 반영됩니다. 하이퍼미디어 클라이언트(브라우저)는 연락처가 무엇인지, "아카이빙"이 무엇인지, 또는 해당 응답의 특정 도메인 모델에 대해 아무것도 알지 못합니다. 단지 HTML을 렌더링하는 방법을 알고 있습니다.
 
-Because a hypermedia client doesn’t need to know anything about the server model
-beyond how to render hypermedia to a client, it is incredibly flexible with
-respect to the representations it receives and displays to users.
+하이퍼미디어 클라이언트는 서버 모델에 대한 정보를 기다리는 것이 아니기 때문에, 수신하고 사용자에게 표시할 수 있는 표현에 대해 전례 없는 유연성을 제공합니다.
 
-===== HATEOAS & API churn <_hateoas_api_churn>
-This last point is critical to understanding the flexibility of hypermedia, so
-let’s look at a practical example of it in action. Consider a situation where a
-new feature has been added to the web application with these two end points.
-This feature allows you to send a message to a given Contact.
 
-How would this change each of the two responses—​HTML and JSON—​from the server?
+===== HATEOAS와 API 변경 <_hateoas_api_churn>
+하이퍼미디어의 유연성을 이해하는 데 있어 이 마지막 점은 중요합니다. 따라서 현실세계에서 이 점이 작동하는 방식의 실용적인 예를 살펴보겠습니다.웹 애플리케이션에 새로운 기능이 추가되어 다음의 두 개의 끝점이 생겼다고 가정합니다. 이 기능은 주어진 연락처에 메시지를 보낼 수 있게 해줍니다.
 
-The HTML representation might now look like this:
+이 기능은 서버로부터 HTML과 JSON 응답 각각을 어떤 식으로 바꿀까요?
+
+HTML 표현은 이제 다음과 같을 수 있습니다:
 
 #figure(
 ```html
@@ -674,145 +575,78 @@ The JSON representation, on the other hand, might look like this:
 }
 ```)
 
-Note that, once again, the JSON representation is unchanged. There is no
-indication of this new functionality. Instead, a client must _know_
-about this change, presumably via some shared documentation between the client
-and the server.
+다시 한 번, JSON 표현은 변경되지 않습니다. 이러한 새로운 기능은 어떤 형태의 이 표현에도 나타나지 않습니다. 대신 클라이언트는 이러한 변경을, 클라이언트와 서버 간에 공유된 문서를 통해서, _알아야_ 합니다, 
 
-Contrast this with the HTML response. Because of the uniform interface of the
-RESTful model and, in particular, because we are using Hypermedia As The Engine
-of Application State, no such exchange of documentation is necessary! Instead,
-the client (a browser) simply renders the new HTML with this operation in it,
-making this operation available for the end user without any additional coding
-changes.
+HTML 응답과 비교해 보십시오. RESTful 모델의 통일된 인터페이스 때문에, 특히 하이퍼미디어가 애플리케이션 상태의 엔진으로 작용하기 때문에, 어떠한 문서 교환도 필요하지 않습니다! 대신 클라이언트(브라우저)는 단순히 이 동작을 포함하는 새로운 HTML을 렌더링할 뿐입니다. 추가적인 코드 변경 없이도 최종 사용자가 이용할 수 있는 이 작업을 제공합니다.
 
-A pretty neat trick!
+상당히 멋진 점입니다!
 
-Now, in this case, if the JSON client is not properly updated, the error state
-is relatively benign: a new bit of functionality is simply not made available to
-users. But consider a more severe change to the API: what if the archive
-functionality was removed? Or what if the URLs or the HTTP methods for these
-operations changed in some way?
+지금 이 경우 JSON 클라이언트가 제대로 업데이트되지 않으면 오류 상태는 비교적 온건합니다. 새로운 기능이 사용자에게 제공되지 않는 것뿐입니다. 그러나 API에 대해 더 심각한 변경이 있을지 생각해 보십시오. 예를 들어 아카이브 기능이 제거되었다면? 혹은 이러한 작업의 URL이나 HTTP 메서드가 어떤 방식으로든 변경되었다면?
 
-In this case, the JSON client may be broken in a much more serious manner.
+이 경우 JSON 클라이언트는 훨씬 더 심각하게 깨질 수 있습니다.
 
-The HTML response, however, would simply be updated to exclude the removed
-options or to update the URLs used for them. Clients would see the new HTML,
-display it properly, and allow users to select whatever the new set of
-operations happens to be. Once again, the uniform interface of REST has proven
-to be extremely flexible: despite a potentially radically new layout for our
-hypermedia API, clients continue to work.
+HTML 응답은 그러나 제거된 옵션을 제외하는 식으로 업데이트되거나 해당 옵션에 대한 URL을 업데이트하여 클라이언트가 새 HTML을 보고 적절하게 디스플레이하고 사용자에게 새 작업 세트를 선택할 수 있도록 합니다. 한 번 더, REST의 통일된 인터페이스는 매우 유연하게 밝혀졌습니다. 하이퍼미디어 API의 레이아웃이 비록 상당히 급격하게 바뀌더라도 클라이언트는 계속 작동합니다.
 
-An important fact emerges from this: due to this flexibility, hypermedia APIs _do not have the versioning headaches that JSON Data APIs do_.
+이로 인해 중요한 사실이 나타납니다: 이 유연성 덕분에 하이퍼미디어 API는 _JSON 데이터 API가 갖는 버전 관리 문제를 겪지 않습니다_.
 
-Once a Hypermedia-Driven Application has been "entered into" (that is, loaded
-through some entry point URL), all functionality and resources are surfaced
-through self-describing messages. Therefore, there is no need to exchange
-documentation with the client: the client simply renders the hypermedia (in this
-case HTML) and everything works out. When a change occurs, there is no need to
-create a new version of the API: clients simply retrieve updated hypermedia,
-which encodes the new operations and resources in it, and display it to users to
-work with.
+하이퍼미디어 기반 애플리케이션이 "진입"되었을 때(즉, 어떤 진입점 URL을 통해 로드되었을 때), 모든 기능과 자원은 자기 설명 메시지를 통해 드러납니다. 따라서 클라이언트와 문서를 교환할 필요가 없습니다. 클라이언트는 단순히 하이퍼미디어(HTML)를 렌더링하면 모든 것이 작동합니다. 변경이 발생했을 때 API의 새 버전을 생성할 필요가 없습니다. 클라이언트는 단순히 업데이트된 하이퍼미디어를 검색하고, 새로운 동작 및 자원을 인코딩한 후 사용자가 작업할 수 있도록 표시합니다.
 
-==== Layered System <_layered_system>
-The final "required" constraint on a RESTful system that we will consider is The
-Layered System constraint. This constraint can be found in
-#link(
+
+==== 레이어된 시스템 <_layered_system>
+우리가 고려할 마지막 "필수" RESTful 시스템 제약은 계층화된 시스템 제약입니다. 이 제약은 Fielding 논문의 #link(
   "https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_6",
-)[Section 5.1.6]
-of Fielding’s dissertation.
+)[5.1.6 섹션]
+에서 확인할 수 있습니다. 솔직히 말해 통일된 인터페이스 제약의 흥미진진한 후에는 "계층화된 시스템" 제약이 약간 저조합니다. 그러나 이는 여전히 이해할 가치가 있으며 실제로 웹에 의해 효과적으로 활용됩니다. 이 제약은 RESTful 아키텍처가 "계층화"되어 클라이언트와 최종 "진실의 근원" 서버 간의 중개자로서 여러 서버가 작용할 수 있도록 요구합니다.
 
-To be frank, after the excitement of the uniform interface constraint, the "layered
-system" constraint is a bit of a let down. But it is still worth understanding
-and it is actually utilized effectively by The web. The constraint requires that
-a RESTful architecture be "layered," allowing for multiple servers to act as
-intermediaries between a client and the eventual "source of truth" server.
+이 중개 서버는 프록시 역할을 하거나 중간 요청과 응답을 변환하는 등의 역할을 수행할 수 있습니다.
 
-These intermediary servers can act as proxies, transform intermediate requests
-and responses and so forth.
+REST의 이러한 계층화 기능의 현대적 예는 CDN(콘텐츠 전송 네트워크)을 사용하는 것입니다. 이는 변경되지 않는 정적 자산을 클라이언트에게 더 빠르게 전달하기 위해 변경된 응답을 요청한 클라이언트에게 더 밀접하게 위치한 중개 서버에 저장함으로써 가능합니다.
 
-A common modern example of this layering feature of REST is the use of Content
-Delivery Networks (CDNs) to deliver unchanging static assets to clients more
-quickly, by storing the response from the origin server in intermediate servers
-more closely located to the client making a request.
+이를 통해 최종 사용자에게 더 빠르게 콘텐츠를 전달할 수 있으며, 원본 서버의 부하를 줄일 수 있습니다.
 
-This allows content to be delivered more quickly to the end user and reduces
-load on the origin server.
+적어도 우리의 의견으로는 웹 애플리케이션 개발자에게는 통일된 인터페이스만큼 흥미롭지는 않지만 유용함은 분명합니다.
 
-Not as exciting for web application developers as the uniform interface, at
-least in our opinion, but useful nonetheless.
+==== 선택적 제약: 코드 온디맨드 <_an_optional_constraint_code_on_demand>
+우리는 계층화된 시스템 제약을 필수 제약으로 마지막 제약으로 언급했습니다. 왜냐하면 Fielding은 RESTful 시스템에서 추가 제약인 코드 온디맨드 제약을 언급하기 때문입니다. 이는 다소 불편하게 "선택적"으로 설명됩니다.
 
-==== An Optional Constraint: Code-On-Demand <_an_optional_constraint_code_on_demand>
-We called The Layered System constraint the final "required" constraint because
-Fielding mentions one additional constraint on a RESTful system. This Code On
-Demand constraint is somewhat awkwardly described as
-"optional" (Section 5.1.7).
-
-In this section, Fielding says:
+Fielding은 이 섹션에서 다음과 같이 말합니다:
 
 #blockquote(
   attribution: fielding-rest-thesis,
 )[
-  REST allows client functionality to be extended by downloading and executing
-  code in the form of applets or scripts. This simplifies clients by reducing the
-  number of features required to be pre-implemented. Allowing features to be
-  downloaded after deployment improves system extensibility. However, it also
-  reduces visibility, and thus is only an optional constraint within REST.
+  REST는 클라이언트 기능을 확장할 수 있도록 코드를 다운로드하고 실행할 수 있게 허용합니다. 이는 필요한 사전 구현된 기능 수를 줄여 클라이언트를 단순화합니다. 배포 후 기능을 다운로드할 수 있도록 하는 것은 시스템의 확장성을 높이고 가시성을 낮출 수 있습니다. 따라서 REST 내에서 선택적 제약입니다.
 ]
 
-So, scripting was and is a native aspect of the original RESTful model of the
-web, and thus should of course be allowed in a Hypermedia-Driven Application.
+따라서 스크립팅은 웹의 원래 RESTful 모델의 고유한 측면이며, 따라서 하이퍼미디어 기반 애플리케이션에서도 허용되어야 합니다.
 
-However, in a Hypermedia-Driven Application the presence of scripting should _not_ change
-the fundamental networking model: hypermedia should continue to be the engine of
-application state, server communication should still consist of hypermedia
-exchanges rather than, for example, JSON data exchanges, and so on. (JSON Data
-API’s certainly have their place; in Chapter 10 we’ll discuss when and how to
-use them).
+하지만 하이퍼미디어 기반 애플리케이션에서 스크립팅의 존재는 기본 네트워크 모델을 _바꾸어서는 안 됩니다._ 하이퍼미디어는 계속해서 애플리케이션 상태의 엔진이 되어야 하고, 서버 통신은 여전히 하이퍼미디어 교환으로 구성되어야 하며, 예를 들어 JSON 데이터 교환이 되어서는 안 됩니다. (JSON 데이터 API도 확실히 그 자리를 차지할 수 있으며, 10장에서 언제 어떻게 사용할지는 논의할 것입니다.)
 
-Today, unfortunately, the scripting layer of the web, JavaScript, is quite often
-used to _replace_, rather than augment the hypermedia model. We will elaborate
-in a later chapter what scripting that does not replace the underlying
-hypermedia system of the web looks like.
+안타깝게도 오늘날 웹의 스크립팅 계층인 JavaScript는 종종 하이퍼미디어 모델을 _대체_하기보다 보충하기 위해 사용됩니다. 나중의 장에서는 기본 하이퍼미디어 시스템을 대체하지 않는 스크립팅이 어떤 모습인지 상세히 설명하도록 하겠습니다.
 
-=== Conclusion <_conclusion>
-After this deep dive into the components and concepts behind hypermedia systems
---- including Roy Fielding’s insights into their operation --- we hope you have
-much better understanding of REST, and in particular, of the uniform interface
-and HATEOAS. We hope you can see _why_ these characteristics make hypermedia
-systems so flexible.
+=== 결론 <_conclusion>
+하이퍼미디어 시스템의 구성 요소와 개념에 대한 깊이 있는 논의를 마친 후 --- Roy Fielding의 통찰이 포함되어 있습니다 --- REST, 통일된 인터페이스 및 HATEOAS에 대해 훨씬 더 나은 이해를 가질 수 있기를 바랍니다. 이러한 특성이 하이퍼미디어 시스템을 왜 그렇게 유연하게 만드는지 알 수 있기를 바랍니다.
 
-If you were not aware of the full significance of REST and HATEOAS before now,
-don’t feel bad: it took some of us over a decade of working in web development,
-and building a hypermedia-oriented library to boot, to understand the special
-nature of HTML, hypermedia and the web!
+이제까지 REST와 HATEOAS의 전체 의미를 이해하지 못했다면 걱정하지 마십시오. 우리는 웹 개발에서 10년 이상 일하며 하이퍼미디어 지향 라이브러리를 구축하는 데에도 마찬가지 조건이 필요했습니다. HTML, 하이퍼미디어 및 웹에 대한 특별한 본질을 이해하는 데 오랜 시간이 필요했습니다!
 
 #html-note[HTML5 Soup][
 #blockquote(attribution: [Confucius])[
-  The beginning of wisdom is to call things by their right names.
+  지혜의 시작은 사물을 본질적으로 부르기 위해 노력을 기울이는 것입니다.
 ]
 
-Elements like `<section>`, `<article>`, `<nav>`, `<header>`, `<footer>`,
-`<figure>` have become a sort of shorthand for HTML.
+`<section>`, `<article>`, `<nav>`, `<header>`, `<footer>`, `<figure>` 와 같은 요소들은 HTML에서의 일종의 약어가 되었습니다.
 
-By using these elements, a page can make false promises, like
-`<article>` elements being self-contained, reusable entities, to clients like
-browsers, search engines and scrapers that can’t know better. To avoid this:
+이러한 요소를 사용함으로써 페이지는 `<article>` 요소가 독립적이고 재사용 가능한 엔티티가 된다는 잘못된 약속을 사용자(예: 브라우저, 검색 엔진 및 스크래퍼)에게 합니다. 이를 피하기 위해서는:
 
-- Make sure that the element you’re using fits your use case. Check the HTML spec.
+- 사용하는 요소가 케이스에 맞는지 확인하세요. HTML 사양을 확인하십시오.
 
-- Don’t try to be specific when you can’t or don’t need to. Sometimes,
-  `<div>` is fine.
+- 필요 없거나 맞지 않는 경우 구체적으로 사용하지 마십시오. 때로는 `<div>`도 괜찮습니다.
+
+HTML에 대한 가장 권위있는 자료는 HTML 스펙입니다. 현재 사양은 [https://html.spec.whatwg.org/multipage](https://html.spec.whatwg.org/multipage)에서 확인할 수 있습니다. 단일 페이지 버전은 대부분의 컴퓨터에서 너무 느리게 로드되고 렌더링됩니다. /dev에서 "개발자 에디션"이 있지만, 표준 버전은 더 나은 스타일링을 제공합니다. HTML의 발전에 대해 듣고 있지 않은 이상, 괴소문에 의지할 필요는 없습니다.
+
 
 #index[HTML][spec]
-The most authoritative resource for learning about HTML is the HTML
-specification. The current specification lives on
-#link("https://html.spec.whatwg.org/multipage").#footnote[The single-page version is too slow to load and render on most computers.
-  There’s also a "developers’ edition" at /dev, but the standard version has nicer
-  styling.] There’s no need to rely on hearsay to keep up with developments in
-HTML.
+HTML에 대한 가장 권위있는 자료는 HTML 스펙입니다. 현재 사양은 #link(https://html.spec.whatwg.org/multipage).#footnote[단일 페이지 버전은 대부분의 컴퓨터에서 너무 느리게 로드되고 렌더링됩니다.
+  /dev에서 "개발자 에디션"이 있지만, 표준 버전은 더 나은 스타일링을 제공합니다.]  HTML의 발전에 대해 듣고 있지 않은 이상, 괴소문에 의지할 필요는 없습니다.
 
-Section 4 of the spec features a list of all available elements, including what
-they represent, where they can occur, and what they are allowed to contain. It
-even tells you when you’re allowed to leave out closing tags!
+스펙의 섹션 4에는 사용 가능한 모든 요소의 목록이 나와 있으며, 각 요소가 무엇을 나타내는지, 어디에 발생할 수 있는지, 무엇을 포함할 수 있는지가 나와 있습니다. 언제 닫는 태그 생략을 허용하는지도 알려줍니다!
 ]
