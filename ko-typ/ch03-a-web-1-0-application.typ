@@ -120,27 +120,20 @@ Contact.app은 무엇을 할까요?
 
 Contact.app의 소스 코드는 #link("https://github.com/bigskysoftware/contact-app")[GitHub]에서 확인할 수 있습니다.
 
-==== Showing A Searchable List Of Contacts <_showing_a_searchable_list_of_contacts>
-Let’s add our first real bit of functionality: the ability to show all the
-contacts in our app in a list (really, in a table).
+==== 검색 가능한 연락처 목록 표시하기 <_showing_a_searchable_list_of_contacts>
+우리의 첫 번째 실제 기능, 즉 앱의 모든 연락처를 목록(사실은 표)으로 보여주는 기능을 추가합시다.
 
-This functionality is going to be found at the `/contacts` path, which is the
-path our previous route is redirecting to.
+이 기능은 이전 경로가 리다이렉션되는 `/contacts` 경로에 위치할 것입니다.
 
-We will use Flask to route the `/contacts` path to a handler function,
-`contacts()`. This function will do one of two things:
-- If there is a search term found in the request, it will filter down to only
-  contacts matching that term
-- If not, it will simply list all contacts
+Flask를 사용하여 `/contacts` 경로를 핸들러 함수인 `contacts()`로 라우팅할 것입니다. 이 함수에는 두 가지 일이 일어날 것입니다:
+- 요청에서 검색어가 발견되면 해당 용어와 일치하는 연락처만 필터링합니다.
+- 그렇지 않으면 모든 연락처를 나열합니다.
 
-This is a common approach in web 1.0 style applications: the same URL that
-displays all instances of some resource also serves as the search results page
-for those resources. Taking this approach makes it easy to reuse the list
-display that is common to both types of request.
+이는 웹 1.0 스타일 애플리케이션에서 흔한 접근 방식입니다: 어떤 리소스의 모든 인스턴스를 표시하는 동일한 URL는 해당 리소스에 대한 검색 결과 페이지로도 작동합니다. 이러한 접근 방식을 취하면 두 유형의 요청에 공통된 목록 표시를 쉽게 재사용할 수 있습니다.
 
-Here is what the code looks like for this handler:
+다음은 이 핸들러의 코드입니다:
 
-#figure(caption: [A handler for server-side search],
+#figure(caption: [서버 측 검색을 위한 핸들러],
 ```python
 @app.route("/contacts")
 def contacts():
@@ -152,74 +145,50 @@ def contacts():
     return render_template("index.html", contacts=contacts_set)
 ```)
 
-1. Look for the query parameter named `q`, which stands for "query."
-2. If the parameter exists, call the `Contact.search()` function with it.
-3. If not, call the `Contact.all()` function.
-4. Pass the result to the `index.html` template to render to the client.
+1. `q`라는 이름의 쿼리 매개변수를 찾습니다.
+2. 매개변수가 존재하면 이를 사용하여 `Contact.search()` 함수를 호출합니다.
+3. 그렇지 않으면 `Contact.all()` 함수를 호출합니다.
+4. 결과를 `index.html` 템플릿에 전달하여 클라이언트에게 렌더링합니다.
 
 #index[query strings]
-We see the same sort of routing code we saw in our first example, but we have a
-more elaborate handler function. First, we check to see if a search query
-parameter named `q` is part of the request.
+우리는 처음 예제에서 본 것과 동일한 종류의 라우팅 코드를 보았지만, 더 정교한 핸들러 함수가 있습니다. 먼저 요청의 일부로 쿼리 매개변수인 `q`가 있는지 확인합니다.
 
-/ Query Strings: #[
-  A "query string" is part of the URL specification. Here is an example URL with a
-  query string in it: `https://example.com/contacts?q=joe`. The query string is
-  everything after the `?`, and has a name-value pair format. In this URL, the
-  query parameter `q` is set to the string value
-  `joe`. In plain HTML, a query string can be included in a request either by
-  being hardcoded in an anchor tag or, more dynamically, by using a form tag with
-  a `GET` request.
-  ]
-
-To return to our Flask route, if a query parameter named `q` is found, we call
-out to the `search()` method on a `Contact` model object to do the actual
-contact search and return all the matching contacts.
-
-If the query parameter is _not_ found, we simply get all contacts by invoking
-the `all()` method on the `Contact` object.
-
-Finally, we render a template, `index.html` that displays the given contacts,
-passing in the results of whichever of these two functions we end up calling.
-
-#sidebar[A Note On The Contact Class][
-The `Contact` Python class we’re using is the "domain model" or just
-"model" class for our application, providing the "business logic" around the
-management of Contacts.
-
-#index[Contact.app][model]
-It could be working with a database (it isn’t) or a simple flat file (it is),
-but we’re going to skip over the internal details of the model. Think of it as a "normal"
-domain model class, with methods on it that act in a
-"normal" manner.
-
-We will treat `Contact` as a _resource_, and focus on how to effectively provide
-hypermedia representations of that resource to clients.
+/ 쿼리 문자열: #[
+  "쿼리 문자열"은 URL 규격의 일부입니다. 다음은 쿼리 문자열이 포함된 예제 URL입니다: `https://example.com/contacts?q=joe`. 쿼리 문자열은 `?` 이후의 모든 것이며, 이름-값 쌍 형식을 가지고 있습니다. 이 URL에서 쿼리 매개변수 `q`는 문자열 값 `joe`로 설정됩니다. 일반 HTML에서는 쿼리 문자열이 하드코딩된 앵커 태그에 포함되거나, 더 동적으로 `GET` 요청이 있는 양식 태그를 사용하여 포함될 수 있습니다.
 ]
 
-===== The list & search templates <_the_list_search_templates>
-Now that we have our handler logic written, we’ll create a template to render
-HTML in our response to the client. At a high level, our HTML response needs to
-have the following elements:
-- A list of any matching or all contacts.
-- A search box where a user may type and submit search terms.
-- A bit of surrounding "chrome": a header and footer for the website that will be
-  the same regardless of the page you are on.
+Flask 경로로 돌아가서, 쿼리 매개변수 `q`가 발견되면, `Contact` 모델 객체의 `search()` 메서드를 호출하여 실제 연락처 검색을 수행하고 모든 일치하는 연락처를 반환합니다.
+
+쿼리 매개변수가 _발견되지 않으면_, `Contact` 객체에서 `all()` 메서드를 호출하면 됩니다.
+
+마지막으로, 주어진 연락처를 표시하는 템플릿인 `index.html`을 렌더링하며, 우리가 호출하게 될 두 개 함수 중 하나의 결과를 전달합니다.
+
+#sidebar[연락처 클래스에 대한 참고 사항][
+우리가 사용하는 `Contact` 파이썬 클래스는 우리의 애플리케이션에 대한 "도메인 모델" 또는 단순히 "모델" 클래스이며, 연락처 관리를 위한 "비즈니스 논리"를 제공합니다.
+
+#index[Contact.app][model]
+이 클래스는 데이터베이스와 작업할 수도 있지만(현재는 아닙니다) 간단한 평면 파일과 작업할 수도 있습니다(현재는 그렇습니다). 그러나 우리는 모델의 내부 세부 사항은 건너뛰겠습니다. 이를 "정상" 도메인 모델 클래스로 생각하고, 그것에 대해 "정상" 방식으로 작동하는 메서드로 생각하십시오.
+
+우리는 `Contact`를 _리소스_로 취급하고 하이퍼미디어 표현을 클라이언트에게 효과적으로 제공하는 방법에 집중할 것입니다.
+]
+
+===== 목록 및 검색 템플릿 <_the_list_search_templates>
+이제 핸들러 로직이 작성되었으므로, 클라이언트에 대한 응답으로 HTML을 렌더링할 템플릿을 만들겠습니다. 전반적으로 우리의 HTML 응답은 다음 요소가 필요합니다:
+- 일치하거나 모든 연락처의 목록.
+- 사용자가 검색 문자를 입력하고 제출할 수 있는 검색 상자.
+- 웹사이트에 대한 약간의 주위 "크롬": 현재 페이지와 관계없이 동일한 헤더 및 바닥글.
 
 #index[Templates]
 #index[Jinja2][about]
-We are using the Jinja2 templating language, which has the following features:
-- We can use double-curly braces, `{{ }}`, to embed expression values in the
-  template.
-- we can use curly-percents, `{% %}`, for directives, like iteration or including
-  other content.
+우리는 다음과 같은 기능을 가진 Jinja2 템플릿 언어를 사용하고 있습니다:
+- 중괄호 두 개, `{{ }}`를 사용하여 템플릿에 표현식 값을 삽입할 수 있습니다.
+- 중괄호 퍼센트 기호, `{% %}`를 사용하여반복 또는 다른 콘텐츠 포함과 같은 지시문을 사용합니다.
 
-Beyond this basic syntax, Jinja2 is very similar to other templating languages
-used to generate content, and should be easy to follow for most web developers.
+이 기본 구문을 넘어 Jinja2는 콘텐츠 생성을 위해 사용되는 다른 템플릿 언어와 매우 유사하며, 대부분의 웹 개발자들이 따라 읽기 쉬운 언어입니다.
 
-Let’s look at the first few lines of code in the `index.html` template:
+다음은 `index.html` 템플릿의 처음 몇 줄 코드입니다:
 
-#figure(caption: [Start of index.html],
+#figure(caption: [index.html의 초반],
 ```html
 {% extends 'layout.html' %} <1>
 
@@ -233,48 +202,27 @@ Let’s look at the first few lines of code in the `index.html` template:
   </form>
 ```)
 
-1. Set the layout template for this template.
-2. Delimit the content to be inserted into the layout.
-3. Create a search form that will issue an HTTP `GET` to `/contacts`.
-4. Create an input for a user to type search queries.
+1. 이 템플릿의 레이아웃 템플릿을 설정합니다.
+2. 레이아웃에 삽입될 내용을 한정합니다.
+3. `/contacts`에 대한 HTTP `GET`을 발행할 검색 양식을 생성합니다.
+4. 사용자가 검색 쿼리를 입력할 수 있는 입력 필드 생성.
 
-The first line of code references a base template, `layout.html`, with the `extends` directive.
-This layout template provides the layout for the page (again, sometimes called "the
-chrome"): it wraps the template content in an `<html>` tag, imports any
-necessary CSS and JavaScript in a `<head>` element, places a `<body>` tag around
-the main content and so forth. All the common content wrapped around the "normal"
-content for the entire application is located in this file.
+코드의 첫 번째 줄은 `extends` 지시어로 기본 템플릿인 `layout.html`을 참조합니다. 이 레이아웃 템플릿은 페이지의 레이아웃을 제공합니다(다시 말해 때때로 "크롬"이라고도 불립니다): 템플릿 콘텐츠를 `<html>` 태그로 감싸고, `<head>` 요소에 필요한 CSS 및 JavaScript를 포함하며, `<body>` 태그로 주요 콘텐츠를 감싼다 등등. 전체 애플리케이션의 "정상" 콘텐츠를 둘러싼 모든 공통 콘텐츠는 이 파일에 위치합니다.
 
-The next line of code declares the `content` section of this template. This
-content block is used by the `layout.html` template to inject the content of `index.html` within
-its HTML.
+다음 줄은 이 템플릿의 `content` 섹션을 선언합니다. 이 콘텐츠 블록은 `layout.html` 템플릿이 `index.html`의 내용을 HTML 내에 삽입하는 데 사용됩니다.
 
-Next we have our first bit of actual HTML, rather than just Jinja directives. We
-have a simple HTML form that allows you to search contacts by issuing a `GET` request
-to the `/contacts` path. The form itself contains a label and an input with the
-name "q." This input’s value will be submitted with the `GET` request to the `/contacts` path,
-as a query string (since this is a `GET` request.)
+다음은 Jinja 지시문이 아닌 실제 HTML의 첫 번째 내용입니다. 우리는 연락처를 검색하기 위해 `/contacts` 경로로 `GET` 요청을 발행하는 간단한 HTML 양식을 가지고 있습니다. 양식 자체에는 레이블과 이름이 "q"인 입력이 포함되어 있습니다. 이 입력값은 `GET` 요청과 함께 `/contacts` 경로로 제출되며, 쿼리 문자열로 전달됩니다(이것은 `GET` 요청이기 때문에).
 
-Note that the value of this input is set to the Jinja expression
-`{{ request.args.get('q') or '' }}`. This expression is evaluated by Jinja and
-will insert the request value of "q" as the input’s value, if it exists. This
-will "preserve" the search value when a user does a search, so that when the
-results of a search are rendered the text input contains the term that was
-searched for. This makes for a better user experience since the user can see
-exactly what the current results match, rather than having a blank text box at
-the top of the screen.
+이 입력값의 값은 Jinja 표현 `{{ request.args.get('q') or '' }}`로 설정되어 있습니다. 이 표현은 Jinja에 의해 평가되며, 존재한다면 입력의 값으로 "q"의 요청 값을 삽입할 것입니다. 이렇게 하면 사용자가 검색을 수행할 때 검색 값을 "보존"할 수 있으므로, 검색 결과가 렌더링될 때 텍스트 입력에는 검색했던 용어가 포함됩니다. 이렇게 하면 사용자 경험이 향상됩니다. 사용자는 현재 결과가 무엇과 일치하는지를 정확히 볼 수 있으며, 화면의 상단에 빈 텍스트 상자가 있는 것보다 좋습니다.
 
-Finally, we have a submit-type input. This will render as a button and, when it
-is clicked, it will trigger the form to issue an HTTP request.
+마지막으로, 제출 유형의 입력이 있습니다. 이는 버튼으로 렌더링되며, 클릭되면 양식이 HTTP 요청을 발행하도록 트리거합니다.
 
 #index[Contact.app][table]
-This search interface forms the top of our contact page. Following it is a table
-of contacts, either all contacts or the contacts that match the search, if a
-search was done.
+이 검색 인터페이스는 연락처 페이지의 상단을 형성합니다. 그 아래에는 검색이 수행된 경우 모든 연락처 또는 검색과 일치하는 연락처 목록이 있는 표가 있습니다.
 
-Here is what the template code for the contact table looks like:
+다음은 연락처 표의 템플릿 코드입니다:
 
-#figure(caption: [The contacts table],
+#figure(caption: [연락처 테이블],
 ```html
 <table>
   <thead>
@@ -297,30 +245,20 @@ Here is what the template code for the contact table looks like:
 </table>
 ```,
 )
-- Output some headers for our table.
-- Iterate over the contacts that were passed in to the template.
-- Output the values of the current contact, first name, last name, etc.
-- An "operations" column, with links to edit or view the contact details.
+- 테이블 제목을 출력합니다.
+- 템플릿에 전달된 연락처를 반복합니다.
+- 현재 연락처의 값을 출력합니다(이름, 성 등).
+- 연락처 세부정보를 편집하거나 보기에 대한 링크가 있는 "작업" 열.
 
-This is the core of the page: we construct a table with appropriate headers
-matching the data we are going to show for each contact. We iterate over the
-contacts that were passed into the template by the handler method using the `for` loop
-directive in Jinja2. We then construct a series of rows, one for each contact,
-where we render the first and last name, phone and email of the contact as table
-cells in the row.
+이것은 페이지의 핵심입니다: 우리는 각 연락처에 대해 보여 줄 데이터에 맞춤 제목을 가진 표를 구성합니다. 우리는 Jinja2의 `for` 루프 지시문을 사용하여 핸들러 메서드에서 템플릿에 전달된 연락처 목록을 반복합니다. 이후 우리는 각 연락처에 대한 행을 구성하며, 그 행에서 연락처의 이름, 성, 전화번호 및 이메일을 표 셀로 렌더링합니다.
 
-Additionally, we have a table cell that includes two links:
-- A link to the "Edit" page for the contact, located at
-  `/contacts/{{ contact.id }}/edit` (e.g., For the contact with id 42, the edit
-  link will point to `/contacts/42/edit`)
-- A link to the "View" page for the contact
-  `/contacts/{{ contact.id }}` (using our previous contact example, the view page
-  would be at `/contacts/42`)
+또한 두 개의 링크가 포함된 표 셀도 있습니다:
+- 연락처의 "편집" 페이지로 가는 링크: `/contacts/{{ contact.id }}/edit`에 위치합니다(예를 들어, id가 42인 연락처의 경우 편집 링크는 `/contacts/42/edit`를 가리킵니다).
+- 연락처의 "보기" 페이지로 가는 링크: `/contacts/{{ contact.id }}`(이전 연락처 예시를 사용하면, 보기 페이지는 `/contacts/42`에 위치할 것입니다).
 
-Finally, we have a bit of end-matter: a link to add a new contact and a Jinja2
-directive to end the `content` block:
+마지막으로, 새로운 연락처를 추가하기 위한 링크와 `content` 블록을 종료하는 Jinja2 지시문이 있습니다:
 
-#figure(caption: [The "add contact" link],
+#figure(caption: [새 연락처 추가 링크],
 ```html
   <p>
     <a href="/contacts/new">Add Contact</a> <1>
@@ -328,75 +266,49 @@ directive to end the `content` block:
 
 {% endblock %} <2>
 ```)
-1. Link to the page that allows you to create a new contact.
-2. The closing element of the `content` block.
+1. 새 연락처를 생성할 수 있는 페이지로의 링크.
+2. `content` 블록의 닫는 요소.
 
-And that’s our complete template. Using this simple server-side template, in
-combination with our handler method, we can respond with an HTML _representation_ of
-all the contacts requested. So far, so hypermedia.
+이렇게 해서 우리의 완전한 템플릿이 완성되었습니다. 이 간단한 서버 측 템플릿과 핸들러 메서드를 결합하여 요청한 모든 연락처에 대한 HTML _표현_으로 응답할 수 있습니다. 현재까지는 하이퍼미디어입니다.
 
-@fig-contactapp is what the template looks like, rendered with a bit of contact
-information.
+@fig-contactapp는 연락처 정보의 일부가 렌더링된 템플릿이 어떻게 보이는지를 보여줍니다.
 
 #figure(image("images/figure_2-2_table_etc.png"), caption: [Contact.app])<fig-contactapp>
 
-Now, our application won’t win any design awards at this point, but notice that
-our template, when rendered, provides all the functionality necessary to see all
-the contacts and search them, and also provides links to edit them, view details
-of them or even create a new one.
+이제, 애플리케이션은 디자인 상을 받을 수준은 아니지만, 렌더링된 템플릿은 모든 연락처를 보고 검색할 수 있는 기능을 제공하고, 수정하거나 세부정보를 보거나 새로운 연락처를 생성할 수 있는 링크를 제공합니다.
 
-And it does all this without the client (that is, the browser) knowing a thing
-about what contacts are or how to work with them. Everything is encoded _in_ the
-hypermedia. A web browser accessing this application just knows how to issue
-HTTP requests and then render HTML, nothing more about the specifics of our
-applications end points or underlying domain model.
+그리고 클라이언트(즉, 브라우저)는 연락처가 무엇인지를 모르고 이 작업을 수행합니다. 모든 것이 하이퍼미디어 _안에_ 인코딩되어 있습니다. 이 애플리케이션에 접근하는 웹 브라우저는 HTTP 요청을 발행하고 HTML을 렌더링하는 방법만 알고 있습니다. 애플리케이션 엔드포인트 또는 기본 도메인 모델의 세부 사항에 대해서는 아무것도 알지 못합니다.
 
-As simple as our application is at this point, it is thoroughly RESTful.
+이 시점에서 우리의 애플리케이션은 매우 단순하지만, 철저히 RESTful합니다.
 
-==== Adding A New Contact <_adding_a_new_contact>
-The next bit of functionality that we will add to our application is the ability
-to add new contacts. To do this, we are going to need to handle that `/contacts/new` URL
-referenced in the "Add Contact" link above. Note that when a user clicks on that
-link, the browser will issue a
-`GET` request to the `/contacts/new` URL.
+==== 새로운 연락처 추가하기 <_adding_a_new_contact>
+애플리케이션에 추가할 다음 기능은 새로운 연락처를 추가하는 기능입니다. 이를 위해 우리는 위의 "연락처 추가" 링크에서 참조된 `/contacts/new` URL을 처리해야 합니다. 사용자가 해당 링크를 클릭하면 브라우저는 `/contacts/new` URL에 대한 `GET` 요청을 발행하게 됩니다.
 
-All the other routes we have so far use `GET` as well, but we are actually going
-to use two different HTTP methods for this bit of functionality: an HTTP `GET` to
-render a form for adding a new contact, and then an HTTP `POST` _to the same path_ to
-actually create the contact, so we are going to be explicit about the HTTP
-method we want to handle when we declare this route.
+여태까지의 다른 경로는 모두 `GET`을 사용했지만, 우리는 이 기능을 위해 두 가지 다른 HTTP 메서드를 사용할 것입니다: 새로운 연락처 추가를 위한 양식을 렌더링하는 `GET`과, 실제로 연락처를 생성하기 위한 `POST`입니다. 따라서 이 경로를 선언할 때 우리가 처리하고 싶은 HTTP 메서드를 명시적으로 지정할 것입니다.
 
-Here is the code:
+다음은 코드입니다:
 
-#figure(caption: [The "new contact" GET route],
+#figure(caption: [새 연락처를 위한 GET 경로],
 ```python
 @app.route("/contacts/new", methods=['GET']) <1>
 def contacts_new_get():
     return render_template("new.html", contact=Contact()) <2>
 ```)
 
-1. Declare a route, explicitly handling `GET` requests to this path.
-2. Render the `new.html` template, passing in a new contact object.
+1. 이 경로에 대해 `GET` 요청을 명시적으로 처리하는 경로를 선언합니다.
+2. 새 연락처 객체를 전달하여 `new.html` 템플릿을 렌더링합니다.
 
-Simple enough. We just render a `new.html` template with a new Contact. (`Contact()` is
-how you construct a new instance of the `Contact` class in Python, if you aren’t
-familiar with it.)
+간단한 코드입니다. 새 Contact와 함께 `new.html` 템플릿을 렌더링합니다. (`Contact()`는 Python에서 새 `Contact` 클래스의 인스턴스를 생성하는 방법입니다. 익숙하지 않다면 이 점은 언급할 필요 없습니다.)
 
-While the handler code for this route is very simple, the `new.html`
-template is more complicated.
+이 경로의 핸들러 코드는 매우 간단하지만, `new.html` 템플릿은 더 복잡합니다.
 
-#sidebar[][For the remaining templates we are going to omit the layout directive and the
-  content block declaration, but you can assume they are the same unless we say
-  otherwise. This will let us focus on the "meat" of the template.]
+#sidebar[][나머지 템플릿의 경우 레이아웃 지시어와 콘텐츠 블록 선언은 생략하겠습니다. 다르다고 언급하지 않는 한 그들은 동일하다고 가정할 수 있습니다. 이를 통해 템플릿의 "주요 내용"에 집중할 수 있습니다.]
 
-If you are familiar with HTML you are probably expecting a form element here,
-and you will not be disappointed. We are going to use the standard form
-hypermedia control for collecting contact information and submitting it to the
-server.
+HTML에 익숙하다면 여기서 양식 요소를 기대할 것입니다. 실망하지 않으셔도 됩니다. 연락처 정보를 수집하고 서버에 제출하기 위해 표준 양식 하이퍼미디어 제어를 사용할 것입니다.
 
-Here is what our HTML looks like:
+다음은 우리의 HTML입니다:
 
-#figure(caption: [The "new contact" form],
+#figure(caption: [새 연락처 양식],
 ```html
 <form action="/contacts/new" method="post"> <1>
   <fieldset>
@@ -412,26 +324,17 @@ Here is what our HTML looks like:
     </p>
 ```)
 
-1. A form that submits to the `/contacts/new` path, using an HTTP `POST`.
-2. A label for the first form input.
-3. The first form input, of type email.
-4. Any error messages associated with this field.
+1. HTTP `POST`를 사용하여 `/contacts/new` 경로로 제출하는 양식입니다.
+2. 첫 번째 입력에 대한 레이블입니다.
+3. 첫 번째 이메일 입력입니다.
+4. 이 필드와 관련된 오류 메시지입니다.
 
-In the first line of code we create a form that will submit back
-_to the same path_ that we are handling: `/contacts/new`. Rather than issuing an
-HTTP `GET` to this path, however, we will issue an HTTP
-`POST` to it. Using a `POST` in this manner will signal to the server that we
-want to create a new Contact, rather than get a form for creating one.
+코드의 첫 번째 줄에서 우리는 우리가 처리하고 있는 동일한 경로인 `/contacts/new`로 제출하는 양식을 생성합니다. 하지만 HTTP `GET`을 이 경로에 발행하는 대신, 우리는 여기에 HTTP `POST`를 발행할 것입니다. 이렇게 `POST`를 사용하면 서버에 새 연락처를 만들고자 한다는 신호를 보냅니다. 양식을 만드는 것이라는 것이 아닙니다.
 
-We then have a label (always a good practice!) and an input that captures the
-email of the contact being created. The name of the input is `email` and, when
-this form is submitted, the value of this input will be submitted in the `POST` request,
-associated with the `email`
-key.
+그 다음에는 연락처를 위한 다른 필드에 대한 입력이 이어집니다:
 
-Next we have inputs for the other fields for contacts:
-
-#figure(caption: [Inputs and labels for the "new contact" form],
+#figure(caption: [새 연락처 양식을 위한 입력 및 레이블],
+```
 ```html
 <p>
   <label for="first_name">First Name</label>
@@ -454,10 +357,9 @@ Next we have inputs for the other fields for contacts:
 ```,
 )
 
-Finally, we have a button that will submit the form, the end of the form tag,
-and a link back to the main contacts table:
+마지막으로, 제출 버튼과 양식 태그의 끝, 연락처 테이블로 돌아갈 링크가 있습니다:
 
-#figure(caption: [The submit button for the "new contact" form],
+#figure(caption: [새 연락처 양식을 위한 제출 버튼],
 ```html
     <button>Save</button>
   </fieldset>
@@ -468,32 +370,20 @@ and a link back to the main contacts table:
 </p>
 ```)
 
-It is easy to miss in this straight-forward example: we are seeing the
-flexibility of hypermedia in action.
+이 간단한 예시에서 간과하기 쉬운 점은 하이퍼미디어의 유연성이 실현되고 있다는 것입니다.
 
-If we add a new field, remove a field, or change the logic around how fields are
-validated or work with one another, this new state of affairs would be reflected
-in the new hypermedia representation given to users. A user would see the
-updated new form and be able to work with these new features, with no software
-update required.
+새 필드를 추가하거나 필드를 제거하거나 필드의 유효성을 검사하는 방법이나 서로 어떻게 작동하는지 변경하면, 이러한 새로운 상태의 하이퍼미디어 표현이 사용자에게 반영됩니다. 사용자는 업데이트된 새로운 양식을 보고 이러한 새로운 기능을 사용할 수 있으며, 소프트웨어 업데이트는 필요하지 않습니다.
 
-===== Handling the post to /contacts/new <_handling_the_post_to_contactsnew>
-The next step in our application is to handle the `POST` that this form makes to `/contacts/new`.
+===== /contacts/new에 대한 POST 처리 <_handling_the_post_to_contactsnew>
+애플리케이션의 다음 단계는 이 양식이 `/contacts/new`에 생성하는 `POST`를 처리하는 것입니다.
 
-To do so, we need to add another route to our application that handles the `/contacts/new` path.
-The new route will handle an HTTP `POST`
-method instead of an HTTP `GET`. We will use the submitted form values to
-attempt to create a new Contact.
+이를 위해 우리는 `/contacts/new` 경로를 처리하는 애플리케이션에 또 다른 경로를 추가해야 합니다. 이 새로운 경로는 HTTP `GET` 대신에 HTTP `POST` 메서드를 처리하며, 제출된 양식 값을 사용하여 새 Contact을 생성하려고 합니다.
 
-If we are successful in creating a Contact, we will redirect the user to the
-list of contacts and show a success message. If we aren’t successful, then we
-will render the new contact form again with whatever values the user entered and
-render error messages about what issues need to be fixed so that the user can
-correct them.
+Contact을 생성하는 데 성공하면 사용자를 연락처 목록으로 리디렉션하고 성공 메시지를 표시합니다. 성공하지 않으면 사용자가 입력한 값을 포함하여 새 연락처 양식을 다시 렌더링하고 어떤 문제를 해결해야 하는지에 대한 오류 메시지를 렌더링할 것입니다.
 
-Here is our new request handler:
+여기 우리의 새 요청 핸들러가 있습니다:
 
-#figure(caption: [The "new contact" controller code],
+#figure(caption: [새 연락처 컨트롤러 코드],
 ```python
 @app.route("/contacts/new", methods=['POST'])
 def contacts_new():
@@ -509,102 +399,55 @@ def contacts_new():
     else:
         return render_template("new.html", contact=c) <4>
 ```)
-1. We construct a new contact object with the values from the form.
-2. We try to save it.
-3. On success, "flash" a success message & redirect to the `/contacts`
-  page.
-4. On failure, re-render the form, showing any errors to the user.
+1. 양식의 값을 사용하여 새 연락처 객체를 만듭니다.
+2. 이를 저장하려고 시도합니다.
+3. 성공하면 성공 메시지를 "플래시" 해주고 `/contacts` 페이지로 리다이렉션합니다.
+4. 실패하면 양식을 다시 렌더링하고 사용자에게 오류를 보여줍니다.
 
-The logic in this handler is a bit more complex than other methods we have seen.
-The first thing we do is create a new Contact, again using the `Contact()` syntax
-in Python to construct the object. We pass in the values that the user submitted
-in the form by using the `request.form`
-object, a feature provided by Flask.
+이 핸들러의 논리는 우리가 본 다른 메서드의 논리보다 약간 더 복잡합니다. 가장 먼저 하는 일은 제출된 값을 사용하여 새 Contact을 생성하는 것입니다. 여기서도 Python에서 객체를 구성하기 위해 `Contact()` 문법을 사용합니다. 우리는 양식에서 입력된 값을 `request.form` 객체를 통해 전달합니다. 이는 Flask가 제공하는 기능입니다.
 
-This `request.form` allows us to access submitted form values in an easy and
-convenient way, by simply passing in the same name associated with the various
-inputs.
+이 `request.form`은 여러 입력과 관련된 동일한 이름을 전달하는 방식으로 제출된 양식 값을 쉽고 편리하게 접근할 수 있도록 해줍니다.
 
-We also pass in `None` as the first value to the `Contact` constructor. This is
-the "id" parameter, and by passing in `None` we are signaling that it is a new
-contact, and needs to have an ID generated for it. (Again, we are not going into
-the details of how this model object is implemented, our only concern is using
-it to generate hypermedia responses.)
+`Contact` 생성자에 대해 첫 번째 값으로 `None`을 전달합니다. 이는 "id" 매개변수로, `None`을 전달함으로써 새로운 연락처라는 신호를 줍니다. 이는 ID가 생성되어야 한다는 것입니다. (다시 말하지만, 이 모델 객체가 어떻게 구현되어 있는지에 대한 세부 사항에 대해서는 언급하지 않겠습니다. 우리의 관심사는 하이퍼미디어 응답을 생성하는 것이기 때문입니다.)
 
-Next, we call the `save()` method on the Contact object. This method returns `true` if
-the save is successful, and `false` if the save is unsuccessful (for example, a
-bad email was submitted by the user).
+그 다음, Contact 객체에서 `save()` 메서드를 호출합니다. 이 메서드는 저장이 성공하면 `true`를 반환하고, 실패하면 `false`를 반환합니다(예: 사용자가 잘못된 이메일을 제출한 경우).
 
-If we are able to save the contact (that is, there were no validation errors),
-we create a _flash_ message indicating success, and redirect the browser back to
-the list page. A "flash" is a common feature in web frameworks that allows you
-to store a message that will be available on the _next_ request, typically in a
-cookie or in a session store.
+만약 연락처를 저장할 수 있다면(즉, 유효성 검사 오류가 없다면), 성공을 나타내는 _플래시_ 메시지를 만들고 브라우저를 목록 페이지로 리다이렉트합니다. "플래시"는 웹 프레임워크에서 사용되는 일반적인 기능으로, 보통 쿠키나 세션 저장소에 저장된 메시지를 다음 요청에서 사용할 수 있게 합니다.
 
-Finally, if we are unable to save the contact, we re-render the
-`new.html` template with the contact. This will show the same template as above,
-but the inputs will be filled in with the submitted values, and any errors
-associated with the fields will be rendered to feedback to the user as to what
-validation failed.
+마지막으로 연락처를 저장할 수 없는 경우, `new.html` 템플릿을 연락처와 함께 다시 렌더링합니다. 이는 위와 동일한 템플릿을 보여주겠지만, 입력 필드는 제출된 값으로 채워지고, 모든 필드와 관련된 오류는 사용자에게 무엇이 잘못되었는지 피드백을 렌더링할 것입니다.
 
-#sidebar[The Post/Redirect/Get Pattern][
+#sidebar[POST/리디렉션/GET 패턴][
 #index[Post/Redirect/Get (PRG)]
-This handler implements a common strategy in web 1.0-style development called
-the
-#link("https://en.wikipedia.org/wiki/Post/Redirect/Get")[Post/Redirect/Get]
-or PRG pattern. By issuing an HTTP redirect once a contact has been created and
-forwarding the browser on to another location, we ensure that the `POST` does
-not end up in the browsers request cache.
+이 핸들러는 웹 1.0 스타일 개발에서 일반적인 전략인 #link("https://en.wikipedia.org/wiki/Post/Redirect/Get")[POST/리디렉션/GET] 또는 PRG 패턴을 구현합니다. 연락처가 생성된 후 HTTP 리디렉션을 발행하고 브라우저를 다른 위치로 리디렉션하여 `POST`가 브라우저의 요청 캐시에 저장되지 않도록 합니다.
 
-This means that if the user accidentally (or intentionally) refreshes the page,
-the browser will not submit another `POST`, potentially creating another
-contact. Instead, it will issue the `GET` that we redirect to, which should be
-side-effect free.
+즉, 사용자가 실수로(또는 의도적으로) 페이지를 새로 고침하면 브라우저가 또 다른 `POST`를 제출하지 않고, 리디렉션된 `GET`을 발행하게 되어 부작용이 없어야 합니다.
 
-We will use the PRG pattern in a few different places in this book.
+이 책의 여러 곳에서 PRG 패턴을 사용할 것입니다.
 ]
 
-OK, so we have our server-side logic set up to save contacts. And, believe it or
-not, this is about as complicated as our handler logic will get, even when we
-look at adding more sophisticated htmx-driven behaviors.
+좋습니다. 우리는 연락처를 저장하기 위한 서버 측 논리를 설정했습니다. 믿거나 말거나, 이것이 우리의 핸들러 논리가 복잡해지는 거의 모든 것입니다. 더 정교한 htmx 기반 행동을 추가할 때도 마찬가지입니다.
 
-==== Viewing The Details Of A Contact <_viewing_the_details_of_a_contact>
-The next piece of functionality we will implement is the detail page for a
-Contact. The user will navigate to this page by clicking the "View" link in one
-of the rows in the list of contacts. This will take them to the path `/contact/<contact id>` (e.g., `/contacts/42`).
+==== 연락처 세부정보 보기 <_viewing_the_details_of_a_contact>
+다음으로 구현할 기능은 연락처에 대한 상세 페이지입니다. 사용자는 연락처 목록의 한 행에서 "보기" 링크를 클릭하여 이 페이지로 이동할 것입니다. 그러면 경로 `/contact/<contact id>`(예: `/contacts/42`)로 이동하게 됩니다.
 
-This is a common pattern in web development: contacts are treated as resources
-and the URLs around these resources are organized in a coherent manner.
-- If you wish to view all contacts, you issue a `GET` to `/contacts`.
-- If you want a hypermedia representation allowing you to create a new contact,
-  you issue a `GET` to `/contacts/new`.
-- If you wish to view a specific contact (with, say, an id of
-  #raw("42), you issue a `GET") to `/contacts/42`.
+이는 웹 개발에서 일반적인 패턴입니다: 연락처는 리소스로 취급되며 이러한 리소스에 대한 URL이 일관성 있게 구성됩니다.
+- 모든 연락처를 보려면 `/contacts`에 `GET` 요청을 발행합니다.
+- 새 연락처를 생성할 수 있는 하이퍼미디어 표현이 필요하면 `/contacts/new`에 `GET` 요청을 발행합니다.
+- 특정 연락처를 보려면(예를 들어, id가 #raw("42")인 경우) `/contacts/42`에 `GET` 요청을 발행합니다.
 
-#sidebar[The Eternal Bike Shed of URL Design][
-It is easy to quibble about the particulars of the path scheme you use for your
-application:
+#sidebar[URL 설계의 영원한 자전거 샤벽][
+애플리케이션에 대한 경로 체계의 세부 사항에 대해 쉽게 논쟁을 벌일 수 있습니다:
 
-"Should we `POST` to `/contacts/new` or to `/contacts`?"
+"우리가 `/contacts/new`에 `POST`해야 할까, 아니면 `/contacts`에 해야 할까?"
 
-We have seen many arguments online and in person advocating for one approach
-versus another. We feel it is more important to understand the overarching idea
-of _resources_ and _hypermedia representations_, rather than getting worked up
-about the smaller details of your URL design.
+우리는 하나의 접근 방식에 대해 다른 접근 방식보다 강력하게 주장하는 많은 논쟁을 온라인과 직접 보았습니다. 우리는 URL 디자인의 더 작은 세부 사항에 대해 걱정하기보다는 _리소스_와 _하이퍼미디어 표현_의 포괄적인 개념을 이해하는 것이 더 중요하다고 생각합니다.
 
-We recommend you just pick a reasonable, resource-oriented URL layout you like
-and then stay consistent. Remember, in a hypermedia system, you can always
-change your endpoints later, because you are using hypermedia as the engine of
-application state!
+우리는 여러분이 좋아하는 실용적이고 리소스 지향적인 URL 레이아웃을 선택한 후에 일관성을 유지하기를 권장합니다. 하이퍼미디어 시스템에서는 endpoints를 나중에 변경할 수 있으므로 하이퍼미디어를 애플리케이션 상태의 엔진으로 사용할 수 있습니다!
 ]
 
-Our handler logic for the detail route is going to be _very_
-simple: we just look the Contact up by id, which is embedded in the path of the
-URL for the route. To extract this ID we are going to need to introduce a final
-bit of Flask functionality: the ability to call out pieces of a path and have
-them automatically extracted and passed in to a handler function.
+세부 경로에 대한 우리의 핸들러 논리는 _매우_ 간단합니다. 우리는 연락처의 ID를 조회할 뿐이며, 이 ID는 경로의 URL에 포함되어 있습니다. 이 ID를 추출하기 위해 Flask의 마지막 기능인 경로의 일부를 호출하여 자동으로 추출한 후 핸들러 함수에 전달하는 기능을 도입해야 합니다.
 
-Here is what the code looks like, just a few lines of simple Python:
+다음은 몇 줄의 간단한 Python 코드입니다:
 
 #figure(```python
 @app.route("/contacts/<contact_id>") <1>
@@ -613,33 +456,23 @@ def contacts_view(contact_id=0): <2>
     return render_template("show.html", contact=contact) <4>
 ```)
 
-1. Map the path, with a path variable named `contact_id`.
-2. The handler takes the value of this path parameter.
-3. Look up the corresponding contact.
-4. Render the `show.html` template.
+1. `contact_id`라는 경로 변수를 가진 경로를 매핑합니다.
+2. 핸들러는 이 경로 매개변수의 값을 사용합니다.
+3. 해당 연락처를 조회합니다.
+4. `show.html` 템플릿을 렌더링합니다.
 
-You can see the syntax for extracting values from the path in the first line of
-code: you enclose the part of the path you wish to extract in
-`<>` and give it a name. This component of the path will be extracted and then
-passed into the handler function, via the parameter with the same name.
+코드의 첫 번째 줄에서 경로에서 값을 추출하는 구문을 볼 수 있습니다: 원하는 경로의 일부를 `<>`로 감싸고 이름을 지정합니다. 이 경로의 구성요소는 추출되어 동일한 이름을 가진 매개변수를 통해 핸들러 함수에 전달됩니다.
 
-So, if you were to navigate to the path `/contacts/42`, the value `42`
-would be passed into the `contacts_view()` function for the value of
-`contact_id`.
+따라서 `/contacts/42` 경로로 이동하게 되면, 값 `42`가 `contacts_view()` 함수에서 `contact_id`의 값으로 전달됩니다.
 
-Once we have the id of the contact we want to look up, we load it up using the `find` method
-on the `Contact` object. We then pass this contact into the `show.html` template
-and render a response.
+우리가 조회하고자 하는 연락처의 ID를 얻은 후, 우리는 `Contact` 객체에서 `find` 메서드를 사용하여 이를 로드합니다. 그런 다음 해당 연락처를 `show.html` 템플릿에 전달하고 응답을 렌더링합니다.
 
-==== The Contact Detail Template <_the_contact_detail_template>
-Our `show.html` template is relatively simple, just showing the same information
-as the table but in a slightly different format (perhaps for printing). If we
-add functionality like "notes" to the application later on, this will give us a
-good place to do so.
+==== 연락처 상세 템플릿 <_the_contact_detail_template>
+우리의 `show.html` 템플릿은 상대적으로 간단하며, 표와 같은 정보를 약간 다른 형식으로 보여줍니다(아마도 인쇄용). 나중에 애플리케이션에 "메모"와 같은 기능을 추가하는 경우, 이곳이 적절한 장소가 될 것입니다.
 
-Again, we will omit the "chrome" of the template and focus on the meat:
+다시 한 번, 템플릿의 "크롬"을 생략하고 주요 내용에 집중하겠습니다:
 
-#figure(caption: [The "contact details" template],
+#figure(caption: [연락처 세부정보 템플릿],
 ```html
 <h1>{{contact.first}} {{contact.last}}</h1>
 
@@ -654,26 +487,16 @@ Again, we will omit the "chrome" of the template and focus on the meat:
 </p>
 ```)
 
-We simply render a First Name and Last Name header, with the additional contact
-information below it, and a couple of links: a link to edit the contact and a
-link to navigate back to the full list of contacts.
+우리는 간단히 이름과 성의 헤더를 렌더링하며, 그 아래에 추가 연락처 정보를 표시하고, 두 개의 링크(연락처를 편집하기 위한 링크와 모든 연락처 목록으로 돌아가기 위한 링크)를 포함합니다.
 
-==== Editing And Deleting A Contact <_editing_and_deleting_a_contact>
-Next up we will tackle the functionality on the other end of that "Edit" link.
-Editing a contact is going to look very similar to creating a new contact. As
-with adding a new contact, we are going to need two routes that handle the same
-path, but using different HTTP methods: a `GET` to
-`/contacts/<contact_id>/edit` will return a form allowing you to edit the
-contact and a `POST` to that path will update it.
+==== 연락처 편집 및 삭제 <_editing_and_deleting_a_contact>
+다음으로 "편집" 링크의 다른 측면에 대한 기능을 다루겠습니다. 연락처 편집은 새로운 연락처를 추가하는 것과 매우 유사할 것입니다. 새로운 연락처를 추가하는 것과 마찬가지로, 우리는 동일한 경로를 처리하는 두 개의 경로가 필요할 것입니다. 그러나 다른 HTTP 방법을 사용하는: `GET`은 `/contacts/<contact_id>/edit`로 요청하면 연락처를 편집할 수 있는 양식을 반환하고, 해당 경로에 `POST` 요청을 보내면 편집한 내용을 업데이트합니다.
 
-We are also going to piggyback the ability to delete a contact along with this
-editing functionality. To do this we will need to handle a
-`POST` to `/contacts/<contact_id>/delete`.
+우리는 또한 이 편집 기능과 함께 연락처 삭제 기능을 추가할 것입니다. 이를 위해 `/contacts/<contact_id>/delete`에 대한 `POST`를 처리해야 합니다.
 
-Let’s look at the code to handle the `GET`, which, again, will return an HTML
-representation of an editing interface for the given resource:
+다음은 `GET`을 처리하는 코드를 살펴봅시다. 이 코드는 주어진 리소스에 대한 편집 인터페이스의 HTML 표현을 반환하게 됩니다:
 
-#figure(caption: [The "edit contact" controller code],
+#figure(caption: [연락처 편집 컨트롤러 코드],
 ```python
 @app.route("/contacts/<contact_id>/edit", methods=["GET"])
 def contacts_edit_get(contact_id=0):
@@ -681,19 +504,13 @@ def contacts_edit_get(contact_id=0):
     return render_template("edit.html", contact=contact)
 ```)
 
-As you can see this looks a lot like our "Show Contact" functionality. In fact,
-it is nearly identical except for the template: here we render
-`edit.html` rather than `show.html`.
+보시다시피, 이는 "연락처 보기" 기능과 매우 유사합니다. 사실, 템플릿이 다를 뿐 거의 동일합니다: 여기서는 `show.html`이 아니라 `edit.html`을 렌더링합니다.
 
-While our handler code looked similar to the "Show Contact" functionality, the `edit.html` template
-is going to look very similar to the template for the "New Contact"
-functionality: we will have a form that submits updated contact values to the
-same "edit" URL and that presents all the fields of a contact as inputs for
-editing, along with any error messages.
+우리 핸들러 코드는 "연락처 보기" 기능과 유사해 보이지만, `edit.html` 템플릿은 "새 연락처" 기능의 템플릿과 매우 유사합니다. 즉, 우리는 연락처의 모든 필드를 입력하기 위한 입력 필드를 포함하여 업데이트된 연락처 값을 제출하는 양식을 가집니다. 오류 메시지도 포함되어 있습니다.
 
-Here is the first bit of the form:
+다음은 양식의 첫 번째 부분입니다:
 
-#figure(caption: [The "edit contact" form start],
+#figure(caption: [연락처 편집 양식 시작],
 ```html
 <form action="/contacts/{{ contact.id }}/edit" method="post"> <1>
   <fieldset>
@@ -706,19 +523,14 @@ Here is the first bit of the form:
     </p>
 ```)
 
-1. Issue a `POST` to the `/contacts/{{ contact.id }}/edit` path.
-2. As with the `new.html` page, the input is tied to the contact’s email.
+1. `/contacts/{{ contact.id }}/edit` 경로로 `POST` 요청을 발행합니다.
+2. `new.html` 페이지와 유사하게 이 입력은 연락처의 이메일에 연결됩니다.
 
-This HTML is nearly identical to our `new.html` form, except that this form is
-going to submit a `POST` to a different path, based on the id of the contact
-that we want to update. (It’s worth mentioning here that, rather than `POST`, we
-would prefer to use a `PUT` or `PATCH`, but those are not available in plain
-HTML.)
+이 HTML은 우리의 `new.html` 양식과 거의 동일합니다. 그러나 이 양식은 업데이트 할 연락처의 ID를 기반으로 다른 경로에 `POST`를 제출할 것입니다. (여기에서 언급할 가치가 있는 것은, `POST` 대신에 `PUT`이나 `PATCH`를 선호할 수 있지만, 이는 일반 HTML에서는 불가능합니다.)
 
-Following this we have the remainder of our form, again very similar to the `new.html` template,
-and our button to submit the form.
+앞서 작성한 `new.html` 템플릿과 매우 유사한 양식의 나머지 부분과 양식을 제출하는 버튼이 다음과 같이 나옵니다:
 
-#figure(caption: [The "edit contact" form body],
+#figure(caption: [연락처 편집 양식 본문],
 ```html
     <p>
       <label for="first_name">First Name</label>
@@ -743,16 +555,11 @@ and our button to submit the form.
 </form>
 ```)
 
-In the final part of our template we have a small difference between the
-`new.html` and `edit.html`. Below the main editing form, we include a second
-form that allows you to delete a contact. It does this by issuing a `POST` to
-the `/contacts/<contact id>/delete` path. Just as we would prefer to use a `PUT` to
-update a contact, we would much rather use an HTTP `DELETE` request to delete
-one. Unfortunately that also isn’t possible in plain HTML.
+템플릿의 마지막 부분에는 `new.html`과 `edit.html` 간에 약간의 차이가 있습니다. 주요 편집 양식 하단에 연락처를 삭제할 수 있는 두 번째 양식이 포함됩니다. 이는 `/contacts/<contact id>/delete` 경로로 `POST`를 발행합니다. 연락처를 업데이트하기 위해 `PUT`을 사용하고 싶지만, 이것도 일반 HTML에서는 불가능합니다.
 
-To finish up the page, there is a simple hyperlink back to the list of contacts.
+페이지를 마무리하기 위해 연락처 목록으로 돌아가는 간단한 하이퍼링크가 있습니다.
 
-#figure(caption: [The "edit contact" form footer],
+#figure(caption: [연락처 편집 양식 바닥글],
 ```html
 <form action="/contacts/{{ contact.id }}/delete" method="post">
   <button>Delete Contact</button>
@@ -763,45 +570,27 @@ To finish up the page, there is a simple hyperlink back to the list of contacts.
 </p>
 ```)
 
-Given all the similarities between the `new.html` and `edit.html`
-templates, you may be wondering why we are not _refactoring_ these two templates
-to share logic between them. That’s a good observation and, in a production
-system, we would probably do just that.
+new.html`과 `edit.html` 템플릿 간의 유사성을 모두 고려할 때, 우리는 이 두 템플릿을 _리팩터링_하여 서로 간에 로직을 공유하지 않는 이유가 궁금해질 수 있습니다. 이는 좋은 관찰이며, 프로덕션 시스템에서는 아마 그렇게 할 것입니다.
 
-For our purposes, however, since our application is small and simple, we will
-leave the templates separate.
+그러나 우리의 목적상 우리의 애플리케이션이 작고 단순하므로 각 템플릿을 별도로 두겠습니다.
 
-#sidebar[Factoring Your Applications][
+#sidebar[애플리케이션 리팩터링에 대한 사항][
   #index[factoring]
-  One thing that often trips people up who are coming to hypermedia applications
-  from a JavaScript background is the notion of
-  "components". In JavaScript-oriented applications it is common to break your app
-  up into small client-side components that are then composed together. These
-  components are often developed and tested in isolation and provide a nice
-  abstraction for developers to create testable code.
+  하이퍼미디어 애플리케이션에 대한 JavaScript 배경에서 오는 사람들을 혼란스럽게 하는 한 가지는 "컴포넌트"라는 개념입니다. JavaScript 지향 애플리케이션에서 애플리케이션을 작은 클라이언트 측 컴포넌트로 나누고 이를 함께 구성하는 것이 일반적입니다. 이러한 컴포넌트는 종종 격리된 상태에서 개발되고 테스트됩니다. 이러한 방식은 개발자가 테스트 가능한 코드를 작성하는 데 유용한 추상화를 제공합니다.
 
-  With Hypermedia-Driven Applications, in contrast, you factor your application on
-  the server side. As we said, the above form could be refactored into a shared
-  template between the edit and create templates, allowing you to achieve a
-  reusable and DRY (Don’t Repeat Yourself) implementation.
+  그러나 하이퍼미디어 기반 애플리케이션의 경우, 서버 측에서 애플리케이션을 리팩터링합니다. 위의 양식은 편집 및 생성 템플릿 간의 공유 템플릿으로 리팩터링할 수 있으며, 재사용 가능하고 DRY(중복 제거) 구현을 달성할 수 있습니다.
 
-  Note that factoring on the server-side tends to be coarser-grained than on the
-  client-side: you tend to split out common _sections_ rather than create lots of
-  individual components. This has benefits (it tends to be simple) as well as
-  drawbacks (it is not nearly as isolated as client-side components).
+  서버 측 리팩터링은 클라이언트 측 리팩터링보다 더욱 공동으로 이루어지는 경향이 있습니다: 일반적으로 개별 컴포넌트를 만드는 것보다 공통 _섹션_을 나누는 경향이 있습니다. 이점(단순해 보이긴 하나)과 단점(클라이언트 측 컴포넌트처럼 완전히 고립되지 않을 수 있음)이 있습니다.
 
-  Overall, a properly factored server-side hypermedia application can be extremely
-  DRY.
+  전반적으로 적절하게 리팩터링 된 서버 측 하이퍼미디어 애플리케이션은 매우 DRY 할 수 있습니다.
 ]
 
-===== Handling the post to /contacts/\<contact\_id\>/edit <_handling_the_post_to_contactscontact_id>
-Next we need to handle the HTTP `POST` request that the form in our
-`edit.html` template submits. We will declare another route that handles the
-same path as the `GET` above.
+===== /contacts/\<contact\_id\>/edit에 대한 POST 처리 <_handling_the_post_to_contactscontact_id>
+이제 `edit.html` 템플릿의 양식이 제출하는 HTTP `POST` 요청을 처리해야 합니다. 위의 `GET`와 동일한 경로를 처리하는 또 다른 경로를 선언할 것입니다.
 
-Here is the new handler code:
+다음은 새로운 핸들러 코드입니다:
 
-#index[POST request]
+#index[POST 요청]
 #figure(
 ```python
 @app.route("/contacts/<contact_id>/edit", methods=["POST"]) <1>
@@ -819,32 +608,25 @@ def contacts_edit_post(contact_id=0):
         return render_template("edit.html", contact=c) <6>
 ```)
 
-1. Handle a `POST` to `/contacts/<contact_id>/edit`.
-2. Look the contact up by id.
-3. Update the contact with the new information from the form.
-4. Attempt to save it.
-5. On success, flash a success message & redirect to the detail page.
-6. On failure, re-render the edit template, showing any errors.
+1. `/contacts/<contact_id>/edit`에 대한 `POST`를 처리합니다.
+2. ID로 연락처를 조회합니다.
+3. 양식에서 입력된 새 정보로 연락처를 업데이트합니다.
+4. 저장을 시도합니다.
+5. 성공하면 성공 메시지를 플래시하고 세부 페이지로 리다이렉션합니다.
+6. 실패하면 빈렌더링합니다, 그때의 오류를 사용자에게 보여줍니다.
 
-The logic in this handler is very similar to the logic in the handler for adding
-a new contact. The only real difference is that, rather than creating a new
-Contact, we look the contact up by id and then call the
-`update()` method on it with the values that were entered in the form.
+이 핸들러의 논리는 새로운 연락처를 추가하는 핸들러의 논리와 매우 유사합니다. 실제 차이점은 새 Contact을 생성하는 대신 ID로 연락처를 조회하고 이후에 양식에서 입력된 값으로 업데이트 메서드를 호출한다는 점입니다.
 
-Once again, this consistency between our CRUD operations is one of the nice and
-simplifying aspects of traditional CRUD web applications.
+다시 말하지만, CRUD 작업 간의 일관성은 전통적인 CRUD 웹 애플리케이션의 좋은 측면 중 하나입니다.
 
-==== Deleting A Contact <_deleting_a_contact>
+==== 연락처 삭제하기 <_deleting_a_contact>
 
 #index[Post/Redirect/Get (PRG)]
-We piggybacked contact delete functionality into the same template used to edit
-a contact. This second form will issue an HTTP `POST` to
-`/contacts/<contact_id>/delete`, and we will need to create a handler for that
-path as well.
+우리는 연락처 삭제 기능을 연락처 편집 템플릿과 함께 추가했습니다. 이 두 번째 양식은 `/contacts/<contact_id>/delete` 경로에 대한 HTTP `POST`를 발행하며, 해당 경로에 대한 핸들러도 만들어야 합니다.
 
-Here is what the controller looks like:
+컨트롤러는 다음과 같이 생겼습니다:
 
-#figure(caption: [The "delete contact" controller code],
+#figure(caption: [연락처 삭제 컨트롤러 코드],
 ```python
 @app.route("/contacts/<contact_id>/delete", methods=["POST"]) <3>
 def contacts_delete(contact_id=0):
@@ -854,97 +636,58 @@ def contacts_delete(contact_id=0):
     return redirect("/contacts") <3>
 ```)
 
-1. Handle a `POST` the `/contacts/<contact_id>/delete` path.
-2. Look up and then invoke the `delete()` method on the contact.
-3. Flash a success message and redirect to the main list of contacts.
+1. `/contacts/<contact_id>/delete` 경로에 대한 `POST`를 처리합니다.
+2. 연락처를 조회한 후 그 연락처에서 `delete()` 메서드를 호출합니다.
+3. 성공 메시지를 플래시하고 연락처 목록으로 리다이렉션합니다.
 
-The handler code is very simple since we don’t need to do any validation or
-conditional logic: we simply look up the contact the same way we have been doing
-in our other handlers and invoke the `delete()` method on it, then redirect back
-to the list of contacts with a success flash message.
+핸들러 코드는 매우 단순합니다. 검증이나 조건부 로직이 필요하지 않기 때문에 실제로는 연락처를 조회하는 방법을 동일하게 수행하여 이를 `delete()` 메서드로 호출한 다음, 성공 플래시 메시지를 따르며 연락처 목록으로 리디렉션합니다.
 
-No need for a template in this case, the contact is gone.
+이 경우 템플릿이 필요하지 않으며, 연락처는 삭제됩니다.
 
-==== Contact.app…​ Implemented! <_contact_app_implemented>
-And, well…​ believe it or not, that’s our entire contact application!
+==== Contact.app... 구현 완료! <_contact_app_implemented>
+그리고, 믿거나 말거나, 이것이 전체 연락처 애플리케이션입니다!
 
-If you’ve struggled with parts of the code so far, don’t worry: we don’t expect
-you to be a Python or Flask expert (we aren’t!). You just need a basic
-understanding of how they work to benefit from the remainder of the book.
+지금까지의 코드 부분에서 어려움이 있었다면 걱정하지 마세요: 우리는 여러분이 파이썬이나 Flask 전문가가 되기를 기대하지 않습니다(우리는 그렇지 않습니다!). 여러분이 이 책의 나머지 부분에서 이들 언어가 어떻게 작동하는지에 대한 기본적인 이해만 필요합니다.
 
-This is a small and simple application, but it does demonstrate many of the
-aspects of traditional, web 1.0 applications: CRUD, the Post/Redirect/Get
-pattern, working with domain logic in a controller, organizing our URLs in a
-coherent, resource-oriented manner.
+이것은 작고 간단한 애플리케이션이지만, 전통적인 웹 1.0 애플리케이션의 많은 측면을 보여줍니다: CRUD, Post/Redirect/Get 패턴, 컨트롤러에서 도메인 논리 작업하기, 일관성 있는 리소스 지향적 방식으로 URL 구성하기.
 
-And, furthermore, this is a deeply _Hypermedia-Driven_ web application. Without
-thinking about it very much, we have been using REST, HATEOAS and all the other
-hypermedia concepts we discussed earlier. We would bet that this simple little
-contact app of ours is more RESTful than 99% of all JSON APIs ever built!
+게다가, 이는 깊이 있는 _하이퍼미디어 기반_ 웹 애플리케이션입니다. 우리가 이에 대해 많은 고민 없이 하이퍼미디어처럼 REST, HATEOAS 및 앞서 논의했던 모든 하이퍼미디어 개념을 사용해 왔습니다. 우리는 이 간단한 연락처 앱이 지금까지 만들어진 99% 이상의 JSON API보다 더 RESTful이라고 장담할 수 있습니다!
 
-Just by virtue of using a _hypermedia_, HTML, we naturally fall into the RESTful
-network architecture.
+하이퍼미디어인 HTML을 사용하기 때문에, 우리는 자연스럽게 RESTful 네트워크 아키텍처에 얽히게 됩니다.
 
-So that’s great. But what’s the matter with this little web app? Why not end
-here and go off to develop web 1.0 style applications?
+그래서 그거 굉장하군요. 그런데 이 작은 웹 애플리케이션의 문제는 무엇일까요? 왜 여기서 끝내고 웹 1.0 스타일 애플리케이션을 개발하러 떠나지 않습니까?
 
-Well, at some level, nothing is wrong with it. Particularly for an application
-as simple as this one, the older way of building web apps might be a perfectly
-acceptable approach.
+어떤 측면에서는 아무런 문제가 없다. 특히 이처럼 단순한 애플리케이션의 경우, 이전 방식으로 웹 앱을 구축하는 것이 전적으로 허용 가능할 수 있습니다.
 
-However, our application does suffer from that "clunkiness" that we mentioned
-earlier when discussing web 1.0 applications: every request replaces the entire
-screen, introducing a noticeable flicker when navigating between pages. You lose
-your scroll state. You have to click around a bit more than you might in a more
-sophisticated web application.
+그러나 우리의 애플리케이션은 앞서 언급한 "무거움"을 겪고 있습니다: 모든 요청이 전체 화면을 교체하여 페이지 간 탐색 시 눈에 띄는 깜박임을 유발합니다. 스크롤 상태를 잃게 되며, 더 정교한 웹 애플리케이션에서는 클릭해야 할 횟수가 더 많아집니다.
 
-Contact.app, at this point, just doesn’t feel like a "modern" web application.
+이 시점에서 Contact.app은 "현대" 웹 애플리케이션처럼 느껴지지 않습니다.
 
-Is it time to reach for a JavaScript framework and JSON APIs to make our contact
-application more interactive?
+자바스크립트 프레임워크와 JSON API에 손을 뻗쳐서 연락처 애플리케이션을 더 상호작용적으로 만드는 것이 좋을까요?
 
-No. No it isn’t.
+아니요. 그렇지 않습니다.
 
-It turns out that we can improve the user experience of this application while
-retaining its fundamental hypermedia architecture.
+사실 우리가 기본 하이퍼미디어 아키텍처를 유지하면서도 사용자 경험을 개선할 수 있습니다.
 
-In the next few chapters we will look at
-#link("https://htmx.org")[htmx], a hypermedia-oriented library that will let us
-improve our contact application while retaining the hypermedia-based approach we
-have used so far.
+다음 몇 장에서는 #link("https://htmx.org")[htmx]라는 하이퍼미디어 중심 라이브러리를 살펴보며, 지금까지 사용한 하이퍼미디어 기반 접근 방식을 유지하면서 연락처 애플리케이션을 개선할 것입니다.
 
-#html-note[Framework Soup][
+#html-note[프레임워크 수프][
 #index[components]
-Components encapsulate a section of a page along with its dynamic behavior.
-While encapsulating behavior is a good way to organize code, it can also
-separate elements from their surrounding context, which can lead to wrong or
-inadequate relationships between elements. The result is what one might call _component soup_,
-where information is hidden in component state, rather than being present in the
-HTML, which is now incomprehensible due to missing context.
+컴포넌트는 페이지의 섹션과 그 동적 동작을 캡슐화합니다. 동작을 캡슐화하는 것은 코드를 구성하는 좋은 방법이지만, 주변 맥락과 요소를 분리스럽게 이해의 어려움과 잘못된 또는 부적절한 관계를 초래할 수 있습니다. 결과적으로 사람들이 _컴포넌트 수프_라고 부를 수 있는 상황이 될 수 있으며, 여기서는 정보가 컴포넌트 상태에 숨겨져 있고, 구성 요소가 없는 HTML는 이제 이해할 수 없게 됩니다.
 
-Before you reach for components for reuse, consider your options. Lower-level
-mechanisms often (allow you to) produce better HTML. In some cases, components
-can actually _improve_ the clarity of your HTML.
+재사용을 위해 컴포넌트를 사용하기 전에 선택 사항을 고려하십시오. 낮은 수준의 메커니즘은 종종 더 나은 HTML을 생성할 수 있습니다. 경우에 따라 컴포넌트는 실제로 HTML의 명확성을 _개선_할 수 있습니다.
 
 #blockquote(
-  attribution: [Manuel Matuzović, #link(
+  attribution:[Manuel Matuzović, #link(
       "https://www.matuzo.at/blog/2023/single-page-applications-criticism",
-    )[Why I’m not the biggest fan of Single Page Applications]],
+    )[왜 나는 단일 페이지 애플리케이션의 최대 팬이 아닌가]],
 )[
-  The fact that the HTML document is something that you barely touch, because
-  everything you need in there will be injected via JavaScript, puts the document
-  and the page structure out of focus.
+  HTML 문서는 여러분이 거의 만지지 않는 것입니다. 필요한 모든 내용이 JavaScript를 통해 주입되기 때문에 문서와 페이지 구조가 초점에서 벗어납니다.
 ]
 
-In order to avoid `<div>` soup (or Markdown soup, or Component soup), you need
-to be aware of the markup you’re producing and be able to change it.
+`<div>` 수프(혹은 마크다운 수프, 컴포넌트 수프)를 피하기 위해, 생성 중인 마크업을 인식하고 변경할 수 있어야 합니다.
 
-Some SPA frameworks, and some web components, make this more difficult by
-putting layers of abstraction between the code the developer writes and the
-generated markup.
+일부 SPA 프레임워크와 웹 구성 요소는 개발자가 작성한 코드와 생성된 마크업 사이에 여러 추상화를 배치하여 이를 더 어렵게 만들 수 있습니다.
 
-While these abstractions can allow developers to create richer UI or work
-faster, their pervasiveness means that developers can lose sight of the actual
-HTML (and JavaScript) being sent to clients. Without diligent testing, this
-leads to inaccessibility, poor SEO, and bloat.
+이러한 추상화는 개발자가 더욱 풍부한 UI를 만들거나 더 빠르게 작업할 수 있도록 할 수 있지만, 그들의 확산성 때문에 개발자는 클라이언트에게 전송되는 실제 HTML(및 JavaScript)를 잃어버릴 수 있습니다. 근본적인 테스트가 없으면 이는 접근 불가능성과 열악한 SEO, 불필요한 대량을 초래할 수 있습니다.
 ]
