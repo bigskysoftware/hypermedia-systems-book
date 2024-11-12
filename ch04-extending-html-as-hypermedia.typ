@@ -87,11 +87,10 @@ and address the issues with legacy HTML applications we mentioned above (as well
 as a few others.)
 
 Before we get into how htmx allows us to improve the UX of our Web 1.0 style
-application, let’s revisit the hyperlink/anchor tag from Chapter
-1. Recall, a hyperlink is what is known as a _hypermedia control_,
-a mechanism that describes some sort of interaction with a server by encoding
-information about that interaction directly and completely within the control
-itself.
+application, let’s revisit the hyperlink/anchor tag from Chapter 1. Recall, a
+hyperlink is what is known as a _hypermedia control_, a mechanism that describes
+some sort of interaction with a server by encoding information about that
+interaction directly and completely within the control itself.
 
 Consider again this simple #indexed[anchor tag] which, when interpreted by a
 browser, creates a #indexed[hyperlink] to the website for this book:
