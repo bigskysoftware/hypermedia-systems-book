@@ -884,16 +884,16 @@ CSS selector _relative_ to the element it is declared on. Here are some
 examples:
 
 / `closest`: #index[relative CSS selectors][closest] Find the closest parent
-element matching the given selector, e.g., `closest form`.
+  element matching the given selector, e.g., `closest form`.
 
 / `next`: #index[relative CSS selectors][next] Find the next element (scanning
-forward) matching the given selector, e.g., `next input`.
+  forward) matching the given selector, e.g., `next input`.
 
 / `previous`: #index[relative CSS selectors][previous] Find the previous element
-(scanning backwards) matching the given selector, e.g., `previous input`.
+  (scanning backwards) matching the given selector, e.g., `previous input`.
 
 / `find`: #index[relative CSS selectors][find] Find the next element within this
-element matching the given selector, e.g., `find input`.
+  element matching the given selector, e.g., `find input`.
 
 / `this`: #index[relative CSS selectors][this] The current element.
 
