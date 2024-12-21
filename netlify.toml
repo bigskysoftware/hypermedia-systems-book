@@ -2,7 +2,9 @@
 command = """
 source www/install-pandoc-netlify.sh &&\
 www/build_web.ts &&\
+cp www/{style.css,color-customizer.js} _site &&\
 cp -r images _site/images &&\
-cp -r fonts _site/fonts
+cp -r fonts _site/fonts &&\
+npx --yes subfont -i _site --no-fallbacks
 """
 publish = "_site"

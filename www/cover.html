@@ -22,9 +22,10 @@ Enhancing web applications without using SPA frameworks."
         width: 100%;
         height: 100%;
         z-index: -1;
-        background: url(/images/art.png);
+        background: url(/images/art--pixel-perfect.png);
         background-blend-mode: overlay;
         background-size: cover;
+        image-rendering: pixelated;
         mix-blend-mode: hard-light;
         filter: contrast(0.5);
     }
@@ -140,29 +141,39 @@ Enhancing web applications without using SPA frameworks."
 
     <div class="buy-it">
         <a href="https://www.amazon.com/dp/B0C9S88QV6/">
-            Hard cover
+            <b>Hard cover</b>
             <small>(Buy on Amazon)</small>
-            <img src="/images/cover.png" />
+            <picture>
+              <source type="image/avif" src="/images/cover-thumb.avif">
+              <source type="image/webp" src="/images/cover-thumb.webp">
+              <source type="image/jpg" src="/images/cover-thumb.jpg">
+              <img src="/images/cover-thumb.jpg" />
+            </picture>
         </a>
         <a
             href="https://www.lulu.com/shop/deniz-ak%C5%9Fim%C5%9Fek-and-adam-stepinski-and-carson-gross-and-mike-amundsen/hypermedia-systems/paperback/product-jen2vm2.html?page=1&pageSize=4"
         >
-            Soft cover
+            <b>Soft cover</b>
             <small>(Buy on Lulu)</small>
-            <img src="/images/cover2.png" />
+            <picture>
+              <source type="image/avif" src="/images/cover2-thumb.avif">
+              <source type="image/webp" src="/images/cover2-thumb.webp">
+              <source type="image/jpg" src="/images/cover2-thumb.jpg">
+              <img src="/images/cover2-thumb.jpg" />
+            </picture>
         </a>
         <a href="/book/contents">
-            Read online
+            <b>Read online</b>
             <small>(Free, forever)</small>
         </a>
         <a
             href="https://www.lulu.com/shop/deniz-ak%C5%9Fim%C5%9Fek-and-adam-stepinski-and-carson-gross/hypermedia-systems/ebook/product-jenyj66.html"
         >
-            EPUB
+            <b>EPUB</b>
             <small>(Buy on Lulu)</small>
         </a>
         <a href="https://www.amazon.com/dp/B0CC315VJK/">
-            Kindle
+            <b>Kindle</b>
             <small>(Buy on Amazon)</small>
         </a>
     </div>

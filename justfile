@@ -28,8 +28,10 @@ typst-fonts:
 build-html:
   rm -rf _site
   www/build_web.ts
+  cp www/{style.css,color-customizer.js} _site
   cp -r images _site/images
   cp -r fonts _site/fonts
+  npx subfont -i _site --no-fallbacks
 
 serve:
   (trap 'kill 0' SIGINT; \

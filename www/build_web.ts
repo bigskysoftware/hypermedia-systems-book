@@ -19,7 +19,6 @@ import {
   LandingPage,
   Division,
 } from "https://codeberg.org/dz4k/muteferrika/raw/commit/f56413a/lib/muteferrika.ts";
-import { copySync } from "https://deno.land/std@0.157.0/fs/copy.ts";
 
 const compile = (path: string) => {
   return {
@@ -145,6 +144,3 @@ const HypermediaSystems = new Book("Hypermedia Systems").with(
 const built = await build(HypermediaSystems);
 console.log(built.length);
 write(built, { directory: "_site" });
-copySync("www/style.css", "_site/style.css");
-copySync("fonts", "_site/fonts");
-copySync("www/color-customizer.js", "_site/color-customizer.js");
