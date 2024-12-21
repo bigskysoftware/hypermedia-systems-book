@@ -7,8 +7,10 @@
 #import "./indexing.typ": *
 
 #let part-heading(it) = [
-  #page([], header: none, footer: none)
-  #pagebreak(to: "odd")
+  #pagebreak()
+  #set page(header: none, footer: none)
+  #pagebreak(to: "odd", weak: true)
+
   #align(horizon)[
     #set par(leading: 5pt, justify: false)
     #set text(size: 32pt, font: display-font)
@@ -23,8 +25,10 @@
 ]
 
 #let chapter-heading(it) = [
-  #page([], header: none, footer: none)
-  #pagebreak(to: "odd")
+  #pagebreak()
+  #set page(header: none, footer: none)
+  #pagebreak(to: "odd", weak: true)
+
   #v(3in)
   #set par(justify: false)
   #set text(size: 22pt, font: display-font)
