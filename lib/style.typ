@@ -63,7 +63,7 @@
   #show heading.where(level: 6): set text(font: secondary-font)
 
   #set par(justify: true, first-line-indent: 1em, leading: leading)
-  #show par: set block(spacing: leading)
+  #set par(spacing: leading)
 
   #show list: set par(justify: false)
   #show list: set block(spacing: 0pt, inset: 0pt)
@@ -102,9 +102,9 @@
     show figure.caption: set text(font: secondary-font, size: 10pt)
     it
   }
-  
+
   #set figure(placement: auto)
-  
+
   #show figure.where(kind: raw): it => {
     show raw.where(block: true): set block(width: 100%, stroke: none, spacing: 0pt)
     block(
@@ -121,7 +121,7 @@
       }
     )
   }
-  
+
   #show raw.where(block: true): code-with-callouts
 
   #show link: it => {
@@ -187,8 +187,10 @@
       #part-heading(it)
       // Override heading counter so chapter numbers don't reset with each part.
       // TODO: this doesn't work on the first heading in each part
-      #locate(loc => counter(heading).update((..args) =>
-        (args.pos().at(0), chapter-counter.at(loc).last())))
+      #context {
+        let (chapter-no,) = chapter-counter.get()
+        counter(heading).update((h1, ..) => (h1, chapter-no))
+      }
     ]
 
     #set heading(
