@@ -106,6 +106,8 @@
     #show heading: set text(1em)
 
     === #label: #title
+    <html-note-title>
+
     #body
   ],
 )<html-note>]

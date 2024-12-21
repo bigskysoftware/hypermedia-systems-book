@@ -31,7 +31,7 @@ build-html:
   cp www/{style.css,color-customizer.js} _site
   cp -r images _site/images
   cp -r fonts _site/fonts
-  npx subfont -i _site --no-fallbacks
+  npx subfont -ir _site --no-fallbacks
 
 serve:
   (trap 'kill 0' SIGINT; \
