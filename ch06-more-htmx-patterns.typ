@@ -68,7 +68,7 @@ normal form submission. Finally, we only want to do this after a small pause in
 typing has occurred.
 
 As we said, this functionality is very similar to what we needed for email
-validation. We can, in fact copy the `hx-trigger` attribute directly from our
+validation. In fact, we can copy the `hx-trigger` attribute directly from our
 email validation example, with its small 200-millisecond delay, to allow a user
 to stop typing before a request is triggered.
 
