@@ -56,11 +56,11 @@ that issue htmx-driven requests because its default behavior --- `innerHTML`,
 which swaps the inner HTML of the element --- tends to cover most use cases.
 
 We earlier saw situations where we wanted to override the default behavior and
-use `outerHTML`, for example. And, in chapter 2, we discussed some other swap
+use `outerHTML`, for example. And, in Chapter 2, we discussed some other swap
 options beyond these two, `beforebegin`,
 `afterend`, etc.
 
-In chapter 5, we also looked at the `swap` delay modifier for `hx-swap`, which
+In Chapter 5, we also looked at the `swap` delay modifier for `hx-swap`, which
 allowed us to fade some content out before it was removed from the DOM.
 
 In addition to these, `hx-swap` offers further control with the following
@@ -624,7 +624,7 @@ refreshing the contacts table in our application.
 === HTTP Requests & Responses <_http_requests_responses>
 We have just seen an advanced feature of HTTP responses supported by htmx, the `HX-Trigger` response
 header, but htmx supports quite a few more headers for both requests and
-responses. In chapter 4 we discussed the headers present in HTTP Requests. Here
+responses. In Chapter 4 we discussed the headers present in HTTP Requests. Here
 are some of the more important headers you can use to change htmx behavior with
 HTTP responses:
 

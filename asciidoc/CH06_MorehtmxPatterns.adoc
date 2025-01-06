@@ -1174,7 +1174,7 @@ the web.
 (((accessibility)))
 Accessibility problems can arise when we try to implement controls that aren't built into HTML.
 
-Earlier, in Chapter One, we looked at the example of a <div> improvised to work like a button.
+Earlier, in Chapter 1, we looked at the example of a <div> improvised to work like a button.
 Let's look at a different example: what if you make something that looks like a set of tabs, but you use radio buttons and CSS hacks to build it? It's a neat hack that makes the rounds in web development communities from time to time.
 
 The problem here is that tabs have requirements beyond clicking to change content.

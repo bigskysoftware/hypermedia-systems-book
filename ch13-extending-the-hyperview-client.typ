@@ -826,7 +826,7 @@ it exactly using hypermedia. While htmx and Hyperview significantly improve the
 user experience available via the hypermedia-driven approach, there are still
 times when it won’t be easy to pull of a particular user experience.
 
-As we saw in Chapter Two, Roy Fielding noted this tradeoff with respect to the
+As we saw in Chapter 2, Roy Fielding noted this tradeoff with respect to the
 web’s RESTful network architecture, where "information is transferred in a
 standardized form rather than one which is specific to an application’s needs."
 
