@@ -838,7 +838,7 @@ You aren’t really waiting until the value is actually needed."
 Fine. Let’s make it _lazy_ lazy: we’ll only issue the request when the `span` scrolls
 into view.
 
-To do that, lets recall how we set up the infinite scroll example: we used the `revealed` event
+To do that, let's recall how we set up the infinite scroll example: we used the `revealed` event
 for our trigger. That’s all we want here, right? When the element is revealed we
 issue the request?
 
