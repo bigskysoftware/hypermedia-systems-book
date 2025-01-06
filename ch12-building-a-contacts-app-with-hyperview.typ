@@ -1396,7 +1396,7 @@ def render_to_response(template_name, *args, **kwargs):
 ``` ]
 
 `render_to_response()` renders a template with the given context, and turns it
-into an Flask response object with the appropriate Hyperview
+into a Flask response object with the appropriate Hyperview
 `Content-Type` header. Obviously, the implementation is highly-specific to
 serving our Hyperview mobile app. But we can modify the function to do content
 negotiation based on the request’s `Accept` header:
