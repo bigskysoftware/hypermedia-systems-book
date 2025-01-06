@@ -49,7 +49,7 @@ Hypermedia-Driven Applications.
 === hx-swap
 
 (((hx-swap)))
-We'll start with the hx-swap attribute. This is often not included on elements that issue htmx-driven requests because
+We'll start with the `hx-swap` attribute. This is often not included on elements that issue htmx-driven requests because
 its default behavior -- `innerHTML`, which swaps the inner HTML of the element -- tends to cover most use cases.
 
 We earlier saw situations where we wanted to override the default behavior and use `outerHTML`, for example.  And, in
