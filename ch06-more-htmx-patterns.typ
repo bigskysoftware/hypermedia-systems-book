@@ -69,7 +69,7 @@ typing has occurred.
 
 As we said, this functionality is very similar to what we needed for email
 validation. In fact, we can copy the `hx-trigger` attribute directly from our
-email validation example, with its small 200-millisecond delay, to allow a user
+email validation example, with its small 200-millisecond delay, to wait for a user
 to stop typing before a request is triggered.
 
 This is another example of how common patterns come up again and again when
