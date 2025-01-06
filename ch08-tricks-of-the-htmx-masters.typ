@@ -51,7 +51,7 @@ options for creating more advanced Hypermedia-Driven Applications.
 
 ==== #indexed[hx-swap]
 
-We’ll start with the hx-swap attribute. This is often not included on elements
+We’ll start with the `hx-swap` attribute. This is often not included on elements
 that issue htmx-driven requests because its default behavior --- `innerHTML`,
 which swaps the inner HTML of the element --- tends to cover most use cases.
 
