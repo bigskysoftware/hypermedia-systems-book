@@ -326,7 +326,7 @@ Some mobile OSes will use a different transition for the header than the rest of
 (((HXML, "<view>")))
 `<view>` is the basic building block for layouts and structure within the screen's body.
 Think of it like a `<div>` in HTML.
-Note that unlike in HTML, a `<div>` cannot directly contain text.
+Note that unlike in HTML, a `<view>` cannot directly contain text.
 
 (((HXML, "<text>")))
 `<text>` elements are the only way to render text in the UI.
