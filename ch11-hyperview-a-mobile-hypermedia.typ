@@ -360,7 +360,7 @@ the screen content.
 
 #index[HXML][\<view\>]
 `<view>` is the basic building block for layouts and structure within the
-screen’s body. Think of it like a `<div>` in HTML. Note that unlike in HTML, a `<div>` cannot
+screen’s body. Think of it like a `<div>` in HTML. Note that unlike HTML `<div>` elements, a `<view>` cannot
 directly contain text.
 
 #index[HXML][\<text\>]
