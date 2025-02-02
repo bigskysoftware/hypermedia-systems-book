@@ -243,7 +243,7 @@ htmx.
 In addition to these modifiers, `hx-trigger` offers a few "synthetic" events,
 that is events that are not part of the regular DOM API. We have already seen `load` and `revealed` in
 our lazy loading and infinite scroll examples, but htmx also gives you an `intersect` event
-that triggers when an element intersects its a viewport.
+that triggers when an element intersects its viewport.
 
 #index[hx-trigger][intersect]
 This synthetic event uses the modern Intersection Observer API, which you can
