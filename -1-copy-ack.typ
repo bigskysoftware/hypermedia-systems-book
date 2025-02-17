@@ -17,7 +17,7 @@ Thanks to:
 - Berkeley Graphics for their permission to use _Berkeley Mono_ and the design of
   the first edition's cover,
 - All contributors to the book:
-  https://github.com/bigskysoftware/hypermedia-systems-book/graphs/contributors,
+  #link("https://github.com/bigskysoftware/hypermedia-systems-book/graphs/contributors"),
 - Manning Publications for their support in the initial stages of writing this
   book,
 - India Hackle for her valuable feedback and editing.
