@@ -4,6 +4,7 @@
 @font-face {
   font-family: "Jaro";
   src: url("/fonts/Jaro-Regular.ttf") format("truetype");
+  -subfont-text: '3456789';
 }
 
 @font-face {
