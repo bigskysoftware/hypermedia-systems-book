@@ -1,4 +1,3 @@
-#show heading: set text(size: 1em, font: "Yrsa")
 #set par(first-line-indent: 0pt)
 #show par: it => block(spacing: 1.6em, it)
 
