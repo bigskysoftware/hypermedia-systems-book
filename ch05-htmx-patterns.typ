@@ -1266,6 +1266,7 @@ through styling), you can use this utility class:
 #figure(
 ```css
 .vh {
+    position: absolute;
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     block-size: 1px;
