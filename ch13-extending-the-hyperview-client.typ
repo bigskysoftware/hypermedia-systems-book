@@ -270,7 +270,7 @@ Let’s add this library to our demo app.
 cd hyperview/demo
 yarn add react-native-root-toast <1>
 yarn start <2>
-```]
+```
 + Add dependency on `react-native-root-toast`
 + Re-start the mobile app
 
@@ -439,7 +439,7 @@ an open-source third-party library: `react-native-swipeable`.
 cd hyperview/demo
 yarn add react-native-swipeable <1>
 yarn start <2>
-```]
+```
 + Add dependency on `react-native-swipeable`.
 + Re-start the mobile app.
 
@@ -470,7 +470,7 @@ content, and one of many buttons.
     <!-- second button that appears when swiping -->
   </swipe:button>
 </swipe:row>
-```]
+```
 + Parent element encapsulating the entire swipeable row, with custom namespace.
 + The main content of the swipeable row, can hold any HXML.
 + The first button that appears when swiping, can hold any HXML.
