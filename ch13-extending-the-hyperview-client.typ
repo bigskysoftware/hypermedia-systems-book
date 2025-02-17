@@ -819,7 +819,7 @@ web and mobile can be done at the same time.
 
 Yes, there is a story for Hypermedia-Driven Applications on mobile.
 
-=== Hypermedia Notes: Good-Enough UX and Islands of Interactivity <_hypermedia_notes_good_enough_ux_and_islands_of_interactivity>
+#html-note(label: [Hypermedia Notes])[Good-Enough UX and Islands of Interactivity][
 A problem many SPA and native mobile developers face when coming to the HDA
 approach is that they look at their current application and imagine implementing
 it exactly using hypermedia. While htmx and Hyperview significantly improve the
@@ -837,3 +837,4 @@ Do not let the perfect be the enemy of the good. Many advantages are to be
 gained by accepting a slightly less sophisticated user experience in some cases,
 and tools like htmx and Hyperview make that compromise much more palatable when
 they are used properly.
+]

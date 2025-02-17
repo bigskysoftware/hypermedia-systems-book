@@ -795,8 +795,8 @@ def contacts_edit_post(contact_id=0):
     c = Contact.find(contact_id)
     c.update(
       request.form['first_name'],
-      request.form['last_name'], 
-      request.form['phone'], 
+      request.form['last_name'],
+      request.form['phone'],
       request.form['email']) <1>
     if c.save(): <2>
         flash("Updated Contact!")
@@ -1549,7 +1549,7 @@ connecting different aspects of an application.
 We’re not done yet. In the next chapter we’ll implement custom behaviors and UI
 elements to finish our mobile Contact.app.
 
-=== Hypermedia Notes: API Endpoints <_hypermedia_notes_api_endpoints>
+#html-note(label: [Hypermedia Notes])[API Endpoints][
 Unlike a JSON API, the hypermedia API you produce for your hypermedia-driven
 application should feature endpoints specialized for your particular
 application’s UI needs.
@@ -1570,3 +1570,4 @@ use cases change.
 A great strength of the hypermedia approach is that you can completely rework
 your API to adapt to new needs over time without needing to version the API or
 even document it. Take advantage of it!
+]
