@@ -66,12 +66,11 @@
   #set par(spacing: leading)
 
   #show list: set par(justify: false)
-  #show list: set block(spacing: 0pt, inset: 0pt)
 
   #set list(
     indent: 1em,
     body-indent: .6em,
-    spacing: 5pt,
+    spacing: leading,
   )
 
   #set enum(
@@ -85,6 +84,7 @@
     indent: 1em,
     body-indent: 0pt,
     number-align: start,
+    spacing: leading,
   )
 
   #set terms(hanging-indent: 1em)
@@ -97,29 +97,33 @@
 
   #set image(fit: "contain", width: 50%)
 
-  #show figure: it => {
-    show figure.caption: align.with(if it.kind == raw { start } else { center })
-    show figure.caption: set text(font: secondary-font, size: 10pt)
-    it
-  }
-
   #set figure(placement: auto)
+  #show figure.where(kind: raw): set block(breakable: true)
 
   #show figure.where(kind: raw): it => {
-    show raw.where(block: true): set block(width: 100%, stroke: none, spacing: 0pt)
+    show raw.where(block: true): set block(
+      width: 100%, stroke: none, spacing: 0pt
+    )
     block(
       inset: (x: 1em, y: .5em + leading),
       spacing: 0pt,
       width: 100%,
+      breakable: true,
       {
         if it.caption != none {
           set text(size: 11pt, font: secondary-font)
-          pad(it.caption, top: 0pt, bottom: .5em)
-          v(-.5em)
+          it.caption
+          v(leading)
         }
         it.body
       }
     )
+  }
+
+  #show figure: it => {
+    show figure.caption: align.with(if it.kind == raw { start } else { center })
+    show figure.caption: set text(font: secondary-font, size: 10pt)
+    it
   }
 
   #show raw.where(block: true): code-with-callouts
