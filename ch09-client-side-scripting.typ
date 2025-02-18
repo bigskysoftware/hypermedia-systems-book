@@ -1476,7 +1476,8 @@ been doing, and then trigger the request via events.
 
 #figure(
   image("images/screenshot_sweet_alert.png"),
-  caption: [A SweetAlert dialog box]
+  caption: [A SweetAlert dialog box],
+  placement: none,
 )<fig-swal-screenshot>
 
 So let’s take a different approach and see how that looks.

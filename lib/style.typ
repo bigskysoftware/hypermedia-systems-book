@@ -89,6 +89,7 @@
 
   #set terms(hanging-indent: 1em)
   #show terms: it => { set par(first-line-indent: 0pt); it }
+  #show terms: block.with(spacing: .5em + leading)
 
   #set quote(block: true)
   #show quote: set block(spacing: 1em)
@@ -105,15 +106,22 @@
       width: 100%, stroke: none, spacing: 0pt
     )
     block(
-      inset: (x: 1em, y: .5em + leading),
-      spacing: 0pt,
+      inset: (x: 1em, y: 0pt),
+      spacing: .5em + leading,
       width: 100%,
       breakable: true,
       {
         if it.caption != none {
           set text(size: 11pt, font: secondary-font)
-          it.caption
-          v(leading)
+          rect(height: 0pt) // workaround https://github.com/typst/typst/issues/5296
+          align(start,
+            block(
+              sticky: true,
+              above: 0pt,
+              below: .25em + leading - 2pt,
+              it.caption
+            )
+          )
         }
         it.body
       }

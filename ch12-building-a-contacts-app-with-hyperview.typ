@@ -1200,9 +1200,11 @@ Instead, the user will be presented with the dialog box and asked to confirm or
 cancel. Our core deletion behavior didn’t change, we just chained it from
 another behavior.
 
-#figure([#image("images/screenshot_hyperview_delete_cropped.png")], caption: [
-  Delete Contact confirmation
-])
+#figure(
+  image("images/screenshot_hyperview_delete_cropped.png"),
+  caption: [Delete Contact confirmation],
+  placement: none,
+)
 
 === Adding a New Contact <_adding_a_new_contact>
 Adding a new contact is the last feature we want to support in our mobile app.
