@@ -744,7 +744,7 @@ application and imagine implementing it exactly using hypermedia. While htmx and
 user experience available via the hypermedia-driven approach, there are still times when it won't be easy to pull of
 a particular user experience.
 
-As we saw in Chapter Two, Roy Fielding noted this tradeoff with respect to the web’s RESTful network architecture,
+As we saw in Chapter 2, Roy Fielding noted this tradeoff with respect to the web’s RESTful network architecture,
 where "information is transferred in a standardized form rather than one which is specific to an application's needs."
 
 Accepting a slightly less efficient and interactive solution to a particular UX can save you a tremendous amount of
