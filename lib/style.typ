@@ -150,29 +150,32 @@
 
     #frontmatter
 
-    #page([], header: none, footer: none)
-    #pagebreak(to: "odd")
+    #[
+      #pagebreak(to: "odd")
+      #set page(header: none, footer: none)
+      #pagebreak(to: "odd")
 
-    = Contents
-    #set par(first-line-indent: 0pt, justify: false)
-    #show linebreak: []
-    #show outline.entry: it => {
-      show regex("\\d"): text.with(number-width: "tabular")
-      show grid: set block(spacing: 0pt)
-      box(
-        inset: (left: (it.level - 1) * 1em),
-        grid(
-          columns: (1fr, auto),
-          column-gutter: 1em,
-          par(
-            it.body,
-            hanging-indent: (it.level) * 12pt + 3pt
-          ),
-          it.page,
+      = Contents
+      #set par(first-line-indent: 0pt, justify: false)
+      #show linebreak: []
+      #show outline.entry: it => {
+        show regex("\\d"): text.with(number-width: "tabular")
+        show grid: set block(spacing: 0pt)
+        box(
+          inset: (left: (it.level - 1) * 1em),
+          grid(
+            columns: (1fr, auto),
+            column-gutter: 1em,
+            par(
+              it.body,
+              hanging-indent: (it.level) * 12pt + 3pt
+            ),
+            it.page,
+          )
         )
-      )
-    }
-    #outline(indent: 1em, depth: 4, title: none)<table-of-contents>
+      }
+      #outline(indent: 1em, depth: 4, title: none)<table-of-contents>
+    ]
   ]
 
   // #endregion FRONTMATTER
