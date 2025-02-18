@@ -1,6 +1,12 @@
 // Based on in-dexter by Rolf Bremer, Jutta Klebe
 
-#let index(..content) = context [#metadata((content: content.pos(), location: here()))<jkrb_index>]
+#let is-pandoc = type(sys.version) != version
+
+#let index(..content) = if is-pandoc {
+  //
+} else {
+  context [#metadata((content: content.pos(), location: here()))<jkrb_index>]
+}
 
 #let indexed(content) = [#index(content)#content]
 
