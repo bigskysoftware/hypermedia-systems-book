@@ -1216,7 +1216,7 @@ child elements to represent the behavior of each button.
   action="alert" <2>
   alert:title="Continue to next screen?" <3>
   alert:message=
-    "Are you sure you want to navigateto the next screen?" <4>
+    "Are you sure you want to navigate to the next screen?" <4>
 >
   <alert:option alert:label="Continue"> <5>
     <behavior action="push" href="/next" /> <6>

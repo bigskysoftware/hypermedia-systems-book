@@ -740,7 +740,7 @@ the file downloads immediately without the user needing to click a link.
 
 We can add this functionality quite easily to our application with just a bit of
 scripting. We will discuss scripting in a Hypermedia-Driven Application in more
-depth in chapter 9, but, put briefly: scripting is perfectly acceptable in a
+depth in Chapter 9, but, put briefly: scripting is perfectly acceptable in a
 HDA, as long as it doesn’t replace the core hypermedia mechanics of the
 application.
 

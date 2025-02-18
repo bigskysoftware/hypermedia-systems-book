@@ -196,7 +196,7 @@ It also allows the server to respond with just the `rows.xml` template for inter
 In the web app, each row in the list showed the contact's name, phone number, and email address.
 But in a mobile app, we have less real-estate.
 It would be hard to cram all this information into one line.
-Instead, the row just shows the contact's first and last name, and falls back to email or phone if the name is not set.
+Instead, the row just shows the contact's first and last name, and falls back to phone or email if the name is not set.
 To render the row, we again make use of Jinja template syntax to render dynamic text with data passed to the template.
 
 We now have templates for the base layout, the contacts screen, and the contact rows.
@@ -1201,7 +1201,7 @@ def render_to_response(template_name, *args, **kwargs):
     return response
 ----
 
-`render_to_response()` renders a template with the given context, and turns it into an Flask response object with the appropriate Hyperview `Content-Type` header.
+`render_to_response()` renders a template with the given context, and turns it into a Flask response object with the appropriate Hyperview `Content-Type` header.
 Obviously, the implementation is highly-specific to serving our Hyperview mobile app.
 But we can modify the function to do content negotiation based on the request's `Accept` header:
 

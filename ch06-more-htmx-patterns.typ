@@ -68,8 +68,8 @@ normal form submission. Finally, we only want to do this after a small pause in
 typing has occurred.
 
 As we said, this functionality is very similar to what we needed for email
-validation. We can, in fact copy the `hx-trigger` attribute directly from our
-email validation example, with its small 200-millisecond delay, to allow a user
+validation. In fact, we can copy the `hx-trigger` attribute directly from our
+email validation example, with its small 200-millisecond delay, to wait for a user
 to stop typing before a request is triggered.
 
 This is another example of how common patterns come up again and again when
@@ -838,7 +838,7 @@ You aren’t really waiting until the value is actually needed."
 Fine. Let’s make it _lazy_ lazy: we’ll only issue the request when the `span` scrolls
 into view.
 
-To do that, lets recall how we set up the infinite scroll example: we used the `revealed` event
+To do that, let’s recall how we set up the infinite scroll example: we used the `revealed` event
 for our trigger. That’s all we want here, right? When the element is revealed we
 issue the request?
 
@@ -1338,7 +1338,7 @@ manner of the web.
 Accessibility problems can arise when we try to implement controls that aren’t
 built into HTML.
 
-Earlier, in Chapter One, we looked at the example of a \<div\> improvised to
+Earlier, in Chapter 1, we looked at the example of a \<div\> improvised to
 work like a button. Let’s look at a different example: what if you make
 something that looks like a set of tabs, but you use radio buttons and CSS hacks
 to build it? It’s a neat hack that makes the rounds in web development
