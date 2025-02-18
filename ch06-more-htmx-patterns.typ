@@ -1301,6 +1301,7 @@ looks like:
 def contacts_delete_all():
     contact_ids =  [
       int(id)
+      # note: in htmx 1.0 we would use the request.form property instead
       for id in request.args.getlist("selected_contact_ids")
     ] <2>
     for contact_id in contact_ids: <3>
