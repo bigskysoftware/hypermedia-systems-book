@@ -1248,16 +1248,16 @@ showing the code.
     `hv/form_fields.xml` template. Pass `saved=True` when rendering the template
     after successfully persisting the new contact.
 
+#figure([#image("images/screenshot_hyperview_add.png")], caption: [
+  Add Contact modal
+])
+
 By reusing `form_fields.xml` for both editing and adding a contact, we get to
 reuse some code and ensure the two features have a consistent UI. Also, our "Add
 Contact" screen will benefit from the "saved" logic that’s already a part of `form_fields.xml`.
 After successfully adding a new contact, the screen will dispatch the `contact-updated` event,
 which will refresh the contacts list and show the newly added contact. The
 screen will reload itself to show the Contact Details.
-
-#figure([#image("images/screenshot_hyperview_add.png")], caption: [
-  Add Contact modal
-])
 
 === Deploying the App
 
