@@ -175,10 +175,10 @@
             columns: (1fr, auto),
             column-gutter: 1em,
             par(
-              it.body,
+              it.body(),
               hanging-indent: (it.level) * 12pt + 3pt
             ),
-            it.page,
+            it.page(),
           )
         )
       }
