@@ -249,7 +249,7 @@ visual form.
 
 #asciiart(
   read("images/diagram/http-get-in-action.txt"), caption: [An HTTP GET In Action],
-  placement: "bottom", // hack: this figure breaks a code block in this build
+  placement: bottom, // hack: this figure breaks a code block in this build
 )<fig-get-in-action>
 
 #index[GET request]
