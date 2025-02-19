@@ -22,9 +22,9 @@ Thanks to:
 - India Hackle for her valuable feedback and editing.
 
 Typefaces:
-- Jaro (by Agyei Archer, Celine Hurka, and Mirko Velimirović, for headings)
-- Linux Libertine (by the Libertine Open Fonts Project, for body text),
-- Linux Biolinum (by the same, for secondary text),
+- Libertinus Serif (by its authors: https://github.com/alerque/libertinus/blob/master/CONTRIBUTORS.txt, for body text),
+- Libertinus Sans (by the same, for secondary text),
 - Berkeley Mono (by Berkeley Graphics, for code and ascii art diagrams).
+- Jaro (by Agyei Archer, Celine Hurka, and Mirko Velimirović, for headings)
 
 Written and typeset with Typst (#link("https://typst.app")).
