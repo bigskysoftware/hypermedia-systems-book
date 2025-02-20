@@ -3,7 +3,7 @@
 import type {
   Element,
   Text,
-} from "https://codeberg.org/dz4k/muteferrika/raw/commit/f56413a/lib/deps/deno-dom.ts";
+} from "https://codeberg.org/dz4k/muteferrika/raw/commit/003afe9/lib/deps/deno-dom.ts";
 import {
   build,
   Book,
@@ -18,7 +18,7 @@ import {
   TableOfContents,
   LandingPage,
   Division,
-} from "https://codeberg.org/dz4k/muteferrika/raw/commit/f56413a/lib/muteferrika.ts";
+} from "https://codeberg.org/dz4k/muteferrika/raw/commit/003afe9/lib/muteferrika.ts";
 
 const compile = (path: string) => {
   return {
