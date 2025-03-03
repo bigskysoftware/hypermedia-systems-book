@@ -84,6 +84,7 @@ const HypermediaSystems = new Book("Hypermedia Systems").with(
     htmlHead: `
     <meta charset=utf8 name=viewport content=width=device-width>
     <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/images/favicon.png">
     <script type="module" src="/color-customizer.js"></script>
     `,
     htmlFooter: `
