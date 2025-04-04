@@ -517,7 +517,7 @@ inputs. Let’s start with an example of the simplest type of input, a text fiel
 />
 ``` ]
 1. The name used when serializing data from this input
-2. The style class applied to the UI element
+2. The style applied to the UI element
 3. The current value set in the field
 4. A placeholder to display when the value is empty
 
@@ -608,12 +608,12 @@ Let’s re-visit the Hello World app and fill out the `<styles>` element.
 <doc xmlns="https://hyperview.org/hyperview">
   <screen>
     <styles> <1>
-      <style class="body" flex="1" flexDirection="column" /> <2>
-      <style class="header"
+      <style id="body" flex="1" flexDirection="column" /> <2>
+      <style id="header"
         borderBottomWidth="1" borderBottomColor="#ccc" />
-      <style class="main" margin="24" />
-      <style class="h1" fontSize="32" />
-      <style class="info" color="blue" />
+      <style id="main" margin="24" />
+      <style id="h1" fontSize="32" />
+      <style id="info" color="blue" />
     </styles>
 
     <body style="body"> <3>
@@ -628,22 +628,22 @@ Let’s re-visit the Hello World app and fill out the `<styles>` element.
 </doc>
 ``` ]
 1. Element encapsulating all of the styling for the screen
-2. Example of a definition of a style class for "body"
-3. Applying the "body" style class to a UI element
-4. Example of applying multiple style classes (h1 and info) to an element
+2. Example of a definition of a style for "body"
+3. Applying the "body" style to a UI element
+4. Example of applying multiple styles (h1 and info) to an element
 
 You’ll note that in HXML, styling is part of the XML format, rather than using a
 separate language like CSS. However, we can draw some parallels between CSS
 rules and the `<style>` element. A CSS rule consists of a selector and
 declarations. In the current version of HXML, the only available selector is a
-class name, indicated by the `class` attribute. The rest of the attributes on
+name, indicated by the `id` attribute. The rest of the attributes on
 the `<style>` element are declarations, consisting of properties and property
 values.
 
 UI elements within the `<screen>` can reference the `<style>` rules by adding
-the class names to their `<style>` property. Note the `<text>`
-element around "Hello World!" references two style classes: `h1` and
-`info`. The styles from the corresponding classes are merged together in the
+the style names to their `style` attribute. Note the `<text>`
+element around "Hello World!" references two styles: `h1` and
+`info`. The corresponding styles are merged together in the
 order they appear on the element. It’s worth noting that styling properties are
 similar to those in CSS (color, margins/padding, borders, etc). Currently, the
 only available layout engine is based on flexbox.
