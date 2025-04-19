@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "run-example": "cd example/hello-world && deno run -A --unstable book.js",
+    "docs": "cd doc && deno run -A --unstable docs.ts",
+    "docs:deploy": "deno task docs && ORIGIN=$(git config --get remote.origin.url) && cd doc/_site && git init && git switch --create pages && git add . && git commit -m \"Deployment of $(date)\" && git remote add origin $ORIGIN && git push --force origin pages && rm -rf .git"
+  },
+  "lint": {
+    "rules": {
+      "exclude": [
+        "no-unused-vars",
+        "no-this-alias"
+      ]
+    }
+  }
+}
