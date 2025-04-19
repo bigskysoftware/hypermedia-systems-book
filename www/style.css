@@ -56,10 +56,10 @@
   --display: Jaro, Chicago, Impact, sans-serif;
   --code: Berkeley Mono, Consolas, monospace, monospace;
 
-  --link-color: #145591;
-  --bg: #f8fafb;
-  --fg: #121210;
-  --line-color: #3a3a37;
+  --link-color: light-dark(#145591, #4a90e2);
+  --bg: light-dark(#f8fafb, #050505);
+  --fg: light-dark(#121210, #f8fafb);
+  --line-color: light-dark(#3a3a37, #777);
 
   --max-width: 43rem;
   --width: min(calc(100vw - 2em), var(--max-width));
@@ -76,13 +76,6 @@
   margin: 0 var(--page-margin) 3em;
 
   color-scheme: light dark;
-
-  @media (prefers-color-scheme: dark) {
-    --link-color: #4a90e2;
-    --bg: #050505;
-    --fg: #f8fafb;
-    --line-color: #777;
-  }
 }
 
 body {
@@ -234,50 +227,40 @@ label {
   } */
 }
 
-.buy-it {  
+.buy-it {
   > a {
     display: grid;
     margin-block: .2em;
-    
+
     grid-auto-flow: dense;
     justify-content: start;
     gap: 0 .5em;
-    
+
     font-family: var(--secondary);
     font-weight: bold;
     line-height: 1em;
 
-    background: rgb(215, 215, 242);
-    color: rgb(14, 19, 65);
-    border: 1px solid rgb(115, 115, 170);
+    background: light-dark(rgb(215, 215, 242), rgb(37, 42, 53));
+    color: light-dark(rgb(14, 19, 65), rgb(215, 215, 242));
+    border: 1px solid light-dark(rgb(115, 115, 170), rgb(115, 115, 170));
 
     text-decoration: none;
     padding: .4em;
 
-    @media (prefers-color-scheme: dark) {
-      background: rgb(37, 42, 53);
-      color: rgb(215, 215, 242);
-      border: 1px solid rgb(115, 115, 170);
-    }
-    
     &:hover, &:focus, &:active {
-      background: rgb(200, 200, 239);
-
-      @media (prefers-color-scheme: dark) {
-        background: rgb(26, 47, 80);
-      }
+      background: light-dark(rgb(200, 200, 239), rgb(26, 47, 80));
     }
 
     small {
       font-weight: normal;
       grid-column: 2;
     }
-    
+
     &:has(picture) {
       justify-content: space-between;
       small { grid-column: 1; }
     }
-    
+
     picture {
       grid-column: 2;
       grid-row: 1 / span 2;
@@ -314,14 +297,14 @@ label {
       margin-block: 1.4em;
     }
   }
-  
+
   a {
     text-decoration: none;
-  
+
     &:hover, &:focus-visible, &:active {
       text-decoration: underline;
-    }  
-    
+    }
+
     .part > & {
       font-family: var(--display);
     }
@@ -430,33 +413,18 @@ label {
   display: flow-root;
   font-family: var(--secondary);
 
-  background: rgb(245, 245, 245);
-  border-block: 1px solid rgb(78, 78, 78);
-
-  @media (prefers-color-scheme: dark) {
-    background: rgb(30, 30, 30);
-    border-color: rgb(159, 159, 159);
-  }
+  background: light-dark(rgb(245, 245, 245), rgb(30, 30, 30));
+  border-block: 1px solid light-dark(rgb(78, 78, 78), rgb(159, 159, 159));
 }
 
 #important {
-  background: rgb(207, 232, 253);
-  border-block: 1px solid rgb(23, 61, 111);
-
-  @media (prefers-color-scheme: dark) {
-    background: rgb(28, 32, 83);
-    border-color: rgb(74, 89, 230);
-  }
+  background: light-dark(rgb(207, 232, 253), rgb(28, 32, 83));
+  border-block: 1px solid light-dark(rgb(23, 61, 111), rgb(74, 89, 230));
 }
 
 #html-note {
-  background: rgb(230, 230, 246);
-  border-block: 1px solid rgb(34, 64, 104);
-
-  @media (prefers-color-scheme: dark) {
-    background: rgb(20, 22, 43);
-    border-color: rgb(74, 89, 230);
-  }
+  background: light-dark(rgb(230, 230, 246), rgb(20, 22, 43));
+  border-block: 1px solid light-dark(rgb(34, 64, 104), rgb(74, 89, 230));
 
   h2 {
     font-size: 1em;
@@ -536,8 +504,5 @@ color-customizer {
   font-weight: bold;
 }
 .dt, .dv, .bn, .fl, .ch, .st, .co, .ot, .al, .fu, .re, .er, .cn, .sc, .vs, .ss, .im, .do, .an, .cv, .va, .op {
-  color: #777;
-  @media (prefers-color-scheme: dark) {
-    color: #bbb;
-  }
+  color: light-dark(#777, #bbb);
 }
