@@ -18,7 +18,7 @@ import {
   TableOfContents,
   LandingPage,
   Division,
-} from "./muteferrika.bundle.vendor.js";
+} from "https://codeberg.org/dz4k/muteferrika/raw/commit/003afe9/lib/muteferrika.ts";
 
 const compile = (path: string) => {
   return {
