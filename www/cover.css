@@ -1,0 +1,232 @@
+:root {
+  --secondary-condensed: var(--secondary) /*"u001con", sans-serif*/;
+  --mono: Berkeley Mono, Monaspace Neon, monospace, monospace;
+  --interactive-bg-hover: color-mix(in hsl, var(--bg), 20% var(--fg));
+  --interactive-fg-hover: var(--fg);
+
+  color-scheme: dark;
+  font-size: calc(18em / 16);
+  font-family: var(--text);
+  background: var(--bg);
+  color: var(--fg);
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:where(p, ul, ol) {
+  margin-block: 1lh;
+}
+
+ul[role=list] {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: var(--link);
+  text-decoration: 1px solid underline color-mix(in hsl, var(--link), 22% var(--bg));
+
+  &:hover, &:focus-visible {
+    background: var(--interactive-bg-hover);
+    color: var(--interactive-fg-hover);
+  }
+  &:focus-visible {
+    outline: 1px solid var(--fg);
+    text-decoration: none;
+  }
+}
+
+.hypersys-cover {
+  display: grid;
+  grid-template-columns: 1fr 40em 1fr;
+  gap: 3rlh;
+  overflow: clip;
+
+  grid-template-areas:
+    "cover1  title  cover2"
+    "cover1 content cover2";
+}
+
+.cover-image {
+  width: calc((100vw - 40em - 2*3rlh) / 2);
+
+  &.-one {
+    grid-area: cover1;
+    img {
+      object-position: right;
+    }
+  }
+  &.-two {
+    grid-area: cover2;
+    img {
+      object-position: left;
+    }
+  }
+  img {
+    width: 100%;
+    min-height: 100vh;
+    padding-block: 10vh;
+    object-fit: cover;
+
+    position: sticky;
+    top: 0;
+
+    filter:
+      drop-shadow(0 0 1px var(--fg))
+      drop-shadow(0 .1em .2em black)
+      ;
+  }
+}
+
+@media (width <= 1024px) {
+  .hypersys-cover {
+    padding: 1rlh;
+    grid-template-columns: 1fr min(50%, 20em) min(50%, 20em) 1fr;
+    gap: 0;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      ". title title ." "cover1 cover1 cover2 cover2" ". content content .";
+  }
+
+  .cover-image {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    max-height: 50vh;
+    margin-block-start: 2rlh;
+    margin-inline: 0;
+    & ~ & { margin-inline-start: 1rlh; }
+    img {
+      height: 100%;
+      min-height: 0;
+      object-fit: contain;
+      position: static;
+      padding-block: 0;
+    }
+  }
+}
+
+.book-title {
+  grid-area: title;
+  font-family: var(--display);
+  font-weight: normal;
+  font-size: clamp(3.5em, 6vw, 99999em);
+  line-height: .9em;
+  letter-spacing: -.04em;
+  margin-block: 1rlh 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.cover-info {
+  grid-area: content;
+  font-family: var(--secondary-condensed);
+  margin-block-end: 3rlh;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.book-title, .cover-info {
+  padding-inline: 1rlh;
+  place-self: center;
+}
+
+.big-blurb {
+  font-family: var(--secondary);
+  font-size: 1.5em;
+  margin-block: 1lh;
+}
+
+.formats-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: end;
+  column-gap: 1lh;
+
+  max-width: 26em;
+  margin: auto;
+
+  > .book-format {
+    flex: 0 1 7rem;
+    margin-block: .5lh;
+    &:not(:has(.cover)) {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+.book-format {
+  display: flex;
+  font-family: var(--secondary);
+  line-height: 1;
+
+  &:has(.cover) {
+    flex-flow: column;
+    align-items: center;
+  }
+  &:not(:has(.cover)) {
+    flex-flow: row;
+    gap: .5ch;
+  }
+  .name {
+    order: 2;
+    font-family: var(--secondary);
+    font-weight: bold;
+    &:not(:hover, :focus-visible) {
+      text-decoration: none;
+    }
+  }
+  .cover {
+    order: 1;
+  }
+  .vendor {
+    order: 3;
+    font-size: 1em;
+    color: color-mix(in hsl, var(--fg), var(--bg));
+    font-family: var(--secondary-condensed);
+  }
+}
+
+.flex-break {
+  display: block;
+  flex: 1 0 100%;
+}
+
+.small-blurb {
+  --font-family: var(--text);
+}
+
+.impressum-section {
+  .authors {
+    font-family: var(--secondary-condensed);
+
+    text-align: center;
+    text-wrap: balance;
+
+    li {
+      display: inline-block;
+      margin: .25lh .5lh;
+      text-align: center;
+    }
+
+    a:not(:hover, :focus-visible) {
+      text-decoration: none;
+    }
+  }
+
+  .copyright {
+    font-family: var(--secondary-condensed);
+    color: color-mix(in srgb, 50% var(--fg), var(--bg));
+  }
+}

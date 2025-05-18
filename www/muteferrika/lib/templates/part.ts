@@ -14,12 +14,11 @@ export default `
 		{{ if self.author }}<p class="division-author">{{ self.author }}</p>{{ /if }}
 	</div>
 </header>
-  
+
 <main>
   {{ self.compiledContent |> safe }}
   <ul role="list" class="part-children">
     {{ for i, child of self.downward() |> Array.from }}
-      {{ console.log(child) }}
       <li class="part-child">
         {{ if i == 0 }}<strong>{{ /if }}
         <a href="{{ child.url }}" class="part-child-link division-link"

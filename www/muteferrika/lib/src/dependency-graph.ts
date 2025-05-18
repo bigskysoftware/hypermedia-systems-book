@@ -55,15 +55,15 @@ export class DependencyGraph<V> {
     for (const layer of this.parallelizedTopologicalSort()) {
       await Promise.all(layer.map(async (v) => {
         const deps: Record<string, T[]> = {};
-  
+
         for (const [key, ws] of Object.entries(this.#getEdges(v))) {
           deps[key] = Array.from(ws, (w) => results.get(w)!);
         }
-  
+
         results.set(v, await cb(v, deps));
       }))
     }
-    
+
     return results;
   }
 
@@ -92,12 +92,12 @@ export class DependencyGraph<V> {
   }
 
   /**
-   * Sorts the tasks into "layers" -- all the tasks in each layer can be done 
+   * Sorts the tasks into "layers" -- all the tasks in each layer can be done
    * in parallel.
-   * 
+   *
    * See: M. C. Er, "A Parallel Computation Approach to Topological Sorting",
    * _The Computer Journal_, Volume 26, Issue 4, November 1983, Pages 293–295,
-   * https://doi.org/10.1093/comjnl/26.4.293 
+   * https://doi.org/10.1093/comjnl/26.4.293
    */
   parallelizedTopologicalSort() {
     const marked = new Set<V>();
@@ -113,7 +113,7 @@ export class DependencyGraph<V> {
       let myValue = 0;
       for (const w of this.adjacency(v)) {
         if (!marked.has(w)) {
-          // The value of a vertex should be greater than all its dependencies' 
+          // The value of a vertex should be greater than all its dependencies'
           // values.
           const dependencyValue = rec(w);
           if (dependencyValue >= myValue) myValue = dependencyValue + 1;

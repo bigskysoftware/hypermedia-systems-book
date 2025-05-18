@@ -143,5 +143,4 @@ const HypermediaSystems = new Book("Hypermedia Systems").with(
 );
 
 const built = await build(HypermediaSystems);
-console.log(built.length);
 write(built, { directory: "_site" });

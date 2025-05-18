@@ -28,16 +28,17 @@ typst-fonts:
 build-html:
   rm -rf _site
   www/build_web.ts
-  cp www/{style.css,color-customizer.js} _site
+  cp www/{style.css,cover.css,color-customizer.js} _site
   cp -r images _site/images
   cp -r fonts _site/fonts
-  npx subfont -ir _site --no-fallbacks
+  test -z ${DEV+x} && npx subfont -ir _site --no-fallbacks || true
 
 serve:
-  (trap 'kill 0' SIGINT; \
-  python3 -m http.server --directory _site & \
-  watchexec -w . -i '_site/**/*' -r just build-html & \
-  wait 0)
+  #!/bin/sh
+  trap 'kill $py; kill $just' SIGINT
+  python3 -m http.server --directory _site & py=$!
+  watchexec -w . -i '_site/**/*' -r DEV=1 just build-html & just=$!
+  wait
 
 deploy:
   netlify deploy -d _site --prod
