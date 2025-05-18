@@ -59,6 +59,7 @@ a {
 
 .cover-image {
   width: calc((100vw - 40em - 2*3rlh) / 2);
+  background: none !important;
 
   &.-one {
     grid-area: cover1;
