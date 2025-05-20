@@ -2,8 +2,8 @@
 /* #region Font face declarations */
 
 @font-face {
-  font-family: "Jaro";
-  src: url("/fonts/Jaro-Regular.ttf") format("truetype");
+  font-family: "Hypersystem";
+  src: url("/fonts/Hypersystem.ttf") format("truetype");
   -subfont-text: '3456789X';
 }
 
@@ -53,7 +53,7 @@
 :root {
   --text: Linux Libertine, serif;
   --secondary: Linux Biolinum, sans-serif;
-  --display: Jaro, Chicago, Impact, sans-serif;
+  --display: Hypersystem, Chicago, Fixedsys, Impact, sans-serif;
   --code: Berkeley Mono, Consolas, monospace, monospace;
 
   --link-color: light-dark(#145591, #76eff5);
