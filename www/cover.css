@@ -122,8 +122,6 @@ a {
   font-family: var(--display);
   font-weight: normal;
   font-size: clamp(3.5em, 6vw, 8em);
-  line-height: .9em;
-  letter-spacing: -.04em;
   margin-block: 1rlh 0;
   text-transform: uppercase;
   text-align: center;
