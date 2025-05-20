@@ -121,7 +121,7 @@ a {
   grid-area: title;
   font-family: var(--display);
   font-weight: normal;
-  font-size: clamp(3.5em, 6vw, 99999em);
+  font-size: clamp(3.5em, 6vw, 8em);
   line-height: .9em;
   letter-spacing: -.04em;
   margin-block: 1rlh 0;
