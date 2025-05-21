@@ -121,10 +121,12 @@ a {
   grid-area: title;
   font-family: var(--display);
   font-weight: normal;
-  font-size: clamp(3.5em, 6vw, 8em);
+  font-size: clamp(3.2em, 5vw, 6em);
   margin-block: 1rlh 0;
   text-transform: uppercase;
   text-align: center;
+  text-shadow: 0 calc(1em/14) #1d87a9;
+  color: #bbf7ff;
 }
 
 .cover-info {
