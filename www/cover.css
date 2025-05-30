@@ -125,11 +125,11 @@ a {
   margin-block: 1rlh 0;
   text-transform: uppercase;
   text-align: center;
-  text-shadow: 0 calc(1em/14) #1d87a9;
-  color: #bbf7ff;
+  text-shadow: 0 calc(1em/14) #bbf7ff;
+  color: #1d87a9;
   @media (prefers-color-scheme: dark) {
-    text-shadow: 0 calc(1em/14) #bbf7ff;
-    color: #1d87a9;
+    text-shadow: 0 calc(1em/14) #1d87a9;
+    color: #bbf7ff;
   }
 }
 
