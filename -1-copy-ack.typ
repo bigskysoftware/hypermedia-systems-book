@@ -22,7 +22,7 @@ Thanks to:
 - India Hackle for her valuable feedback and editing.
 
 Typefaces:
-- Libertinus Serif (by its authors: https://github.com/alerque/libertinus/blob/master/CONTRIBUTORS.txt, for body text),
+- Libertinus Serif (by its authors: https://github.com/alerque/libertinus/blob/master/CONTRIBUTORS.txt , for body text),
 - Libertinus Sans (by the same, for secondary text),
 - Berkeley Mono (by Berkeley Graphics, for code and ascii art diagrams).
 - Jaro (by Agyei Archer, Celine Hurka, and Mirko Velimirović, for headings)
