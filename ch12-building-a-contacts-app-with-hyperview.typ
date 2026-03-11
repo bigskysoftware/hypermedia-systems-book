@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Building A Contacts App With Hyperview
+#show: chapter.with(title: [Building A Contacts App With Hyperview])
 
 Earlier chapters in this book explained the benefits of building apps using the
 hypermedia architecture. These benefits were demonstrated by building a robust
@@ -43,7 +43,7 @@ sections in this chapter will assume we have the web contacts app running
 locally and listening on port 5000. Ready? Let’s create new HXML templates for
 our mobile app’s UI.
 
-=== Creating a mobile app <_creating_a_mobile_app>
+= Creating a mobile app <_creating_a_mobile_app>
 To get started with HXML, there’s one pesky requirement: the Hyperview client.
 When developing web applications, you only need to worry about the server
 because the client (web browser) is universally available. There’s no equivalent
@@ -113,7 +113,7 @@ features in our mobile app:
   the section called "Extending the Client."
 ]
 
-=== A Searchable List of Contacts <_a_searchable_list_of_contacts>
+= A Searchable List of Contacts <_a_searchable_list_of_contacts>
 We will start building our Hyperview app with the entry point screen, the list
 of contacts. For the initial version of this screen, let’s support the following
 features from the web app:
@@ -326,7 +326,7 @@ app, we can see the contacts screen!
   Contacts Screen
 ])
 
-==== Searching Contacts
+== Searching Contacts
 
 #index[Hyperview][search]
 So far, we have a mobile app that displays a screen with a list of contacts. But
@@ -401,7 +401,7 @@ HTTP request to our backend looks like
 `GET /contacts?rows_only=true&q=Car`. Our backend already supports the
 `q` param for searching, so the response will include rows that match the string "Car."
 
-==== Infinite scroll
+== Infinite scroll
 
 #index[Hyperview][infinite scroll]
 If the user has hundreds or thousands of contacts, loading them all at once may
@@ -486,7 +486,7 @@ continue until all of the items will be loaded on the screen. At that point,
 there will be no more contacts to return, the response will not include another "load-more"
 item, and our pagination is over.
 
-==== Pull-to-refresh
+== Pull-to-refresh
 
 #index[Hyperview][pull-to-refresh]
 Pull-to-refresh is a common interaction in mobile apps, especially on screens
@@ -542,7 +542,7 @@ explicit `<behavior>` elements in HXML. It makes it easier to define multiple
 behaviors, and to move the behavior around while refactoring. But the shorthand
 syntax is good to apply in situations like this.
 
-==== Viewing The Details Of A Contact <_viewing_the_details_of_a_contact>
+== Viewing The Details Of A Contact <_viewing_the_details_of_a_contact>
 Now that our contacts list screen is in good shape, we can start adding other
 screens to our app. The natural next step is to create a details screen, which
 appears when the user taps an item in the contacts list. Let’s update the
@@ -649,7 +649,7 @@ need to create the new screen, insert it into the appropriate place of the
 navigation hierarchy, and write code to open the new screen from existing
 screens. In Hyperview, we just added a behavior with `action="push"`.
 
-=== Editing a Contact <_editing_a_contact>
+= Editing a Contact <_editing_a_contact>
 So far, our app lets us browse a list of contacts, and view details of a
 specific contact. Wouldn’t it be nice to update the name, phone number, or email
 of a contact? Let’s add UI to edit contacts as our next enhancement.
@@ -923,7 +923,7 @@ skips the `POST`, and immediately makes the `GET` request.
   Contact Edit Screen
 ])
 
-==== Updating the Contacts List <_updating_the_contacts_list>
+== Updating the Contacts List <_updating_the_contacts_list>
 At this point, we can claim to have fully implemented the Edit UI. But there’s a
 problem. In fact, if we stopped here, users may even consider the app to be
 buggy! Why? It has to do with syncing the app state across multiple screens.
@@ -1081,7 +1081,7 @@ contacts list screen.
 The screen doesn’t care what causes the `contact-updated` event to be
 dispatched. It just knows what it needs to do when it happens.
 
-=== Deleting a Contact <_deleting_a_contact>
+= Deleting a Contact <_deleting_a_contact>
 Speaking of deleting a contact, this is a good next feature to implement. We
 will let users delete a contact from the Edit UI. So let’s add a new button to `edit.xml`.
 
@@ -1206,7 +1206,7 @@ another behavior.
   placement: none,
 )
 
-=== Adding a New Contact <_adding_a_new_contact>
+= Adding a New Contact <_adding_a_new_contact>
 Adding a new contact is the last feature we want to support in our mobile app.
 And luckily, it’s also the easiest. We can reuse the concepts (and even some
 templates) from features we’ve already implemented. In particular, adding a new
@@ -1259,7 +1259,7 @@ After successfully adding a new contact, the screen will dispatch the `contact-u
 which will refresh the contacts list and show the newly added contact. The
 screen will reload itself to show the Contact Details.
 
-=== Deploying the App
+= Deploying the App
 
 #index[Hyperview][deployment]
 With the completion of the contact creation UI, we have a fully implemented
@@ -1325,7 +1325,7 @@ existing screen that will open the new screen. To push these changes to your
 users, you just need to re-deploy the backend. Our app knows how to interpret
 HXML, and that’s enough for it to understand how to handle the new features.
 
-=== One Backend, Multiple Hypermedia formats <_one_backend_multiple_hypermedia_formats>
+= One Backend, Multiple Hypermedia formats <_one_backend_multiple_hypermedia_formats>
 To create a mobile app using the hypermedia architecture, we started with the
 web-based contacts app and made a few changes, primarily replacing HTML
 templates with HXML templates. But in the process of porting the backend to
@@ -1344,7 +1344,7 @@ platforms. We don’t need to port any client-side logic from one platform to
 another, we just need to respond to requests with the appropriate Hypermedia
 format. To do this, we will utilize content negotiation built into HTTP.
 
-==== What is Content Negotiation? <_what_is_content_negotiation>
+== What is Content Negotiation? <_what_is_content_negotiation>
 Imagine a German speaker and Japanese speaker both visit
 `https://google.com` in their web browser. They will see the Google home page
 localized in German and Japanese, respectively. How does Google know to return a
@@ -1383,7 +1383,7 @@ client, and serve the appropriate content to each.
 
 There are two main approaches to content negotiation: fine-grained and global.
 
-==== Approach 1: Template Switching <_approach_1_template_switching>
+== Approach 1: Template Switching <_approach_1_template_switching>
 When we ported the Contacts app from the web to mobile, we kept all of the Flask
 views but made some minor changes. Specifically, we introduced a new function `render_to_response()` and
 called it in the return statement of each view. Here’s the function again to
@@ -1461,7 +1461,7 @@ UI diverges between platforms, Template Switching becomes cumbersome or
 impossible. We need a different approach to have one backend serve both
 hypermedia formats.
 
-==== Approach 2: The Redirect Fork <_approach_2_the_redirect_fork>
+== Approach 2: The Redirect Fork <_approach_2_the_redirect_fork>
 If you recall, the Contacts web app has an `index` view, routed from the root
 path `/`:
 
@@ -1541,7 +1541,7 @@ archive UI is a power feature that wouldn’t make sense on a mobile device. Sin
 our HXML templates don’t expose any entry points to the Archive functionality,
 we can treat it as "web-only" and not worry about supporting it in Hyperview.
 
-=== Contact.app, in Hyperview <_contact_app_in_hyperview>
+= Contact.app, in Hyperview <_contact_app_in_hyperview>
 We’ve covered a lot of ground in this chapter. Take a breath and take stock of
 how far we’ve come: we ported the core functionality of the Contact.app web
 application to mobile. And we did it by re-using much of our Flask backend and

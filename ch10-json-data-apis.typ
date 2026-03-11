@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== JSON Data APIs
+#show: chapter.with(title: [JSON Data APIs])
 
 So far we have been focusing on using hypermedia to build Hypermedia-Driven
 Applications. In doing so we are following and taking advantage of the native
@@ -36,7 +36,7 @@ responses.
 Building RESTful web applications like this is so natural and simple that you
 might not think of it as an API at all, but we assure you, it is.
 
-=== Hypermedia APIs & JSON Data APIs <_hypermedia_apis_json_data_apis>
+= Hypermedia APIs & JSON Data APIs <_hypermedia_apis_json_data_apis>
 So, we have a hypermedia API for Contact.app. Should we include a Data API for
 Contact.app as well?
 
@@ -93,7 +93,7 @@ recommend using the right tool for the job.
   If you are writing code to tease apart your hypermedia only to then treat as
   data to feed into a client-side model, you are probably doing it wrong. ]
 
-==== Differences Between Hypermedia APIs & Data APIs <_differences_between_hypermedia_apis_data_apis>
+== Differences Between Hypermedia APIs & Data APIs <_differences_between_hypermedia_apis_data_apis>
 Let’s accept for a moment that we _are_ going to have a Data API for our
 application, in addition to our hypermedia API. At this point, some developers
 may be wondering: why have both? Why not have a single API, the JSON Data API,
@@ -187,7 +187,7 @@ This is the key advantage of splitting your Data API from your Hypermedia API.
   APIs" for the foreseeable future.
 ]
 
-=== Adding a JSON Data API To Contact.app <_adding_a_json_data_api_to_contact_app>
+= Adding a JSON Data API To Contact.app <_adding_a_json_data_api_to_contact_app>
 Alright, so how are we going to add a JSON Data API to our application? One
 approach, popularized by the Ruby on Rails web framework, is to use the same URL
 endpoints as your hypermedia application, but use the HTTP
@@ -225,7 +225,7 @@ Data API out to its own set of URLs is the right choice. This will allow us to
 evolve the two APIs separately from one another, and give us room to improve
 each independently, in a manner consistent with their own individual strengths.
 
-==== Picking a Root URL For Our API <_picking_a_root_url_for_our_api>
+== Picking a Root URL For Our API <_picking_a_root_url_for_our_api>
 Given that we are going to split our JSON Data API routes out from our regular
 hypermedia routes, where should we place them? One important consideration here
 is that we want to make sure that we can version our API cleanly in some way,
@@ -249,7 +249,7 @@ application and can be adapted to a subdomain approach or various other methods
 at a later point, when our Contact.app has taken over the internet and we can
 afford a large team of API developers. :)
 
-==== Our First JSON Endpoint: Listing All Contacts
+== Our First JSON Endpoint: Listing All Contacts
 
 #index[Data API][endpoint]
 #index[JSON][endpoint]
@@ -318,7 +318,7 @@ For example, you could use this Data API to:
 Having this small JSON Data API opens up a lot of automation possibilities that
 would be messier to achieve with our existing hypermedia API.
 
-==== Adding Contacts
+== Adding Contacts
 
 Let’s move on to the next piece of functionality: the ability to add a new
 contact. Once again, our code is going to look similar in some ways to the code
@@ -375,7 +375,7 @@ ways it is very different:
 These sorts of differences, over time, build up and make the idea of keeping
 your JSON and hypermedia APIs on the same set of URLs less and less appealing.
 
-==== Viewing Contact Details <_viewing_contact_details>
+== Viewing Contact Details <_viewing_contact_details>
 Next, let’s make it possible for a JSON API client to download the details for a
 single contact. We will naturally use an HTTP `GET` for this functionality and
 will follow the convention we established for our regular web application, and
@@ -402,7 +402,7 @@ simplicity of this code!
 
 Next, let’s add updating and deleting a contact as well.
 
-==== Updating & Deleting Contacts <_updating_deleting_contacts>
+== Updating & Deleting Contacts <_updating_deleting_contacts>
 As with the create contact API endpoint, because there is no HTML UI to produce
 for them, we can reuse the `/api/v1/contacts/<contact id>` path. We will use the `PUT` HTTP
 method for updating a contact and the
@@ -457,7 +457,7 @@ And, with that, we have our simple little JSON Data API to live alongside our
 regular web application, nicely separated out from the main web application, so
 it can evolve separately as needed.
 
-==== Additional Data API Considerations <_additional_data_api_considerations>
+== Additional Data API Considerations <_additional_data_api_considerations>
 Now, we would have a lot more to do if we wanted to make this a production ready
 JSON API. At minimum we would need to add:
 - Rate limiting, important for any public-facing Data API to avoid abusive
@@ -475,7 +475,7 @@ determining if they have the right to perform the request.
 
 We will set authorization aside for now and consider only authentication.
 
-===== Authentication in web applications
+=== Authentication in web applications
 
 #index[authentication]
 In the HTML web application world, authentication has traditionally been done
@@ -516,7 +516,7 @@ every request. However, in practice, the mechanics tend to be wildly different:
 These differing mechanics for establishing authentication are yet another good
 reason for splitting up our JSON and hypermedia APIs.
 
-==== The "Shape" of Our Two APIs <_the_shape_of_our_two_apis>
+== The "Shape" of Our Two APIs <_the_shape_of_our_two_apis>
 When we were building out our API, we noted that in many cases the JSON API
 didn’t require as many end points as our hypermedia API did: we didn’t need a `/contacts/new` handler,
 for example, to provide a hypermedia representation for creating contacts.
@@ -549,7 +549,7 @@ Once again you can see the flexibility of the hypermedia approach and why
 separating your JSON API out from your hypermedia API lets you take maximum
 advantage of that flexibility.
 
-==== The Model View Controller (MVC) Paradigm <_the_model_view_controller_mvc_paradigm>
+== The Model View Controller (MVC) Paradigm <_the_model_view_controller_mvc_paradigm>
 One thing you may have noticed about the handlers for our JSON API is that they
 are relatively simple and regular. Most of the hard work of updating data and so
 forth is done within the contact model itself: the handlers act as simple

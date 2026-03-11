@@ -1,7 +1,7 @@
 #import "lib/definitions.typ": *
 #import "lib/snippets.typ": fielding-rest-thesis
 
-== Components Of A Hypermedia System
+#show: chapter.with(title: [Components Of A Hypermedia System])
 
 A _hypermedia system_ consists of a number of components, including:
 
@@ -26,9 +26,9 @@ web as a hypermedia system, how it is supposed to fit together, and why
 Hypermedia-Driven Applications are RESTful, whereas JSON APIs --- despite the
 way the term REST is currently used in the industry --- are not.
 
-=== Components Of A Hypermedia System <_components_of_a_hypermedia_system>
+= Components Of A Hypermedia System <_components_of_a_hypermedia_system>
 
-==== The Hypermedia <_the_hypermedia>
+== The Hypermedia <_the_hypermedia>
 The fundamental technology of a hypermedia system is a hypermedia that allows a
 client and server to communicate with one another in a dynamic, non-linear
 fashion. Again, what makes a hypermedia a hypermedia is the presence of _hypermedia controls_:
@@ -93,7 +93,7 @@ whatever the protocol and server were to retrieve the current HTML page. So, if
 this link was found in an HTML document retrieved from `https://hypermedia.systems/`,
 then the implied URL for this anchor would be `https://hypermedia.systems/book/contents/`.
 
-==== Hypermedia Protocols <_hypermedia_protocols>
+== Hypermedia Protocols <_hypermedia_protocols>
 The hypermedia control (link) above tells a browser: "When a user clicks on this
 text, issue a request to
 `https://hypermedia.systems/book/contents/` using the Hypertext Transfer
@@ -167,7 +167,7 @@ a book. The browser will use this HTML to replace the entire content in its
 display window, showing the user this new page, and updating the address bar to
 reflect the new URL.
 
-===== HTTP methods <_http_methods>
+=== HTTP methods <_http_methods>
 
 #index[HTTP methods]
 #index[HTTP methods][GET]
@@ -268,7 +268,7 @@ This is an obvious shortcoming of HTML as a hypermedia; it would be wonderful to
 see this fixed in the HTML specification. For now, in Chapter 4, we’ll discuss
 ways to get around this.
 
-===== HTTP response codes <_http_response_codes>
+=== HTTP response codes <_http_response_codes>
 HTTP request methods allow a client to tell a server _what_ to do to a given
 resource. HTTP responses contain _response codes_, which tell a client what the
 result of the request was. HTTP response codes are numeric values that are
@@ -338,7 +338,7 @@ When building a Hypermedia-Driven Application, you want, instead, to go
 "with the grain" of the web and use HTTP methods and response codes as they were
 designed to be used.
 
-===== Caching HTTP responses <_caching_http_responses>
+=== Caching HTTP responses <_caching_http_responses>
 
 #index[HTTP response][caching]
 A constraint of REST (and, therefore, a feature of HTTP) is the notion of
@@ -376,7 +376,7 @@ see the
 )[MDN Article on HTTP Caching]
 if you would like to know more on the topic.
 
-==== Hypermedia Servers <_hypermedia_servers>
+== Hypermedia Servers <_hypermedia_servers>
 Hypermedia servers are any server that can respond to an HTTP request with an
 HTTP response. Because HTTP is so simple, this means that nearly any programming
 language can be used to build a hypermedia server. There are a vast number of
@@ -434,7 +434,7 @@ end pressuring you to adopt JavaScript on the back end.
   can all use.
 ]
 
-==== Hypermedia Clients <_hypermedia_clients>
+== Hypermedia Clients <_hypermedia_clients>
 
 #index[web browsers]
 We now come to the final major component in a hypermedia system: the hypermedia
@@ -483,7 +483,7 @@ HATEOAS will be described in more detail below, but the takeaway here is that a
 good hypermedia client is a necessary component within a larger hypermedia
 system.
 
-=== REST <_rest>
+= REST <_rest>
 Now that we have reviewed the major components of a hypermedia system, it’s time
 to look more deeply into the concept of REST. The term "REST" comes from Roy
 Fielding’s PhD dissertation on the architecture of the web. Fielding wrote his
@@ -518,7 +518,7 @@ _pre-API web_, and letting go of the current, common usage of the term REST to
 simply mean "a JSON API" is necessary to develop a proper understanding of the
 idea.
 
-==== The "Constraints" of REST <_the_constraints_of_rest>
+== The "Constraints" of REST <_the_constraints_of_rest>
 
 #index[Fielding, Roy]
 #index[REST][constraints]
@@ -544,7 +544,7 @@ Here are the constraints of REST Fielding outlines:
 Let’s go through each of these constraints in turn and discuss them in detail,
 looking at how (and to what extent) the web satisfies each of them.
 
-==== The Client-Server Constraint <_the_client_server_constraint>
+== The Client-Server Constraint <_the_client_server_constraint>
 See
 #link(
   "https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_2",
@@ -561,7 +561,7 @@ networking models such as the Common Object Request Broker Architecture (CORBA).
 It should be obvious that any web application, regardless of how it is designed,
 will satisfy this requirement.
 
-==== The Statelessness Constraint <_the_statelessness_constraint>
+== The Statelessness Constraint <_the_statelessness_constraint>
 See
 #link(
   "https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3",
@@ -595,7 +595,7 @@ session state information stored across an entire cluster. So Fielding was
 correct in pointing out that an ideal RESTful system, one that did not violate
 this constraint, would be simpler and therefore more robust.
 
-==== The Caching Constraint <_the_caching_constraint>
+== The Caching Constraint <_the_caching_constraint>
 See
 #link(
   "https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_4",
@@ -613,7 +613,7 @@ headers that is often overlooked or underutilized when building hypermedia
 applications. Given the existence of this functionality, however, it is easy to
 see how this constraint is satisfied by the web.
 
-==== The Uniform Interface Constraint <_the_uniform_interface_constraint>
+== The Uniform Interface Constraint <_the_uniform_interface_constraint>
 Now we come to the most interesting and, in our opinion, most innovative
 constraint in REST: that of the _uniform interface_.
 
@@ -643,7 +643,7 @@ In this section, Fielding says:
 So we have four sub-constraints that, taken together, form the Uniform Interface
 constraint.
 
-===== Identification of resources <_identification_of_resources>
+=== Identification of resources <_identification_of_resources>
 In a RESTful system, resources should have a unique identifier. Today the
 concept of Universal Resource Locators (URLs) is common, but at the time of
 Fielding’s writing they were still relatively new and novel.
@@ -654,7 +654,7 @@ is, the target of a hypermedia reference, is considered a resource. URLs, though
 common enough today, end up solving the very complex problem of uniquely
 identifying any and every resource on the internet.
 
-===== Manipulation of resources through representations <_manipulation_of_resources_through_representations>
+=== Manipulation of resources through representations <_manipulation_of_resources_through_representations>
 In a RESTful system, _representations_ of the resource are transferred between
 clients and servers. These representations can contain both data and metadata
 about the request (such as "control data" like an HTTP method or response code).
@@ -665,7 +665,7 @@ type can be negotiated between the client and the server.
 We saw this latter aspect of the uniform interface in the `Accept`
 header in the requests above.
 
-===== Self-descriptive messages <_self_descriptive_messages>
+=== Self-descriptive messages <_self_descriptive_messages>
 
 #index[self-descriptive messages]
 The Self-Descriptive Messages constraint, combined with the next one, HATEOAS,
@@ -774,7 +774,7 @@ display hypermedia, in this case HTML. This gives hypermedia-based systems
 unprecedented flexibility in dealing with changes to both the backing
 representations and to the system itself.
 
-===== Hypermedia As The Engine of Application State (HATEOAS) <_hypermedia_as_the_engine_of_application_state_hateoas>
+=== Hypermedia As The Engine of Application State (HATEOAS) <_hypermedia_as_the_engine_of_application_state_hateoas>
 
 The final sub-constraint on the Uniform Interface is that, in a RESTful system,
 hypermedia should be "the engine of application state." This is sometimes
@@ -859,7 +859,7 @@ Because a hypermedia client doesn’t need to know anything about the server mod
 beyond how to render hypermedia to a client, it is incredibly flexible with
 respect to the representations it receives and displays to users.
 
-===== HATEOAS & API churn <_hateoas_api_churn>
+=== HATEOAS & API churn <_hateoas_api_churn>
 This last point is critical to understanding the flexibility of hypermedia, so
 let’s look at a practical example of it in action. Consider a situation where a
 new feature has been added to the web application with these two end points.
@@ -937,7 +937,7 @@ create a new version of the API: clients simply retrieve updated hypermedia,
 which encodes the new operations and resources in it, and display it to users to
 work with.
 
-==== Layered System <_layered_system>
+== Layered System <_layered_system>
 The final "required" constraint on a RESTful system that we will consider is The
 Layered System constraint. This constraint can be found in
 #link(
@@ -965,7 +965,7 @@ load on the origin server.
 Not as exciting for web application developers as the uniform interface, at
 least in our opinion, but useful nonetheless.
 
-==== An Optional Constraint: Code-On-Demand <_an_optional_constraint_code_on_demand>
+== An Optional Constraint: Code-On-Demand <_an_optional_constraint_code_on_demand>
 We called The Layered System constraint the final "required" constraint because
 Fielding mentions one additional constraint on a RESTful system. This Code On
 Demand constraint is somewhat awkwardly described as
@@ -998,7 +998,7 @@ used to _replace_, rather than augment the hypermedia model. We will elaborate
 in a later chapter what scripting that does not replace the underlying
 hypermedia system of the web looks like.
 
-=== Conclusion <_conclusion>
+= Conclusion <_conclusion>
 After this deep dive into the components and concepts behind hypermedia systems
 --- including Roy Fielding’s insights into their operation --- we hope you have
 much better understanding of REST, and in particular, of the uniform interface

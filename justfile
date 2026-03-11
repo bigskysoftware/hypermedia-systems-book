@@ -1,5 +1,5 @@
 
-typst_flags := "--font-path fonts"
+typst_flags := "--features html --font-path fonts"
 out_dir := "out"
 
 build: build-pdf build-epub build-kindle

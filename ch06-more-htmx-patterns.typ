@@ -1,8 +1,8 @@
 #import "lib/definitions.typ": *
 
-== More Htmx Patterns
+#show: chapter.with(title: [More Htmx Patterns])
 
-=== Active Search <_active_search>
+= Active Search <_active_search>
 So far so good with Contact.app: we have a nice little web application with some
 significant improvements over a plain HTML-based application. We’ve added a
 proper "Delete Contact" button, done some dynamic validation of input and looked
@@ -29,7 +29,7 @@ a response. The server-side implementations will, of course, be very different,
 but the frontend code will look fairly similar due to htmx’s general approach of "issue
 a request on an event and replace something on the screen."
 
-==== Our Current Search UI <_our_current_search_ui>
+== Our Current Search UI <_our_current_search_ui>
 Let’s recall what the search field in our application currently looks like:
 
 #figure(caption: [Our search form],
@@ -53,7 +53,7 @@ on the form, causing it to issue an HTTP `GET` and re-rendering the whole page.
 Currently, thanks to `hx-boost`, the form will use an AJAX request for this `GET`,
 but we don’t yet get that nice search-as-you-type behavior we want.
 
-==== Adding Active Search <_adding_active_search>
+== Adding Active Search <_adding_active_search>
 
 #index[htmx patterns][active search]
 To add active search behavior, we will attach a few htmx attributes to the
@@ -100,7 +100,7 @@ with the
 `delay:200ms` modifier to "debounce" the input requests and avoid hammering our
 server with requests on every keyup.
 
-==== Targeting The Correct Element <_targeting_the_correct_element>
+== Targeting The Correct Element <_targeting_the_correct_element>
 What we have is close to what we want, but we need to set up the correct target.
 Recall that the default target for an element is itself. As things currently
 stand, an HTTP `GET` request will be issued to the
@@ -157,7 +157,7 @@ of those mis-targeting issues we mentioned earlier.
 
 Thankfully, it is pretty easy to fix.
 
-==== Paring Down Our Content <_paring_down_our_content>
+== Paring Down Our Content <_paring_down_our_content>
 Now, we could use the same trick we reached for in the "Click To Load" and "Infinite
 Scroll" features: the `hx-select` attribute. Recall that the `hx-select` attribute
 allows us to pick out the part of the response we are interested in using a CSS
@@ -182,7 +182,7 @@ the most efficient one. Instead, let’s change the
 _server-side_ of our Hypermedia-Driven Application to serve
 _only the HTML content needed_.
 
-==== HTTP Request Headers In Htmx <_http_request_headers_in_htmx>
+== HTTP Request Headers In Htmx <_http_request_headers_in_htmx>
 In this section, we’ll look at another, more advanced technique for dealing with
 a situation where we only want a _partial bit_ of HTML, rather than a full
 document. Currently, we are letting the server create the full HTML document as
@@ -320,7 +320,7 @@ def contacts():
 
 OK, so how do we render only the result rows?
 
-==== Factoring Your Templates <_factoring_your_templates>
+== Factoring Your Templates <_factoring_your_templates>
 Now we come to a common pattern in htmx: we want to _factor_ our server-side
 templates. This means that we want to break our templates up a bit so that they
 can be called from multiple contexts. In this case, we want to break the rows of
@@ -408,7 +408,7 @@ the jinja `include` directive at the position we want the content from `rows.htm
 So far, so good: our `/contacts` page is still rendering properly, just as it
 did before we split the rows out of the `index.html` template.
 
-==== Using Our New Template <_using_our_new_template>
+== Using Our New Template <_using_our_new_template>
 The last step in factoring our templates is to modify our web controller to take
 advantage of the new `rows.html` template file when it responds to an active
 search request.
@@ -463,7 +463,7 @@ is quite good, and the
 #link("https://htmx.org/docs/#caching")[htmx documentation] discusses this issue
 as well.]
 
-==== Updating the Navigation Bar With "hx-push-url" <_updating_the_navigation_bar_with_hx_push_url>
+== Updating the Navigation Bar With "hx-push-url" <_updating_the_navigation_bar_with_hx_push_url>
 One shortcoming of our current Active Search implementation, when compared with
 the normal form submission, is that when you submit the form version it updates
 the navigation bar of the browser to include the search term. So, for example,
@@ -522,7 +522,7 @@ and it will go back to the behavior you want. The goal with htmx is to be
 flexible enough to achieve the UX that _you_ want, while staying within the
 declarative HTML model.
 
-==== Adding A Request Indicator <_adding_a_request_indicator>
+== Adding A Request Indicator <_adding_a_request_indicator>
 A final touch for our Active Search pattern is to add a request indicator to let
 the user know that a search is in progress. As it stands the user has no
 explicit signal that the active search functionality is handling a request. If
@@ -596,7 +596,7 @@ feature. No JSON or JavaScript to be seen. And our implementation has the
 benefit of being a progressive enhancement; the application will continue to
 work for clients that don’t have JavaScript enabled.
 
-=== Lazy Loading <_lazy_loading>
+= Lazy Loading <_lazy_loading>
 
 #index[htmx patterns][lazy loading]
 With Active Search behind us, let’s move on to a very different sort of
@@ -680,7 +680,7 @@ This leaves us with two options:
 Let’s assume that we can’t remove the feature, and therefore look at how we can
 mitigate this performance issue by using htmx instead.
 
-==== Pulling Out The Expensive Code <_pulling_out_the_expensive_code>
+== Pulling Out The Expensive Code <_pulling_out_the_expensive_code>
 The first step in implementing the Lazy Load pattern is to pull the expensive
 code --- that is, the call to `Contacts.count()` --- out of the request handler
 for the `/contacts` endpoint.
@@ -781,7 +781,7 @@ instantaneously.
 Lazy Loading is a great tool to have in your belt when optimizing web
 application performance.
 
-==== Adding An Indicator <_adding_an_indicator>
+== Adding An Indicator <_adding_an_indicator>
 
 #index[htmx patterns][request indicator]
 A shortcoming of the current implementation is that currently there is no
@@ -828,7 +828,7 @@ search example into the `span`. Once again we see how htmx provides flexible,
 composable features and building blocks. Implementing a new feature is often
 just copy-and-paste, maybe a tweak or two, and you are done.
 
-==== But That’s Not Lazy! <_but_thats_not_lazy>
+== But That’s Not Lazy! <_but_thats_not_lazy>
 
 #index[htmx patterns][lazy loading]
 You might say "OK, but that’s not really lazy. We are still loading the count
@@ -859,7 +859,7 @@ until we are absolutely sure we need it. A pretty cool trick, and, again, a
 simple one-attribute change demonstrates the flexibility of both htmx and the
 hypermedia approach.
 
-=== Inline Delete <_inline_delete>
+= Inline Delete <_inline_delete>
 
 #index[htmx patterns][inline delete]
 For our next hypermedia trick, we are going to implement the "Inline Delete"
@@ -949,7 +949,7 @@ page is re-rendered.
   For now, let’s just tolerate this less-than-ideal user interface, knowing that
   we will fix it later.]
 
-==== Narrowing Our Target <_narrowing_our_target>
+== Narrowing Our Target <_narrowing_our_target>
 We can get even fancier here, however. What if, rather than re-rendering the
 whole page, we just removed the row for the contact? The user is looking at the
 row anyway, so is there really a need to re-render the whole page?
@@ -980,7 +980,7 @@ did in our "Click To Load" and "Infinite Scroll" features:
 ```)
 1. Updated to target the closest enclosing `tr` (table row) of the link.
 
-==== Updating The Server Side <_updating_the_server_side>
+== Updating The Server Side <_updating_the_server_side>
 Now we need to update the server side. We want to keep the "Delete Contact"
 button working as well, and in that case the current logic is correct. So we’ll
 need some way to differentiate between `DELETE`
@@ -1053,7 +1053,7 @@ contact row and confirms the delete, the row will disappear from the UI. Once
 again, we have a situation where just changing a few lines of simple code gives
 us a dramatically different behavior. Hypermedia is powerful in this manner.
 
-==== The Htmx Swapping Model <_the_htmx_swapping_model>
+== The Htmx Swapping Model <_the_htmx_swapping_model>
 
 #index[htmx][swap model]
 This is pretty cool, but there is another improvement we can make if we take
@@ -1099,7 +1099,7 @@ This is why the htmx swap model is more complicated than you might initially
 think. By swapping in classes and adding small delays, you can access CSS
 transitions purely within HTML, without needing to write any JavaScript!
 
-==== Taking Advantage of "htmx-swapping" <_taking_advantage_of_htmx_swapping>
+== Taking Advantage of "htmx-swapping" <_taking_advantage_of_htmx_swapping>
 OK, so, let’s go back and look at our inline delete mechanic: we click an
 htmx-enhanced link which deletes the contact and then swaps some empty content
 in for the row. We know that before the `tr` element is removed, it will have
@@ -1166,7 +1166,7 @@ JavaScript required. (Well, obviously htmx is written in JavaScript, but you
 know what we mean: we didn’t have to write any JavaScript to implement the
 feature.)
 
-=== Bulk Delete <_bulk_delete>
+= Bulk Delete <_bulk_delete>
 
 #index[htmx patterns][bulk delete]
 The final feature we are going to implement in this chapter is a "Bulk Delete."
@@ -1212,7 +1212,7 @@ only if it is checked. So if, for example, you checked the contacts with the ids
 all the checkboxes in this case have the same name, `selected_contact_ids`, all
 three values would be submitted with the name `selected_contact_ids`.
 
-==== The "Delete Selected Contacts" Button <_the_delete_selected_contacts_button>
+== The "Delete Selected Contacts" Button <_the_delete_selected_contacts_button>
 The next step is to add a button below the table that will delete all the
 selected contacts. We want this button, like our delete links in each row, to
 issue an HTTP `DELETE`, but rather than issuing it to the URL for a given
@@ -1284,7 +1284,7 @@ it as well:
 Now, when the button issues a `DELETE`, it will include all the contact ids that
 have been selected as the `selected_contact_ids` request variable.
 
-==== The Server Side for Delete Selected Contacts <_the_server_side_for_delete_selected_contacts>
+== The Server Side for Delete Selected Contacts <_the_server_side_for_delete_selected_contacts>
 The server-side implementation is going to look like our original server-side
 code for deleting a contact. In fact, once again, we can just copy and paste,
 and make a few fixes:

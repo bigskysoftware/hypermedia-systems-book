@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Hyperview: A Mobile Hypermedia
+#show: chapter.with(title: [Hyperview: A Mobile Hypermedia])
 
 You may be forgiven for thinking the hypermedia architecture is synonymous with
 the web, web browsers, and HTML. No doubt, the web is the largest hypermedia
@@ -21,7 +21,7 @@ will then look at a path toward hypermedia on mobile: Hyperview, a mobile app
 framework that uses the hypermedia architecture. We’ll conclude with an overview
 of HXML, the hypermedia format used by Hyperview.
 
-=== The State of Mobile App Development <_the_state_of_mobile_app_development>
+= The State of Mobile App Development <_the_state_of_mobile_app_development>
 Before we can discuss how to apply hypermedia to mobile platforms, we need to
 understand how native mobile apps are commonly built. I’m using the word "native"
 to refer to code written against an SDK provided by the phone’s operating system
@@ -65,7 +65,7 @@ mobile developer, you can’t assume that every user will be on the latest versi
 of your app. Your frontend code gets fragmented across many versions, and now
 your backend needs to support all of them.
 
-=== Hypermedia for Mobile Apps
+= Hypermedia for Mobile Apps
 
 #index[hypermedia][for mobile]
 We’ve seen that the hypermedia architecture can address the shortcomings of SPAs
@@ -84,7 +84,7 @@ employing hypermedia to build & ship native mobile apps today:
 - Web views, which wraps the trusty web platform in a mobile app shell
 - Hyperview, a new hypermedia system we designed specifically for mobile apps
 
-==== Web Views <_web_views>
+== Web Views <_web_views>
 The simplest way to use hypermedia architecture on mobile is by leveraging web
 technologies. Both Android and iOS SDKs provide "web views": chromeless web
 browsers that can be embedded in native apps. Tools like Apache Cordova make it
@@ -128,7 +128,7 @@ To build a mobile HDA that acts and feels like a native app, HTML isn’t going 
 cut it. We need a format designed to represent the interactions and patterns of
 native mobile apps. That’s exactly what Hyperview does.
 
-==== Hyperview
+== Hyperview
 
 #indexed[Hyperview] is an open-source hypermedia system that provides:
 - A hypermedia format for defining mobile apps called HXML
@@ -136,7 +136,7 @@ native mobile apps. That’s exactly what Hyperview does.
 - Extension points in HXML and the client to customize the framework for a given
   app
 
-===== The format
+=== The format
 
 #indexed[HXML] was designed to feel familiar to web developers, used to working
 with HTML. Thus the choice of XML for the base format. In addition to familiar
@@ -174,7 +174,7 @@ are bundled together in a powerful concept of "behaviors." Developers can even
 define new behavior actions to add new capabilities to their app, without the
 need for scripting. We will learn more about behaviors later in this chapter.
 
-===== The client
+=== The client
 
 #index[hypermedia][client]
 Hyperview provides an open-source HXML client library written in React Native.
@@ -211,7 +211,7 @@ open-source client library does 99% of the work. And as we will see in the next
 section, there are major benefits to controlling both the client and server in a
 HDA.
 
-===== Extensibility <_extensibility>
+=== Extensibility <_extensibility>
 To understand the benefits of Hyperview’s architecture, we need to first discuss
 the drawbacks of the web architecture. On the web, any web browser can render
 HTML from any web server. This level of compatibility can only happen with
@@ -239,7 +239,7 @@ Hyperview to include a scripting layer in HXML. Features that require
 client-side logic get "built-in" to the client binary. HXML responses remain
 pure, with UI and interactions represented in declarative XML.
 
-==== Which Hypermedia Architecture Should You Use? <_which_hypermedia_architecture_should_you_use>
+== Which Hypermedia Architecture Should You Use? <_which_hypermedia_architecture_should_you_use>
 We’ve discussed two approaches for creating mobile apps using hypermedia
 systems:
 - create a backend that returns HTML, and serve it in a mobile app through a web
@@ -283,9 +283,9 @@ we’ll re-build our contacts app in Hyperview.
   way, developers can spend their _complexity budget_ on the core of the
   application, and keep the simple screens simple. ]
 
-=== Introduction to HXML
+= Introduction to HXML
 
-==== Hello World!
+== Hello World!
 
 #index[HXML][Hello World!]
 HXML was designed to feel natural to web developers coming from HTML. Let’s take
@@ -370,9 +370,9 @@ World" is contained within a `<text>` element.
 That’s all there is to define a basic "Hello World" app in HXML. Of course, this
 isn’t very exciting. Let’s cover some other built-in display elements.
 
-==== UI Elements
+== UI Elements
 
-===== Lists
+=== Lists
 
 #index[HXML][\<list\>]
 #index[HXML][\<item\>]
@@ -465,7 +465,7 @@ header of the section. This header is "sticky", meaning it stays on screen while
 scrolling through items that belong to the corresponding section. Finally, `<item>` elements
 act the same as in the regular list, but can only appear within a `<section>`.
 
-===== Images
+=== Images
 
 #index[HXML][\<image\>]
 #index[Hyperview][images]
@@ -501,7 +501,7 @@ While re-flowing content is a reasonable behavior for web-based documents, users
 do not expect mobile apps to re-flow as content loads. To maintain a static
 layout, HXML requires the dimensions to be known before the image loads.
 
-==== Inputs
+== Inputs
 
 #index[Hyperview][inputs]
 There’s a lot to cover about inputs in Hyperview. Since this is meant to be an
@@ -595,7 +595,7 @@ elements in HXML. With custom elements, you can also create your own input
 elements. Custom input elements allow you to build incredible powerful
 interactions with simple XML syntax that integrates well with the rest of HXML.
 
-==== Styling
+== Styling
 
 #index[HXML][styling]
 So far, we haven’t mentioned how to apply styling to all of the HXML elements.
@@ -651,7 +651,7 @@ only available layout engine is based on flexbox.
 Style rules can get quite verbose. For the sake of brevity, we won’t include the `<styles>` element
 in the rest of the examples in this chapter unless necessary.
 
-==== Custom elements
+== Custom elements
 
 #index[HXML][custom elements]
 The core UI elements that ship with Hyperview are quite basic. Most mobile apps
@@ -760,7 +760,7 @@ defined the custom element format, but we haven’t implemented the element as a
 feature in our app. We will get into the details of implementing custom elements
 in the next chapter.
 
-==== Behaviors <_behaviors>
+== Behaviors <_behaviors>
 
 As discussed in earlier chapters, HTML supports two basic types of interactions:
 - Clicking a hyperlink: the client will make a GET request and render the response
@@ -864,7 +864,7 @@ element. We will show examples of the power of multiple behaviors at the end of
 this chapter. First we need to show the variety of supported actions and
 triggers.
 
-===== Actions
+=== Actions
 
 #index[HXML][behavior actions]
 Behavior actions in Hyperview fall into four general categories:
@@ -873,7 +873,7 @@ Behavior actions in Hyperview fall into four general categories:
 - System actions, which interact with OS-level capabilities.
 - Custom actions, which can execute any code you add to the client.
 
-====== Navigation actions
+==== Navigation actions
 
 #index[HXML][navigation actions]
 We’ve already seen the simplest type of action, `push`. We classify
@@ -963,7 +963,7 @@ It’s on the app developers to handle this themselves. Navigation actions in HX
 provide an easy but powerful way for developers to build an architecture that
 makes sense for their app.
 
-====== Update actions
+==== Update actions
 
 #index[HXML][update actions]
 Behavior actions are not just limited to navigating between screens. They can
@@ -1166,7 +1166,7 @@ them in detail, but I’ll mention them briefly here:
 - `select-all` and `unselect-all` work with the `<select-multiple>`
   element to select/deselect all options.
 
-====== System actions
+==== System actions
 
 #index[Hyperview][system actions]
 Some standard Hyperview actions don’t interact with the HXML at all. Instead,
@@ -1244,7 +1244,7 @@ we could just as easily trigger an update action to change the current screen.
 We could even open a share sheet, or a second dialog box. But please don’t do
 that in a real app! With great power comes great responsibility.
 
-====== Custom actions
+==== Custom actions
 
 #index[Hyperview][custom actions]
 You can build a lot of mobile UIs with Hyperview’s standard navigation, update,
@@ -1257,13 +1257,13 @@ have full access to the HXML of the current screen, so they can modify the state
 or add/remove elements from the current screen. In the next chapter, we will
 create a custom behavior action to enhance our mobile contacts app.
 
-===== Triggers
+=== Triggers
 
 #index[Hyperview][triggers]
 We’ve already seen the simplest type of trigger, a `press` on an element.
 Hyperview supports many other common triggers used in mobile apps.
 
-====== Long-press <_long_press>
+==== Long-press <_long_press>
 Closely related to a press is a long-press. A behavior with
 `trigger="longPress"` will trigger when the user presses and holds on the
 element. "Long-press" interactions are often used for shortcuts and power
@@ -1291,7 +1291,7 @@ the long-press to bring up a contextual menu of shortcuts and advanced options.
 This could be achieved by using `action="alert"` and opening a system dialog box
 with the shortcuts.
 
-====== Load <_load>
+==== Load <_load>
 Sometimes we want an action to trigger as soon as the screen loads.
 `trigger="load"` does exactly this. One use case is to quickly load a shell of
 the screen, and then fill in the main content on the screen with a second update
@@ -1322,7 +1322,7 @@ Instead, we show a `<view>` with ID "container" and some
 `trigger=load` fires off the `replace` action. It requests content from the `/content` path
 and replaces the container view with the response.
 
-====== Visible <_visible>
+==== Visible <_visible>
 Unlike `load`, the `visible` trigger will only execute the behavior when the
 element with the behavior is scrolled into the viewport on the mobile device.
 The `visible` action is commonly used to implement an infinite-scroll
@@ -1330,7 +1330,7 @@ interaction on a `<list>` of `<item>` elements. The last item in the list
 includes a behavior with `trigger="visible"`. The
 `append` action will fetch the next page of items and append them to the list.
 
-====== Refresh <_refresh>
+==== Refresh <_refresh>
 This trigger captures a "pull to refresh" action on `<list>` and
 `<view>` items. This interaction is associated with fetching up-to-date content
 from the backend. Thus, it’s typically paired with an update or reload action to
@@ -1350,7 +1350,7 @@ Note that adding a behavior with `trigger="refresh"` to a `<view>` or
 `<list>` will add the pull-to-refresh interaction to the element, including
 showing a spinner as the element is pulled down.
 
-====== Focus, blur, and change <_focus_blur_and_change>
+==== Focus, blur, and change <_focus_blur_and_change>
 These triggers are related to interactions with input elements. Thus, they will
 only trigger behaviors attached to elements like
 `<text-field>`. `focus` and `blur` will trigger when the user focuses and blurs
@@ -1363,7 +1363,7 @@ to the backend and check for uniqueness of the username. If the entered username
 is not unique, the response could include an error message letting the user know
 they need to pick a different username.
 
-===== Using multiple behaviors
+=== Using multiple behaviors
 
 #index[HXML][multiple behaviors]
 Most of the examples shown above attach a single `<behavior>` to an element. But
@@ -1412,7 +1412,7 @@ contain several behaviors, some triggering together and others triggering on
 different interactions. Using multiple behaviors with custom actions keeps HXML
 declarative, without sacrificing functionality.
 
-==== Summary <_summary>
+== Summary <_summary>
 We’re covering a lot of new concepts here, and this introduction to HXML just
 scratches the surface. To learn more about HXML, we recommend consulting the
 #link(
@@ -1441,7 +1441,7 @@ Finally, HXML itself was designed for customization. Developers can define
 custom elements and custom behavior actions to expand the possible user
 interactions with their apps.
 
-=== Hypermedia, for Mobile <_hypermedia_for_mobile>
+= Hypermedia, for Mobile <_hypermedia_for_mobile>
 There is a strong case for Hypermedia-Driven Applications on mobile. Mobile app
 platforms push developers towards a thick-client architecture. But apps that use
 a thick client suffer from the same problems as SPAs on the web. Using the

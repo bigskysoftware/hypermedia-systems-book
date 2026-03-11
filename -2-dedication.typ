@@ -1,14 +1,16 @@
-#align(
-  horizon,
-)[
-  #show emph: set text(size: 1.4em)
-  #set par(first-line-indent: 0pt)
-  #show par: it => block(spacing: 1.6em, it)
+#show: it => context if target() == "paged" {
+  align(horizon, it)
+} else {
+  html.div(class: "the-dedication", it)
+}
 
-  _To my family and the htmx discord._ --- Carson Gross
+#show emph: set text(size: 1.4em)
+#set par(first-line-indent: 0pt)
+#show par: it => block(spacing: 1.6em, it)
 
-  _To my wife Tarunya, for her support through the ups and downs of this project._ --- Adam
-  Stepinski
+_To my family and the htmx discord._ --- Carson Gross
 
-  _Annem Lamia Akşimşek ve babam Özgür Akşimşek’e._ --- Deniz Akşimşek
-]
+_To my wife Tarunya, for her support through the ups and downs of this project._ --- Adam
+Stepinski
+
+_Annem Lamia Akşimşek ve babam Özgür Akşimşek’e._ --- Deniz Akşimşek

@@ -1,8 +1,6 @@
 // Based on in-dexter by Rolf Bremer, Jutta Klebe
 
-#let is-pandoc = "typst-hs-version" in sys.inputs
-
-#let index(..content) = if is-pandoc {
+#let index(..content) = if target() == "html" {
   //
 } else {
   context [#metadata((content: content.pos(), location: here()))<jkrb_index>]

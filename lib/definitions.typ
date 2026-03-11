@@ -47,6 +47,23 @@
   })
 ]
 
+#let chapters(content) = {
+  content
+}
+
+#let chapter(title: "", it) = {
+  import "code-callouts.typ": code-with-callouts
+show raw.where(block: true): code-with-callouts
+  [#metadata(title)<title-metadata>]
+  if "single_chapter" in sys.inputs {
+    it
+  } else {
+    [== #title]
+    set heading(offset: 2)
+    it
+  }
+}
+
 #let asciiart(..args, source) = figure({
   set text(size: .8em)
   set par(leading: .5em)
@@ -55,7 +72,12 @@
 
 #let blockquote = quote.with(block: true)
 
-#let sidebar(title, body) = [#block(
+#let sidebar(title, body) = context if target() == "html" {
+  html.figure(class: "sidebar", {
+    html.figcaption(title)
+    body
+  })
+} else [#block(
   spacing: 1em, block(
     width: 100%,
     inset: 1em,
@@ -74,7 +96,12 @@
   ],
 )<sidebar>]
 
-#let important(title, body) = [#block(
+#let important(title, body) = context if target() == "html" {
+  html.figure(class: "important", {
+    html.figcaption(title)
+    body
+  })
+} else [#block(
   spacing: 1em, block(
     width: 100%,
     inset: 1em,
@@ -94,7 +121,15 @@
   ],
 )<important>]
 
-#let html-note(label: [HTML Notes], title, body) = [#block(
+#let html-note(
+  label: [HTML Notes],
+  title, body
+) = context if target() == "html" {
+  html.section(class: "html-note", {
+    [== #label: #title]
+    body
+  })
+} else [#block(
   spacing: 1em,
   block(
     width: 100%,
@@ -106,8 +141,7 @@
     #set text(.8em, font: secondary-font)
     #show heading: set text(1em)
 
-    === #label: #title
-    <html-note-title>
+    #heading(numbering: none)[#label: #title]<html-note-title>
 
     #body
   ],

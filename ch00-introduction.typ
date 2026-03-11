@@ -1,7 +1,8 @@
 #import "lib/definitions.typ": *
-
 #set heading(numbering: none)
-== Introduction
+
+#show: chapter.with(title: [Introduction])
+
 
 This is a book about building applications using hypermedia systems. _Hypermedia systems_ might
 seem like a strange phrase: how is hypermedia a _system_? Isn't hypermedia just
@@ -60,7 +61,7 @@ application, and it is the entire
 _hypermedia system_ that comes together to make hypermedia such a powerful
 architecture.
 
-=== What is a Hypermedia System? <what-is-a-hypermedia-system>
+= What is a Hypermedia System? <what-is-a-hypermedia-system>
 
 #index["Fielding, Roy"]
 #index[REST]
@@ -94,7 +95,7 @@ and forms, was what Fielding was calling RESTful.
 JSON APIs were a decade away from becoming a common tool in web development:
 REST was about _hypermedia_ and the 1.0 version of the web.
 
-=== Hypermedia-Driven Applications
+= Hypermedia-Driven Applications
 
 #index(text("Hypermedia-Driven Application (HDA)"))
 In this book we are going to take a look at hypermedia as a _system architecture_ and
@@ -108,7 +109,7 @@ A Hypermedia-Driven Application is an application built on top of a hypermedia
 system that respects and utilizes the hypermedia functionality of that
 underlying system.
 
-=== Goals
+= Goals
 
 The goal of this book is to give you a strong sense of how the RESTful,
 hypermedia system architecture _differs_ from other client-server systems, and
@@ -123,7 +124,7 @@ answer the question:
 
 We hope that for many applications the answer to that question will be "Yes!"
 
-=== Book Layout
+= Book Layout
 
 The book is broken into three parts:
 - An introduction (or re-introduction) to hypermedia, with a particular focus on
@@ -156,7 +157,7 @@ first section. Furthermore, even if you _are_ well versed in all the concepts of
 hypermedia and details of HTML & HTTP, it is likely worth it to at least skim
 through the first few chapters for a refresher.
 
-=== Hypermedia: A New Generation
+= Hypermedia: A New Generation
 
 Hypermedia isn't a frequent topic of discussion these days. Even many older
 programmers who grew up with the web in the late 1990s and early 2000s haven't

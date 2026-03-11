@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Hypermedia: A Reintroduction
+#show: chapter.with(title: [Hypermedia: A Reintroduction])
 
 Hypermedia is a universal technology today, almost as common as electricity.
 
@@ -43,7 +43,7 @@ _modern_ web applications.
 
 (And, as the section on Hyperview will show, not just web applications.)
 
-=== What Is Hypermedia? <_what_is_hypermedia>
+= What Is Hypermedia? <_what_is_hypermedia>
 
 #blockquote(
   attribution: [Ted Nelson, https:\/\/archive.org/details/SelectedPapers1977/page/n7/mode/2up],
@@ -92,7 +92,7 @@ being used.
 It is the entire hypermedia _system architecture_ that is underappreciated and
 ignored by many modern web developers.
 
-=== A Brief History of Hypermedia <_a_brief_history_of_hypermedia>
+= A Brief History of Hypermedia <_a_brief_history_of_hypermedia>
 Where did the idea of hypermedia come from?
 
 #index[Bush, Vannevar]
@@ -133,7 +133,7 @@ Englebart demonstrated an unbelievable amount of technology:
 Despite receiving a standing ovation from a shocked audience after his talk, it
 was decades before the technologies Englebart demonstrated became mainstream.
 
-==== Modern Implementation <_modern_implementation>
+== Modern Implementation <_modern_implementation>
 
 #index[Berners-Lee, Tim]
 #index[World Wide Web][creation]
@@ -176,7 +176,7 @@ in.
 We will discuss Fielding’s key ideas in depth in Chapter 2, and try to correct
 the record with respect to REST, HATEOAS and hypermedia.
 
-=== The World’s Most Successful Hypertext: HTML <_the_worlds_most_successful_hypertext_html>
+= The World’s Most Successful Hypertext: HTML <_the_worlds_most_successful_hypertext_html>
 #blockquote(
   attribution: [Rescuing REST From the API Winter,
     https:\/\/intercoolerjs.org/2016/01/18/rescuing-rest.html],
@@ -206,11 +206,11 @@ not need to be an HTML (or CSS) expert to understand the code in this book, but
 the better you understand the core tags and concepts of HTML, the more you will
 get out of it.
 
-==== The Essence of HTML as a Hypermedia <_the_essence_of_html_as_a_hypermedia>
+== The Essence of HTML as a Hypermedia <_the_essence_of_html_as_a_hypermedia>
 Let us consider these two defining hypermedia elements (that is the two defining _hypermedia controls_)
 of HTML, the anchor tag and the form tag, in a bit of detail.
 
-===== Anchor tags <_anchor_tags>
+=== Anchor tags <_anchor_tags>
 
 #index[hyperlink]
 #index[anchor tag]
@@ -266,7 +266,7 @@ small and obvious point, but it is an absolutely crucial aspect of a truly
 RESTful _hypermedia system_: the client and server must communicate via
 hypermedia!
 
-===== Form tags <_form_tags>
+=== Form tags <_form_tags>
 
 Anchor tags provide _navigation_ between documents or resources, but don’t allow
 you to update those resources. That functionality falls to the #indexed[form tag].
@@ -327,7 +327,7 @@ core mechanism for updating system state purely within hypermedia. @fig-post-in-
   read("images/diagram/http-post-in-action.txt"), caption: [An HTTP POST In Action],
 )<fig-post-in-action>
 
-===== Web 1.0 applications <_web_1_0_applications>
+=== Web 1.0 applications <_web_1_0_applications>
 As someone interested in web development, the above diagrams and discussion are
 probably very familiar to you. You may even find this content boring. But take a
 step back and consider the fact that these two hypermedia controls, anchors and
@@ -347,7 +347,7 @@ application goals and are often perfectly happy with the results.
 
 These two tags give a tremendous amount of expressive power to HTML.
 
-==== So What Isn’t Hypermedia? <_so_what_isnt_hypermedia>
+== So What Isn’t Hypermedia? <_so_what_isnt_hypermedia>
 So links and forms are the two main hypermedia-based mechanisms for interacting
 with a server available in HTML.
 
@@ -440,7 +440,7 @@ code and the API have a strong relationship, known as _#indexed[tight coupling]_
 if the format of the JSON response changes, then the code for
 `updateUI()` will almost certainly also need to be changed as well.
 
-===== Single Page Applications <_single_page_applications>
+=== Single Page Applications <_single_page_applications>
 This bit of JavaScript, while very modest, is the organic beginnings of a much
 larger conceptual approach to building web applications. This is the beginning
 of a _#indexed[Single Page Application (SPA)]_. The web application is no longer
@@ -501,7 +501,7 @@ thinking about _why_ web developers so frequently make this choice without
 considering other alternatives, and if there are reasons _not_ to go down this
 path.
 
-=== Why Use Hypermedia? <_why_use_hypermedia>
+= Why Use Hypermedia? <_why_use_hypermedia>
 
 #blockquote(
   attribution: [Tom MacWright, https://macwright.com/2020/05/10/spa-fatigue.html],
@@ -535,7 +535,7 @@ Given the popularity, power and success of this modern approach to building web
 applications, why on earth would you consider an older, clunkier and less
 popular approach like hypermedia?
 
-==== JavaScript Fatigue <_javascript_fatigue>
+== JavaScript Fatigue <_javascript_fatigue>
 We are glad you asked!
 
 #index[hypermedia][advantages]
@@ -614,7 +614,7 @@ as a hypermedia. The web development world moved on, solving the interactivity
 problems with HTML by adopting JavaScript-based SPAs and, mostly inadvertently,
 a completely different system architecture.
 
-=== A Hypermedia Resurgence? <_a_hypermedia_resurgence>
+= A Hypermedia Resurgence? <_a_hypermedia_resurgence>
 It is interesting to think about how HTML _could_ have advanced. Instead of
 stalling as a hypermedia, how could HTML have continued to develop? Could it
 have kept adding new hypermedia controls and increasing the expressiveness of
@@ -636,7 +636,7 @@ Instead, they use JavaScript to augment HTML itself _as a hypermedia_.
 These _hypermedia-oriented_ libraries re-center hypermedia as the core
 technology in web applications.
 
-==== Hypermedia-Oriented JavaScript Libraries <_hypermedia_oriented_javascript_libraries>
+== Hypermedia-Oriented JavaScript Libraries <_hypermedia_oriented_javascript_libraries>
 
 #index[Multi-Page Application (MPA)]
 In the web development world there is an ongoing debate between the Single Page
@@ -697,7 +697,7 @@ Applications by instead using the hypermedia model.
 
 And, it is refreshingly fun and simple to do so.
 
-==== Hypermedia-Driven Applications <_hypermedia_driven_applications>
+== Hypermedia-Driven Applications <_hypermedia_driven_applications>
 When building a web application with htmx the term Multi-Page Application
 applies _roughly_, but it doesn’t fully characterize the core of the application
 architecture. As you will see, htmx doesn’t
@@ -782,7 +782,7 @@ different system architectures and, thus, approaches to web development.
 As we walk through building a Hypermedia-Driven Application in this book, the
 differences between the two approaches will become more and more apparent.
 
-=== When Should You Use Hypermedia? <_when_should_you_use_hypermedia>
+= When Should You Use Hypermedia? <_when_should_you_use_hypermedia>
 
 #index[hypermedia][when to use]
 Hypermedia is often, though _not always_, a great choice for a web application.
@@ -826,7 +826,7 @@ applications that can be built using hypermedia _much_ larger.
 
 But more on that later.
 
-=== When Shouldn’t You Use Hypermedia? <_when_shouldnt_you_use_hypermedia>
+= When Shouldn’t You Use Hypermedia? <_when_shouldnt_you_use_hypermedia>
 
 #index[hypermedia][limitations]
 So, what about that _not always_? When isn’t hypermedia going to work well for
@@ -888,7 +888,7 @@ something as simple as a settings page?
   give you another tool in your "simplest thing" tool chest.
 ]
 
-=== Hypermedia: A Sophisticated, Modern System Architecture <_hypermedia_a_sophisticated_modern_system_architecture>
+= Hypermedia: A Sophisticated, Modern System Architecture <_hypermedia_a_sophisticated_modern_system_architecture>
 Hypermedia is often regarded as an old and antiquated technology in web
 development circles, useful perhaps for static websites but certainly not a
 realistic choice for modern, sophisticated web applications.

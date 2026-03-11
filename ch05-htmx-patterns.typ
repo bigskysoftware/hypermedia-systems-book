@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Htmx Patterns
+#show: chapter.with(title: [Htmx Patterns])
 
 Now that we’ve seen how htmx extends HTML as a hypermedia, it’s time to put it
 into action. As we use htmx, we will still be using hypermedia: we will issue
@@ -13,7 +13,7 @@ cycles or painful page refreshes, without needing to write much, if any,
 JavaScript, and without creating a JSON API. Everything will be implemented in
 hypermedia, using the core hypermedia concepts of the early web.
 
-=== Installing Htmx <_installing_htmx>
+= Installing Htmx <_installing_htmx>
 
 #index[htmx][installing]
 The first thing we need to do is install htmx in our web application. We are
@@ -52,7 +52,7 @@ that we are using here to install htmx.
 Believe it or not, that’s it! This simple script tag will make htmx’s
 functionality available across our entire application.
 
-=== AJAX-ifying Our Application <_ajax_ifying_our_application>
+= AJAX-ifying Our Application <_ajax_ifying_our_application>
 
 #index[hx-boost]
 #index[htmx patterns][boosting]
@@ -72,7 +72,7 @@ in the response to these requests into the existing pages `<body>` tag.
 This makes navigation feel faster because the browser will not be
 re-interpreting most of the tags in the response `<head>` and so forth.
 
-==== Boosted Links <_boosted_links>
+== Boosted Links <_boosted_links>
 Let’s take a look at an example of a boosted link. Below is a link to a
 hypothetical settings page for a web application. Because it has
 `hx-boost="true"` on it, htmx will halt the normal link behavior of issuing a
@@ -115,7 +115,7 @@ bar and history, just like normal links, so users will be able to use the
 browser back button, will be able to copy and paste URLs (or "deep links") and
 so on. Links will act pretty much like "normal", they will just be faster.
 
-==== Boosted Forms <_boosted_forms>
+== Boosted Forms <_boosted_forms>
 Boosted form tags work in a similar way to boosted anchor tags: a boosted form
 will use an AJAX request rather than the usual browser-issued request, and will
 replace the entire body with the response.
@@ -148,7 +148,7 @@ With `hx-boost` the site’s styling is already loaded _before_ the new content 
 retrieved, so there is no such flash of unstyled content. This can make a "boosted"
 application feel both smoother and also snappier in general.
 
-==== Attribute Inheritance <_attribute_inheritance>
+== Attribute Inheritance <_attribute_inheritance>
 Let’s expand on our previous example of a boosted link, and add a few more
 boosted links alongside it. We’ll add links so that we have one to the `/contacts` page,
 the `/settings` page, and the `/help` page. All these links are boosted and will
@@ -224,7 +224,7 @@ will override the `hx-boost="true"` on the parent
 `div`, reverting it to regular link behavior and, thus, allowing for the file
 download behavior that we want.
 
-==== Progressive Enhancement <_progressive_enhancement>
+== Progressive Enhancement <_progressive_enhancement>
 
 #index[progressive enhancement]
 A nice aspect of `hx-boost` is that it is an example of
@@ -261,7 +261,7 @@ Ultimately, it is up to you, the developer, to decide if the trade-offs of
 progressive enhancement (a more basic UX, limited improvements over plain HTML)
 are worth the benefits for your application users.
 
-==== Adding "hx-boost" to Contact.app <_adding_hx_boost_to_contact_app>
+== Adding "hx-boost" to Contact.app <_adding_hx_boost_to_contact_app>
 For the contact app we are building, we want this htmx "boost" behavior…​ well,
 everywhere.
 
@@ -313,7 +313,7 @@ and obvious over
 However, the `hx-boost` attribute was too useful to allow dogma to override
 practicality, and so it is included as a feature in the library.
 
-=== A Second Step: Deleting Contacts With HTTP DELETE <_a_second_step_deleting_contacts_with_http_delete>
+= A Second Step: Deleting Contacts With HTTP DELETE <_a_second_step_deleting_contacts_with_http_delete>
 For our next step with htmx, recall that Contact.app has a small form on the
 edit page of a contact that is used to delete the contact:
 
@@ -377,7 +377,7 @@ the server side as well.
 In the interest of keeping our application simple, we are going to omit that
 more elaborate solution.
 
-==== Updating The Server-Side Code <_updating_the_server_side_code>
+== Updating The Server-Side Code <_updating_the_server_side_code>
 We have updated the client-side code (if HTML can be considered code) so it now
 issues a `DELETE` request to the appropriate URL, but we still have some work to
 do. Since we updated both the route and the HTTP method we are using, we are
@@ -410,7 +410,7 @@ def contacts_delete(contact_id=0):
 
 Pretty simple, and much cleaner.
 
-===== A response code gotcha <_a_response_code_gotcha>
+=== A response code gotcha <_a_response_code_gotcha>
 
 #index[Flask][redirect]
 Unfortunately, there is a problem with our updated handler: by default, in Flask
@@ -460,7 +460,7 @@ Now, when you want to remove a given contact, you can simply issue a
 
 This is a natural HTTP-based approach to deleting a resource.
 
-==== Targeting The Right Element <_targeting_the_right_element>
+== Targeting The Right Element <_targeting_the_right_element>
 
 #index[hx-target][example]
 We aren’t quite finished with our updated delete button. Recall that, by
@@ -493,7 +493,7 @@ redirect back to the contact list page, with a nice flash message.
 
 Is everything working smoothly now?
 
-==== Updating The Location Bar URL Properly <_updating_the_location_bar_url_properly>
+== Updating The Location Bar URL Properly <_updating_the_location_bar_url_properly>
 
 Well, almost.
 
@@ -537,7 +537,7 @@ it easy to see what the button is doing as a custom hypermedia control. The
 resulting solution feels clean; it takes advantage of the built-in features of
 the web as a hypermedia system without any URL hacks.
 
-==== One More Thing…​ <_one_more_thing>
+== One More Thing…​ <_one_more_thing>
 
 #index[hx-confirm]
 #index[htmx patterns][confirmation dialog]
@@ -578,7 +578,7 @@ deletion, and we have removed a lot of the cruft that normal HTML imposes on us,
 all while using declarative attributes in our HTML and staying firmly within the
 normal hypermedia model of the web.
 
-==== Progressive Enhancement? <_progressive_enhancement_2>
+== Progressive Enhancement? <_progressive_enhancement_2>
 
 #index[progressive enhancement]
 As we noted earlier about this solution: it is _not_ a progressive enhancement
@@ -595,7 +595,7 @@ exactly how important supporting non-JavaScript clients is before you begin
 using htmx, or any other JavaScript framework, for improving your web
 applications.
 
-=== Next Steps: Validating Contact Emails <_next_steps_validating_contact_emails>
+= Next Steps: Validating Contact Emails <_next_steps_validating_contact_emails>
 
 #index[validation]
 Let’s move on to another improvement in our application. A big part of any web
@@ -685,7 +685,7 @@ However, as the application currently stands, there are two annoyances.
   accidentally reentering a contact and had to put all the contact information in
   before being made aware of this fact.
 
-==== Updating Our Input Type <_updating_our_input_type>
+== Updating Our Input Type <_updating_our_input_type>
 
 #index[HTML][inputs]
 For the first issue, we have a pure HTML mechanism for improving our
@@ -729,7 +729,7 @@ and addresses the first problem we noted.
   your application.
 ]
 
-==== Inline Validation <_inline_validation>
+== Inline Validation <_inline_validation>
 
 #index[htmx patterns][inline validation]
 While we have improved our validation experience a bit, the user must still
@@ -818,7 +818,7 @@ someone changes the value of the input (remember, `change` is the _default_ trig
 for inputs in htmx) an HTTP `GET` request will be issued to the given URL. If
 there are any errors, they will be loaded into the error span.
 
-==== Validating Emails Server-Side <_validating_emails_server_side>
+== Validating Emails Server-Side <_validating_emails_server_side>
 Next, let’s look at the server-side implementation. We are going to add another
 endpoint, similar to our edit endpoint in some ways: it is going to look up the
 contact based on the ID encoded in the URL. In this case, however, we only want
@@ -867,7 +867,7 @@ hypermedia model: we are using declarative attributes and exchanging hypermedia
 with the server in a manner very similar to how links or forms work. But we have
 managed to improve our user experience dramatically.
 
-==== Taking The User Experience Further <_taking_the_user_experience_further>
+== Taking The User Experience Further <_taking_the_user_experience_further>
 Despite the fact that we haven’t added a lot of code here, we have a fairly
 sophisticated user interface, at least when compared with plain HTML-based
 applications. However, if you have used more advanced Single Page Applications
@@ -907,7 +907,7 @@ types, we would want to capture the `keyup` event as well:
 With this tiny change, every time a user types a character we will issue a
 request and validate the email. Simple.
 
-==== Debouncing Our Validation Requests <_debouncing_our_validation_requests>
+== Debouncing Our Validation Requests <_debouncing_our_validation_requests>
 
 #index[debouncing]
 Simple, yes, but probably not what we want: issuing a new request on every key
@@ -947,7 +947,7 @@ Now we no longer issue a stream of validation requests as the user types.
 Instead, we wait until the user pauses for a bit and then issue the request.
 Much better for our server, and still a great user experience.
 
-==== Ignoring Non-Mutating Keys <_ignoring_non_mutating_keys>
+== Ignoring Non-Mutating Keys <_ignoring_non_mutating_keys>
 There is one last issue we should address with the keyup event: as it stands we
 will issue a request no matter _which_ keys are pressed, even if they are keys
 that have no effect on the value of the input, such as arrow keys. It would be
@@ -989,7 +989,7 @@ with one another.
 
 A great demonstration of the power of the hypermedia architecture!
 
-=== Another Application Improvement: Paging <_another_application_improvement_paging>
+= Another Application Improvement: Paging <_another_application_improvement_paging>
 
 #index[htmx patterns][paging]
 Let’s move on from the contact editing page for a bit and improve the root page
@@ -1081,7 +1081,7 @@ mechanism for our web application.
 And, believe it or not, it is already using AJAX, thanks to our use of
 `hx-boost` in the application. Easy!
 
-==== Click To Load <_click_to_load>
+== Click To Load <_click_to_load>
 
 #index[htmx patterns][click to load]
 This paging mechanism is fine for a basic web application, and it is used
@@ -1176,7 +1176,7 @@ respect to how it processes server responses.
 So, four attributes, and we now have a sophisticated "Click To Load" UX, via
 htmx.
 
-==== Infinite Scroll <_infinite_scroll>
+== Infinite Scroll <_infinite_scroll>
 
 #index[htmx patterns][infinite scroll]
 Another common pattern for dealing with large sets of things is known as the "Infinite

@@ -1,4 +1,6 @@
-= Foreword
+#import "lib/definitions.typ": *
+
+#show: chapter.with(title: [Foreword])
 
 While there have been many books on the topic of hypermedia, there is a select
 number of publications that chronicle important advances in the field of

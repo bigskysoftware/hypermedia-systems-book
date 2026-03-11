@@ -1,13 +1,14 @@
 #import "./definitions.typ": *
 
-#let default-callout(number /*: int */) /*: content*/ = {
+#let default-callout(number /*: int */) /*: content*/ = if target() == "html" {
+  html.span(class: "code-callout", str(number))
+} else {
   text(
     font: secondary-font,
     number-type: "old-style",
-    size: 1em,
-    weight: "bold",
-    fill: luma(120),
-    "[" + str(number) + "]",
+    size: 1.2em,
+    fill: luma(80),
+    " » " + str(number) + ".",
   )
 }
 

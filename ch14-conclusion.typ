@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Conclusion
+#show: chapter.with(title: [Conclusion])
 
 We hope to have convinced you that hypermedia, rather than being a
 "legacy" technology or a technology only appropriate for "documents" of links,
@@ -33,7 +33,7 @@ the approach you are taking. The original web grew faster than any distributed
 system in history; web developers should know how to tap the power of the
 underlying technologies that made that growth possible.
 
-=== Pausing, and Reflecting <_pausing_and_reflecting>
+= Pausing, and Reflecting <_pausing_and_reflecting>
 The JavaScript community and, by extension, the web development community is
 famously chaotic, with new frameworks and technologies emerging monthly, and
 sometimes even _weekly_. It can be exhausting to keep up with the latest and

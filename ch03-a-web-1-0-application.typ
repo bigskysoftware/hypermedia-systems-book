@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== A Web 1.0 Application
+#show: chapter.with(title: [A Web 1.0 Application])
 
 To start our journey into Hypermedia-Driven Applications, we are going to create
 a simple contact management web application called Contact.app. We will start
@@ -16,7 +16,7 @@ By the time we are finished building and enhancing the application, over the
 next few chapters, it will have some very slick features that most developers
 today would assume requires the use of a SPA JavaScript framework.
 
-=== Picking A "Web Stack" <_picking_a_web_stack>
+= Picking A "Web Stack" <_picking_a_web_stack>
 In order to demonstrate how web 1.0 applications work, we need to pick a
 server-side language and a library for handling HTTP requests. Colloquially,
 this is called our "Server-Side" or "Web" stack, and there are literally
@@ -79,7 +79,7 @@ but it will be easy to follow for readers, even if they have little Python
 experience, and it should be easy to translate both the application and the
 techniques demonstrated into your preferred programming environment.
 
-=== Python <_python>
+= Python <_python>
 Since this book is for learning how to use hypermedia effectively, we’ll just
 briefly introduce the various technologies we use _around_
 that hypermedia. This has some obvious drawbacks: if you aren’t comfortable with
@@ -103,7 +103,7 @@ should be able to follow along with our examples. Most of the authors of this
 book hadn’t written much Python before writing it, and we got the hang of it
 pretty quickly.
 
-=== Introducing Flask: Our First Route <_introducing_flask_our_first_route>
+= Introducing Flask: Our First Route <_introducing_flask_our_first_route>
 
 #index[Flask][about]
 Flask is a simple but flexible web framework for Python. We’ll ease into it by
@@ -193,7 +193,7 @@ Now the `index()` function returns the result of the Flask-supplied
 passed in as a string argument. Now, if you navigate to the root path, `/`, our
 Flask application will forward you on to the `/contacts` path.
 
-=== Contact.app Functionality <_contact_app_functionality>
+= Contact.app Functionality <_contact_app_functionality>
 
 #index[Contact.app][specs]
 Now that we have some understanding of how to define routes, let’s get down to
@@ -217,7 +217,7 @@ application that is perfect for an old-school web 1.0 approach.
 Note that the source code of Contact.app is available on
 #link("https://github.com/bigskysoftware/contact-app")[GitHub].
 
-==== Showing A Searchable List Of Contacts <_showing_a_searchable_list_of_contacts>
+== Showing A Searchable List Of Contacts <_showing_a_searchable_list_of_contacts>
 Let’s add our first real bit of functionality: the ability to show all the
 contacts in our app in a list (really, in a table).
 
@@ -294,7 +294,7 @@ We will treat `Contact` as a _resource_, and focus on how to effectively provide
 hypermedia representations of that resource to clients.
 ]
 
-===== The list & search templates <_the_list_search_templates>
+=== The list & search templates <_the_list_search_templates>
 Now that we have our handler logic written, we’ll create a template to render
 HTML in our response to the client. At a high level, our HTML response needs to
 have the following elements:
@@ -450,7 +450,7 @@ applications end points or underlying domain model.
 
 As simple as our application is at this point, it is thoroughly RESTful.
 
-==== Adding A New Contact <_adding_a_new_contact>
+== Adding A New Contact <_adding_a_new_contact>
 The next bit of functionality that we will add to our application is the ability
 to add new contacts. To do this, we are going to need to handle that `/contacts/new` URL
 referenced in the "Add Contact" link above. Note that when a user clicks on that
@@ -574,7 +574,7 @@ in the new hypermedia representation given to users. A user would see the
 updated new form and be able to work with these new features, with no software
 update required.
 
-===== Handling the post to /contacts/new <_handling_the_post_to_contactsnew>
+=== Handling the post to /contacts/new <_handling_the_post_to_contactsnew>
 The next step in our application is to handle the `POST` that this form makes to `/contacts/new`.
 
 To do so, we need to add another route to our application that handles the `/contacts/new` path.
@@ -665,7 +665,7 @@ OK, so we have our server-side logic set up to save contacts. And, believe it or
 not, this is about as complicated as our handler logic will get, even when we
 look at adding more sophisticated htmx-driven behaviors.
 
-==== Viewing The Details Of A Contact <_viewing_the_details_of_a_contact>
+== Viewing The Details Of A Contact <_viewing_the_details_of_a_contact>
 The next piece of functionality we will implement is the detail page for a
 Contact. The user will navigate to this page by clicking the "View" link in one
 of the rows in the list of contacts. This will take them to the path `/contacts/<contact id>` (e.g., `/contacts/42`).
@@ -728,7 +728,7 @@ Once we have the id of the contact we want to look up, we load it up using the `
 on the `Contact` object. We then pass this contact into the `show.html` template
 and render a response.
 
-==== The Contact Detail Template <_the_contact_detail_template>
+== The Contact Detail Template <_the_contact_detail_template>
 Our `show.html` template is relatively simple, just showing the same information
 as the table but in a slightly different format (perhaps for printing). If we
 add functionality like "notes" to the application later on, this will give us a
@@ -755,7 +755,7 @@ We simply render a First Name and Last Name header, with the additional contact
 information below it, and a couple of links: a link to edit the contact and a
 link to navigate back to the full list of contacts.
 
-==== Editing And Deleting A Contact <_editing_and_deleting_a_contact>
+== Editing And Deleting A Contact <_editing_and_deleting_a_contact>
 Next up we will tackle the functionality on the other end of that "Edit" link.
 Editing a contact is going to look very similar to creating a new contact. As
 with adding a new contact, we are going to need two routes that handle the same
@@ -891,7 +891,7 @@ leave the templates separate.
   DRY.
 ]
 
-===== Handling the post to /contacts/\<contact\_id\>/edit <_handling_the_post_to_contactscontact_id>
+=== Handling the post to /contacts/\<contact\_id\>/edit <_handling_the_post_to_contactscontact_id>
 Next we need to handle the HTTP `POST` request that the form in our
 `edit.html` template submits. We will declare another route that handles the
 same path as the `GET` above.
@@ -931,7 +931,7 @@ Contact, we look the contact up by id and then call the
 Once again, this consistency between our CRUD operations is one of the nice and
 simplifying aspects of traditional CRUD web applications.
 
-==== Deleting A Contact <_deleting_a_contact>
+== Deleting A Contact <_deleting_a_contact>
 
 #index[Post/Redirect/Get (PRG)]
 We piggybacked contact delete functionality into the same template used to edit
@@ -962,7 +962,7 @@ to the list of contacts with a success flash message.
 
 No need for a template in this case, the contact is gone.
 
-==== Contact.app…​ Implemented! <_contact_app_implemented>
+== Contact.app…​ Implemented! <_contact_app_implemented>
 And, well…​ believe it or not, that’s our entire contact application!
 
 If you’ve struggled with parts of the code so far, don’t worry: we don’t expect

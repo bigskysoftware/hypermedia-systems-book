@@ -113,7 +113,7 @@
       {
         if it.caption != none {
           set text(size: 11pt, font: secondary-font)
-          rect(height: 0pt) // workaround https://github.com/typst/typst/issues/5296
+          rect(height: 0pt, stroke: none) // workaround https://github.com/typst/typst/issues/5296
           align(start,
             block(
               sticky: true,

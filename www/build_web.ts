@@ -20,60 +20,53 @@ import {
   Division,
 } from "./muteferrika/lib/muteferrika.ts";
 
+const typstJsonToString = (json) => {
+  if (json.func === "sequence")
+    return json.children.map(typstJsonToString).join("")
+  else if (json.func === "space")
+    return " "
+  else if (json.func === "text")
+    return json.text
+}
+
 const compile = (path: string) => {
   return {
     file: path,
-    async compile(this: Division) {
-      const pandoc = new Deno.Command("pandoc", {
-        args: ["-f", "typst", "-t", "html", "--", this.file],
-      });
-      const pandocOutput = await pandoc.output();
-      if (!pandocOutput.success) {
-        console.error("pandoc:", new TextDecoder().decode(pandocOutput.stderr));
-        Deno.exit(pandocOutput.code);
-      }
-      const compiled = new TextDecoder().decode(pandocOutput.stdout);
-      const headingsUpleveled = compiled.replace(
-        /<(\/?)h(\d)/g,
-        (_, slash, level) => `<${slash}h${+level - 1}`,
-      );
-      const title = headingsUpleveled.match(/<h1>(.*)<\/h1>/)?.[1];
-      if (title) this.title = title;
-      const h1Removed = headingsUpleveled.replace(/<h1>.*<\/h1>/, "");
-      return h1Removed;
-    },
     url: path.replace(/\.typ$/, "/").replace(/ch\d\d-|-\d-/, "/"),
-    // deno-lint-ignore require-await
-    async process(this: Division) {
-      // add ids to headings
-      const ids = new Map<string, number>();
-      this.dom.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((node) => {
-        const heading = node as Element;
-        if (heading.hasAttribute("id")) return;
-        let id = heading.textContent.toLowerCase().replace(/[^a-z0-9]/g, "-");
-        const count = ids.get(id) || 0;
-        if (count) id += `-${count}`;
-        ids.set(id, count + 1);
-        heading.setAttribute("id", id);
+    async compile(this: Division) {
+      const typst = new Deno.Command("typst", {
+        args: [
+          "compile",
+          "--features", "html",
+          "--format", "html",
+          "--input", "single_chapter=1",
+          "--", this.file, "-",
+        ],
       });
-      this.dom.querySelectorAll("img").forEach((node) => {
-        const img = node as Element;
-        if (
-          img.hasAttribute("src") &&
-          !img.getAttribute("src")?.startsWith("http")
-        ) {
-          img.setAttribute("src", `/${img.getAttribute("src")}`);
-        }
+      const typstOutput = await typst.output();
+      if (!typstOutput.success) {
+        console.error("typst:", new TextDecoder().decode(typstOutput.stderr));
+        Deno.exit(typstOutput.code);
+      }
+      const compiled = new TextDecoder().decode(typstOutput.stdout);
+
+      const titleQuery = new Deno.Command("typst", {
+        args: [
+          "query",
+          "--features", "html",
+          "--one",
+          "--field", "value",
+          "--", this.file, "<title-metadata>",
+        ],
       });
-      this.dom.querySelectorAll("blockquote p:last-child").forEach((node) => {
-        const line = node as Element;
-        if (line.textContent?.startsWith("℄")) {
-          line.classList.add("quote-attribution");
-          line.parentElement!.after(line);
-          const text = line.firstChild as Text;
-          text.data = text.data.replace("℄", "");
-        }
-      });
+      const titleOutput = await titleQuery.output();
+      const titleJson = new TextDecoder().decode(titleOutput.stdout);
+      console.log("title JSON", titleJson)
+      if (titleJson) {
+        const title = typstJsonToString(JSON.parse(titleJson))
+        this.title = title;
+      }
+      return compiled;
     },
   };
 };

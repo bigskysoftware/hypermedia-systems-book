@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Tricks Of The Htmx Masters
+#show: chapter.with(title: [Tricks Of The Htmx Masters])
 
 In this chapter we are going to look deeper into the htmx toolkit. We’ve
 accomplished quite a bit with what we’ve learned so far. Still, when you are
@@ -24,7 +24,7 @@ With the features and techniques in this chapter, you will be able to pull off
 extremely sophisticated user interfaces using only htmx and perhaps a small bit
 of hypermedia-friendly client-side scripting.
 
-=== Htmx Attributes
+= Htmx Attributes
 
 #index[htmx][attributes]
 Thus far we have used about fifteen different attributes from htmx in our
@@ -49,7 +49,7 @@ application. The most important ones have been:
 Two of these attributes, `hx-swap` and `hx-trigger`, support a number of useful
 options for creating more advanced Hypermedia-Driven Applications.
 
-==== #indexed[hx-swap]
+== #indexed[hx-swap]
 
 We’ll start with the `hx-swap` attribute. This is often not included on elements
 that issue htmx-driven requests because its default behavior --- `innerHTML`,
@@ -107,7 +107,7 @@ write the following HTML:
 More details and examples can be found online in the `hx-swap`
 #link("https://htmx.org/attributes/hx-swap/")[documentation].
 
-==== hx-trigger
+== hx-trigger
 
 #index[hx-trigger][about]
 #index[hx-trigger][element defaults]
@@ -195,7 +195,7 @@ Here are the other modifiers available on `hx-trigger`:
   request.
   ]
 
-===== Trigger filters
+=== Trigger filters
 
 #index[hx-trigger][event filters]
 The `hx-trigger` attribute also allows you to specify a _filter_
@@ -237,7 +237,7 @@ want to issue a request under specific circumstances:
 Using event filters, you can use whatever logic you’d like to filter requests by
 htmx.
 
-===== Synthetic events
+=== Synthetic events
 
 #index[hx-trigger][synthetic events]
 In addition to these modifiers, `hx-trigger` offers a few "synthetic" events,
@@ -260,7 +260,7 @@ The `hx-trigger` attribute certainly is the most complex in htmx. More details
 and examples can be found in its
 #link("https://htmx.org/attributes/hx-trigger/")[documentation].
 
-==== Other Attributes <_other_attributes>
+== Other Attributes <_other_attributes>
 Htmx offers many other less commonly used attributes for fine-tuning the
 behavior of your Hypermedia-Driven Application.
 
@@ -353,7 +353,7 @@ advanced Hypermedia-Driven Applications. A complete reference for all htmx
 attributes can be found
 #link("https://htmx.org/reference/#attributes")[on the htmx website].
 
-=== Events
+= Events
 
 #index[events]
 Thus far we have worked with JavaScript events in htmx primarily via the
@@ -372,7 +372,7 @@ is worth the effort to learn about events
   "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events",
 )[in depth].
 
-==== Htmx-Generated Events
+== Htmx-Generated Events
 
 #index[htmx events]
 In addition to making it easy to _respond_ to events, htmx also
@@ -400,7 +400,7 @@ Here are some of the most commonly used events triggered by htmx:
     htmx-powered element to abort an open request.
   ]
 
-==== Using the htmx:configRequest Event
+== Using the htmx:configRequest Event
 
 Let’s look at an example of how to work with htmx-emitted events. We’ll use the `htmx:configRequest` event
 to configure an HTTP request.
@@ -483,7 +483,7 @@ The full documentation for the `htmx:configRequest` event (and other events you
 might be interested in) can be found
 #link("https://htmx.org/events/#htmx:configRequest")[on the htmx website].
 
-==== Canceling a Request Using htmx:abort
+== Canceling a Request Using htmx:abort
 
 #index[htmx:abort] #index[canceling a request]
 We can listen for any of the many useful events from htmx, and we can respond to
@@ -543,7 +543,7 @@ Now we have a "Cancel" button that is enabled only when a request from the `cont
 is in flight. And we are taking advantage of htmx-generated and handled events,
 as well as the event-friendly syntax of hyperscript, to make it happen. Slick!
 
-==== Server Generated Events <_server_generated_events>
+== Server Generated Events <_server_generated_events>
 We are going to talk more about the various ways that htmx enhances regular HTTP
 requests and responses in the next section, but, since it involves events, we
 are going to discuss one HTTP Response header that htmx supports: `HX-Trigger`.
@@ -621,7 +621,7 @@ continue to work fine. Additionally, we may want _other_ elements or requests to
 trigger the `contacts-updated` event, so this provides a general mechanism for
 refreshing the contacts table in our application.
 
-=== HTTP Requests & Responses <_http_requests_responses>
+= HTTP Requests & Responses <_http_requests_responses>
 We have just seen an advanced feature of HTTP responses supported by htmx, the `HX-Trigger` response
 header, but htmx supports quite a few more headers for both requests and
 responses. In Chapter 4 we discussed the headers present in HTTP Requests. Here
@@ -649,7 +649,7 @@ HTTP responses:
 You can find a reference for all requests and response headers in the
 #link("https://htmx.org/reference/#headers")[htmx documentation].
 
-==== HTTP Response Codes
+== HTTP Response Codes
 
 #index[HTTP response codes]
 Even more important than response headers, in terms of information conveyed to
@@ -689,7 +689,7 @@ codes in your application. Full documentation on the `htmx:beforeSwap` event can
 be found at
 #link("https://htmx.org/events/#htmx:beforeSwap")[htmx.org].
 
-=== Updating Other Content <_updating_other_content>
+= Updating Other Content <_updating_other_content>
 Above we saw how to use a server-triggered event, via the `HX-Trigger`
 HTTP response header, to update a piece of the DOM based on the response to
 another part of the DOM. This technique addresses the general problem that comes
@@ -700,7 +700,7 @@ only one target: either the explicit or implicit target of the element.
 
 If you want to update other content in htmx, you have a few options:
 
-==== Expanding Your Selection <_expanding_your_selection>
+== Expanding Your Selection <_expanding_your_selection>
 The first option, and the simplest, is to "expand the target." That is, rather
 than simply replacing a small part of the screen, expand the target of your
 htmx-driven request until it is large enough to enclose all the elements that
@@ -710,7 +710,7 @@ that you want, and it may not play well with a particular server-side template
 layout. Regardless, we always recommend at least thinking about this approach
 first.
 
-==== Out of Band Swaps
+== Out of Band Swaps
 
 #index[hx-swap-oob]
 #index[htmx][out of band swaps]
@@ -776,7 +776,7 @@ Depending on how exactly your server-side templating technology works, and what
 level of interactivity your application requires, out of band swapping can be a
 powerful mechanism for content updates.
 
-==== Events
+== Events
 
 #index[htmx patterns][server-triggered events]
 Finally, the most complex mechanism for updating content is the one we saw back
@@ -791,7 +791,7 @@ If it _does_ speak to you, however, we say: go for it. We’ve created some very
 complex and flexible user interfaces using this approach, and we are quite fond
 of it.
 
-==== Being Pragmatic
+== Being Pragmatic
 
 #index[hypermedia][limitations]
 All of these approaches to the "Updating Other Content" problem will work, and
@@ -816,7 +816,7 @@ strengths and weaknesses of each one. This will give you a deep tool chest to
 reach into when problems present themselves. Our experience is that, with htmx,
 hypermedia is a tool you can reach for frequently.
 
-=== Debugging
+= Debugging
 
 #index[events][debugging]
 #index[htmx][debugging]
@@ -834,7 +834,7 @@ answer, as of right now, is: you can’t.
 There are two techniques that can help in this regard, one provided by htmx, the
 other provided by Chrome, the browser by Google.
 
-==== Logging Htmx Events <_logging_htmx_events>
+== Logging Htmx Events <_logging_htmx_events>
 The first technique, provided by htmx itself, is to call the
 `htmx.logAll()` method. When you do this, htmx will log all the internal events
 that occur as it goes about its business, loading up content, responding to
@@ -897,7 +897,7 @@ get logged to the console, along with the element they are triggered on.
 After a bit of reading and filtering, you will be able to make sense of the
 event stream, and it can help you debug htmx-related issues.
 
-==== Monitoring Events in Chrome <_monitoring_events_in_chrome>
+== Monitoring Events in Chrome <_monitoring_events_in_chrome>
 The preceding technique is useful if the problem is occurring somewhere
 _within_ htmx, but what if htmx is never getting triggered at all? This comes up
 some times, like when, for example, you have accidentally typed an event name
@@ -926,7 +926,7 @@ expected event isn’t occurring.
 Using these two techniques will help you as you (infrequently, we hope)
 troubleshoot event-related issues when developing with htmx.
 
-=== Security Considerations
+= Security Considerations
 
 #index[htmx][security]
 #index[security]
@@ -950,7 +950,7 @@ In order to help you sleep better at night, htmx provides the
 `hx-disable` attribute. When this attribute is placed on an element, all htmx
 attributes within that element will be ignored.
 
-==== Content Security Policies & Htmx
+== Content Security Policies & Htmx
 
 A #indexed[Content Security Policy (CSP)] is a browser technology that allows
 you to detect and prevent certain types of content injection-based attacks. A
@@ -973,7 +973,7 @@ in place will be fine. The one feature that does rely on
 `eval()` for your web application, you will not be able to use the event
 filtering syntax.
 
-=== Configuring
+= Configuring
 
 #index[htmx][configuration]
 There are a large number of configuration options available for htmx. Some

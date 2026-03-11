@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Extending The Hyperview Client
+#show: chapter.with(title: [Extending The Hyperview Client])
 
 In the previous chapter, we created a fully-featured native mobile version of
 our Contacts app. Aside from customizing the entry point URL, we didn’t need to
@@ -23,7 +23,7 @@ Native. React Native has a healthy ecosystem of open-source libraries. We’ll b
 leveraging these libraries to create our custom extensions to the Hyperview
 client.
 
-=== Adding Phone Calls and Email
+= Adding Phone Calls and Email
 
 #index[Hyperview][phone calls]
 Let’s start with the most obvious feature missing from our Contacts app: phone
@@ -229,7 +229,7 @@ existing 3rd party library, and read attributes set on the
 app, our client has new capabilities we can immediately utilize by referencing
 the actions from our HXML templates.
 
-=== Adding Messages
+= Adding Messages
 
 #index[Hyperview][messages]
 The phone and email actions added in the previous section are examples of "system
@@ -410,7 +410,7 @@ the message UI remains visible even while the screens change beneath them.
   Message shown during back navigation
 ])
 
-=== Swipe Gesture on Contacts <_swipe_gesture_on_contacts>
+= Swipe Gesture on Contacts <_swipe_gesture_on_contacts>
 To add communication capabilities and the message UI, we extended the client
 with custom behavior actions. But the Hyperview client can also be extended with
 custom UI components that render on the screen. Custom components are
@@ -431,7 +431,7 @@ actions will give quick access to edit and delete actions for the contact.
   Swipeable contact item
 ])
 
-==== Designing The Component <_designing_the_component>
+== Designing The Component <_designing_the_component>
 Rather than implementing the swipe gesture from scratch, we will once again use
 an open-source third-party library: `react-native-swipeable`.
 
@@ -486,7 +486,7 @@ contains nothing specific to the contact name, editing the contact, or deleting
 the contact. If later we add another list screen to our app, we can use this
 component to make the items in that list swipeable.
 
-==== Implementing The Component <_implementing_the_component>
+== Implementing The Component <_implementing_the_component>
 Now that we know the HXML structure of our custom component, we can write the
 code to implement it. What does that code look like? Hyperview components are
 written as React Native components. These React Native components are mapped to
@@ -636,7 +636,7 @@ export default class HyperviewScreen extends PureComponent {
 We’re now ready to update our HXML templates to make use of the new swipeable
 row component.
 
-===== Using the component <_using_the_component>
+=== Using the component <_using_the_component>
 Currently, the HXML for a contact item in the list consists of a
 `<behavior>` and `<text>` element:
 
@@ -805,7 +805,7 @@ client," to being a purpose-built client for your app. And importantly, this
 evolution preserves the Hypermedia, server-driven architecture and all of its
 benefits.
 
-=== Mobile Hypermedia-Driven Applications <_mobile_hypermedia_driven_applications>
+= Mobile Hypermedia-Driven Applications <_mobile_hypermedia_driven_applications>
 That concludes our build of mobile Contact.app. Step back from the code details
 and consider the broader pattern:
 - The core logic of the app resides on the server.

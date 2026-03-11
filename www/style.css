@@ -407,23 +407,34 @@ label {
   }
 }
 
-#sidebar, #important, #html-note {
+.the-dedication {
+  font-size: 1.2em;
+  padding-block: 3em;
+}
+
+.sidebar, .important, .html-note {
   font-size: .8em;
   line-height: 1.5em;
   padding: 0 1em;
+  margin-inline: 0;
   display: flow-root;
   font-family: var(--secondary);
 
   background: light-dark(rgb(245, 245, 245), rgb(30, 30, 30));
   border-block: 1px solid light-dark(rgb(78, 78, 78), rgb(159, 159, 159));
+  
+  figcaption {
+    margin-block: 1em;
+    font-weight: bold;
+  }
 }
 
-#important {
+.important {
   background: light-dark(rgb(207, 232, 253), rgb(28, 32, 83));
   border-block: 1px solid light-dark(rgb(23, 61, 111), rgb(74, 89, 230));
 }
 
-#html-note {
+.html-note {
   background: light-dark(rgb(230, 230, 246), rgb(20, 22, 43));
   border-block: 1px solid light-dark(rgb(34, 64, 104), rgb(74, 89, 230));
 
@@ -439,6 +450,16 @@ label {
   padding-inline-start: 1em;
   text-align: right;
   border-inline-start: 1px dotted var(--line-color);
+}
+
+.code-callout {
+  font-family: var(--secondary);
+  color: var(--fg);
+  font-variant-numeric: oldstyle-nums;
+  margin-inline-start: .5em;
+  opacity: .8;
+  &::before { content: "» " / "see note "; }
+  &::after  { content: "."; }
 }
 
 .footnotes {

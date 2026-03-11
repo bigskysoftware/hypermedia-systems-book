@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Extending HTML As Hypermedia
+#show: chapter.with(title: [Extending HTML As Hypermedia])
 
 In the previous chapter we introduced a simple Web 1.0-style hypermedia
 application to manage contacts. Our application supported the normal CRUD
@@ -78,7 +78,7 @@ functionality of HTTP!
 
 Just seems wrong, doesn’t it?
 
-=== A Close Look At A Hyperlink <_a_close_look_at_a_hyperlink>
+= A Close Look At A Hyperlink <_a_close_look_at_a_hyperlink>
 It turns out that we can boost the interactivity of our application and address
 both of these issues _without_ resorting to the SPA approach. We can do so by
 using a _hypermedia-oriented_ JavaScript library, #link("https://htmx.org")[htmx].
@@ -117,7 +117,7 @@ text and, thus, makes this a hypermedia control.
 Now, let’s take a moment and think about how we can _generalize_
 these last three aspects of a hyperlink.
 
-==== Why Only Anchors & Forms? <_why_only_anchors_forms>
+== Why Only Anchors & Forms? <_why_only_anchors_forms>
 Consider: what makes anchor tags (and forms) so special?
 
 Why can’t other elements issue HTTP requests as well?
@@ -136,7 +136,7 @@ This is our first opportunity to generalize HTML as a hypermedia.
   and act as a hypermedia control.
 ]
 
-==== Why Only Click & Submit Events? <_why_only_click_submit_events>
+== Why Only Click & Submit Events? <_why_only_click_submit_events>
 Next, let’s consider the event that triggers the request to the server on our
 link: a click event.
 
@@ -156,7 +156,7 @@ This gives us our second opportunity to expand the expressiveness of HTML:
   of hyperlinks --- to trigger HTTP requests.
 ]
 
-==== Why Only GET & POST? <_why_only_get_post>
+== Why Only GET & POST? <_why_only_get_post>
 
 #index[HTTP methods]
 Getting a bit more technical in our thinking leads us to the problem we noted
@@ -191,7 +191,7 @@ HTML could be extended so that it allows access to the missing three HTTP
 methods, `PUT`, `PATCH` and `DELETE`.
 ]
 
-==== Why Only Replace The Entire Screen? <_why_only_replace_the_entire_screen>
+== Why Only Replace The Entire Screen? <_why_only_replace_the_entire_screen>
 
 #index[transclusion]
 #index[DOM][partial updates]
@@ -223,7 +223,7 @@ this style of "dynamic transclusion," then Hypermedia-Driven Applications could
 function much more like a Single Page Application, where only part of the DOM is
 updated by a given user interaction or network request.
 
-=== Extending HTML as a Hypermedia with Htmx <_extending_html_as_a_hypermedia_with_htmx>
+= Extending HTML as a Hypermedia with Htmx <_extending_html_as_a_hypermedia_with_htmx>
 These four opportunities present us a way to extend HTML well beyond its current
 abilities, but in a way that is _entirely within_ the hypermedia model of the
 web. The fundamentals of HTML, HTTP, the browser, and so on, won’t be changed
@@ -239,7 +239,7 @@ excellent examples are
 #link("https://hotwire.dev")[Hotwire]), but htmx is the purest in its pursuit of
 extending HTML as a hypermedia.
 
-==== Installing and Using Htmx <_installing_and_using_htmx>
+== Installing and Using Htmx <_installing_and_using_htmx>
 From a practical "getting started" perspective, htmx is a simple,
 dependency-free and stand-alone JavaScript library that can be added to a web
 application by simply including it via a `script` tag in your
@@ -282,7 +282,7 @@ install it in the usual manner that your build system supports.
 
 Once htmx has been installed, you can begin using it immediately.
 
-==== No JavaScript Required…​ <_no_javascript_required>
+== No JavaScript Required…​ <_no_javascript_required>
 And here we get to the interesting part of htmx: htmx does not require you, the
 user of htmx, to actually write any JavaScript.
 
@@ -295,7 +295,7 @@ specify the URL to retrieve, and forms use an `action` attribute to specify the
 URL to submit the form to, htmx uses HTML _attributes_ to specify the URL that
 an HTTP request should be issued to.
 
-=== Triggering HTTP Requests <_triggering_http_requests>
+= Triggering HTTP Requests <_triggering_http_requests>
 
 #index[hx-get][about]
 #index[hx-post][about]
@@ -338,7 +338,7 @@ some JavaScript logic to issue an HTTP `GET` AJAX request to the
 
 Very easy to understand and very consistent with the rest of HTML.
 
-==== It’s All Just HTML <_its_all_just_html>
+== It’s All Just HTML <_its_all_just_html>
 
 #index[htmx][HTML based]
 With the request issued by the button above, we get to perhaps the most
@@ -357,7 +357,7 @@ this API: XML.
 
 Htmx simply goes another direction and expects HTML.
 
-==== Htmx vs. "Plain" HTML Responses <_htmx_vs_plain_html_responses>
+== Htmx vs. "Plain" HTML Responses <_htmx_vs_plain_html_responses>
 There is an important difference between the HTTP responses to "normal" anchor
 or form driven HTTP requests and to htmx-powered requests: in the case of htmx
 triggered requests, responses can be _partial_ bits of HTML.
@@ -407,7 +407,7 @@ hypermedia being transferred to the client in a stateless and uniform manner.
 This button just gives us a slightly more sophisticated mechanism for building a
 web application using hypermedia.
 
-=== Targeting Other Elements <_targeting_other_elements>
+= Targeting Other Elements <_targeting_other_elements>
 Now, given that htmx has issued a request and gotten back some HTML as a
 response, and that we are going to swap this content into the existing page
 (rather than replacing the entire page), the question becomes: where should this
@@ -470,7 +470,7 @@ The response HTML has been swapped into the `div`, replacing the button that
 triggered the request. Transclusion! And this has happened "in the background"
 via AJAX, without a clunky page refresh.
 
-=== Swap Styles <_swap_styles>
+= Swap Styles <_swap_styles>
 Now, perhaps we don’t want to load the content from the server response
 _into_ the div, as child elements. Perhaps, for whatever reason, we wish to _replace_ the
 entire div with the response. To handle this, htmx provides another attribute, `hx-swap`,
@@ -569,7 +569,7 @@ What’s next? Recall the one other opportunity we noted: the fact that only a `
 (on an anchor) or a `submit` event (on a form) can trigger an HTTP request.
 Let’s look at how we can address that limitation.
 
-=== Using Events <_using_events>
+= Using Events <_using_events>
 Thus far we have been using a button to issue a request with htmx. You have
 probably intuitively understood that the button would issue its request when you
 clicked on the button since, well, that’s what you do with buttons: you click on
@@ -741,7 +741,7 @@ rather than _imperative_. That keeps htmx-powered applications
 "feeling like" standard web 1.0 applications in a way that adding significant
 amounts of JavaScript does not.
 
-=== Htmx: HTML eXtended <_htmx_html_extended>
+= Htmx: HTML eXtended <_htmx_html_extended>
 And hey, check it out! With `hx-trigger` we have addressed the final opportunity
 for improvement of HTML that we outlined at the start of this chapter:
 - Opportunity 2: We can use _any_ event to trigger an HTTP request.
@@ -771,7 +771,7 @@ address them:
   `hx-target`, `hx-swap`
   ]
 
-=== Passing Request Parameters <_passing_request_parameters>
+= Passing Request Parameters <_passing_request_parameters>
 
 So far we have just looked at a situation where a button makes a simple
 `GET` request. This is conceptually very close to what an anchor tag might do.
@@ -785,7 +785,7 @@ via the various types of input tags available in HTML.
 Htmx allows you include this additional information in a way that mirrors HTML
 itself.
 
-==== Enclosing Forms <_enclosing_forms>
+== Enclosing Forms <_enclosing_forms>
 The simplest way to pass input values with a request in htmx is to enclose the
 element making a request within a form tag.
 
@@ -832,7 +832,7 @@ but that would create a somewhat awkward duplication of the search URL in the `a
 attributes.  This can be avoided by using the `hx-boost` attribute, which we discuss in the next
 chapter.
 
-==== Including Inputs <_including_inputs>
+== Including Inputs <_including_inputs>
 
 #index[form tag][in tables]
 While enclosing all the inputs you want included in a request within a form is the most common
@@ -874,7 +874,7 @@ difficult to colocate an element issuing a request with all the desired inputs.
 It is also useful when you do, in fact, want to submit values with a
 `GET` request and overcome the default behavior of htmx.
 
-===== Relative CSS selectors <_relative_css_selectors>
+=== Relative CSS selectors <_relative_css_selectors>
 
 #index[relative CSS selectors][about]
 The `hx-include` attribute and, in fact, most attributes that take a CSS
@@ -899,7 +899,7 @@ examples:
 Using relative CSS selectors often allows you to avoid generating ids for
 elements, since you can take advantage of their local structural layout instead.
 
-==== Inline Values <_inline_values>
+== Inline Values <_inline_values>
 
 #index[hx-vals][about]
 A final way to include values in htmx-driven requests is to use the
@@ -954,7 +954,7 @@ hypermedia requests with htmx in a manner that should feel very familiar and in
 keeping with the spirit of HTML, while also giving you the flexibility to
 achieve what you want.
 
-=== History Support <_history_support>
+= History Support <_history_support>
 We have a final piece of functionality to close out our overview of htmx:
 browser history support. When you use normal HTML links and forms, your browser
 will keep track of all the pages that you have visited. You can then use the
@@ -1033,7 +1033,7 @@ In this case, you will need to handle the htmx-based "partial" response as well
 as the non-htmx "full page" response. You can do this using HTTP headers, a
 topic we will go into in detail later in the book.
 
-=== Conclusion <_conclusion>
+= Conclusion <_conclusion>
 So that’s our whirlwind introduction to htmx. We’ve only seen about ten
 attributes from the library, but you can see a hint of just how powerful these
 attributes can be. Htmx enables a much more sophisticated web application than
