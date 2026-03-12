@@ -1,5 +1,6 @@
 
 #import "lib/definitions.typ": *
+#import "content.typ": title, authors
 
 #set document(
   title: [Hypermedia Systems],
@@ -14,15 +15,13 @@
   #skew(
     -0.174, // -10deg
     upper(
-      text(style: "oblique", heading(level: 1, outlined: false, [Hypermedia Systems])),
+      text(style: "oblique", heading(level: 1, outlined: false, title)),
     ),
   )
   #box(height: 1em)
   #set text(font: secondary-font)
   #grid(gutter: 1em, columns: 3 * (auto,),
-    [Carson Gross],
-    [Adam Stepinski],
-    [Deniz Akşimşek],
+    ..authors
   )
 ]
 
@@ -42,4 +41,4 @@
 
 
 
-#include "HypermediaSystems-content.typ"
+#include "content.typ"

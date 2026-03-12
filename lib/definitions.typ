@@ -14,7 +14,7 @@
     #set par(leading: 5pt, justify: false)
     #set text(size: 32pt, font: display-font)
     #text(fill: luma(140))[
-      #it.at("supplement", default: none)
+      Part
       #counter(heading).display("I")
     ]
     #linebreak()
@@ -51,14 +51,23 @@
   content
 }
 
-#let chapter(title: "", it) = {
+#let chapter(
+  title: "",
+  numbering: (..bits) => numbering("1.1.", ..bits.pos().slice(1)),
+  level: 2,
+  it,
+) = {
   import "code-callouts.typ": code-with-callouts
 show raw.where(block: true): code-with-callouts
   [#metadata(title)<title-metadata>]
   if "single_chapter" in sys.inputs {
     it
   } else {
-    [== #title]
+    [#heading(
+      level: level,
+      numbering: numbering,
+      title,
+    )<chapter-title>]
     set heading(offset: 2)
     it
   }

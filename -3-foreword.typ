@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-#show: chapter.with(title: [Foreword])
+#show: chapter.with(title: [Foreword], numbering: none, level: 1)
 
 While there have been many books on the topic of hypermedia, there is a select
 number of publications that chronicle important advances in the field of

@@ -1,7 +1,6 @@
 #import "lib/definitions.typ": *
-#set heading(numbering: none)
 
-#show: chapter.with(title: [Introduction])
+#show: chapter.with(title: [Introduction], numbering: none)
 
 
 This is a book about building applications using hypermedia systems. _Hypermedia systems_ might

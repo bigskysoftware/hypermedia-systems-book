@@ -15,6 +15,8 @@ export class Book extends Division {
   declare htmlHead?: string;
 
   declare htmlFooter?: string;
+  
+  authors = [];
 }
 
 export class FrontCover extends Division {

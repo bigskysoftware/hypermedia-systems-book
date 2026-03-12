@@ -48,7 +48,9 @@
   }
 }
 
-#let hypermedia-systems-book(title, authors: (), frontmatter: []) = content => [
+#let hypermedia-systems-book(title, authors: ()) = content => [
+  // #region SET/SHOW RULES
+  
   #set text(font: body-font, size: 12pt, lang: "en")
   #set par(leading: .5em)
   #show raw: set text(font: mono-font)
@@ -67,13 +69,10 @@
 
   #show list: set par(justify: false)
 
-  #set list(
-    indent: 1em,
-    body-indent: .6em,
-    spacing: leading,
-  )
+  #set list(indent: 1em, body-indent: .6em, spacing: leading)
 
   #set enum(
+    indent: 1em, body-indent: 0pt, number-align: start, spacing: leading,
     numbering: (..args) => {
       set text(font: secondary-font, number-type: "old-style")
       box(width: 1em, {
@@ -81,10 +80,6 @@
         h(.5em)
       })
     },
-    indent: 1em,
-    body-indent: 0pt,
-    number-align: start,
-    spacing: leading,
   )
 
   #set terms(hanging-indent: 1em)
@@ -143,6 +138,25 @@
       footnote(it.dest)
     }
   }
+  
+  #show outline.entry: it => {
+    set par(first-line-indent: 0pt, justify: false)
+    show linebreak: []
+    set text(number-width: "tabular")
+    show grid: set block(spacing: 0pt)
+    box(
+      inset: (left: (it.level - 1) * 1em),
+      grid(
+        columns: (1fr, auto),
+        column-gutter: 1em,
+        par(
+          it.body(),
+          hanging-indent: (it.level) * 12pt + 3pt,
+        ),
+        it.page(),
+      )
+    )
+  }
 
   #set page(
     width: 8.5in, height: 11in,
@@ -151,81 +165,31 @@
   )
 
   #set document(title: title, author: authors)
+  
+  // #endregion SET/SHOW RULES
 
-  // #region FRONTMATTER
-  #[
-    #inside-cover(title, authors)
-
-    #frontmatter
-
-    #[
-      #pagebreak(to: "odd")
-      #set page(header: none, footer: none)
-      #pagebreak(to: "odd")
-
-      = Contents
-      #set par(first-line-indent: 0pt, justify: false)
-      #show linebreak: []
-      #show outline.entry: it => {
-        show regex("\\d"): text.with(number-width: "tabular")
-        show grid: set block(spacing: 0pt)
-        box(
-          inset: (left: (it.level - 1) * 1em),
-          grid(
-            columns: (1fr, auto),
-            column-gutter: 1em,
-            par(
-              it.body(),
-              hanging-indent: (it.level) * 12pt + 3pt
-            ),
-            it.page(),
-          )
-        )
-      }
-      #outline(indent: 1em, depth: 4, title: none)<table-of-contents>
-    ]
-  ]
-
-  // #endregion FRONTMATTER
-
-  // #region BODY
+  #inside-cover(title, authors)
 
   #[
-    // Chapter count
-    #let chapter-counter = counter("chapter")
-    #show heading.where(level: 2): it => [
-      #if it.at("numbering") != none { chapter-counter.step() }
-      #chapter-heading(it)
-    ]
-
-    #show heading.where(level: 1): it => [
-      #part-heading(it)
-      // Override heading counter so chapter numbers don't reset with each part.
-      // TODO: this doesn't work on the first heading in each part
-      #context {
-        let (chapter-no,) = chapter-counter.get()
-        counter(heading).update((h1, ..) => (h1, chapter-no))
-      }
-    ]
-
-    #set heading(
-      supplement: it => ([Part], [Chapter]).at(
-        it.at("depth", default: 2) - 1, default: [Section]),
-      numbering: (..bits) => if bits.pos().len() < 2 {
-        // Show part number only on parts.
-        numbering("I.", ..bits)
-      } else {
-        // Discard part number otherwise.
-        numbering("1.1.", ..bits.pos().slice(1))
-      },
+    #show heading.where(level: 1): set heading(
+      supplement: [Part],
+      numbering: "I",
     )
+    #show heading.where(level: 2): set heading(
+      supplement: [Chapter],
+      numbering: (..bits) => numbering("1", ..bits.pos().slice(1)),
+    )
+    #set heading(
+      supplement: [Section],
+      numbering: (..bits) => numbering("1.1.", ..bits.pos().slice(1)),
+    )
+    
+    #show <part-title>: part-heading
 
+    #show <chapter-title>: chapter-heading
+    
     #content
   ]
-
-  // #endregion BODY
-
-  // #region BACKMATTER
 
   #[
     #show heading.where(level: 1): chapter-heading

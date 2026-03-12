@@ -1,9 +1,9 @@
 // Based on in-dexter by Rolf Bremer, Jutta Klebe
 
-#let index(..content) = if target() == "html" {
+#let index(..content) = context if target() == "html" {
   //
 } else {
-  context [#metadata((content: content.pos(), location: here()))<jkrb_index>]
+  [#metadata((content: content.pos(), location: here()))<jkrb_index>]
 }
 
 #let indexed(content) = [#index(content)#content]

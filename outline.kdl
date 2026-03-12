@@ -1,0 +1,53 @@
+Book "Hypermedia Systems" \
+  author="Carson Gross" author="Adam Stepinski" author="Deniz Akşimşek" \
+  lang="en" \
+  htmlHead="""
+  <meta charset=utf8 name=viewport content=width=device-width>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <script type="module" src="/color-customizer.js"></script>
+  """ \
+  htmlFooter="""
+  <footer class="book-footer">
+    <a href="/" class="footer-book-title">Hypermedia Systems</a>
+    <a href="/book/contents/">Contents</a>
+    <color-customizer></color-customizer>
+  </footer>
+  """ \
+{
+  LandingPage "Hypermedia Systems" url="/" content=(file)"www/cover.html"
+
+  Frontmatter  {
+    Copyright "Copyright & Acknowledgments" compile="-1-copy-ack.typ"
+    Dedication "Dedication" compile="-2-dedication.typ"
+    Foreword compile="-3-foreword.typ"
+    TableOfContents "Contents" url="/book/contents/" content=(file)"www/tocheader.html"
+  }
+
+  Part "Hypermedia Concepts" url="/part/hypermedia-concepts/" {
+    Introduction compile="ch00-introduction.typ"
+    Chapter compile="ch01-hypermedia-a-reintroduction.typ"
+    Chapter compile="ch02-components-of-a-hypermedia-system.typ"
+    Chapter compile="ch03-a-web-1-0-application.typ"
+  }
+
+  Part "Hypermedia-Driven Web Applications With Htmx" url="/part/htmx/" {
+    Chapter compile="ch04-extending-html-as-hypermedia.typ"
+    Chapter compile="ch05-htmx-patterns.typ"
+    Chapter compile="ch06-more-htmx-patterns.typ"
+    Chapter compile="ch07-a-dynamic-archive-ui.typ"
+    Chapter compile="ch08-tricks-of-the-htmx-masters.typ"
+    Chapter compile="ch09-client-side-scripting.typ"
+    Chapter compile="ch10-json-data-apis.typ"
+  }
+
+  Part "Bringing Hypermedia To Mobile" url="/part/hyperview/" {
+    Chapter compile="ch11-hyperview-a-mobile-hypermedia.typ"
+    Chapter compile="ch12-building-a-contacts-app-with-hyperview.typ"
+    Chapter compile="ch13-extending-the-hyperview-client.typ"
+  }
+
+  Part "Conclusion" url="/part/conclusion/" {
+    Chapter compile="ch14-conclusion.typ"
+  }
+}
