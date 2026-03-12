@@ -7,12 +7,9 @@
 )[
   #set align(start + horizon)
   #set par(leading: 10pt, justify: false)
-  #show heading: set text(size: 3em, font: display-font)
-  #skew(
-    -0.174, // -10deg
-    upper(
-      text(style: "oblique", heading(level: 1, outlined: false, title)),
-    ),
+  #show heading: set text(size: 36pt, font: display-font)
+  #upper(
+    text(style: "oblique", heading(level: 1, outlined: false, title)),
   )
   #box(height: 1em)
   #set text(font: secondary-font)
@@ -51,15 +48,16 @@
 #let hypermedia-systems-book(title, authors: ()) = content => [
   // #region SET/SHOW RULES
   
-  #set text(font: body-font, size: 12pt, lang: "en")
+  #set text(font: body-font, size: body-size, lang: "en")
   #set par(leading: .5em)
   #show raw: set text(font: mono-font)
   #show raw.where(block: false): set text(size: 11 * 1em / 12) // 11pt in 12pt body
   #show raw.where(block: true): set text(size: 9pt)
 
-  #show heading.where(level: 1): set text(font: display-font, size: 24pt)
-  #show heading.where(level: 2): set text(font: display-font, size: 20pt)
-  #show heading.where(level: 3): set text(font: secondary-font)
+  #show heading.where(level: 1): set text(font: display-font, size: 16pt)
+  #show heading.where(level: 2): set text(font: display-font)
+  #show heading.where(level: 3): set text(font: display-font, size: 8pt)
+  #show heading.where(level: 3): set block(above: 12pt + leading, below: 12pt - 1em + leading)
   #show heading.where(level: 4): set text(font: secondary-font)
   #show heading.where(level: 5): set text(font: secondary-font)
   #show heading.where(level: 6): set text(font: secondary-font)
@@ -181,7 +179,7 @@
     )
     #set heading(
       supplement: [Section],
-      numbering: (..bits) => numbering("1.1.", ..bits.pos().slice(1)),
+      numbering: (..bits) => numbering("1.1.1. ", ..bits.pos().slice(1)),
     )
     
     #show <part-title>: part-heading

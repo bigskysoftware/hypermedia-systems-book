@@ -1,7 +1,8 @@
 #let leading = 0.6em
+#let body-size = 12pt
 #let body-font = "Libertinus Serif"
 #let secondary-font = "Libertinus Sans"
-#let display-font = "Jaro"
+#let display-font = "Hypersystem"
 #let mono-font = "Berkeley Mono"
 
 #import "./indexing.typ": *
@@ -12,7 +13,7 @@
 
   #align(horizon)[
     #set par(leading: 5pt, justify: false)
-    #set text(size: 32pt, font: display-font)
+    #set text(size: 22pt, font: display-font)
     #text(fill: luma(140))[
       Part
       #counter(heading).display("I")
@@ -32,7 +33,7 @@
 
   #v(3in)
   #set par(justify: false)
-  #set text(size: 22pt, font: display-font)
+  #set text(size: 16pt, font: display-font)
   #block({
     if it.at("numbering") != none {
       text(fill: luma(140), {
@@ -45,6 +46,7 @@
     it.body
     [#metadata("")<heading-here>]
   })
+  #v(10pt)
 ]
 
 #let chapters(content) = {
