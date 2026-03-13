@@ -7,7 +7,10 @@
 
 #import "./indexing.typ": *
 
-#let part-heading(it) = [
+#let part-heading(it) = context if target() == "html" [
+  #pagebreak()
+  #it
+] else [
   #set page(header: none, footer: none)
   #pagebreak(to: "odd")
 
@@ -24,7 +27,13 @@
   ]
 ]
 
-#let chapter-heading(it) = [
+#let chapter-heading(it) = context if target() == "html" [
+  #pagebreak()
+  #html.elem("h" + str(it.level + 1), [
+    #if it.numbering != none [#it.supplement #counter(heading).display(it.numbering)]
+    #it.body
+  ])
+] else [
   #{
     pagebreak()
     set page(header: none, footer: none)
@@ -39,7 +48,7 @@
       text(fill: luma(140), {
         it.supplement
         [ ]
-        str(counter(heading).get().at(1))
+        str(counter(heading).get().at(1, default: ""))
       })
       linebreak()
     }
@@ -60,7 +69,7 @@
   it,
 ) = {
   import "code-callouts.typ": code-with-callouts
-show raw.where(block: true): code-with-callouts
+  show raw.where(block: true): code-with-callouts
   [#metadata(title)<title-metadata>]
   if "single_chapter" in sys.inputs {
     it
@@ -177,4 +186,12 @@ show raw.where(block: true): code-with-callouts
   set scale(origin: bottom + center)
 
   rotate(phi, scale(x: sx * 100%, y: sy * 100%, rotate(theta, body)))
+}
+
+#let once(lbl, fn) = (it, ..args) => {
+  if it.at("label", default: none) == lbl {
+    it
+  } else {
+    [#fn(it, ..args)#lbl]
+  }
 }

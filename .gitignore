@@ -1,6 +1,5 @@
 *.pdf
 *.epub
-_site
 out
 .idea
 .DS_Store

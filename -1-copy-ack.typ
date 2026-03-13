@@ -24,7 +24,7 @@ Thanks to:
 Typefaces:
 - Libertinus Serif (by its authors: https://github.com/alerque/libertinus/blob/master/CONTRIBUTORS.txt, for body text),
 - Libertinus Sans (by the same, for secondary text),
-- Berkeley Mono (by Berkeley Graphics, for code and ascii art diagrams).
-- Jaro (by Agyei Archer, Celine Hurka, and Mirko Velimirović, for headings)
+- Berkeley Mono (by Berkeley Graphics, for code and ascii art diagrams),
+- Hypersystem (by Deniz Akşimşek, for headings).
 
-Written and typeset with Typst (#link("https://typst.app")).
+Written and typeset with Typst (#link("https://typst.app")) and Pandoc (#link("https://pandoc.org")).

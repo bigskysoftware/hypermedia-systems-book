@@ -19,7 +19,7 @@ Book "Hypermedia Systems" \
 
   Frontmatter  {
     Copyright "Copyright & Acknowledgments" compile="-1-copy-ack.typ"
-    Dedication "Dedication" compile="-2-dedication.typ"
+    Dedication "Dedications" compile="-2-dedication.typ"
     Foreword compile="-3-foreword.typ"
     TableOfContents "Contents" url="/book/contents/" content=(file)"www/tocheader.html"
   }
@@ -50,4 +50,6 @@ Book "Hypermedia Systems" \
   Part "Conclusion" url="/part/conclusion/" {
     Chapter compile="ch14-conclusion.typ"
   }
+  
+  Index "Index" if="print,ebook"
 }

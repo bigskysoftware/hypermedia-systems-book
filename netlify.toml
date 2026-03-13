@@ -1,9 +1,9 @@
 [build]
 command = """
 www/build_web.ts &&\
-cp www/{style.css,cover.css,color-customizer.js} _site &&\
-cp -r images _site/images &&\
-cp -r fonts _site/fonts &&\
-npx --yes subfont -ir _site --no-fallbacks
+cp www/{style.css,cover.css,color-customizer.js} out/www &&\
+cp -r images out/www/images &&\
+cp -r fonts out/www/fonts &&\
+npx --yes subfont -ir out/www --no-fallbacks
 """
-publish = "_site"
+publish = "out/www"

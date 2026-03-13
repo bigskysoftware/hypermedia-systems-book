@@ -912,7 +912,7 @@ when a click occurs, so here is what the Alpine code will look like:
 And that’s all it takes. A simple component like a counter should be simple to
 code, and Alpine delivers.
 
-== "x-on:click" vs. "onclick"
+== "x-on:click" vs. "onclick" <x-on-click-vs-onclick>
 
 #index[Alpine.js][x-on:click]
 As we said, the Alpine `x-on:click` attribute (or its shorthand, the

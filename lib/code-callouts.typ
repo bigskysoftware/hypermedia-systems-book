@@ -42,29 +42,23 @@
   (callouts: callouts, text: new-text)
 }
 
-#let processed-label = <TypstCodeCallout-was-processed>
-
-#let code-with-callouts = (
+#let code-with-callouts = once(<TypstCodeWithCallouts>, (
   it /*: content(raw) */,
   callout-display: default-callout /*: function(str, content) */
 ) => {
-  if it.at("label", default: none) == processed-label {
+  let (callouts, text: new-text) = parse-callouts(it.text)
+
+  show raw.line: it => {
     it
-  } else {
-    let (callouts, text: new-text) = parse-callouts(it.text)
-
-    show raw.line: it => {
-      it
-      let callouts-of-line = callouts.at(it.number - 1, default: ())
-      for callout in callouts-of-line {
-        callout-display(callout)
-      }
+    let callouts-of-line = callouts.at(it.number - 1, default: ())
+    for callout in callouts-of-line {
+      callout-display(callout)
     }
-
-    let fields = it.fields()
-    let _ = fields.remove("text")
-    let _ = fields.remove("lines")
-    let _ = fields.remove("theme")
-    [#raw(..fields, new-text)#processed-label]
   }
-}
+
+  let fields = it.fields()
+  let _ = fields.remove("text")
+  let _ = fields.remove("lines")
+  let _ = fields.remove("theme")
+  [#raw(..fields, new-text)<TypstCodeWithCallouts>]
+})

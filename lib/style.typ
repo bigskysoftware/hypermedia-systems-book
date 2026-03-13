@@ -54,13 +54,9 @@
   #show raw.where(block: false): set text(size: 11 * 1em / 12) // 11pt in 12pt body
   #show raw.where(block: true): set text(size: 9pt)
 
-  #show heading.where(level: 1): set text(font: display-font, size: 16pt)
-  #show heading.where(level: 2): set text(font: display-font)
-  #show heading.where(level: 3): set text(font: display-font, size: 8pt)
-  #show heading.where(level: 3): set block(above: 12pt + leading, below: 12pt - 1em + leading)
-  #show heading.where(level: 4): set text(font: secondary-font)
-  #show heading.where(level: 5): set text(font: secondary-font)
-  #show heading.where(level: 6): set text(font: secondary-font)
+  #show heading: set text(font: display-font, size: 8pt)
+  #show heading: set block(above: 12pt + leading, below: 12pt - 1em + leading)
+  #show heading.where(level: 1): set text(size: 16pt)
 
   #set par(justify: true, first-line-indent: 1em, leading: leading)
   #set par(spacing: leading)
@@ -81,8 +77,14 @@
   )
 
   #set terms(hanging-indent: 1em)
-  #show terms: it => { set par(first-line-indent: 0pt); it }
+  #show terms: set par(first-line-indent: 0pt)
   #show terms: block.with(spacing: .5em + leading)
+  #show terms.item: once(<TermsItem>, it => {
+    let fields = it.fields()
+    let term = text(font: secondary-font, fields.remove("term"))
+    let description = fields.remove("description")
+    terms.item(term, description, ..fields)
+  })
 
   #set quote(block: true)
   #show quote: set block(spacing: 1em)
@@ -137,7 +139,9 @@
     }
   }
   
-  #show outline.entry: it => {
+  #show outline.entry: it => if target() != "html" {
+    it
+  } else {
     set par(first-line-indent: 0pt, justify: false)
     show linebreak: []
     set text(number-width: "tabular")
@@ -163,44 +167,32 @@
   )
 
   #set document(title: title, author: authors)
+
+  #context if target() != "html" { inside-cover(title, authors) }
+
+  #show heading.where(level: 1): set heading(
+    supplement: [Part],
+    numbering: "I",
+  )
+  #show heading.where(level: 2): set heading(
+    supplement: [Chapter],
+    numbering: (..bits) => numbering("1", ..bits.pos().slice(1)),
+  )
+  #set heading(
+    supplement: [Section],
+    numbering: (..bits) => numbering("1.1.1. ", ..bits.pos().slice(1)),
+  )
   
-  // #endregion SET/SHOW RULES
+  #show <part-title>: part-heading
 
-  #inside-cover(title, authors)
-
-  #[
-    #show heading.where(level: 1): set heading(
-      supplement: [Part],
-      numbering: "I",
-    )
-    #show heading.where(level: 2): set heading(
-      supplement: [Chapter],
-      numbering: (..bits) => numbering("1", ..bits.pos().slice(1)),
-    )
-    #set heading(
-      supplement: [Section],
-      numbering: (..bits) => numbering("1.1.1. ", ..bits.pos().slice(1)),
-    )
-    
-    #show <part-title>: part-heading
-
-    #show <chapter-title>: chapter-heading
-    
-    #content
-  ]
-
-  #[
-    #show heading.where(level: 1): chapter-heading
-
-    = Index
-
-    #columns(2, gutter: 2em, {
-      set text(font: secondary-font, size: .9em)
-      set par(first-line-indent: 0pt)
-      show heading: none
-      make-index()
-    })
-  ]
-
-  // #endregion BACKMATTER
+  #show <chapter-title>: chapter-heading
+  
+  #show <book-index>: it => columns(2, gutter: 2em, {
+    set text(font: secondary-font, size: .9em)
+    set par(first-line-indent: 0pt)
+    show heading: none
+    it
+  })
+  
+  #content
 ]
