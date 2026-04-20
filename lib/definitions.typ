@@ -106,7 +106,7 @@
     #set text(.8em, font: secondary-font)
     #show heading: set text(1em)
 
-    === #label: #title
+    #block(above: 0.8em, below: 0.5em)[#strong[#label: #title]]
     <html-note-title>
 
     #body
