@@ -2,6 +2,14 @@
 
 This is the source for the book [Hypermedia Systems](https://hypermedia.systems)
 
+## Repository layout
+
+- **root** — 2nd edition (in progress). Builds to `/` on the web.
+- **`1st-edition/`** — frozen snapshot of the 1st edition. Builds to `/1sted/` on the web.
+- **`pdfs/`** — ACM papers included as appendix in the 2nd edition.
+
+Each edition has its own `justfile` and builds independently. The root `netlify.toml` assembles both into a single deploy.
+
 ## Required tools
 
 | Tool | Version | Install |
@@ -21,9 +29,11 @@ local.
 
 ## Build targets
 
+Run from the edition you want to build (root for 2nd edition, `1st-edition/` for 1st):
+
 - `just build-pdf` — PDF via typst
 - `just build-epub` — EPUB via pandoc
 - `just build-kindle` — Kindle `.kpf` via Kindle Previewer 3 CLI (upload this to KDP)
 - `just build-md` — Markdown via pandoc
 - `just build-html` — static site via deno
-- `just build` — all of the above
+- `just build` — pdf + epub + kindle

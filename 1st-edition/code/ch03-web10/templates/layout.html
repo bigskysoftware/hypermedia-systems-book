@@ -1,0 +1,21 @@
+<html lang="">
+<head>
+    <title>Contact App</title>
+    <link rel="stylesheet" href="https://the.missing.style/">
+    <link rel="stylesheet" href="/static/site.css">
+</head>
+<body>
+<main hx-indicator="#indicator">
+    <header>
+        <h1>
+            <all-caps>contacts.app</all-caps>
+            <sub-title>A Demo Contacts Application</sub-title>
+        </h1>
+    </header>
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 2,
+    "first": "Carson",
+    "last": "Gross",
+    "phone": "123-456-7890",
+    "email": "carson@example.comz",
+    "errors": {}
+  },
+  {
+    "id": 3,
+    "first": "",
+    "last": "",
+    "phone": "",
+    "email": "joe@example.com",
+    "errors": {}
+  },
+  {
+    "id": 4,
+    "first": "",
+    "last": "",
+    "phone": "",
+    "email": "carson@example.com",
+    "errors": {}
+  },
+  {
+    "id": 5,
+    "first": "Michael",
+    "last": "Kennedy",
+    "phone": "7227777777",
+    "email": "michael@mkennedy.tech",
+    "errors": {}
+  },
+  {
+    "id": 6,
+    "first": "Jeff",
+    "last": "J",
+    "phone": "7760909997",
+    "email": "jeff@jeff.com",
+    "errors": {}
+  }
+]

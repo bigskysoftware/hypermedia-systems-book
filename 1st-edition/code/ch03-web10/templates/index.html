@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+    <form action="/contacts" method="get">
+        <fieldset>
+            <legend>Contact Search</legend>
+            <p>
+                <label for="search">Search Term</label>
+                <input id="search" type="search" name="q" value="{{ request.args.get("q") or '' }}"/>
+            </p>
+            <p>
+                <input type="submit" value="Search"/>
+            </p>
+        </fieldset>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.first }}</td>
+                <td>{{ contact.last }}</td>
+                <td>{{ contact.phone }}</td>
+                <td><a href="/contacts/{{ contact.id }}/edit">Edit</a> <a href="/contacts/{{ contact.id }}">View</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/contacts/new">Add Contact</a>
+    </p>
+
+{% endblock %}

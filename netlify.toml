@@ -5,6 +5,8 @@ www/build_web.ts &&\
 cp www/{style.css,cover.css,color-customizer.js} _site &&\
 cp -r images _site/images &&\
 cp -r fonts _site/fonts &&\
+(cd 1st-edition && www/build_web.ts && mkdir -p _site/1sted && cp www/{style.css,cover.css,color-customizer.js} _site/1sted && cp -r images _site/1sted/images && cp -r fonts _site/1sted/fonts) &&\
+cp -r 1st-edition/_site/1sted _site/ &&\
 npx --yes subfont -ir _site --no-fallbacks
 """
 publish = "_site"
