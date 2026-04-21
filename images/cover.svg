@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 820" role="img" aria-label="Hypermedia Systems, 2nd Edition — cover placeholder">
+  <rect width="600" height="820" fill="#0f1a24"/>
+  <rect x="20" y="20" width="560" height="780" fill="none" stroke="#1d87a9" stroke-width="2" stroke-dasharray="8 6"/>
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#bbf7ff" text-anchor="middle">
+    <text x="300" y="280" font-size="64" font-weight="bold">HYPERMEDIA</text>
+    <text x="300" y="360" font-size="64" font-weight="bold">SYSTEMS</text>
+    <line x1="200" y1="400" x2="400" y2="400" stroke="#1d87a9" stroke-width="2"/>
+    <text x="300" y="450" font-size="28" textLength="380" lengthAdjust="spacingAndGlyphs">SECOND EDITION</text>
+  </g>
+  <g font-family="ui-monospace, 'Berkeley Mono', monospace" fill="#5a7a88" text-anchor="middle">
+    <text x="300" y="760" font-size="14" textLength="320" lengthAdjust="spacingAndGlyphs">[ COVER PLACEHOLDER ]</text>
+  </g>
+</svg>
