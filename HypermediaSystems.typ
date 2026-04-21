@@ -41,3 +41,8 @@
 = Conclusion
 
 #include "ch14-conclusion.typ"
+
+= Appendices
+
+#include "appendix-a-hypermedia-controls.typ"
+#include "appendix-b-missing-mechanic.typ"
