@@ -949,6 +949,7 @@ different parts of the UI.
 
 #sidebar[Event Behaviors][
 #index[Hyperview][events]
+// TODO: replace stale web link with @ch09 ref
 Events are a client-side feature of Hyperview. In
 #link("/client-side-scripting/#_hyperscript")[Client-Side Scripting], we
 discussed events while working with HTML, \_hyperscript and the DOM. DOM

@@ -257,6 +257,7 @@ we expect. This SHA can be found on the htmx website.
 We also mark the script as `crossorigin="anonymous"` so no credentials will be
 sent to the CDN.
 
+// TODO: htmx 4 CDN pin + integrity hash
 #figure(caption: [Installing htmx],
 ```html
 <head>

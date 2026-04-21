@@ -321,6 +321,7 @@ that div to coordinate requests between the two buttons.
 Here is our updated code:
 
 #index[hx-sync][example]
+// TODO: htmx 4 — :inherited on hoisted hx-target/hx-sync
 #figure(caption: [Syncing two buttons])[
 ```html
 <div hx-target="body" <1>
@@ -712,6 +713,7 @@ first.
 
 ==== Out of Band Swaps
 
+// TODO: htmx 4 — OOB swaps after main swap; consider <hx-partial>
 #index[hx-swap-oob]
 #index[htmx][out of band swaps]
 A second option, a bit more complex, is to take advantage of "Out Of Band"
@@ -845,7 +847,7 @@ problem. Here are what (a bit of) the logs look like when clicking on the "docs"
 link on #link("https://htmx.org"), with
 `logAll()` enabled:
 
-// TODO: class-tools is deprecated in htmx 4; pick another extension for this example.
+// TODO: class-tools deprecated in htmx 4 — pick another extension
 #figure(
   caption: [Htmx logs],
 )[

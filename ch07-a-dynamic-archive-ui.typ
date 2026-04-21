@@ -151,6 +151,7 @@ Next, lets add the "Download Contact Archive" button to the `div` that will kick
 off the archive-then-download process. We’ll use a `POST` to the path `/contacts/archive` to
 trigger the start of the archiving process:
 
+// TODO: htmx 4 — :inherited on container hx-target/hx-swap (all archive-ui examples)
 #figure(caption: [Adding the archive button],
 ```html
 <div id="archive-ui" hx-target="this" hx-swap="outerHTML">

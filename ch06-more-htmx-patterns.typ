@@ -268,6 +268,7 @@ Here is a table of the HTTP headers that htmx includes in HTTP requests:
     This will be the current URL of the browser
   ]
 
+// TODO: htmx 4 — no localStorage history; full refresh on miss
 / `HX-History-Restore-Request`: #[
     This will be the string "true" if the request is for history restoration after a
     miss in the local history cache
@@ -1306,7 +1307,6 @@ looks like:
 def contacts_delete_all():
     contact_ids =  [
       int(id)
-      # note: in htmx 1.0 we would use the request.form property instead
       for id in request.args.getlist("selected_contact_ids")
     ] <2>
     for contact_id in contact_ids: <3>

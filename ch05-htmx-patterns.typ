@@ -15,6 +15,7 @@ hypermedia, using the core hypermedia concepts of the early web.
 
 === Installing Htmx <_installing_htmx>
 
+// TODO: htmx 4 install instructions
 #index[htmx][installing]
 The first thing we need to do is install htmx in our web application. We are
 going to do this by downloading the source and saving it locally in our
@@ -273,6 +274,7 @@ Well, it’s easy (and pretty common in htmx-powered web applications): we can
 just add `hx-boost` on the `body` tag of our `layout.html` template, and we are
 done.
 
+// TODO: htmx 4 — hx-boost:inherited
 #figure(caption: [Boosting the entire contact.app],
 ```html
 <html>
