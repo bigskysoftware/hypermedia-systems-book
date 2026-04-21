@@ -1255,14 +1255,17 @@ would work fine here, but we are going to use another approach that is a bit
 simpler in this case.
 
 #index[forms]
-By default, if an element is a child of a `form` element and makes a non-`GET` request,
-htmx will include all the values of inputs within that form. In situations like
-this, where there is a bulk operation for a table, it is common to enclose the
-whole table in a form tag, so that it is easy to add buttons that operate on the
-selected items.
+By default, if an element is a child of a `form` element and makes a `POST`, `PUT`
+or `PATCH` request, htmx will include all the values of inputs within that form.
+(Note: `hx-delete` behaves like `hx-get` and does _not_ pick up enclosing form
+inputs automatically; we will use `hx-include` below to opt in.) In situations
+like this, where there is a bulk operation for a table, it is common to enclose
+the whole table in a form tag, so that it is easy to add buttons that operate on
+the selected items.
 
 Let’s add that form tag around the table, and be sure to enclose the button in
-it as well:
+it as well, using `hx-include="closest form"` so the `DELETE` request picks up
+the form’s selected checkbox values:
 
 #figure(caption: [The "delete selected contacts" button],
 ```html
@@ -1272,14 +1275,16 @@ it as well:
   </table>
   <button
     hx-delete="/contacts"
+    hx-include="closest form" <2>
     hx-confirm="Are you sure you want to delete these contacts?"
     hx-target="body">
     Delete Selected Contacts
   </button>
-</form> <2>
+</form> <3>
 ```)
 1. The form tag encloses the entire table.
-2. The form tag also encloses the button.
+2. Include the enclosing form’s inputs in the `DELETE` request.
+3. The form tag also encloses the button.
 
 Now, when the button issues a `DELETE`, it will include all the contact ids that
 have been selected as the `selected_contact_ids` request variable.

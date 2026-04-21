@@ -1527,7 +1527,8 @@ Here is what our code looks like:
 #figure(caption: [An Event-based Confirmation Dialog])[
 ```html
 <button type="button" class="bad bg color border"
-  hx-delete="/contacts" hx-target="body" hx-trigger="confirmed" <1>
+  hx-delete="/contacts" hx-include="closest form"
+  hx-target="body" hx-trigger="confirmed" <1>
   @click="sweetConfirm($el, { <2>
     title: 'Delete these contacts?', <3>
     showCancelButton: true,
