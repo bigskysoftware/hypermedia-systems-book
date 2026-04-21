@@ -16,3 +16,4 @@ comments in the chapter files.
 - [ ] Font rework?
 - [ ] Asides/marginalia?
 - [ ] Morphing example?
+- [ ] Hyperview update
