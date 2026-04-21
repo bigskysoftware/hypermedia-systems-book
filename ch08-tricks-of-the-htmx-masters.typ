@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Tricks Of The Htmx Masters
+== Tricks Of The Htmx Masters <ch08>
 
 In this chapter we are going to look deeper into the htmx toolkit. We’ve
 accomplished quite a bit with what we’ve learned so far. Still, when you are
@@ -56,11 +56,11 @@ that issue htmx-driven requests because its default behavior --- `innerHTML`,
 which swaps the inner HTML of the element --- tends to cover most use cases.
 
 We earlier saw situations where we wanted to override the default behavior and
-use `outerHTML`, for example. And, in Chapter 2, we discussed some other swap
+use `outerHTML`, for example. And, in @ch02, we discussed some other swap
 options beyond these two, `beforebegin`,
 `afterend`, etc.
 
-In Chapter 5, we also looked at the `swap` delay modifier for `hx-swap`, which
+In @ch05, we also looked at the `swap` delay modifier for `hx-swap`, which
 allowed us to fade some content out before it was removed from the DOM.
 
 In addition to these, `hx-swap` offers further control with the following
@@ -624,7 +624,7 @@ refreshing the contacts table in our application.
 === HTTP Requests & Responses <_http_requests_responses>
 We have just seen an advanced feature of HTTP responses supported by htmx, the `HX-Trigger` response
 header, but htmx supports quite a few more headers for both requests and
-responses. In Chapter 4 we discussed the headers present in HTTP Requests. Here
+responses. In @ch04 we discussed the headers present in HTTP Requests. Here
 are some of the more important headers you can use to change htmx behavior with
 HTTP responses:
 
@@ -654,7 +654,7 @@ You can find a reference for all requests and response headers in the
 #index[HTTP response codes]
 Even more important than response headers, in terms of information conveyed to
 the client, is the _HTTP Response Code_. We discussed HTTP Response Codes in
-Chapter 3. By and large htmx handles various response codes in the manner that
+@ch03. By and large htmx handles various response codes in the manner that
 you would expect: it swaps content for all 200-level response codes and does
 nothing for others. There are, however, two "special" 200-level response codes:
 - `204 No Content` - When htmx receives this response code, it will

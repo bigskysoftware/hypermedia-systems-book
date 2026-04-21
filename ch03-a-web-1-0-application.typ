@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== A Web 1.0 Application
+== A Web 1.0 Application <ch03>
 
 To start our journey into Hypermedia-Driven Applications, we are going to create
 a simple contact management web application called Contact.app. We will start

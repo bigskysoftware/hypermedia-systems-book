@@ -1,7 +1,7 @@
 #import "lib/definitions.typ": *
 #import "lib/snippets.typ": fielding-rest-thesis
 
-== Components Of A Hypermedia System
+== Components Of A Hypermedia System <ch02>
 
 A _hypermedia system_ consists of a number of components, including:
 
@@ -265,7 +265,7 @@ server, and `PUT`, `PATCH` and `DELETE` are left aside in plain HTML-based
 applications.
 
 This is an obvious shortcoming of HTML as a hypermedia; it would be wonderful to
-see this fixed in the HTML specification. For now, in Chapter 4, we’ll discuss
+see this fixed in the HTML specification. For now, in @ch04, we’ll discuss
 ways to get around this.
 
 ===== HTTP response codes <_http_response_codes>
@@ -990,7 +990,7 @@ However, in a Hypermedia-Driven Application the presence of scripting should _no
 the fundamental networking model: hypermedia should continue to be the engine of
 application state, server communication should still consist of hypermedia
 exchanges rather than, for example, JSON data exchanges, and so on. (JSON Data
-API’s certainly have their place; in Chapter 10 we’ll discuss when and how to
+API’s certainly have their place; in @ch10 we’ll discuss when and how to
 use them).
 
 Today, unfortunately, the scripting layer of the web, JavaScript, is quite often

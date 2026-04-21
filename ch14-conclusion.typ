@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Conclusion
+== Conclusion <ch14>
 
 We hope to have convinced you that hypermedia, rather than being a
 "legacy" technology or a technology only appropriate for "documents" of links,

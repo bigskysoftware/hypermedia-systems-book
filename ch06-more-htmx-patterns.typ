@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== More Htmx Patterns
+== More Htmx Patterns <ch06>
 
 === Active Search <_active_search>
 So far so good with Contact.app: we have a nice little web application with some
@@ -1339,7 +1339,7 @@ manner of the web.
 Accessibility problems can arise when we try to implement controls that aren’t
 built into HTML.
 
-Earlier, in Chapter 1, we looked at the example of a \<div\> improvised to
+Earlier, in @ch01, we looked at the example of a \<div\> improvised to
 work like a button. Let’s look at a different example: what if you make
 something that looks like a set of tabs, but you use radio buttons and CSS hacks
 to build it? It’s a neat hack that makes the rounds in web development

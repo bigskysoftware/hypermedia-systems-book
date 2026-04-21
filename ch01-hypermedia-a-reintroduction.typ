@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Hypermedia: A Reintroduction
+== Hypermedia: A Reintroduction <ch01>
 
 Hypermedia is a universal technology today, almost as common as electricity.
 
@@ -173,7 +173,7 @@ Fielding’s work became a major touchstone for early web developers, giving the
 a language to discuss the new technical medium they were building applications
 in.
 
-We will discuss Fielding’s key ideas in depth in Chapter 2, and try to correct
+We will discuss Fielding’s key ideas in depth in @ch02, and try to correct
 the record with respect to REST, HATEOAS and hypermedia.
 
 === The World’s Most Successful Hypertext: HTML <_the_worlds_most_successful_hypertext_html>
@@ -258,7 +258,7 @@ initiates an HTTP `GET` request to the URL encoded in the link’s `href` attrib
 
 Note that the HTTP request includes additional data (i.e.,
 _metadata_) on what, exactly, the browser wants from the server, in the form of
-headers. We will discuss these headers, and HTTP in more depth in Chapter 2.
+headers. We will discuss these headers, and HTTP in more depth in @ch02.
 
 The _hypermedia server_ then responds to this request with a
 _hypermedia response_ --- the HTML --- for the new page. This may seem like a

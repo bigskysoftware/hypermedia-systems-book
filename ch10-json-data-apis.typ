@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== JSON Data APIs
+== JSON Data APIs <ch10>
 
 So far we have been focusing on using hypermedia to build Hypermedia-Driven
 Applications. In doing so we are following and taking advantage of the native

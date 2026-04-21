@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Htmx Patterns
+== Htmx Patterns <ch05>
 
 Now that we’ve seen how htmx extends HTML as a hypermedia, it’s time to put it
 into action. As we use htmx, we will still be using hypermedia: we will issue

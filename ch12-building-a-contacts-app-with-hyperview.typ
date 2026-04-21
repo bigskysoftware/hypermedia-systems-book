@@ -1,10 +1,10 @@
 #import "lib/definitions.typ": *
 
-== Building A Contacts App With Hyperview
+== Building A Contacts App With Hyperview <ch12>
 
 Earlier chapters in this book explained the benefits of building apps using the
 hypermedia architecture. These benefits were demonstrated by building a robust
-Contacts web application. Then, Chapter 11 argued that hypermedia concepts can
+Contacts web application. Then, @ch11 argued that hypermedia concepts can
 and should be applied to platforms other than the web. We introduced Hyperview
 as an example of a hypermedia format and client specifically designed for
 building mobile apps. But you may still be wondering: what is it like to create

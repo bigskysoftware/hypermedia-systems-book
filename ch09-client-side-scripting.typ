@@ -1,7 +1,7 @@
 #import "lib/definitions.typ": *
 #import "lib/snippets.typ": fielding-rest-thesis
 
-== Client Side Scripting
+== Client Side Scripting <ch09>
 
 #blockquote(
   attribution: fielding-rest-thesis,

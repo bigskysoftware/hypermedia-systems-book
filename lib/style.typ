@@ -62,6 +62,22 @@
   #show heading.where(level: 5): set text(font: secondary-font)
   #show heading.where(level: 6): set text(font: secondary-font)
 
+  // Render chapter/part refs as "Chapter 4" or "Part II" (no trailing period
+  // from the heading's "1.1." numbering format).
+  #show ref: it => {
+    if it.element != none and it.element.func() == heading and it.element.numbering != none {
+      let h = it.element
+      let nums = counter(heading).at(h.location())
+      if h.depth == 1 {
+        [#h.supplement~#numbering("I", nums.first())]
+      } else {
+        [#h.supplement~#str(nums.at(1))]
+      }
+    } else {
+      it
+    }
+  }
+
   #set par(justify: true, first-line-indent: 1em, leading: leading)
   #set par(spacing: leading)
 

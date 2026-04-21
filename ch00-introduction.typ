@@ -1,7 +1,7 @@
 #import "lib/definitions.typ": *
 
 #set heading(numbering: none)
-== Introduction
+== Introduction <ch00>
 
 This is a book about building applications using hypermedia systems. _Hypermedia systems_ might
 seem like a strange phrase: how is hypermedia a _system_? Isn't hypermedia just

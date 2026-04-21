@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Extending HTML As Hypermedia
+== Extending HTML As Hypermedia <ch04>
 
 In the previous chapter we introduced a simple Web 1.0-style hypermedia
 application to manage contacts. Our application supported the normal CRUD
@@ -54,7 +54,7 @@ page.
   the normal browser request mechanism.
 ]
 
-There are a few different styles of SPA, but, as we discussed in Chapter 1, the
+There are a few different styles of SPA, but, as we discussed in @ch01, the
 most common approach today is to tie the DOM to a JavaScript model and then let
 an SPA framework like
 #link("https://reactjs.org/")[React] or #link("https://vuejs.org/")[Vue]
@@ -87,7 +87,7 @@ and address the issues with legacy HTML applications we mentioned above (as well
 as a few others.)
 
 Before we get into how htmx allows us to improve the UX of our Web 1.0 style
-application, let’s revisit the hyperlink/anchor tag from Chapter 1. Recall, a
+application, let’s revisit the hyperlink/anchor tag from @ch01. Recall, a
 hyperlink is what is known as a _hypermedia control_, a mechanism that describes
 some sort of interaction with a server by encoding information about that
 interaction directly and completely within the control itself.
@@ -181,7 +181,7 @@ Let’s recall what these different HTTP request types are designed to represent
 - `DELETE` deletes the given resource.
 
 These operations correspond closely to the CRUD operations we discussed in
-Chapter 2. By giving us access to only two of the five, HTML hamstrings our
+@ch02. By giving us access to only two of the five, HTML hamstrings our
 ability to take full advantage of HTTP.
 
 This gives us our third opportunity to expand the expressiveness of HTML:

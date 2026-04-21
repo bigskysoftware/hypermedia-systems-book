@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== Hyperview: A Mobile Hypermedia
+== Hyperview: A Mobile Hypermedia <ch11>
 
 You may be forgiven for thinking the hypermedia architecture is synonymous with
 the web, web browsers, and HTML. No doubt, the web is the largest hypermedia

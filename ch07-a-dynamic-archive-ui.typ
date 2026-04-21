@@ -1,6 +1,6 @@
 #import "lib/definitions.typ": *
 
-== A Dynamic Archive UI
+== A Dynamic Archive UI <ch07>
 
 Contact.app has come a long way from a traditional web 1.0-style web
 application: we’ve added active search, bulk delete, some nice animations, and a
@@ -605,7 +605,7 @@ solution.")
 #index[CSS transitions]
 It turns out that there is a native HTML technology for smoothing out changes on
 an element from one state to another: the CSS Transitions API, the same one that
-we discussed in Chapter 4. Using CSS Transitions, you can smoothly animate an
+we discussed in @ch04. Using CSS Transitions, you can smoothly animate an
 element between different styling by using the `transition` property.
 
 If you look back at our CSS definition of the `.progress-bar` class, you will
@@ -633,7 +633,7 @@ it replaces content in the DOM.
 
 #index[htmx][swap model]
 #index[htmx][settling]
-When we discussed the htmx swap model in Chapter 4, we focused on the classes
+When we discussed the htmx swap model in @ch04, we focused on the classes
 that htmx adds and removes, but we skipped over the process of
 "settling." In htmx, settling involves several steps: when htmx is about to
 replace a chunk of content, it looks through the new content and finds all
@@ -740,14 +740,14 @@ the file downloads immediately without the user needing to click a link.
 
 We can add this functionality quite easily to our application with just a bit of
 scripting. We will discuss scripting in a Hypermedia-Driven Application in more
-depth in Chapter 9, but, put briefly: scripting is perfectly acceptable in a
+depth in @ch09, but, put briefly: scripting is perfectly acceptable in a
 HDA, as long as it doesn’t replace the core hypermedia mechanics of the
 application.
 
 For our auto-download feature we will use
 #link("https://hyperscript.org")[\_hyperscript], our preferred scripting option.
 JavaScript would also work here, and would be nearly as simple; again, we’ll
-discuss scripting options in detail in Chapter 9.
+discuss scripting options in detail in @ch09.
 
 All we need to do to implement the auto-download feature is the following: when
 the download link renders, automatically click on the link for the user.
