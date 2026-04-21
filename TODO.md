@@ -12,3 +12,7 @@ comments in the chapter files.
 - [ ] Rewrite ch08 response-codes section for htmx 4 (all responses swap except 204/304; no more swap-only-on-2xx)
 - [x] ACM Paper Appendixes (paper only)
 - [x] Cover Placeholders
+- [ ] Colorized code blocks?
+- [ ] Font rework?
+- [ ] Asides/marginalia?
+- [ ] Morphing example?
