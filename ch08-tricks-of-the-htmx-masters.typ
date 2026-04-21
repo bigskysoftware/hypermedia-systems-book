@@ -845,6 +845,7 @@ problem. Here are what (a bit of) the logs look like when clicking on the "docs"
 link on #link("https://htmx.org"), with
 `logAll()` enabled:
 
+// TODO: class-tools is deprecated in htmx 4; pick another extension for this example.
 #figure(
   caption: [Htmx logs],
 )[
@@ -885,7 +886,7 @@ Object { xhr: XMLHttpRequest, target: body, requestConfig: {…}, etc: {}, pathI
  }
 htmx.js:439:29
 htmx:beforeSwap
-<body hx-ext="class-tools, preload">
+<body>
 ``` ]
 
 Not exactly easy on the eyes, is it?
