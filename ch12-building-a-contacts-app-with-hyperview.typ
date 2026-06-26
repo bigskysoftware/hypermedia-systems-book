@@ -58,7 +58,7 @@ using Expo. We will use this demo client but point it to our contacts app
 backend as a starting point.
 
 #figure[```bash
-git clone git@github.com:Instawork/hyperview.git
+git clone https://github.com/Instawork/hyperview.git
 cd hyperview/demo
 yarn <1>
 yarn start <2>
