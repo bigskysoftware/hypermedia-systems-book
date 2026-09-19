@@ -1,5 +1,5 @@
 
-typst_flags := "--features html --font-path fonts"
+typst_flags := "--features html --features bundle --font-path fonts"
 out_dir := "out"
 
 build: build-pdf build-epub build-kindle
@@ -33,11 +33,10 @@ typst-fonts:
 
 build-html:
   rm -rf out/www
-  www/build_web.ts
-  cp www/{style.css,cover.css,color-customizer.js} out/www
-  cp -r images out/www/images
+  typst compile {{ typst_flags }} --format bundle --input ebook=1 HypermediaSystems-Web.typ out/www/
+  # cp www/{style.css,cover.css,color-customizer.js} out/www
+  # cp -r images out/www/images
   cp -r fonts out/www/fonts
-  test -z ${DEV+x} && npx subfont -ir out/www --no-fallbacks || true
 
 _out_dir:
   mkdir -p {{ out_dir }}

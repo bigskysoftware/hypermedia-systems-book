@@ -85,9 +85,14 @@
 }
 
 #let asciiart(..args, source) = figure({
-  set text(size: .8em)
-  set par(leading: .5em)
-  block(breakable: false, align(start, raw(source, block: true)))
+  let result = raw(source, block: true)
+  context if target() == "html" {
+    html.div(class: "asciiart", result)
+  } else {
+    set text(size: .8em)
+    set par(leading: .5em)
+    block(breakable: false, align(start, result))
+  }
 }, kind: image, ..args)
 
 #let blockquote = quote.with(block: true)
